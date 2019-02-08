@@ -1,3 +1,5 @@
+import { handleErrors } from "../../utils/helpers";
+
 export const FETCH_SCHEDULES_BEGIN = "FETCH_SCHEDULES_BEGIN";
 export const FETCH_SCHEDULES_SUCCESS = "FETCH_SCHEDULES_SUCCESS";
 export const FETCH_SCHEDULES_FAILURE = "FETCH_SCHEDULES_FAILURE";
@@ -15,14 +17,6 @@ export const fetchSchedulesFailure = error => ({
   type: FETCH_SCHEDULES_FAILURE,
   payload: { error }
 });
-
-// Handle HTTP errors since fetch won't.
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}
 
 function getSchedules() {
   return fetch("/data/schedules.json")
