@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchProducts } from "../../modules/product/actions";
+import { fetchNewsAllTeams } from "../../modules/newsAllTeams/actions";
 
-class ProductList extends Component {
+class NewsAllTeamsList extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
+    this.props.fetchNewsAllTeams();
   }
 
   render() {
-    const { error, loading, products } = this.props;
+    const { error, loading, newsAllTeams } = this.props;
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -23,35 +23,35 @@ class ProductList extends Component {
     return (
       <ul>
         <li>hi</li>
-        {products.map(product => (
-          <li key={product.Key}>{product.Name}</li>
+        {newsAllTeams.map(article => (
+          <li key={article.NewsID}>{article.Title}</li>
         ))}
       </ul>
     );
   }
 }
 
-ProductList.propTypes = {
+NewsAllTeamsList.propTypes = {
   error: null || PropTypes.bool,
   loading: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchProducts: PropTypes.func.isRequired
+  newsAllTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchNewsAllTeams: PropTypes.func.isRequired
 };
 
-ProductList.defaultProps = {
+NewsAllTeamsList.defaultProps = {
   error: null
 };
 
 const mapStateToProps = state => ({
-  products: state.products.productData,
-  loading: state.products.loading,
-  error: state.products.error
+  newsAllTeams: state.newsAllTeams.newsAllTeamsData,
+  loading: state.newsAllTeams.loading,
+  error: state.newsAllTeams.error
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchProducts
+      fetchNewsAllTeams
     },
     dispatch
   );
@@ -61,4 +61,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(ProductList);
+)(NewsAllTeamsList);
