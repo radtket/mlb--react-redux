@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import Home from "../home";
 import RedditAsyncApp from "../reddit";
 import ProductList from "../product";
+import SchedulesList from "../schedules";
 import NewsAllTeamsList from "../newsAllTeams";
 import StandingsList from "../standings";
 import Team from "../team";
@@ -38,6 +39,7 @@ class App extends Component {
           <Route exact path="/reddit" component={RedditAsyncApp} />
           <Route exact path="/standings" component={StandingsList} />
           <Route exact path="/product" component={ProductList} />
+          <Route exact path="/schedules" component={SchedulesList} />
           <Route exact path="/news" component={NewsAllTeamsList} />
           <Route path="/teams/:teamAbrv" component={Team} />
         </main>
