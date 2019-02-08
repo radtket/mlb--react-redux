@@ -1,0 +1,29 @@
+{
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"commonjs": true
+	},
+	"settings": {
+		"ecmascript": 6,
+		"jsx": true
+	},
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 8,
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"impliedStrict": true,
+			"classes": true
+		}
+	},
+	"extends": ["airbnb", "prettier", "prettier/react"],
+	"plugins": ["prettier"],
+	"rules": {
+		"react/jsx-filename-extension": false,
+		"react/jsx-sort-props": true,
+		"react/prefer-stateless-function": false
+	}
+}
