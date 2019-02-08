@@ -21,13 +21,13 @@ class App extends Component {
   }
 
   render() {
-    const { error, loading, teams } = this.props;
+    const { teamsFail, teamsLoading, teams } = this.props;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (teamsFail) {
+      return <div>teamsFail! {teamsFail.message}</div>;
     }
 
-    if (loading) {
+    if (teamsLoading) {
       return <div>Loading...</div>;
     }
 
@@ -49,20 +49,20 @@ class App extends Component {
 }
 
 App.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  teamsFail: null || PropTypes.bool,
+  teamsLoading: PropTypes.bool.isRequired,
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeams: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
-  error: null
+  teamsFail: null
 };
 
 const mapStateToProps = state => ({
   teams: state.teams.teamsData,
-  loading: state.teams.loading,
-  error: state.teams.error
+  teamsLoading: state.teams.teamsLoading,
+  teamsFail: state.teams.teamsFail
 });
 
 const mapDispatchToProps = dispatch =>

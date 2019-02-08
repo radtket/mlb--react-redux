@@ -14,9 +14,9 @@ export const fetchTeamsSuccess = teams => ({
   payload: { teams }
 });
 
-export const fetchTeamsFailure = error => ({
+export const fetchTeamsFailure = teamsFail => ({
   type: FETCH_TEAMS_FAILURE,
-  payload: { error }
+  payload: { teamsFail }
 });
 
 function getTeams() {

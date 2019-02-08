@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   teamsData: [],
-  loading: false,
-  error: null
+  teamsLoading: false,
+  teamsError: null
 };
 
 export default function teamsReducer(state = initialState, action) {
@@ -17,8 +17,8 @@ export default function teamsReducer(state = initialState, action) {
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
-        loading: true,
-        error: null
+        teamsLoading: true,
+        teamsError: null
       };
 
     case FETCH_TEAMS_SUCCESS:
@@ -26,7 +26,7 @@ export default function teamsReducer(state = initialState, action) {
       // Also, replace the items with the ones from the server
       return {
         ...state,
-        loading: false,
+        teamsLoading: false,
         teamsData: action.payload.teams
       };
 
@@ -38,8 +38,8 @@ export default function teamsReducer(state = initialState, action) {
       // around! Do whatever seems right.
       return {
         ...state,
-        loading: false,
-        error: action.payload.error,
+        teamsLoading: false,
+        teamsError: action.payload.error,
         teamsData: []
       };
 
