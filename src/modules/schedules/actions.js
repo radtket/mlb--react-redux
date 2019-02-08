@@ -13,9 +13,9 @@ export const fetchSchedulesSuccess = schedules => ({
   payload: { schedules }
 });
 
-export const fetchSchedulesFailure = error => ({
+export const fetchSchedulesFailure = schedulesFail => ({
   type: FETCH_SCHEDULES_FAILURE,
-  payload: { error }
+  payload: { schedulesFail }
 });
 
 function getSchedules() {

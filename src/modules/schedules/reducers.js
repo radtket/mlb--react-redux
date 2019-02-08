@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   schedulesData: [],
-  loading: false,
-  error: null
+  schedulesLoading: false,
+  schedulesError: null
 };
 
 export default function schedulesReducer(state = initialState, action) {
@@ -17,8 +17,8 @@ export default function schedulesReducer(state = initialState, action) {
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
-        loading: true,
-        error: null
+        schedulesLoading: true,
+        schedulesError: null
       };
 
     case FETCH_SCHEDULES_SUCCESS:
@@ -26,7 +26,7 @@ export default function schedulesReducer(state = initialState, action) {
       // Also, replace the schedulesData with the ones from the server
       return {
         ...state,
-        loading: false,
+        schedulesLoading: false,
         schedulesData: action.payload.schedules
       };
 
@@ -38,8 +38,8 @@ export default function schedulesReducer(state = initialState, action) {
       // around! Do whatever seems right.
       return {
         ...state,
-        loading: false,
-        error: action.payload.error,
+        schedulesLoading: false,
+        schedulesError: action.payload.error,
         schedulesData: []
       };
 

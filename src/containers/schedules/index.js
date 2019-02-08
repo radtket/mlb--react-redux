@@ -10,13 +10,13 @@ class SchedulesList extends Component {
   }
 
   render() {
-    const { error, loading, schedules } = this.props;
+    const { schedulesError, schedulesLoading, schedules } = this.props;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (schedulesError) {
+      return <div>Error! {schedulesError.message}</div>;
     }
 
-    if (loading) {
+    if (schedulesLoading) {
       return <div>Loading...</div>;
     }
 
@@ -32,20 +32,20 @@ class SchedulesList extends Component {
 }
 
 SchedulesList.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  schedulesError: null || PropTypes.bool,
+  schedulesLoading: PropTypes.bool.isRequired,
   schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchSchedules: PropTypes.func.isRequired
 };
 
 SchedulesList.defaultProps = {
-  error: null
+  schedulesError: null
 };
 
 const mapStateToProps = state => ({
   schedules: state.schedules.schedulesData,
-  loading: state.schedules.loading,
-  error: state.schedules.error
+  schedulesLoading: state.schedules.schedulesLoading,
+  schedulesError: state.schedules.schedulesError
 });
 
 const mapDispatchToProps = dispatch =>
