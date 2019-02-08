@@ -10,21 +10,21 @@ class ProductList extends Component {
   }
 
   render() {
-    const { error, loading, products } = this.props;
+    const { productsFail, productsLoading, products } = this.props;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (productsFail) {
+      return <div>Error! {productsFail.message}</div>;
     }
 
-    if (loading) {
+    if (productsLoading) {
       return <div>Loading...</div>;
     }
 
     return (
       <ul>
         <li>hi</li>
-        {products.map(product => (
-          <li key={product.Key}>{product.Name}</li>
+        {products.map(item => (
+          <li key={item.Key}>{item.Name}</li>
         ))}
       </ul>
     );
@@ -32,20 +32,20 @@ class ProductList extends Component {
 }
 
 ProductList.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  productsFail: null || PropTypes.bool,
+  productsLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchProducts: PropTypes.func.isRequired
 };
 
 ProductList.defaultProps = {
-  error: null
+  productsFail: null
 };
 
 const mapStateToProps = state => ({
-  products: state.products.productData,
-  loading: state.products.loading,
-  error: state.products.error
+  products: state.products.productsData,
+  productsLoading: state.products.productsLoading,
+  productsFail: state.products.productsError
 });
 
 const mapDispatchToProps = dispatch =>

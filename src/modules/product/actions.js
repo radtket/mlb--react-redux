@@ -13,9 +13,9 @@ export const fetchProductsSuccess = products => ({
   payload: { products }
 });
 
-export const fetchProductsFailure = error => ({
+export const fetchProductsFailure = productsFail => ({
   type: FETCH_PRODUCTS_FAILURE,
-  payload: { error }
+  payload: { productsFail }
 });
 
 function getProducts() {
