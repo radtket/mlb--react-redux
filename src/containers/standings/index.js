@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStandings } from "../../modules/standings/standingsActions";
+import { fetchStandings } from "../../modules/standings/actions";
 
 class StandingsList extends Component {
   componentDidMount() {

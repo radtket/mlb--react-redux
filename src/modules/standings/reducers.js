@@ -2,7 +2,7 @@ import {
   FETCH_STANDINGS_BEGIN,
   FETCH_STANDINGS_SUCCESS,
   FETCH_STANDINGS_FAILURE
-} from "./standingsActions";
+} from "./actions";
 
 const initialState = {
   standingsData: [],
@@ -10,7 +10,7 @@ const initialState = {
   error: null
 };
 
-export default function standingsReducer(state = initialState, action) {
+export default function reducers(state = initialState, action) {
   switch (action.type) {
     case FETCH_STANDINGS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
