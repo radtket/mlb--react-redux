@@ -20,7 +20,7 @@ export const fetchTeamsFailure = error => ({
 });
 
 function getTeams() {
-  return fetch("/data/actions-teams-all.json")
+  return fetch("/data/teams-with-stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
 }
