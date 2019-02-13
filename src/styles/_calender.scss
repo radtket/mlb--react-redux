@@ -1,0 +1,87 @@
+.Calendar {
+	background: #ffffff;
+	border-collapse: collapse;
+	margin: 1rem auto 0;
+	padding: 0;
+
+	th {
+		background: #dddddd;
+		padding: 0.5rem 1rem;
+		text-align: center;
+	}
+
+	td {
+		padding: 0.25rem;
+		text-align: center;
+	}
+
+	.month-header {
+		border-bottom: 1px solid #ffffff;
+	}
+
+	.Day {
+		cursor: pointer;
+
+		.Day-inner {
+			background: none transparent;
+			border-radius: 50%;
+			cursor: pointer;
+			display: inline-block;
+			height: 2.5rem;
+			line-height: 2.5rem;
+			padding: 0;
+			width: 2.5rem;
+		}
+
+		&.weekend {
+			background: #bdc3c7;
+			color: #000000;
+		}
+
+		&.other-month {
+			color: #999999;
+			font-style: italic;
+		}
+
+		button {
+			&.Day-inner {
+				border: 0;
+			}
+		}
+
+		a {
+			&.Day-inner {
+				color: inherit;
+			}
+		}
+
+		&.today {
+			.Day-inner {
+				background: #fafad2;
+				color: #000000;
+			}
+		}
+
+		&:hover {
+			.Day-inner {
+				background: #eeeeee;
+				color: #000000;
+			}
+		}
+
+		&.selected {
+			.Day-inner {
+				background: #2980b9;
+				color: #ffffff;
+			}
+		}
+	}
+
+	.nav {
+		.nav-inner {
+			background: none transparent;
+			border: 0;
+			cursor: pointer;
+		}
+	}
+}

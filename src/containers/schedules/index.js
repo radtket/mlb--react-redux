@@ -22,7 +22,6 @@ class SchedulesList extends Component {
 
     return (
       <ul>
-        <li>hi</li>
         {schedules.map(game => (
           <li key={game.GameID}>{`${game.AwayTeam} vs ${game.HomeTeam}`}</li>
         ))}

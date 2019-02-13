@@ -14,9 +14,9 @@ export const fetchStandingsSuccess = standings => ({
   payload: { standings }
 });
 
-export const fetchStandingsFailure = error => ({
+export const fetchStandingsFailure = standingsFail => ({
   type: FETCH_STANDINGS_FAILURE,
-  payload: { error }
+  payload: { standingsFail }
 });
 
 function getStandings() {

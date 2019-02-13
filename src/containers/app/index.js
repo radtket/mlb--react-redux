@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
+// Pages
 import Home from "../home";
 import RedditAsyncApp from "../reddit";
 import ProductList from "../product";
@@ -11,20 +12,28 @@ import SchedulesList from "../schedules";
 import NewsAllTeamsList from "../newsAllTeams";
 import StandingsList from "../standings";
 import Team from "../team";
+
+// Actions
 import { fetchTeams } from "../../modules/teams/actions";
 import { fetchSchedules } from "../../modules/schedules/actions";
+import { fetchStandings } from "../../modules/standings/actions";
+
+// Components
 import Header from "../../components/Header";
 
 class App extends Component {
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
+    /* eslint-disable react/destructuring-assignment */
     this.props.fetchTeams();
-    // eslint-disable-next-line react/destructuring-assignment
     this.props.fetchSchedules();
+    this.props.fetchStandings();
+    /* eslint-enable react/destructuring-assignment */
   }
 
   render() {
     const {
+      standingsError,
+      standingsLoading,
       schedulesError,
       schedulesLoading,
       schedules,
@@ -41,7 +50,11 @@ class App extends Component {
       return <div>Error! {schedulesError.message}</div>;
     }
 
-    if (teamsLoading || schedulesLoading) {
+    if (standingsError) {
+      return <div>Error! {standingsError.message}</div>;
+    }
+
+    if (teamsLoading || schedulesLoading || standingsLoading) {
       return <div>Loading...</div>;
     }
 
@@ -75,12 +88,17 @@ App.propTypes = {
   schedulesError: null || PropTypes.bool,
   schedulesLoading: PropTypes.bool.isRequired,
   schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchSchedules: PropTypes.func.isRequired
+  fetchSchedules: PropTypes.func.isRequired,
+  standingsError: null || PropTypes.bool,
+  standingsLoading: PropTypes.bool.isRequired,
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchStandings: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
   teamsFail: null,
-  schedulesError: null
+  schedulesError: null,
+  standingsError: null
 };
 
 const mapStateToProps = state => ({
@@ -89,14 +107,18 @@ const mapStateToProps = state => ({
   teamsFail: state.teams.teamsFail,
   schedules: state.schedules.schedulesData,
   schedulesLoading: state.schedules.schedulesLoading,
-  schedulesError: state.schedules.schedulesError
+  schedulesError: state.schedules.schedulesError,
+  standings: state.standings.standingsData,
+  standingsLoading: state.standings.standingsLoading,
+  standingsError: state.standings.standingsError
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchTeams,
-      fetchSchedules
+      fetchSchedules,
+      fetchStandings
     },
     dispatch
   );

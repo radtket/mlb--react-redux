@@ -12,6 +12,7 @@ class TeamRecentGames extends Component {
 
   render() {
     const { recentGames } = this.props;
+    console.log(recentGames);
     return (
       <div>
         <h1>TeamRecentGames</h1>
@@ -28,11 +29,13 @@ class TeamRecentGames extends Component {
 
 TeamRecentGames.propTypes = {
   activeTeam: PropTypes.string.isRequired,
-  recentGames: PropTypes.shape({
-    GameID: PropTypes.string,
-    AwayTeam: PropTypes.string,
-    HomeTeam: PropTypes.string
-  }).isRequired
+  recentGames: PropTypes.arrayOf(
+    PropTypes.shape({
+      GameID: PropTypes.number,
+      AwayTeam: PropTypes.string,
+      HomeTeam: PropTypes.string
+    })
+  ).isRequired
 };
 
 export default TeamRecentGames;
