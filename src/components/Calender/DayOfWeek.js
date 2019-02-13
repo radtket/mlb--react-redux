@@ -4,7 +4,6 @@ import moment from "moment";
 
 const DayOfWeek = props => {
   const { date, format } = props;
-
   return <th className="DayOfWeek">{date.format(format)}</th>;
 };
 

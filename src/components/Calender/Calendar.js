@@ -122,6 +122,7 @@ class Calendar extends Component {
     let i = 1;
     const daysOfWeek = [];
     const day = current.clone();
+
     for (let j = 0; j < 7; j += 1) {
       const dayOfWeekKey = `dayOfWeek${j}`;
       daysOfWeek.push(
@@ -129,6 +130,7 @@ class Calendar extends Component {
       );
       day.add(1, "days");
     }
+
     while (current.isBefore(end)) {
       let dayClasses = this.props.dayClasses(current);
 
@@ -153,14 +155,13 @@ class Calendar extends Component {
 
       days.push(
         <Day key={(i += 1)} {...props}>
-          {" "}
-          {children}{" "}
+          {children}
         </Day>
       );
       current.add(1, "days");
       if (current.day() === startOfWeekIndex) {
         const weekKey = `week${(week += 1)}`;
-        elements.push(<Week key={weekKey}> {days} </Week>);
+        elements.push(<Week key={weekKey}>{days}</Week>);
         days = [];
       }
     }
@@ -172,40 +173,38 @@ class Calendar extends Component {
         <tr className="month-header">
           <th className="nav previous">
             <button className="nav-inner" onClick={this.previous} type="button">
-              {" "}
               «
-            </button>{" "}
-          </th>{" "}
+            </button>
+          </th>
           <th colSpan="5">
-            <span className="month"> {month.format("MMMM")} </span>{" "}
-            <span className="year"> {month.format("YYYY")} </span>{" "}
-          </th>{" "}
+            <span className="month"> {month.format("MMMM")} </span>
+            <span className="year"> {month.format("YYYY")} </span>
+          </th>
           <th className="nav next">
             <button className="nav-inner" onClick={this.next} type="button">
-              {" "}
               »
-            </button>{" "}
-          </th>{" "}
+            </button>
+          </th>
         </tr>
       );
     } else {
       nav = (
         <tr className="month-header">
           <th colSpan="7">
-            <span className="month"> {month.format("MMMM")} </span>{" "}
-            <span className="year"> {month.format("YYYY")} </span>{" "}
-          </th>{" "}
+            <span className="month">{month.format("MMMM")}</span>
+            <span className="year">{month.format("YYYY")}</span>
+          </th>
         </tr>
       );
     }
 
     return (
       <table className={classes}>
-        <thead> {nav} </thead>{" "}
+        <thead>{nav}</thead>
         <thead>
-          <tr className="days-header"> {daysOfWeek} </tr>{" "}
-        </thead>{" "}
-        <tbody> {elements} </tbody>{" "}
+          <tr className="days-header">{daysOfWeek}</tr>
+        </thead>
+        <tbody>{elements}</tbody>
       </table>
     );
   }
