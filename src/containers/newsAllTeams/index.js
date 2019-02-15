@@ -10,13 +10,13 @@ class NewsAllTeamsList extends Component {
   }
 
   render() {
-    const { error, loading, newsAllTeams } = this.props;
+    const { newsAllError, newsAllLoading, newsAllTeams } = this.props;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (newsAllError) {
+      return <div>Error! {newsAllError.message}</div>;
     }
 
-    if (loading) {
+    if (newsAllLoading) {
       return <div>Loading...</div>;
     }
 
@@ -32,20 +32,20 @@ class NewsAllTeamsList extends Component {
 }
 
 NewsAllTeamsList.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  newsAllError: null || PropTypes.bool,
+  newsAllLoading: PropTypes.bool.isRequired,
   newsAllTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchNewsAllTeams: PropTypes.func.isRequired
 };
 
 NewsAllTeamsList.defaultProps = {
-  error: null
+  newsAllError: null
 };
 
-const mapStateToProps = state => ({
-  newsAllTeams: state.newsAllTeams.newsAllTeamsData,
-  loading: state.newsAllTeams.loading,
-  error: state.newsAllTeams.error
+const mapStateToProps = ({ newsAllTeams }) => ({
+  newsAllTeams: newsAllTeams.newsAllTeamsData,
+  newsAllLoading: newsAllTeams.newsAllLoading,
+  newsAllError: newsAllTeams.newsAllError
 });
 
 const mapDispatchToProps = dispatch =>

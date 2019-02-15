@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   newsAllTeamsData: [],
-  loading: false,
-  error: null
+  newsAllLoading: false,
+  newsAllError: null
 };
 
 export default function newsAllTeamsReducer(state = initialState, action) {
@@ -17,8 +17,8 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
-        loading: true,
-        error: null
+        newsAllLoading: true,
+        newsAllError: null
       };
 
     case FETCH_NEWS_ALL_TEAMS_SUCCESS:
@@ -26,7 +26,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       // Also, replace the newsAllTeamsData with the ones from the server
       return {
         ...state,
-        loading: false,
+        newsAllLoading: false,
         newsAllTeamsData: action.payload.newsAllTeams
       };
 
@@ -38,8 +38,8 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       // around! Do whatever seems right.
       return {
         ...state,
-        loading: false,
-        error: action.payload.error,
+        newsAllLoading: false,
+        newsAllError: action.payload.error,
         newsAllTeamsData: []
       };
 
