@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   teamRosterData: [],
-  loading: false,
-  error: null
+  teamRosterLoading: false,
+  teamRosterError: null
 };
 
 export default function reducers(state = initialState, action) {
@@ -17,8 +17,8 @@ export default function reducers(state = initialState, action) {
       // Also, reset any errors. We're starting fresh.
       return {
         ...state,
-        loading: true,
-        error: null
+        teamRosterLoading: true,
+        teamRosterError: null
       };
 
     case FETCH_TEAM_ROSTER_SUCCESS:
@@ -26,7 +26,7 @@ export default function reducers(state = initialState, action) {
       // Also, replace the items with the ones from the server
       return {
         ...state,
-        loading: false,
+        teamRosterLoading: false,
         teamRosterData: action.payload.teamRoster
       };
 
@@ -38,8 +38,8 @@ export default function reducers(state = initialState, action) {
       // around! Do whatever seems right.
       return {
         ...state,
-        loading: false,
-        error: action.payload.error,
+        teamRosterLoading: false,
+        teamRosterError: action.payload.error,
         teamRosterData: []
       };
 

@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 
 class TeamRoster extends Component {
   render() {
-    const { error, loading, teamRoster } = this.props;
+    const { teamRosterError, teamRosterLoading, teamRoster } = this.props;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (teamRosterError) {
+      return <div>Error! {teamRosterError.message}</div>;
     }
 
-    if (loading) {
+    if (teamRosterLoading) {
       return <div>Loading...</div>;
     }
 
@@ -27,13 +27,13 @@ class TeamRoster extends Component {
 }
 
 TeamRoster.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  teamRosterError: null || PropTypes.bool,
+  teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 TeamRoster.defaultProps = {
-  error: null
+  teamRosterError: null
 };
 
 export default TeamRoster;

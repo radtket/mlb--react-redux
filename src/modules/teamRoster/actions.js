@@ -20,6 +20,7 @@ export const fetchTeamRosterFailure = error => ({
 });
 
 function getTeamRoster() {
+  // TODO: Add When API is Live
   // function getTeamRoster(teamArg) {
   // return fetch(
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${teamArg}`,
@@ -30,10 +31,12 @@ function getTeamRoster() {
     .then(res => res.json());
 }
 
+// TODO: Add When API is Live
 // export function fetchTeamRoster(teamArg) {
 export function fetchTeamRoster() {
   return dispatch => {
     dispatch(fetchTeamRosterBegin());
+    // TODO: Add When API is Live
     // return getTeamRoster(teamArg)
     return getTeamRoster()
       .then(data => {

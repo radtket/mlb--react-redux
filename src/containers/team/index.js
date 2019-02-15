@@ -48,15 +48,20 @@ class Team extends Component {
   };
 
   render() {
-    const { error, loading, match, teamRoster } = this.props;
+    const {
+      teamRosterError,
+      teamRosterLoading,
+      match,
+      teamRoster
+    } = this.props;
     const { recentGames } = this.state;
     const { teamAbrv: currentTeamAbrv } = match.params;
 
-    if (error) {
-      return <div>Error! {error.message}</div>;
+    if (teamRosterError) {
+      return <div>Error! {teamRosterError.message}</div>;
     }
 
-    if (loading) {
+    if (teamRosterLoading) {
       return <div>Loading...</div>;
     }
 
@@ -67,15 +72,19 @@ class Team extends Component {
           activeTeam={currentTeamAbrv}
           recentGames={recentGames}
         />
-        <TeamRoster teamRoster={teamRoster} error={error} loading={loading} />
+        <TeamRoster
+          teamRoster={teamRoster}
+          teamRosterError={teamRosterError}
+          teamRosterLoading={teamRosterLoading}
+        />
       </div>
     );
   }
 }
 
 Team.propTypes = {
-  error: null || PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
+  teamRosterError: null || PropTypes.bool,
+  teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -94,13 +103,13 @@ Team.propTypes = {
 };
 
 Team.defaultProps = {
-  error: null
+  teamRosterError: null
 };
 
 const mapStateToProps = state => ({
   teamRoster: state.teamRoster.teamRosterData,
-  loading: state.teamRoster.loading,
-  error: state.teamRoster.error
+  teamRosterLoading: state.teamRoster.teamRosterLoading,
+  teamRosterError: state.teamRoster.teamRosterError
 });
 
 const mapDispatchToProps = dispatch =>
