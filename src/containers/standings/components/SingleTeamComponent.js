@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { espnLogo } from "../../../utils/helpers";
 
 const StandingsSingleTeam = ({ logo, team }) => {
   const {
@@ -51,8 +50,8 @@ StandingsSingleTeam.propTypes = {
     AwayLosses: PropTypes.number.isRequired,
     TeamID: PropTypes.number.isRequired,
     Name: PropTypes.string.isRequired
-  })
-  // logo: PropTypes.string.isRequired
+  }),
+  logo: PropTypes.string.isRequired
 };
 
 StandingsSingleTeam.defaultProps = {

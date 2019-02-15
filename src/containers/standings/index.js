@@ -8,90 +8,72 @@ import StandingsDivision from "./components/DivisionComponent";
 import { espnLogo } from "../../utils/helpers";
 
 class StandingsList extends Component {
+  state = {
+    standings: []
+  };
+
   componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    // this.props.fetchStandings();
+    const { standings } = this.props;
+    this.setState({
+      standings: this.createStandingsComponent(standings)
+    });
   }
 
-  createStandingsTable = teamsStandings => {
-    const groupSize = 5;
-    teamsStandings
-      .map(item => (
-        // map item to html elements
-        <StandingsSingleTeam
-          key={item.Key}
-          logo={espnLogo(`${item.Key}`, 24)}
-          division={`${item.League} ${item.Division}`}
-          team={item}
-        />
-      ))
-      .reduce((r, element, index) => {
-        // create element groups with size 5, result looks like:
-        // [[elem1, elem2, elem3], [elem4, elem5, elem6], ...]
-        index % groupSize === 0 && r.push([]);
-        r[r.length - 1].push(element);
-        return r;
-      }, [])
-      .map(rowContent => (
-        // surround every group with 'row'
-        <StandingsDivision
-          className="table"
-          key={rowContent[0].props.division}
-          division={rowContent[0].props.division}
-          divisionTeams={rowContent}
-        />
-      ));
+  sortTeamsByDivion = allTeams => {
+    return Object.entries(
+      allTeams.reduce((teams, team) => {
+        const { League, Division } = team;
+        const teamsSortedByDivision = teams;
+        teamsSortedByDivision[`${League} ${Division}`] =
+          teamsSortedByDivision[`${League} ${Division}`] || [];
+        teamsSortedByDivision[`${League} ${Division}`].push(team);
+        return teamsSortedByDivision;
+      }, {})
+    );
+  };
+
+  createStandingsComponent = standings => {
+    return this.sortTeamsByDivion(standings).reduce(
+      (standingsComponent, divisionComponent) => {
+        const [divisionName, divisionTeamsComponents] = divisionComponent;
+        standingsComponent.push(
+          <StandingsDivision
+            className="table"
+            key={divisionName}
+            division={divisionName}
+            divisionTeams={divisionTeamsComponents.map(team => {
+              const { Key, League, Division } = team;
+              return (
+                <StandingsSingleTeam
+                  key={Key}
+                  logo={espnLogo(`${Key}`, 24)}
+                  division={`${League} ${Division}`}
+                  team={team}
+                />
+              );
+            })}
+          />
+        );
+
+        return standingsComponent;
+      },
+      []
+    );
   };
 
   render() {
-    const { standingsError, standingsLoading, standings } = this.props;
-
-    const numberOfDivisions = standings.reduce((teams, team) => {
-      const { League, Division } = team;
-      const allTeams = teams;
-      allTeams[`${League} ${Division}`] =
-        (allTeams[`${League} ${Division}`] || 0) + 1;
-      return allTeams;
-    }, {});
-
-    const groupSize = Object.keys(numberOfDivisions).length - 1;
-
-    const teamRows = standings
-      .map(item => (
-        // map item to html elements
-        <StandingsSingleTeam
-          key={item.Key}
-          logo={espnLogo(`${item.Key}`, 24)}
-          division={`${item.League} ${item.Division}`}
-          team={item}
-        />
-      ))
-      .reduce((r, element, index) => {
-        // create element groups with size 5, result looks like:
-        // [[elem1, elem2, elem3], [elem4, elem5, elem6], ...]
-        index % groupSize === 0 && r.push([]);
-        r[r.length - 1].push(element);
-        return r;
-      }, [])
-      .map(rowContent => (
-        // surround every group with 'row'
-        <StandingsDivision
-          className="table"
-          key={rowContent[0].props.division}
-          division={rowContent[0].props.division}
-          divisionTeams={rowContent}
-        />
-      ));
+    const { standingsError, standingsLoading } = this.props;
+    const { standings } = this.state;
 
     if (standingsError) {
       return <div>Error! {standingsError.message}</div>;
     }
 
-    if (standingsLoading && teamRows.length === numberOfDivisions) {
+    if (standingsLoading || standings.length <= 0) {
       return <div>Loading...</div>;
     }
 
-    return <ul>{teamRows}</ul>;
+    return <>{standings}</>;
   }
 }
 
@@ -99,7 +81,6 @@ StandingsList.propTypes = {
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired
-  // fetchStandings: PropTypes.func.isRequired
 };
 
 StandingsList.defaultProps = {

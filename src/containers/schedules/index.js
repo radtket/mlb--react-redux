@@ -5,10 +5,6 @@ import { bindActionCreators } from "redux";
 import { fetchSchedules } from "../../modules/schedules/actions";
 
 class SchedulesList extends Component {
-  componentDidMount() {
-    this.props.fetchSchedules();
-  }
-
   render() {
     const { schedulesError, schedulesLoading, schedules } = this.props;
 
@@ -33,8 +29,7 @@ class SchedulesList extends Component {
 SchedulesList.propTypes = {
   schedulesError: null || PropTypes.bool,
   schedulesLoading: PropTypes.bool.isRequired,
-  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchSchedules: PropTypes.func.isRequired
+  schedules: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 SchedulesList.defaultProps = {

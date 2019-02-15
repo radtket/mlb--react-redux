@@ -12,7 +12,6 @@ class TeamRecentGames extends Component {
 
   render() {
     const { recentGames } = this.props;
-    console.log(recentGames);
     return (
       <div>
         <h1>TeamRecentGames</h1>

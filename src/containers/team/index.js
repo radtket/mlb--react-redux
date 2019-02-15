@@ -11,27 +11,40 @@ class Team extends Component {
     recentGames: []
   };
 
-  // async componentDidMount() {
-  //   await this.props.fetchTeamRoster();
-  // }
-
   componentDidMount() {
     const { schedules, match } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
-    const recentGames = this.findTeamSchedule(schedules, currentTeamAbrv);
-    this.setState({
-      recentGames
-    });
+    this.findTeamSchedule(schedules, currentTeamAbrv);
+
+    // TODO: Add When API is Live
+    // this.props.fetchTeamRoster(currentTeamAbrv);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { match, schedules } = this.props;
+    const { teamAbrv: currentTeamAbrv } = match.params;
+    const { teamAbrv: prevTeamAbrv } = prevProps.match.params;
+
+    if (currentTeamAbrv !== prevTeamAbrv) {
+      this.findTeamSchedule(schedules, currentTeamAbrv);
+
+      // TODO: Add When API is Live
+      // this.props.fetchTeamRoster(currentTeamAbrv);
+    }
   }
 
   findTeamSchedule = (schedules, teamAbrv) => {
-    return schedules
-      .filter(
-        team =>
-          (team.HomeTeam === teamAbrv || team.AwayTeam === teamAbrv) &&
-          team.Status !== "Scheduled"
-      )
-      .reverse();
+    return this.setState({
+      recentGames: schedules
+        .filter(team => {
+          const { HomeTeam, AwayTeam, Status } = team;
+          return (
+            (HomeTeam === teamAbrv || AwayTeam === teamAbrv) &&
+            Status !== "Scheduled"
+          );
+        })
+        .reverse()
+    });
   };
 
   render() {
@@ -69,12 +82,15 @@ Team.propTypes = {
       teamAbrv: PropTypes.string.isRequired
     })
   }).isRequired,
-  fetchTeamRoster: PropTypes.func.isRequired,
-  schedules: PropTypes.shape({
-    Status: PropTypes.string,
-    AwayTeam: PropTypes.string,
-    HomeTeam: PropTypes.string
-  }).isRequired
+  schedules: PropTypes.arrayOf(
+    PropTypes.shape({
+      Status: PropTypes.string,
+      AwayTeam: PropTypes.string,
+      HomeTeam: PropTypes.string
+    })
+  ).isRequired
+  // TODO: Add When API is Live
+  // fetchTeamRoster: PropTypes.func.isRequired
 };
 
 Team.defaultProps = {
