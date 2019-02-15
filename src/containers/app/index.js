@@ -63,11 +63,12 @@ class App extends Component {
         <Header teams={teams} />
         <main>
           <Route exact path="/" component={Home} />
-          <Route exact path="/reddit" component={RedditAsyncApp} />
-          <Route exact path="/standings" component={StandingsList} />
-          <Route exact path="/product" component={ProductList} />
-          <Route exact path="/schedules" component={SchedulesList} />
           <Route exact path="/news" component={NewsAllTeamsList} />
+          <Route exact path="/product" component={ProductList} />
+          <Route exact path="/reddit" component={RedditAsyncApp} />
+          <Route exact path="/scores" component={SchedulesList} />
+          <Route exact path="/schedules" component={SchedulesList} />
+          <Route exact path="/standings" component={StandingsList} />
           <Route
             path="/teams/:teamAbrv"
             render={props => (
