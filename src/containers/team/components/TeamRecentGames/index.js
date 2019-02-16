@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import SingleGame from "./SingleGame";
+import { DEV_PLACEHOLDER_DATE } from "../../../../utils/helpers";
 
 class TeamRecentGames extends Component {
   renderLast15Games = (data, beforeDate = moment({}).format("YYYY-MM-DD")) => {
@@ -23,7 +24,7 @@ class TeamRecentGames extends Component {
         <h1>TeamRecentGames</h1>
         <ul>
           {recentGames &&
-            this.renderLast15Games(recentGames, "2018-05-04T00:00:00")}
+            this.renderLast15Games(recentGames, DEV_PLACEHOLDER_DATE)}
         </ul>
       </div>
     );

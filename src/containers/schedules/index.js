@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import moment from "moment";
 import { fetchSchedules } from "../../modules/schedules/actions";
 import SingleGame from "./SingleGame";
+import { DEV_PLACEHOLDER_DATE } from "../../utils/helpers";
 
 class SchedulesList extends Component {
   render() {
@@ -25,7 +26,7 @@ class SchedulesList extends Component {
           {schedules &&
             schedules.reduce((acc, game) => {
               const { Day, GameID } = game;
-              moment(Day).isSame("2018-05-04T00:00:00") &&
+              moment(Day).isSame(DEV_PLACEHOLDER_DATE) &&
                 acc.push(<SingleGame key={GameID} {...game} />);
               return acc;
             }, [])}

@@ -12,24 +12,20 @@ class Team extends Component {
   };
 
   componentDidMount() {
-    const { schedules, match } = this.props;
+    const { schedules, match, fetchTeamRoster: getTeamRoster } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     this.findTeamSchedule(schedules, currentTeamAbrv);
-
-    // TODO: Add When API is Live
-    // this.props.fetchTeamRoster(currentTeamAbrv);
+    getTeamRoster(currentTeamAbrv);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, schedules } = this.props;
+    const { match, schedules, fetchTeamRoster: getTeamRoster } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     const { teamAbrv: prevTeamAbrv } = prevProps.match.params;
 
     if (currentTeamAbrv !== prevTeamAbrv) {
       this.findTeamSchedule(schedules, currentTeamAbrv);
-
-      // TODO: Add When API is Live
-      // this.props.fetchTeamRoster(currentTeamAbrv);
+      getTeamRoster(currentTeamAbrv);
     }
   }
 
@@ -97,9 +93,8 @@ Team.propTypes = {
       AwayTeam: PropTypes.string,
       HomeTeam: PropTypes.string
     })
-  ).isRequired
-  // TODO: Add When API is Live
-  // fetchTeamRoster: PropTypes.func.isRequired
+  ).isRequired,
+  fetchTeamRoster: PropTypes.func.isRequired
 };
 
 Team.defaultProps = {
