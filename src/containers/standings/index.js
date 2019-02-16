@@ -8,17 +8,6 @@ import StandingsDivision from "./components/DivisionComponent";
 import { espnLogo } from "../../utils/helpers";
 
 class StandingsList extends Component {
-  state = {
-    standings: []
-  };
-
-  componentDidMount() {
-    const { standings } = this.props;
-    this.setState({
-      standings: this.createStandingsComponent(standings)
-    });
-  }
-
   sortTeamsByDivion = allTeams => {
     return Object.entries(
       allTeams.reduce((teams, team) => {
@@ -62,8 +51,7 @@ class StandingsList extends Component {
   };
 
   render() {
-    const { standingsError, standingsLoading } = this.props;
-    const { standings } = this.state;
+    const { standings, standingsError, standingsLoading } = this.props;
 
     if (standingsError) {
       return <div>Error! {standingsError.message}</div>;
@@ -73,7 +61,7 @@ class StandingsList extends Component {
       return <div>Loading...</div>;
     }
 
-    return <>{standings}</>;
+    return <div>{standings && this.createStandingsComponent(standings)}</div>;
   }
 }
 
@@ -87,10 +75,10 @@ StandingsList.defaultProps = {
   standingsError: null
 };
 
-const mapStateToProps = state => ({
-  standings: state.standings.standingsData,
-  standingsLoading: state.standings.standingsLoading,
-  standingsError: state.standings.standingsError
+const mapStateToProps = ({ standings }) => ({
+  standings: standings.standingsData,
+  standingsLoading: standings.standingsLoading,
+  standingsError: standings.standingsError
 });
 
 const mapDispatchToProps = dispatch =>

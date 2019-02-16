@@ -106,10 +106,10 @@ Team.defaultProps = {
   teamRosterError: null
 };
 
-const mapStateToProps = state => ({
-  teamRoster: state.teamRoster.teamRosterData,
-  teamRosterLoading: state.teamRoster.teamRosterLoading,
-  teamRosterError: state.teamRoster.teamRosterError
+const mapStateToProps = ({ teamRoster }) => ({
+  teamRoster: teamRoster.teamRosterData,
+  teamRosterLoading: teamRoster.teamRosterLoading,
+  teamRosterError: teamRoster.teamRosterError
 });
 
 const mapDispatchToProps = dispatch =>

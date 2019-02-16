@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import moment from "moment";
 import { fetchSchedules } from "../../modules/schedules/actions";
+import SingleGame from "./SingleGame";
 
 class SchedulesList extends Component {
   render() {
@@ -17,11 +19,18 @@ class SchedulesList extends Component {
     }
 
     return (
-      <ul>
-        {schedules.map(game => (
-          <li key={game.GameID}>{`${game.AwayTeam} vs ${game.HomeTeam}`}</li>
-        ))}
-      </ul>
+      <div>
+        <h1>Todays Games</h1>
+        <ul>
+          {schedules &&
+            schedules.reduce((acc, game) => {
+              const { Day, GameID } = game;
+              moment(Day).isSame("2018-05-04T00:00:00") &&
+                acc.push(<SingleGame key={GameID} {...game} />);
+              return acc;
+            }, [])}
+        </ul>
+      </div>
     );
   }
 }
@@ -36,10 +45,10 @@ SchedulesList.defaultProps = {
   schedulesError: null
 };
 
-const mapStateToProps = state => ({
-  schedules: state.schedules.schedulesData,
-  schedulesLoading: state.schedules.schedulesLoading,
-  schedulesError: state.schedules.schedulesError
+const mapStateToProps = ({ schedules }) => ({
+  schedules: schedules.schedulesData,
+  schedulesLoading: schedules.schedulesLoading,
+  schedulesError: schedules.schedulesError
 });
 
 const mapDispatchToProps = dispatch =>

@@ -22,10 +22,7 @@ class ProductList extends Component {
 
     return (
       <ul>
-        <li>hi</li>
-        {products.map(item => (
-          <li key={item.Key}>{item.Name}</li>
-        ))}
+        {products && products.map(item => <li key={item.Key}>{item.Name}</li>)}
       </ul>
     );
   }
@@ -42,10 +39,10 @@ ProductList.defaultProps = {
   productsFail: null
 };
 
-const mapStateToProps = state => ({
-  products: state.products.productsData,
-  productsLoading: state.products.productsLoading,
-  productsFail: state.products.productsError
+const mapStateToProps = ({ products }) => ({
+  products: products.productsData,
+  productsLoading: products.productsLoading,
+  productsFail: products.productsError
 });
 
 const mapDispatchToProps = dispatch =>

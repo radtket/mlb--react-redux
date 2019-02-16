@@ -102,16 +102,16 @@ App.defaultProps = {
   standingsError: null
 };
 
-const mapStateToProps = state => ({
-  teams: state.teams.teamsData,
-  teamsLoading: state.teams.teamsLoading,
-  teamsFail: state.teams.teamsFail,
-  schedules: state.schedules.schedulesData,
-  schedulesLoading: state.schedules.schedulesLoading,
-  schedulesError: state.schedules.schedulesError,
-  standings: state.standings.standingsData,
-  standingsLoading: state.standings.standingsLoading,
-  standingsError: state.standings.standingsError
+const mapStateToProps = ({ teams, schedules, standings }) => ({
+  teams: teams.teamsData,
+  teamsLoading: teams.teamsLoading,
+  teamsFail: teams.teamsFail,
+  schedules: schedules.schedulesData,
+  schedulesLoading: schedules.schedulesLoading,
+  schedulesError: schedules.schedulesError,
+  standings: standings.standingsData,
+  standingsLoading: standings.standingsLoading,
+  standingsError: standings.standingsError
 });
 
 const mapDispatchToProps = dispatch =>

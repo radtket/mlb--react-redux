@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import PlayerListItem from "./PlayerListItem";
 
 class TeamRoster extends Component {
   render() {
@@ -16,11 +17,13 @@ class TeamRoster extends Component {
     return (
       <div>
         <h1>Team Roster</h1>
-        {teamRoster.map(player => (
-          <li key={player.PlayerID}>{`${player.FirstName} ${
-            player.LastName
-          }`}</li>
-        ))}
+        <ul>
+          {teamRoster &&
+            teamRoster.map(player => {
+              const { PlayerID } = player;
+              return <PlayerListItem key={PlayerID} {...player} />;
+            })}
+        </ul>
       </div>
     );
   }

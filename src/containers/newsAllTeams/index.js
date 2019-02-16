@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchNewsAllTeams } from "../../modules/newsAllTeams/actions";
+import NewsArticle from "./NewsArticle";
 
 class NewsAllTeamsList extends Component {
-  componentDidMount() {
-    this.props.fetchNewsAllTeams();
+  constructor(props) {
+    super();
+    props.fetchNewsAllTeams();
   }
 
   render() {
@@ -22,10 +24,11 @@ class NewsAllTeamsList extends Component {
 
     return (
       <ul>
-        <li>hi</li>
-        {newsAllTeams.map(article => (
-          <li key={article.NewsID}>{article.Title}</li>
-        ))}
+        {newsAllTeams &&
+          newsAllTeams.map(article => {
+            const { NewsID } = article;
+            return <NewsArticle key={NewsID} {...article} />;
+          })}
       </ul>
     );
   }
