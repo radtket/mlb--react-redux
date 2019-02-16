@@ -12,7 +12,7 @@ export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
 }
 
 // TODO: remove in production with Todays date
-export const DEV_PLACEHOLDER_DATE = "2018-05-04T00:00:00";
+export const DEV_PLACEHOLDER_DATE = moment("2018-05-04T00:00:00");
 
 export const TodaysDate = moment({}).format("YYYY-MM-DD");
 

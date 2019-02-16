@@ -16,8 +16,8 @@ import SingleGame from "./SingleGame";
 class GamesOnDayList extends Component {
   state = {
     // TODO: Add When API is Live
-    // dateOfGame: formatApiArgDatedate(TodaysDate)
-    dateOfGame: moment(DEV_PLACEHOLDER_DATE)
+    // dateOfGame: TodaysDate
+    dateOfGame: DEV_PLACEHOLDER_DATE
   };
 
   componentDidMount() {
