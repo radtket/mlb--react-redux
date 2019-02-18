@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RosterTable from "./RosterTable";
+import SortablePlayerTable from "../../../../components/SortIt";
 
 class TeamRoster extends Component {
   render() {
@@ -17,6 +18,11 @@ class TeamRoster extends Component {
     return (
       <div>
         <h1>Team Roster</h1>
+        {teamRoster && (
+          <SortablePlayerTable
+            players={teamRoster.filter(player => player.Status === "Active")}
+          />
+        )}
         {teamRoster && (
           <RosterTable
             teamRoster={teamRoster.filter(player => player.Status === "Active")}

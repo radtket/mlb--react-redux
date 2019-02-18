@@ -13,6 +13,21 @@ class RosterTable extends Component {
     });
   }
 
+  sortRosterStateBy = (sortKey, data, order) => {
+    // Sorting ...
+    data.sort((a, b) => {
+      if (a[sortKey] > b[sortKey]) {
+        return -order;
+      }
+      if (a[sortKey] < b[sortKey]) {
+        return order;
+      }
+      return 0;
+    });
+    // Change state
+    this.setState({ data, order: !order });
+  };
+
   isNumber = n => {
     return !isNaN(parseFloat(n)) && isFinite(n);
   };
@@ -114,12 +129,12 @@ RosterTable.propTypes = {
       Position: PropTypes.string,
       FirstName: PropTypes.string,
       LastName: PropTypes.string,
-      Jersey: PropTypes.string,
+      Jersey: PropTypes.number,
       BatHand: PropTypes.string,
       ThrowHand: PropTypes.string,
       BirthDate: PropTypes.string,
-      Height: PropTypes.string,
-      Weight: PropTypes.string,
+      Height: PropTypes.number,
+      Weight: PropTypes.number,
       BirthCity: PropTypes.string
     })
   )

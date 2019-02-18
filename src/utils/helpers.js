@@ -21,3 +21,9 @@ export const formatApiArgDatedate = date => {
 };
 
 export const birthday = dob => moment().diff(dob, "years", false);
+
+export const inchesToFeet = inches => {
+  const feetFromInches = Math.floor(inches / 12);
+  const inchesRemainder = inches % 12;
+  return `${feetFromInches}' ${inchesRemainder}"`;
+};
