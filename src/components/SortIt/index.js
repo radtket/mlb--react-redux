@@ -46,15 +46,18 @@ const ProfileCard = ({ player }) => {
 class Roster extends Component {
   render() {
     const { players } = this.props;
-    const cards = [];
-    players.forEach((player, i) => {
-      const { PlayerID, LastName } = player;
-      return cards.push(
-        <ProfileCard key={PlayerID || LastName || i} player={player} />
-      );
-    });
 
-    return <tbody>{cards}</tbody>;
+    return (
+      <tbody>
+        {players &&
+          players.map((player, i) => {
+            const { PlayerID, LastName } = player;
+            return (
+              <ProfileCard key={PlayerID || LastName || i} player={player} />
+            );
+          })}
+      </tbody>
+    );
   }
 }
 
@@ -85,9 +88,16 @@ class Sort extends Component {
 
 class SortablePlayerTable extends Component {
   state = {
-    players: this.props.players, // default state
+    players: [], // default state
     direction: 1
   };
+
+  componentDidMount() {
+    const { players } = this.props;
+    this.setState({
+      players
+    });
+  }
 
   sortRosterStateBy = (field, players, direction) => {
     players.sort((a, b) => {
@@ -100,12 +110,6 @@ class SortablePlayerTable extends Component {
       if (a[field] === b[field]) {
         return 0;
       }
-      // if (direction) {
-      //   return a[field] < b[field] ? -1 : 1;
-      // }
-      // if (!direction) {
-      //   return a[field] < b[field] ? 1 : -1;
-      // }
       if (a[field] > b[field]) {
         return -direction;
       }
