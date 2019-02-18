@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import PlayerListItem from "./PlayerListItem";
+import RosterTable from "./RosterTable";
 
 class TeamRoster extends Component {
   render() {
@@ -17,13 +17,11 @@ class TeamRoster extends Component {
     return (
       <div>
         <h1>Team Roster</h1>
-        <ul>
-          {teamRoster &&
-            teamRoster.map(player => {
-              const { PlayerID } = player;
-              return <PlayerListItem key={PlayerID} {...player} />;
-            })}
-        </ul>
+        {teamRoster && (
+          <RosterTable
+            teamRoster={teamRoster.filter(player => player.Status === "Active")}
+          />
+        )}
       </div>
     );
   }

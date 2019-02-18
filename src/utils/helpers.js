@@ -19,3 +19,5 @@ export const TodaysDate = moment({}).format("YYYY-MM-DD");
 export const formatApiArgDatedate = date => {
   return moment(date).format("YYYY-MM-DD");
 };
+
+export const birthday = dob => moment().diff(dob, "years", false);

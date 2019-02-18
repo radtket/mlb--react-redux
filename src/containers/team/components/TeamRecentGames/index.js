@@ -21,7 +21,7 @@ class TeamRecentGames extends Component {
     const { recentGames } = this.props;
     return (
       <div>
-        <h1>TeamRecentGames</h1>
+        <h5>Recent Games</h5>
         <ul>
           {recentGames &&
             this.renderLast15Games(recentGames, DEV_PLACEHOLDER_DATE)}
