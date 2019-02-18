@@ -68,13 +68,13 @@ class Sort extends Component {
       <thead>
         <tr>
           <th>&nbsp;</th>
-          <th onClick={this.sortRoster.bind(this, "LastName")}>Name</th>
-          <th onClick={this.sortRoster.bind(this, "Position")}>Position</th>
-          <th onClick={this.sortRoster.bind(this, "BatHand")}>Bat</th>
-          <th onClick={this.sortRoster.bind(this, "ThrowHand")}>Throw</th>
-          <th onClick={this.sortRoster.bind(this, "BirthDate")}>Age</th>
-          <th onClick={this.sortRoster.bind(this, "Height")}>Height</th>
-          <th onClick={this.sortRoster.bind(this, "Weight")}>Weight</th>
+          <th onClick={() => this.sortRoster("LastName")}>Name</th>
+          <th onClick={() => this.sortRoster("Position")}>Position</th>
+          <th onClick={() => this.sortRoster("BatHand")}>Bat</th>
+          <th onClick={() => this.sortRoster("ThrowHand")}>Throw</th>
+          <th onClick={() => this.sortRoster("BirthDate")}>Age</th>
+          <th onClick={() => this.sortRoster("Height")}>Height</th>
+          <th onClick={() => this.sortRoster("Weight")}>Weight</th>
           <th>Birthplace</th>
         </tr>
       </thead>
