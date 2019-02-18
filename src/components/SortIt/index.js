@@ -28,12 +28,12 @@ const ProfileCard = ({ player }) => {
         {FirstName} {LastName}
         <small> {typeof Jersey === "number" ? Jersey : ""}</small>
       </td>
-      <td>{Position}</td>
-      <td>{BatHand}</td>
-      <td>{ThrowHand}</td>
+      <td>{typeof Position === "string" ? Position : "-"}</td>
+      <td>{typeof BatHand === "string" ? BatHand : "-"}</td>
+      <td>{typeof ThrowHand === "string" ? ThrowHand : "-"}</td>
       <td>{birthday(BirthDate)}</td>
-      <td>{inchesToFeet(Height)}</td>
-      <td>{Weight}</td>
+      <td>{typeof Height === "number" ? inchesToFeet(Height) : "-"}</td>
+      <td>{typeof Weight === "number" ? Weight : "-"}</td>
       <td>
         {{ BirthCity } && { BirthState }
           ? `${BirthCity}${BirthState !== null ? `, ${BirthState}` : ""}`
@@ -43,23 +43,19 @@ const ProfileCard = ({ player }) => {
   );
 };
 
-class Roster extends Component {
-  render() {
-    const { players } = this.props;
-
-    return (
-      <tbody>
-        {players &&
-          players.map((player, i) => {
-            const { PlayerID, LastName } = player;
-            return (
-              <ProfileCard key={PlayerID || LastName || i} player={player} />
-            );
-          })}
-      </tbody>
-    );
-  }
-}
+const Roster = ({ players }) => {
+  return (
+    <tbody>
+      {players &&
+        players.map((player, i) => {
+          const { PlayerID, LastName } = player;
+          return (
+            <ProfileCard key={PlayerID || LastName || i} player={player} />
+          );
+        })}
+    </tbody>
+  );
+};
 
 class Sort extends Component {
   sortRoster = field => {
