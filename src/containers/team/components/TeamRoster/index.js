@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RosterTable from "./RosterTable";
-import SortablePlayerTable from "../../../../components/SortIt";
+import SortablePlayerTable from "../../../../components/SortablePlayerTable";
 
 class TeamRoster extends Component {
   render() {
