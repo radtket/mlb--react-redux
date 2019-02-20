@@ -5,7 +5,7 @@ import SingleGame from "./SingleGame";
 import { DEV_PLACEHOLDER_DATE, TodaysDate } from "../../../../utils/helpers";
 
 class TeamRecentGames extends Component {
-  renderLast15Games = (data, beforeDate = TodaysDate) => {
+  renderLast15Games = (data, activeTeam, beforeDate = TodaysDate) => {
     return data
       .filter(gameOnDay => {
         const { Day } = gameOnDay;
@@ -13,18 +13,22 @@ class TeamRecentGames extends Component {
       })
       .map(game => {
         const { GameID } = game;
-        return <SingleGame key={GameID} {...game} />;
+        return <SingleGame activeTeam={activeTeam} key={GameID} {...game} />;
       });
   };
 
   render() {
-    const { recentGames } = this.props;
+    const { activeTeam, recentGames } = this.props;
     return (
       <>
         <h5>Recent Games</h5>
         <ul>
           {recentGames &&
-            this.renderLast15Games(recentGames, DEV_PLACEHOLDER_DATE)}
+            this.renderLast15Games(
+              recentGames,
+              activeTeam,
+              DEV_PLACEHOLDER_DATE
+            )}
         </ul>
       </>
     );
@@ -32,13 +36,14 @@ class TeamRecentGames extends Component {
 }
 
 TeamRecentGames.propTypes = {
+  activeTeam: PropTypes.string.isRequired,
   recentGames: PropTypes.arrayOf(
     PropTypes.shape({
       GameID: PropTypes.number,
       AwayTeam: PropTypes.string,
-      HomeTeam: PropTypes.string
+      HomeTeam: PropTypes.string,
     })
-  ).isRequired
+  ).isRequired,
 };
 
 export default TeamRecentGames;

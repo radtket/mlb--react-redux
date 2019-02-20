@@ -77,10 +77,6 @@ class Team extends Component {
               teamRosterError={teamRosterError}
               teamRosterLoading={teamRosterLoading}
             />
-            <TeamRecentGames
-              activeTeam={currentTeamAbrv}
-              recentGames={recentGames}
-            />
           </Col>
           <Col sm={2}>
             <TeamRecentGames
