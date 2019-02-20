@@ -24,29 +24,27 @@ class Header extends Component {
   };
 
   createMegaMenu = teams => {
-    const rows = [];
     let cols = [];
-
-    this.sortTeamsByDivion(teams).forEach((element, index) => {
-      const [divisionName, divisionTeamsComponents] = element;
+    return this.sortTeamsByDivion(teams).reduce((rows, element, index) => {
+      const [DivisionName, TeamsInComponents] = element;
+      const { League: LeaugeName } = TeamsInComponents[0];
       cols.push(
         <DivisionComponent
-          key={divisionName}
-          DivisionName={divisionName}
-          TeamsInDivision={divisionTeamsComponents}
+          key={DivisionName}
+          DivisionName={DivisionName}
+          TeamsInDivision={TeamsInComponents}
         />
       );
       if ((index + 1) % 3 === 0) {
         rows.push(
-          <div className="row" key={divisionTeamsComponents[0].League}>
+          <div className="row" key={LeaugeName}>
             {cols}
           </div>
         );
         cols = [];
       }
-    });
-
-    return rows;
+      return rows;
+    }, []);
   };
 
   render() {
