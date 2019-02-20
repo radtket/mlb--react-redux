@@ -11,7 +11,7 @@ import { fetchTeamRoster } from "../../modules/teamRoster/actions";
 
 class Team extends Component {
   state = {
-    recentGames: []
+    recentGames: [],
   };
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class Team extends Component {
             Status !== "Scheduled"
           );
         })
-        .reverse()
+        .reverse(),
     });
   };
 
@@ -51,7 +51,7 @@ class Team extends Component {
       teamRosterError,
       teamRosterLoading,
       match,
-      teamRoster
+      teamRoster,
     } = this.props;
     const { recentGames } = this.state;
     const { teamAbrv: currentTeamAbrv } = match.params;
@@ -100,33 +100,33 @@ Team.propTypes = {
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired
-    })
+      teamAbrv: PropTypes.string.isRequired,
+    }),
   }).isRequired,
   schedules: PropTypes.arrayOf(
     PropTypes.shape({
       Status: PropTypes.string,
       AwayTeam: PropTypes.string,
-      HomeTeam: PropTypes.string
+      HomeTeam: PropTypes.string,
     })
   ).isRequired,
-  fetchTeamRoster: PropTypes.func.isRequired
+  fetchTeamRoster: PropTypes.func.isRequired,
 };
 
 Team.defaultProps = {
-  teamRosterError: null
+  teamRosterError: null,
 };
 
 const mapStateToProps = ({ teamRoster }) => ({
   teamRoster: teamRoster.teamRosterData,
   teamRosterLoading: teamRoster.teamRosterLoading,
-  teamRosterError: teamRoster.teamRosterError
+  teamRosterError: teamRoster.teamRosterError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchTeamRoster
+      fetchTeamRoster,
     },
     dispatch
   );

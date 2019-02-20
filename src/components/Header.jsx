@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 import DivisionComponent from "./Navbar/MegaMenu/DivisionComponent";
 
 class Header extends Component {
@@ -36,11 +37,7 @@ class Header extends Component {
         />
       );
       if ((index + 1) % 3 === 0) {
-        rows.push(
-          <div className="row" key={LeaugeName}>
-            {cols}
-          </div>
-        );
+        rows.push(<Row key={LeaugeName}>{cols}</Row>);
         cols = [];
       }
       return rows;

@@ -1,3 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap/scss/bootstrap-grid";
 @import "./calender";
+
+.navbar-nav .dropdown-menu {
+  @media screen and (min-width: 1024px) {
+    min-width: 1024px;
+
+  }
+}
+
+.team-city {
+  display: none;
+
+  @media screen and (min-width: 1024px) {
+    display: inline;
+  }
+}

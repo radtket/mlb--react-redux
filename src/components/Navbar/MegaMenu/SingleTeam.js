@@ -1,23 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { espnLogo } from "../../../utils/helpers";
 
-const SingleTeam = ({ Name, City }) => {
+const SingleTeam = ({ Name, City, Key, WikipediaLogoUrl }) => {
   return (
-    <li className="team" itemProp="name">
-      <a
-        itemProp="url"
-        href="/mlb/team/_/name/bal/baltimore-orioles"
-        className="sprite-mlb-teams-25 sprite-25-team-1"
-        name="&amp;lpos=subnav+subnav_mlb_team_baltimore_orioles"
-        data-teamid="1"
-        data-sport="mlb">
-        <span>
-          <span className="link-text">
-            {City} {Name}
-          </span>
-          <span className="link-text-short">{Name}</span>
-        </span>
-      </a>
-    </li>
+    <Link to={`/teams/${Key}`} style={{ display: "block" }}>
+      {/* <img src={WikipediaLogoUrl} alt={`${Name} ${City} Logo`} /> */}
+      <img src={espnLogo(Key, 24)} alt={`${Name} ${City} Logo`} />
+      <span>
+        <span className="team-city">{City} </span>
+        {Name}
+      </span>
+    </Link>
   );
 };
 
