@@ -7,7 +7,8 @@ const DivisionComponent = ({ DivisionName, TeamsInDivision }) => {
       <h6>{DivisionName}</h6>
       <ul>
         {TeamsInDivision.map(team => {
-          return <SingleTeam {...team} />;
+          const { TeamID } = team;
+          return <SingleTeam key={TeamID} {...team} />;
         })}
       </ul>
     </nav>

@@ -23,26 +23,34 @@ class Header extends Component {
     ).sort();
   };
 
-  render() {
-    const { teams } = this.props;
+  createMegaMenu = teams => {
+    const rows = [];
+    let cols = [];
 
-    let LeaugeDivisions = [];
-    const contents = this.sortTeamsByDivion(teams).reduce((acc, p, i) => {
-      const [DivisionName, TeamsInDivision] = p;
-      LeaugeDivisions.push(
+    this.sortTeamsByDivion(teams).forEach((element, index) => {
+      const [divisionName, divisionTeamsComponents] = element;
+      cols.push(
         <DivisionComponent
-          DivisionName={DivisionName}
-          TeamsInDivision={TeamsInDivision}
+          key={divisionName}
+          DivisionName={divisionName}
+          TeamsInDivision={divisionTeamsComponents}
         />
       );
-      if (i % 3 === 2) {
-        acc.push(<div className="row">{LeaugeDivisions}</div>);
-        LeaugeDivisions = [];
+      if ((index + 1) % 3 === 0) {
+        rows.push(
+          <div className="row" key={divisionTeamsComponents[0].League}>
+            {cols}
+          </div>
+        );
+        cols = [];
       }
-      return acc;
-    }, []);
+    });
 
-    contents.push(<div className="row">{LeaugeDivisions}</div>);
+    return rows;
+  };
+
+  render() {
+    const { teams } = this.props;
     return (
       <Navbar bg="primary" variant="dark" expand="lg">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -56,17 +64,7 @@ class Header extends Component {
               Scores
             </Link>
             <NavDropdown title="Teams" id="basic-nav-dropdown">
-              {contents && contents}
-              {/* {teams.map(team => {
-                return (
-                  <Link
-                    className="dropdown-item"
-                    to={`/teams/${team.Key}`}
-                    key={team.Key}>
-                    {`${team.City} ${team.Name}`}
-                  </Link>
-                );
-              })} */}
+              {teams && this.createMegaMenu(teams)}
             </NavDropdown>
             <Link className="nav-link" to="/standings">
               Standings
