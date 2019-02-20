@@ -20,7 +20,7 @@ import { fetchSchedules } from "../../modules/schedules/actions";
 import { fetchStandings } from "../../modules/standings/actions";
 
 // Components
-import Header from "../../components/Header";
+import Header from "../../components/Navbar";
 
 class App extends Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ class App extends Component {
       schedules,
       teamsFail,
       teamsLoading,
-      teams
+      teams,
     } = this.props;
 
     if (teamsFail) {
@@ -94,13 +94,13 @@ App.propTypes = {
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchStandings: PropTypes.func.isRequired
+  fetchStandings: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
   teamsFail: null,
   schedulesError: null,
-  standingsError: null
+  standingsError: null,
 };
 
 const mapStateToProps = ({ teams, schedules, standings }) => ({
@@ -112,7 +112,7 @@ const mapStateToProps = ({ teams, schedules, standings }) => ({
   schedulesError: schedules.schedulesError,
   standings: standings.standingsData,
   standingsLoading: standings.standingsLoading,
-  standingsError: standings.standingsError
+  standingsError: standings.standingsError,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -120,7 +120,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchTeams,
       fetchSchedules,
-      fetchStandings
+      fetchStandings,
     },
     dispatch
   );

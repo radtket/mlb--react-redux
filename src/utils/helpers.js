@@ -39,3 +39,16 @@ export const propComparator = propArg => {
     return 0;
   };
 };
+
+export const sortTeamsByDivion = allTeams => {
+  return Object.entries(
+    allTeams.reduce((teams, team) => {
+      const { League, Division } = team;
+      const teamsSortedByDivision = teams;
+      teamsSortedByDivision[`${League} ${Division}`] =
+        teamsSortedByDivision[`${League} ${Division}`] || [];
+      teamsSortedByDivision[`${League} ${Division}`].push(team);
+      return teamsSortedByDivision;
+    }, {})
+  ).sort();
+};

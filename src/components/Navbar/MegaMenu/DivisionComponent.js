@@ -1,5 +1,6 @@
 import React from "react";
 import Col from "react-bootstrap/Col";
+import PropTypes from "prop-types";
 import SingleTeam from "./SingleTeam";
 import { propComparator } from "../../../utils/helpers";
 
@@ -15,6 +16,11 @@ const DivisionComponent = ({ DivisionName, TeamsInDivision }) => {
       </nav>
     </Col>
   );
+};
+
+DivisionComponent.propTypes = {
+  DivisionName: PropTypes.string.isRequired,
+  TeamsInDivision: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default DivisionComponent;

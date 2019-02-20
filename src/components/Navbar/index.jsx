@@ -8,25 +8,13 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
-import DivisionComponent from "./Navbar/MegaMenu/DivisionComponent";
+import DivisionComponent from "./MegaMenu/DivisionComponent";
+import { sortTeamsByDivion } from "../../utils/helpers";
 
 class Header extends Component {
-  sortTeamsByDivion = allTeams => {
-    return Object.entries(
-      allTeams.reduce((teams, team) => {
-        const { League, Division } = team;
-        const teamsSortedByDivision = teams;
-        teamsSortedByDivision[`${League} ${Division}`] =
-          teamsSortedByDivision[`${League} ${Division}`] || [];
-        teamsSortedByDivision[`${League} ${Division}`].push(team);
-        return teamsSortedByDivision;
-      }, {})
-    ).sort();
-  };
-
   createMegaMenu = teams => {
     let cols = [];
-    return this.sortTeamsByDivion(teams).reduce((rows, element, index) => {
+    return sortTeamsByDivion(teams).reduce((rows, element, index) => {
       const [DivisionName, TeamsInComponents] = element;
       const { League: LeaugeName } = TeamsInComponents[0];
       cols.push(

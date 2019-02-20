@@ -5,24 +5,11 @@ import { bindActionCreators } from "redux";
 import { fetchStandings } from "../../modules/standings/actions";
 import StandingsSingleTeam from "./components/SingleTeamComponent";
 import StandingsDivision from "./components/DivisionComponent";
-import { espnLogo } from "../../utils/helpers";
+import { espnLogo, sortTeamsByDivion } from "../../utils/helpers";
 
 class StandingsList extends Component {
-  sortTeamsByDivion = allTeams => {
-    return Object.entries(
-      allTeams.reduce((teams, team) => {
-        const { League, Division } = team;
-        const teamsSortedByDivision = teams;
-        teamsSortedByDivision[`${League} ${Division}`] =
-          teamsSortedByDivision[`${League} ${Division}`] || [];
-        teamsSortedByDivision[`${League} ${Division}`].push(team);
-        return teamsSortedByDivision;
-      }, {})
-    );
-  };
-
   createStandingsComponent = standings => {
-    return this.sortTeamsByDivion(standings).reduce(
+    return sortTeamsByDivion(standings).reduce(
       (standingsComponent, divisionComponent) => {
         const [divisionName, divisionTeamsComponents] = divisionComponent;
         standingsComponent.push(
@@ -43,7 +30,6 @@ class StandingsList extends Component {
             })}
           />
         );
-
         return standingsComponent;
       },
       []
