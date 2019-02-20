@@ -7,10 +7,42 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import DivisionComponent from "./Navbar/MegaMenu/DivisionComponent";
 
 class Header extends Component {
+  sortTeamsByDivion = allTeams => {
+    return Object.entries(
+      allTeams.reduce((teams, team) => {
+        const { League, Division } = team;
+        const teamsSortedByDivision = teams;
+        teamsSortedByDivision[`${League} ${Division}`] =
+          teamsSortedByDivision[`${League} ${Division}`] || [];
+        teamsSortedByDivision[`${League} ${Division}`].push(team);
+        return teamsSortedByDivision;
+      }, {})
+    ).sort();
+  };
+
   render() {
     const { teams } = this.props;
+
+    let LeaugeDivisions = [];
+    const contents = this.sortTeamsByDivion(teams).reduce((acc, p, i) => {
+      const [DivisionName, TeamsInDivision] = p;
+      LeaugeDivisions.push(
+        <DivisionComponent
+          DivisionName={DivisionName}
+          TeamsInDivision={TeamsInDivision}
+        />
+      );
+      if (i % 3 === 2) {
+        acc.push(<div className="row">{LeaugeDivisions}</div>);
+        LeaugeDivisions = [];
+      }
+      return acc;
+    }, []);
+
+    contents.push(<div className="row">{LeaugeDivisions}</div>);
     return (
       <Navbar bg="primary" variant="dark" expand="lg">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -24,7 +56,8 @@ class Header extends Component {
               Scores
             </Link>
             <NavDropdown title="Teams" id="basic-nav-dropdown">
-              {teams.map(team => {
+              {contents && contents}
+              {/* {teams.map(team => {
                 return (
                   <Link
                     className="dropdown-item"
@@ -33,7 +66,7 @@ class Header extends Component {
                     {`${team.City} ${team.Name}`}
                   </Link>
                 );
-              })}
+              })} */}
             </NavDropdown>
             <Link className="nav-link" to="/standings">
               Standings
@@ -53,7 +86,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  teams: PropTypes.arrayOf(PropTypes.object).isRequired
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Header;

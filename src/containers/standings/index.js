@@ -68,23 +68,23 @@ class StandingsList extends Component {
 StandingsList.propTypes = {
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
-  standings: PropTypes.arrayOf(PropTypes.object).isRequired
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 StandingsList.defaultProps = {
-  standingsError: null
+  standingsError: null,
 };
 
 const mapStateToProps = ({ standings }) => ({
   standings: standings.standingsData,
   standingsLoading: standings.standingsLoading,
-  standingsError: standings.standingsError
+  standingsError: standings.standingsError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchStandings
+      fetchStandings,
     },
     dispatch
   );
