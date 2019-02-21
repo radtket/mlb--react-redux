@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col";
 import TeamRoster from "./components/TeamRoster";
 import TeamRecentGames from "./components/TeamRecentGames";
 import { fetchTeamRoster } from "../../modules/teamRoster/actions";
+import { fetchStandings } from "../../modules/standings/actions";
+import TeamStandings from "./components/TeamStandings";
 
 class Team extends Component {
   state = {
@@ -46,21 +48,34 @@ class Team extends Component {
     });
   };
 
+  getActiveTeamObj = (teams, activeTeam) => {
+    return teams.find(team => team.Key === activeTeam);
+  };
+
   render() {
     const {
       teamRosterError,
       teamRosterLoading,
       match,
+      teams,
       teamRoster,
+      standings,
+      standingsError,
+      standingsLoading,
     } = this.props;
     const { recentGames } = this.state;
     const { teamAbrv: currentTeamAbrv } = match.params;
+    const activeTeamObj = this.getActiveTeamObj(teams, currentTeamAbrv);
 
     if (teamRosterError) {
       return <div>Error! {teamRosterError.message}</div>;
     }
 
-    if (teamRosterLoading) {
+    if (standingsError) {
+      return <div>Error! {standingsError.message}</div>;
+    }
+
+    if (teamRosterLoading || standingsLoading || !activeTeamObj) {
       return <div>Loading...</div>;
     }
 
@@ -71,14 +86,19 @@ class Team extends Component {
         </Row>
 
         <Row>
-          <Col sm={10}>
+          <Col sm={8}>
             <TeamRoster
               teamRoster={teamRoster}
               teamRosterError={teamRosterError}
               teamRosterLoading={teamRosterLoading}
             />
           </Col>
-          <Col sm={2}>
+          <Col sm={4}>
+            <TeamStandings
+              activeTeam={currentTeamAbrv}
+              activeTeamObj={activeTeamObj}
+              standings={standings}
+            />
             <TeamRecentGames
               activeTeam={currentTeamAbrv}
               recentGames={recentGames}
@@ -91,6 +111,7 @@ class Team extends Component {
 }
 
 Team.propTypes = {
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
   teamRosterError: null || PropTypes.bool,
   teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -107,22 +128,30 @@ Team.propTypes = {
     })
   ).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,
+  standingsError: null || PropTypes.bool,
+  standingsLoading: PropTypes.bool.isRequired,
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 Team.defaultProps = {
   teamRosterError: null,
+  standingsError: null,
 };
 
-const mapStateToProps = ({ teamRoster }) => ({
+const mapStateToProps = ({ teamRoster, standings }) => ({
   teamRoster: teamRoster.teamRosterData,
   teamRosterLoading: teamRoster.teamRosterLoading,
   teamRosterError: teamRoster.teamRosterError,
+  standings: standings.standingsData,
+  standingsLoading: standings.standingsLoading,
+  standingsError: standings.standingsError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchTeamRoster,
+      fetchStandings,
     },
     dispatch
   );
