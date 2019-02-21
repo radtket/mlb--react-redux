@@ -35,13 +35,13 @@ StandingsTeam.propTypes = {
   teamName: PropTypes.string.isRequired,
   wins: PropTypes.number.isRequired,
   loses: PropTypes.number.isRequired,
-  gb: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  gb: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   activeTeam: PropTypes.bool,
   percentage: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 StandingsTeam.defaultProps = {
-  gb: "-",
+  gb: false,
   activeTeam: false,
   percentage: false,
 };
