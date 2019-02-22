@@ -1,34 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 import { teamFinder, espnLogo } from "../../../../utils/helpers";
 
 const SingleGame = ({
   AwayTeam,
   HomeTeam,
-  Day,
   activeTeam,
-  classes,
+  DateTime,
   HomeTeamRuns,
   AwayTeamRuns,
   IsClosed,
   Status,
   GameID,
-  IsClosed: GameClosed,
+  Channel,
 }) => {
   const isHomeTeam = activeTeam === HomeTeam;
   const OpponentKey = isHomeTeam ? AwayTeam : HomeTeam;
   const MyTeamScore = isHomeTeam ? HomeTeamRuns : AwayTeamRuns;
   const OpponentScore = isHomeTeam ? AwayTeamRuns : HomeTeamRuns;
 
-  const {
-    City: OpponentCity,
-    Name: OpponentName,
-    PrimaryColor: OpponentPrimaryColor,
-  } = teamFinder(OpponentKey);
+  const { City: OpponentCity, Name: OpponentName } = teamFinder(OpponentKey);
 
-  const GameIsFinal = GameClosed && Status === "Final";
+  const GameIsFinal = IsClosed && Status === "Final";
   const GameIsScheduled = Status === "Scheduled";
   const GameIsInProgress = Status === "In Progress";
   const GameIsPostponed = Status === "Postponed";
@@ -49,15 +44,24 @@ const SingleGame = ({
             alt={`${OpponentCity} ${OpponentName} Logo`}
           />
         </figure>
-        <div className="opponent-info opponent-info__arbv">{`${HomeOrAway} ${OpponentKey} `}</div>
-        <div className="opponent-info opponent-info__full">{`${HomeOrAway} ${OpponentName} `}</div>
+
+        <figcaption className="opponent-info opponent-info__arbv">
+          {`${HomeOrAway} ${OpponentKey} `}
+        </figcaption>
+        <figcaption className="opponent-info opponent-info__full">
+          {`${HomeOrAway} ${OpponentName} `}
+        </figcaption>
 
         <ul className="game-meta">
           {GameIsScheduled && (
             <>
-              <li className="game-meta__date">2/21</li>
-              <li className="game-meta__time">8:00 PM</li>
-              <li className="game-meta__network">TNT</li>
+              <li className="game-meta__date">
+                {moment(DateTime).format("M[/]D")}
+              </li>
+              <li className="game-meta__time">
+                {moment(DateTime).format("h:mm A")}
+              </li>
+              <li className="game-meta__network">{Channel}</li>
             </>
           )}
 
@@ -82,6 +86,19 @@ SingleGame.propTypes = {
   AwayTeam: PropTypes.string.isRequired,
   HomeTeam: PropTypes.string.isRequired,
   activeTeam: PropTypes.string.isRequired,
+  DateTime: PropTypes.string.isRequired,
+  HomeTeamRuns: PropTypes.number,
+  AwayTeamRuns: PropTypes.number,
+  IsClosed: PropTypes.bool.isRequired,
+  Status: PropTypes.string.isRequired,
+  GameID: PropTypes.number.isRequired,
+  Channel: PropTypes.string,
+};
+
+SingleGame.defaultProps = {
+  HomeTeamRuns: 0,
+  AwayTeamRuns: 0,
+  Channel: "",
 };
 
 export default SingleGame;

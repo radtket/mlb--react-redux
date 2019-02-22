@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Table from "react-bootstrap/Table";
+// import Table from "react-bootstrap/Table";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import StandingsTeam from "./StandingsTeam";
 import {
   largestToSmallest,
   getLeagueName,
   slugify,
 } from "../../../../utils/helpers";
+
+const StandingsTable = styled.table`
+  width: 100%;
+  margin: auto;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: separate;
+`;
 
 class TeamStandings extends Component {
   createStandingsTable = (standings, activeTeamObj, division = false) => {
@@ -22,7 +31,6 @@ class TeamStandings extends Component {
         League: TeamLeague,
         Division: TeamDivision,
         Key: TeamKey,
-        TeamID,
         Name,
         Wins,
         Losses,
@@ -36,12 +44,12 @@ class TeamStandings extends Component {
           divisionTeams.push(
             <StandingsTeam
               activeTeam={TeamKey === ActiveKey}
-              key={TeamID}
-              teamName={Name}
-              teamLogo={TeamKey}
-              wins={Wins}
-              loses={Losses}
-              gb={GamesBehind}
+              key={TeamKey}
+              GamesBehind={GamesBehind}
+              Losses={Losses}
+              TeamKey={TeamKey}
+              TeamName={Name}
+              Wins={Wins}
             />
           );
       } else {
@@ -49,16 +57,15 @@ class TeamStandings extends Component {
           divisionTeams.push(
             <StandingsTeam
               activeTeam={TeamKey === ActiveKey}
-              key={TeamID}
-              teamName={Name}
-              teamLogo={TeamKey}
-              wins={Wins}
-              loses={Losses}
-              percentage={Percentage.toFixed(3).replace(/^0+/, "")}
+              key={TeamKey}
+              Losses={Losses}
+              Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
+              TeamKey={TeamKey}
+              TeamName={Name}
+              Wins={Wins}
             />
           );
       }
-
       return divisionTeams;
     }, []);
   };
@@ -75,22 +82,22 @@ class TeamStandings extends Component {
           <Tab
             eventKey={slugify(`${League} ${Division}`)}
             title={`${League} ${Division}`}>
-            <Table>
+            <StandingsTable>
               <tbody>
                 {standings &&
                   this.createStandingsTable(standings, activeTeamObj, true)}
               </tbody>
-            </Table>
+            </StandingsTable>
           </Tab>
           <Tab eventKey={slugify(League)} title={getLeagueName(League)}>
-            <Table>
+            <StandingsTable>
               <tbody>
                 {standings &&
                   this.createStandingsTable(standings, activeTeamObj).sort(
                     largestToSmallest("Percentage")
                   )}
               </tbody>
-            </Table>
+            </StandingsTable>
           </Tab>
         </Tabs>
       </div>

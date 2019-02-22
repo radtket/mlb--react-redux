@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap/scss/bootstrap-grid";
 @import "~normalize.css";
+@import "./base/base";
 @import "./calender";
 
 ul {
@@ -14,8 +15,8 @@ a {
   }
 }
 
-.navbar-nav .dropdown-menu {
-  @media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
+  .navbar-nav .dropdown-menu {
     min-width: 1024px;
   }
 }
@@ -33,7 +34,7 @@ li.game {
   list-style: none;
   margin: 0;
 
-  > a {
+  >a {
     background: #f9f9fb;
     display: table;
     padding: 10px 8px;
@@ -50,11 +51,12 @@ li.game {
       vertical-align: middle;
       width: 20px;
 
-      > img {
+      >img {
         display: block;
         width: 20px;
       }
     }
+
     .opponent-info {
       color: #48494a;
       display: table-cell;
@@ -106,10 +108,6 @@ li.game {
         width: 44px;
         white-space: nowrap;
       }
-
-      // > * {
-      //   display: block;
-      // }
     }
   }
 }

@@ -6,18 +6,21 @@ import { bindActionCreators } from "redux";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import { fetchGamesOnDay } from "../../modules/games-on-day/actions";
+
 import {
   // TODO: Add When API is Live
   // TodaysDate,
-  DEV_PLACEHOLDER_DATE
+  DEV_PLACEHOLDER_DATE,
+  teamFinder,
 } from "../../utils/helpers";
 import SingleGame from "./SingleGame";
+import TeamLogo from "./TeamLogo";
 
 class GamesOnDayList extends Component {
   state = {
     // TODO: Add When API is Live
     // dateOfGame: TodaysDate
-    dateOfGame: DEV_PLACEHOLDER_DATE
+    dateOfGame: DEV_PLACEHOLDER_DATE,
   };
 
   componentDidMount() {
@@ -45,7 +48,7 @@ class GamesOnDayList extends Component {
 
   changeDate = date => {
     return this.setState({
-      dateOfGame: date
+      dateOfGame: date,
     });
   };
 
@@ -67,6 +70,15 @@ class GamesOnDayList extends Component {
 
     return (
       <div>
+        <header>
+          <figure className="away">
+            <TeamLogo Team={teamFinder("MIL")} />
+          </figure>
+          <figure className="home">
+            <TeamLogo Team={teamFinder("WSH")} />
+          </figure>
+        </header>
+
         <h1>Games For {dateOfGame.format("dddd, MMMM Do YYYY").toString()}</h1>
         <nav>
           <Button onClick={() => this.previousDaysGame(dateOfGame)}>
@@ -87,23 +99,23 @@ GamesOnDayList.propTypes = {
   gamesOnDayFail: null || PropTypes.bool,
   gamesOnDayLoading: PropTypes.bool.isRequired,
   gamesOnDay: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchGamesOnDay: PropTypes.func.isRequired
+  fetchGamesOnDay: PropTypes.func.isRequired,
 };
 
 GamesOnDayList.defaultProps = {
-  gamesOnDayFail: null
+  gamesOnDayFail: null,
 };
 
 const mapStateToProps = ({ gamesOnDay }) => ({
   gamesOnDay: gamesOnDay.gamesOnDayData,
   gamesOnDayLoading: gamesOnDay.gamesOnDayLoading,
-  gamesOnDayFail: gamesOnDay.gamesOnDayError
+  gamesOnDayFail: gamesOnDay.gamesOnDayError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchGamesOnDay
+      fetchGamesOnDay,
     },
     dispatch
   );
