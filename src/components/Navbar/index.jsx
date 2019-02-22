@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import DivisionComponent from "./MegaMenu/DivisionComponent";
 import { sortTeamsByDivion } from "../../utils/helpers";
@@ -35,33 +30,49 @@ class Header extends Component {
   render() {
     const { teams } = this.props;
     return (
-      <Navbar bg="primary" variant="dark" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-            <Link className="nav-link" to="/scores">
-              Scores
-            </Link>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link className="navbar-brand" to="/">
+          Home
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon" />
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/scores">
+                Scores
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/standings">
+                Standings
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/news">
+                News
+              </Link>
+            </li>
             <NavDropdown title="Teams" id="basic-nav-dropdown">
               {teams && this.createMegaMenu(teams)}
             </NavDropdown>
-            <Link className="nav-link" to="/standings">
-              Standings
-            </Link>
-            <Link className="nav-link" to="/news">
-              News
-            </Link>
-          </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-        </Navbar.Collapse>
-      </Navbar>
+          </ul>
+        </div>
+      </nav>
     );
   }
 }

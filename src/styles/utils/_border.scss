@@ -1,0 +1,24 @@
+/**
+ *  BORDER
+ */
+
+.border {
+  border: $bd-medium;
+
+  &-bottom {
+    border-bottom: $bd-medium;
+  }
+
+  &-left {
+    border-left: $bd-medium;
+  }
+
+  &-right {
+    border-right: $bd-medium;
+  }
+
+  &-top {
+    border-top: $bd-medium;
+  }
+
+}

@@ -1,0 +1,96 @@
+//colors
+$color_rangoon_green_approx: #1d1e1f;
+$color_alto_approx: #dcdddf;
+$color_salem_approx: #094;
+$color_red_approx: #d00;
+
+.situation {
+  display: flex;
+  flex-direction: row;
+}
+
+.situation__count {
+  flex-shrink: 0;
+
+  .count {
+    list-style: none;
+    line-height: 1;
+
+    >span {
+      color: $color_rangoon_green_approx;
+      font-size: 10px;
+      vertical-align: middle;
+      display: inline-block;
+      width: 8px;
+    }
+  }
+
+  .orb {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border-radius: 10px;
+    border: 1px solid $color_alto_approx;
+    margin: 0 -1px 1px 0;
+    vertical-align: middle;
+
+    &.fill {
+      background: currentColor;
+      border: 1px solid currentColor;
+    }
+  }
+
+  .count--ball {
+    color: $color_salem_approx;
+  }
+
+  .count--strike {
+    color: $color_red_approx;
+  }
+
+  .count--out {
+    color: $color_red_approx;
+    display: none;
+  }
+}
+
+
+.situation__bases {
+  flex-shrink: 0;
+  margin-top: -2px;
+  width: 36px;
+
+  .diamond {
+    border-width: 8px;
+    top: -8px;
+
+    &:after {
+      border-width: 8px;
+      left: -8px;
+      top: 8px;
+    }
+  }
+}
+
+
+@media screen and(min-width: 414px) {
+  .situation__bases {
+    margin-left: 12px;
+    width: 48px;
+
+    .diamond {
+      border-width: 11px;
+      top: -11px;
+
+      &:after {
+        border-width: 11px;
+        left: -11px;
+        top: 11px;
+      }
+    }
+  }
+
+  .situation__count .count--out {
+    display: block;
+  }
+}

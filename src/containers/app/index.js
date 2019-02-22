@@ -56,7 +56,7 @@ class App extends Component {
     }
 
     if (teamsLoading || schedulesLoading || standingsLoading) {
-      return <div>Loading...</div>;
+      return <div className="loadingBar" />;
     }
 
     return (

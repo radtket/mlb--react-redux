@@ -1,20 +1,42 @@
-@import "~bootstrap/scss/bootstrap";
-@import "~bootstrap/scss/bootstrap-grid";
-@import "~normalize.css";
-@import "./base/base";
-@import "./calender";
+// @import "~bootstrap/scss/bootstrap";
+// @charset 'UTF-8';
 
-ul {
-  padding: 0;
-  list-style: none;
-}
+// Settings
+@import 'settings';
 
-a {
-  &:hover {
-    text-decoration: none;
-  }
-}
+// Utils
+@import 'utils/breakpoints';
+@import 'utils/reset';
+@import 'utils/default';
+@import 'utils/background';
+@import 'utils/border';
+@import 'utils/aligner';
+@import 'utils/helpers';
+@import 'utils/layout';
+@import 'utils/typography';
 
+// Components
+@import 'components/badge';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/loading-bar';
+@import 'components/loading-spinner';
+@import 'components/notification';
+@import 'components/paginator';
+@import 'components/table';
+@import 'components/tabs';
+@import 'components/tag';
+
+// Twitter bootstrap's grid v4.1.0
+// More info: https://getbootstrap.com/examples/grid/
+@import 'grid/grid-framework';
+@import 'grid/grid';
+@import 'utils/grid';
+
+@import './navbar';
+@import './scoreboard';
+
+// @import "./calender";
 @media screen and (min-width: 1024px) {
   .navbar-nav .dropdown-menu {
     min-width: 1024px;
@@ -109,5 +131,679 @@ li.game {
         white-space: nowrap;
       }
     }
+  }
+}
+
+
+// $bgDefault : #9b59b6;
+// $bgHighlight : #8e44ad;
+// $colDefault : #ecf0f1;
+// $colHighlight : #ecdbff;
+// $dropDown : false;
+
+// .navbar {
+//   background-color: $bgDefault;
+
+//   .navbar-brand {
+//     color: $colDefault;
+
+//     &:hover,
+//     &:focus {
+//       color: $colHighlight;
+//     }
+//   }
+
+//   .navbar-text {
+//     color: $colDefault;
+
+//     a {
+//       color: $colHighlight;
+
+//       &:hover,
+//       &:focus {
+//         color: $colHighlight;
+//       }
+//     }
+//   }
+
+//   .navbar-nav {
+//     .nav-link {
+//       color: $colDefault;
+//       border-radius: .25rem;
+//       margin: 0 0.25em;
+
+//       &:not(.disabled) {
+
+//         &:hover,
+//         &:focus {
+//           color: $colHighlight;
+//         }
+//       }
+//     }
+
+//     @if ($dropDown) {
+//       .dropdown-menu {
+//         background-color: $bgDefault;
+//         border-color: $bgHighlight;
+
+//         .dropdown-item {
+//           color: $colDefault;
+
+//           &:hover,
+//           &:focus,
+//           &.active {
+//             color: $colHighlight;
+//             background-color: $bgHighlight;
+//           }
+//         }
+
+//         .dropdown-divider {
+//           border-top-color: $bgHighlight;
+//         }
+//       }
+//     }
+
+//     .nav-item.active,
+//     .nav-item.show {
+
+//       .nav-link,
+//       .nav-link:hover,
+//       .nav-link:focus {
+//         color: $colHighlight;
+//         background-color: $bgHighlight;
+//       }
+//     }
+//   }
+
+//   .navbar-toggle {
+//     border-color: $bgHighlight;
+
+//     &:hover,
+//     &:focus {
+//       background-color: $bgHighlight;
+//     }
+
+//     .navbar-toggler-icon {
+//       color: $colDefault;
+//     }
+//   }
+
+//   .navbar-collapse,
+//   .navbar-form {
+//     border-color: $colDefault;
+//   }
+
+//   .navbar-link {
+//     color: $colDefault;
+
+//     &:hover {
+//       color: $colHighlight;
+//     }
+//   }
+// }
+
+// @media (max-width: 575px) {
+//   .navbar-expend-sm .navbar-nav .show .dropdown-menu {
+//     .dropdown-item {
+//       color: $colDefault;
+
+//       &:hover,
+//       &:focus {
+//         color: $colHighlight;
+//       }
+//     }
+
+//     .dropdown-item.active {
+//       color: $colHighlight;
+//       background-color: $bgHighlight;
+//     }
+//   }
+// }
+
+// @media (max-width: 767px) {
+//   .navbar-expend-md .navbar-nav .show .dropdown-menu {
+//     .dropdown-item {
+//       color: $colDefault;
+
+//       &:hover,
+//       &:focus {
+//         color: $colHighlight;
+//       }
+//     }
+
+//     .dropdown-item.active {
+//       color: $colHighlight;
+//       background-color: $bgHighlight;
+//     }
+//   }
+// }
+
+// @media (max-width: 991px) {
+//   .navbar-expend-lg .navbar-nav .show .dropdown-menu {
+//     .dropdown-item {
+//       color: $colDefault;
+
+//       &:hover,
+//       &:focus {
+//         color: $colHighlight;
+//       }
+//     }
+
+//     .dropdown-item.active {
+//       color: $colHighlight;
+//       background-color: $bgHighlight;
+//     }
+//   }
+// }
+
+// @media (max-width: 1199px) {
+//   .navbar-expend-xl .navbar-nav .show .dropdown-menu {
+//     .dropdown-item {
+//       color: $colDefault;
+
+//       &:hover,
+//       &:focus {
+//         color: $colHighlight;
+//       }
+//     }
+
+//     .dropdown-item.active {
+//       color: $colHighlight;
+//       background-color: $bgHighlight;
+//     }
+//   }
+// }
+
+// .navbar-expend .navbar-nav .show .dropdown-menu {
+//   .dropdown-item {
+//     color: $colDefault;
+
+//     &:hover,
+//     &:focus {
+//       color: $colHighlight;
+//     }
+//   }
+
+//   .dropdown-item.active {
+//     color: $colHighlight;
+//     background-color: $bgHighlight;
+//   }
+// }
+
+
+.field {
+  position: relative;
+
+  .img {
+    margin: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .onthefield {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: .9em;
+
+    .fielder {
+      display: block;
+
+      position: absolute;
+      text-align: center;
+      width: 33%;
+      margin: auto;
+      z-index: 10;
+
+      &.pitcher {
+        bottom: 27%;
+        left: 33%;
+      }
+
+      &.catcher {
+        bottom: 12%;
+        left: 33%;
+      }
+
+      &.first {
+        bottom: 23%;
+        left: 53%;
+      }
+
+      &.second {
+        bottom: 37%;
+        left: 48%
+      }
+
+      &.shortstop {
+        bottom: 37%;
+        left: 21%
+      }
+
+      &.third {
+        bottom: 23%;
+        left: 13%
+      }
+
+      &.lf {
+        bottom: 62%;
+        left: 8%
+      }
+
+      &.cf {
+        bottom: 74%;
+        left: 33%
+      }
+
+      &.rf {
+        bottom: 62%;
+        left: 55%
+      }
+
+      a {
+        color: #000;
+        text-shadow: 0 0 0.25em #999;
+      }
+    }
+  }
+}
+
+
+
+
+$color_nobel_approx: #b4b4b4;
+$color_mine_shaft_approx: #333;
+$black: #000;
+$color_mountain_mist_approx: #999;
+$color_black_80_approx: rgba(1, 1, 1, 0.8);
+$white: #fff;
+$color_blue_approx: #1010ff;
+$color_red_berry_approx: #950000;
+$color_dodger_blue_approx: #39f;
+$red: #f00;
+$wild_sand: #f4f4f4;
+$color_silver_chalice_approx: #aaa;
+
+
+$font_0: Open Sans;
+
+
+
+
+%extend_1 {
+  position: absolute;
+  text-align: center;
+  width: 33%;
+  margin: auto;
+  z-index: 10;
+}
+
+
+#field_view {
+  overflow: hidden;
+  height: auto;
+  min-height: 100%;
+
+  form {
+    border-bottom: 1px solid $color_nobel_approx;
+    padding-bottom: 16px;
+  }
+
+  h1 {
+    margin-bottom: .5em;
+    color: $color_mine_shaft_approx;
+    text-align: center;
+    font-size: 1.1em;
+  }
+
+  .field {
+    position: relative;
+  }
+
+  .img {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    object {
+      width: 100%;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .onthefield {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: .9em;
+
+    .onthefield-hitchart-marker {
+      display: none;
+    }
+
+    .fielder {
+      display: none;
+    }
+
+    .runner {
+      display: none;
+    }
+
+    &.draw-HH {
+      .team-H.type-H {
+        display: block;
+      }
+
+      .team-home.type-H {
+        display: block;
+      }
+    }
+
+    &.draw-HO {
+      .team-H.type-O {
+        display: block;
+      }
+
+      .team-home.type-O {
+        display: block;
+      }
+    }
+
+    &.draw-HE {
+      .team-H.type-E {
+        display: block;
+      }
+
+      .team-home.type-E {
+        display: block;
+      }
+    }
+
+    &.draw-AH {
+      .team-A.type-H {
+        display: block;
+      }
+
+      .team-away.type-H {
+        display: block;
+      }
+    }
+
+    &.draw-AO {
+      .team-A.type-O {
+        display: block;
+      }
+
+      .team-away.type-O {
+        display: block;
+      }
+    }
+
+    &.draw-AE {
+      .team-A.type-E {
+        display: block;
+      }
+
+      .team-away.type-E {
+        display: block;
+      }
+    }
+
+    &.draw-fielder .fielder {
+      display: block;
+    }
+
+    &.draw-runner .runner {
+      display: block;
+    }
+  }
+
+  .fielder {
+    @extend %extend_1;
+
+    a {
+      color: $black;
+
+      text-shadow: 0 0 .25em $color_mountain_mist_approx;
+    }
+
+    &.pitcher {
+      bottom: 27%;
+      left: 33%;
+    }
+
+    &.catcher {
+      bottom: 12%;
+      left: 33%;
+    }
+
+    &.first {
+      bottom: 23%;
+      left: 53%;
+    }
+
+    &.second {
+      bottom: 37%;
+      left: 48%;
+    }
+
+    &.third {
+      bottom: 23%;
+      left: 13%;
+    }
+
+    &.shortstop {
+      bottom: 37%;
+      left: 21%;
+    }
+
+    &.left {
+      bottom: 62%;
+      left: 8%;
+    }
+
+    &.center {
+      bottom: 74%;
+      left: 33%;
+    }
+
+    &.right {
+      bottom: 62%;
+      left: 55%;
+    }
+  }
+
+  .runner {
+    @extend %extend_1;
+
+    a {
+
+      background-clip: padding-box;
+      background: $color_black_80_approx;
+
+      border-radius: 8px;
+      color: $white;
+      padding: .4em;
+
+      text-shadow: 0 0 2px $black;
+      z-index: 12;
+    }
+
+    &.first {
+      bottom: 28%;
+      left: 57%;
+    }
+
+    &.second {
+      bottom: 43%;
+      left: 33%;
+    }
+
+    &.third {
+      bottom: 28%;
+      left: 9%;
+    }
+
+    &.batter {
+      bottom: 17%;
+      left: 33%;
+    }
+  }
+
+  .onthefield-hitchart-marker {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+
+    border-radius: 5px;
+
+    background-clip: padding-box;
+    border: 1px solid $white;
+
+    box-shadow: 0 8px 6px -6px $black;
+    z-index: 9000;
+
+    &.team-H {
+      &.type-H {
+        background-color: $color_blue_approx;
+      }
+
+      &.type-O {
+        background-color: $color_red_berry_approx;
+      }
+    }
+
+    &.team-home {
+      &.type-H {
+        background-color: $color_blue_approx;
+      }
+
+      &.type-O {
+        background-color: $color_red_berry_approx;
+      }
+    }
+
+    &.team-A {
+      &.type-H {
+        background-color: $color_dodger_blue_approx;
+      }
+
+      &.type-O {
+        background-color: $red;
+      }
+    }
+
+    &.team-away {
+      &.type-H {
+        background-color: $color_dodger_blue_approx;
+      }
+
+      &.type-O {
+        background-color: $red;
+      }
+    }
+  }
+
+  .waiting {
+    width: 80%;
+    margin: 0 auto;
+
+    img {
+      width: 30px;
+      height: 36px;
+      margin: 4px 0;
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+    }
+
+    img[data-load-error=true] {
+      height: 36px;
+    }
+
+    .player {
+      display: table-row;
+    }
+
+    .info {
+      position: relative;
+      padding-top: 15px;
+
+      a {
+        display: inline;
+        padding: 4px 0;
+      }
+    }
+
+    .title {
+      display: inline;
+      margin: 0 8px;
+    }
+  }
+
+  #checkboxes {
+    input {
+      appearance: none;
+      position: relative;
+      background-color: $wild_sand;
+      width: 26px;
+      height: 26px;
+      margin-right: 8px;
+      margin-bottom: 4px;
+      vertical-align: middle;
+
+      &:not(:focus) {
+        border: 1px solid $color_silver_chalice_approx;
+      }
+    }
+
+    td {
+      text-align: left;
+      padding: 0 21px;
+    }
+
+    input[type=checkbox]:checked::after {
+      position: absolute;
+      content: '';
+      left: 21%;
+      top: 25%;
+      height: 5px;
+      width: 13px;
+      border-bottom: 3px solid $color_mine_shaft_approx;
+      border-left: 3px solid $color_mine_shaft_approx;
+
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.onfield-hover-data {
+
+  transition: all 150ms ease-in-out;
+  visibility: hidden;
+  min-width: 125px;
+  opacity: 0;
+  color: $white;
+  background: $black;
+  font-family: $font_0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: .9em;
+  text-align: left;
+  padding: 8px;
+  line-height: 14px;
+  z-index: -9999;
+
+  &.fielder-data {
+    min-width: 0;
+    max-width: 110px;
   }
 }
