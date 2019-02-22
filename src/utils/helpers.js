@@ -96,3 +96,193 @@ export const slugify = string => {
     .replace(/^-+/, "") // Trim - from start of text
     .replace(/-+$/, ""); // Trim - from end of text
 };
+
+// teams.reduce((allTeams, team) => {
+//   const { Key, City, Name, PrimaryColor } = team;
+//   allTeams.push({ Key, City, Name, PrimaryColor });
+//   return allTeams;
+// }, []);
+export const teamFinder = teamKey => {
+  return [
+    {
+      Key: "LAD",
+      City: "Los Angeles",
+      Name: "Dodgers",
+      PrimaryColor: "005A9C",
+    },
+    {
+      Key: "CIN",
+      City: "Cincinnati",
+      Name: "Reds",
+      PrimaryColor: "C6011F",
+    },
+    {
+      Key: "TOR",
+      City: "Toronto",
+      Name: "Blue Jays",
+      PrimaryColor: "134A8E",
+    },
+    {
+      Key: "PIT",
+      City: "Pittsburgh",
+      Name: "Pirates",
+      PrimaryColor: "000000",
+    },
+    {
+      Key: "KC",
+      City: "Kansas City",
+      Name: "Royals",
+      PrimaryColor: "004687",
+    },
+    {
+      Key: "CHC",
+      City: "Chicago",
+      Name: "Cubs",
+      PrimaryColor: "0E3386",
+    },
+    {
+      Key: "CLE",
+      City: "Cleveland",
+      Name: "Indians",
+      PrimaryColor: "E31937",
+    },
+    {
+      Key: "TB",
+      City: "Tampa Bay",
+      Name: "Rays",
+      PrimaryColor: "092C5C",
+    },
+    {
+      Key: "PHI",
+      City: "Philadelphia",
+      Name: "Phillies",
+      PrimaryColor: "E81828",
+    },
+    {
+      Key: "SEA",
+      City: "Seattle",
+      Name: "Mariners",
+      PrimaryColor: "0C2C56",
+    },
+    {
+      Key: "ARI",
+      City: "Arizona",
+      Name: "Diamondbacks",
+      PrimaryColor: "A71930",
+    },
+    {
+      Key: "SF",
+      City: "San Francisco",
+      Name: "Giants",
+      PrimaryColor: "FD5A1E",
+    },
+    {
+      Key: "CHW",
+      City: "Chicago",
+      Name: "White Sox",
+      PrimaryColor: "000000",
+    },
+    {
+      Key: "DET",
+      City: "Detroit",
+      Name: "Tigers",
+      PrimaryColor: "0C2C56",
+    },
+    {
+      Key: "NYM",
+      City: "New York",
+      Name: "Mets",
+      PrimaryColor: "002D72",
+    },
+    {
+      Key: "BAL",
+      City: "Baltimore",
+      Name: "Orioles",
+      PrimaryColor: "DF4601",
+    },
+    {
+      Key: "MIN",
+      City: "Minnesota",
+      Name: "Twins",
+      PrimaryColor: "002B5C",
+    },
+    {
+      Key: "LAA",
+      City: "Los Angeles",
+      Name: "Angels",
+      PrimaryColor: "BA0021",
+    },
+    {
+      Key: "MIA",
+      City: "Miami",
+      Name: "Marlins",
+      PrimaryColor: "000000",
+    },
+    {
+      Key: "COL",
+      City: "Colorado",
+      Name: "Rockies",
+      PrimaryColor: "33006F",
+    },
+    {
+      Key: "OAK",
+      City: "Oakland",
+      Name: "Athletics",
+      PrimaryColor: "003831",
+    },
+    {
+      Key: "BOS",
+      City: "Boston",
+      Name: "Red Sox",
+      PrimaryColor: "BD3039",
+    },
+    {
+      Key: "ATL",
+      City: "Atlanta",
+      Name: "Braves",
+      PrimaryColor: "13274F",
+    },
+    {
+      Key: "TEX",
+      City: "Texas",
+      Name: "Rangers",
+      PrimaryColor: "003278",
+    },
+    {
+      Key: "NYY",
+      City: "New York",
+      Name: "Yankees",
+      PrimaryColor: "132448",
+    },
+    {
+      Key: "HOU",
+      City: "Houston",
+      Name: "Astros",
+      PrimaryColor: "002D62",
+    },
+    {
+      Key: "STL",
+      City: "St. Louis",
+      Name: "Cardinals",
+      PrimaryColor: "C41E3A",
+    },
+    {
+      Key: "MIL",
+      City: "Milwaukee",
+      Name: "Brewers",
+      PrimaryColor: "0A2351",
+    },
+    {
+      Key: "SD",
+      City: "San Diego",
+      Name: "Padres",
+      PrimaryColor: "05143F",
+    },
+    {
+      Key: "WSH",
+      City: "Washington",
+      Name: "Nationals",
+      PrimaryColor: "AB0003",
+    },
+  ].find(team => teamKey === team.Key);
+};
