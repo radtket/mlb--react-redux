@@ -124,3 +124,66 @@
     text-align: left;
   }
 }
+
+
+// Standings Table
+
+.table-standings {
+  margin-bottom: $spacing-base;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+
+  thead {
+    text-transform: uppercase;
+  }
+
+  tr {
+    height: $spacing-huge;
+    vertical-align: middle;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    color: rgba(0, 0, 0, 0.87);
+    display: table-cell;
+    font-size: 14px;
+    font-weight: 400;
+    padding: $spacing-xsmall $spacing-huge $spacing-xsmall $spacing-base;
+    text-align: left;
+    vertical-align: inherit;
+  }
+
+  td {
+    flex-direction: row-reverse;
+  }
+}
+
+
+.standings__team {
+
+  // &--city,
+  // &--full {}
+
+  >a {
+    color: rgba(0, 0, 0, 0.87);
+    display: inline-block;
+    height: $spacing-base;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  img {
+    @include size($spacing-base);
+    vertical-align: middle;
+    margin-right: $spacing-xsmall;
+  }
+
+  figcaption {
+    vertical-align: middle;
+    display: inline;
+  }
+
+  &--arbv {
+    display: none !important;
+  }
+}

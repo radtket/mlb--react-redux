@@ -20,7 +20,7 @@ const StandingsDivision = ({ division, divisionTeams }) => (
 
 StandingsDivision.propTypes = {
   division: PropTypes.string.isRequired,
-  divisionTeams: PropTypes.arrayOf(PropTypes.object).isRequired
+  divisionTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default StandingsDivision;

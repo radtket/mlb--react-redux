@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchStandings } from "../../modules/standings/actions";
 import StandingsSingleTeam from "./components/SingleTeamComponent";
 import StandingsDivision from "./components/DivisionComponent";
-import { espnLogo, sortTeamsByDivion } from "../../utils/helpers";
+import { sortTeamsByDivion } from "../../utils/helpers";
 
 class StandingsList extends Component {
   createStandingsComponent = standings => {
@@ -22,7 +22,6 @@ class StandingsList extends Component {
               return (
                 <StandingsSingleTeam
                   key={Key}
-                  logo={espnLogo(`${Key}`, 24)}
                   division={`${League} ${Division}`}
                   team={team}
                 />
@@ -47,7 +46,11 @@ class StandingsList extends Component {
       return <div>Loading...</div>;
     }
 
-    return <div>{standings && this.createStandingsComponent(standings)}</div>;
+    return (
+      <div className="container">
+        {standings && this.createStandingsComponent(standings)}
+      </div>
+    );
   }
 }
 

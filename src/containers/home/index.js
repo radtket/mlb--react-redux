@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Scoreboard from "../../components/Scoreboard";
 
 class Home extends Component {
   render() {
     return (
       <div>
-        <Scoreboard />
         <div className="field">
           <img
             src="https://prod-gameday.mlbstatic.com/responsive-gameday-assets/1.2.0/images/fields/2511.svg"
