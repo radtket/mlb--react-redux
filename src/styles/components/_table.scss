@@ -92,21 +92,21 @@
   }
 
   td {
+    display: block;
+
     @include media-breakpoint-down(sm) {
       border: 0;
     }
 
-    display: block;
-
     &::before {
-      @include media-breakpoint-up(sm) {
-        display: none;
-      }
-
       color: $c-table-heading;
       content: attr(data-th)': ';
       display: block;
       font-weight: normal;
+
+      @include media-breakpoint-up(sm) {
+        display: none;
+      }
     }
 
     &:first-child {
@@ -116,74 +116,121 @@
 
   th,
   td {
+    text-align: left;
+
     @include media-breakpoint-up(sm) {
       border-top: $bd-table;
       display: table-cell;
     }
-
-    text-align: left;
   }
 }
 
 
-// Standings Table
+/**
+ *  TABLE STANDINGS
+ *
+ *  Markup:
+ *  -------
+ *
+ *  <table class="table table--standings">
+ *    <tr>
+ *      <th>{division}</th>
+ *      <th>W</th>
+ *      <th>L</th>
+ *      <th>PCT</th>
+ *      <th>GB</th>
+ *      <th className="standings__sec-stat">Home</th>
+ *      <th className="standings__sec-stat">Road</th>
+ *    </tr>
+ *    <tr>
+ *      <td className="standings__team">
+ *        <Link to={`/teams/${Key}`}>
+ *          <img src={espnLogo(`${Key}`, 36)} alt={`${City} ${Name} Logo`} />
+ *          <figcaption className="standings__team--arbv">{Key}</figcaption>
+ *          <figcaption className="standings__team--city">{City} </figcaption>
+ *          <figcaption className="standings__team--full">{Name}</figcaption>
+ *        </Link>
+ *       </td>
+ *      <td>{Wins}</td>
+ *      <td>{Loss}</td>
+ *      <td>{GB}</td>
+ *      <td className="standings__sec-stat">{HomeWins}</td>
+ *      <td className="standings__sec-stat">{HomeLoss}</td>
+ *    </tr>
+ *  </table>
+ *
+ */
 
-.table-standings {
-  margin-bottom: $spacing-base;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+.table--standings {
 
   thead {
     text-transform: uppercase;
   }
 
-  tr {
-    height: $spacing-huge;
-    vertical-align: middle;
-  }
-
   th,
   td {
-    border-bottom: 1px solid rgba(224, 224, 224, 1);
-    color: rgba(0, 0, 0, 0.87);
+    color: rgba($c-table-text, .85);
     display: table-cell;
     font-size: 14px;
-    font-weight: 400;
-    padding: $spacing-xsmall $spacing-huge $spacing-xsmall $spacing-base;
-    text-align: left;
-    vertical-align: inherit;
-  }
-
-  td {
-    flex-direction: row-reverse;
-  }
-}
-
-
-.standings__team {
-
-  // &--city,
-  // &--full {}
-
-  >a {
-    color: rgba(0, 0, 0, 0.87);
-    display: inline-block;
-    height: $spacing-base;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  img {
-    @include size($spacing-base);
+    padding: $spacing-small;
+    text-align: center;
     vertical-align: middle;
-    margin-right: $spacing-xsmall;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &.secondary-stat {
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
   }
 
-  figcaption {
-    vertical-align: middle;
-    display: inline;
-  }
+  .standings {
+    &__sec-stat {
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
 
-  &--arbv {
-    display: none !important;
+    &__team {
+      a {
+        color: inherit;
+
+        >* {
+          vertical-align: middle;
+        }
+      }
+
+      img {
+        @include size($spacing-base);
+        margin-right: $spacing-xsmall;
+      }
+
+      &--arbv,
+      &--city,
+      &--full {
+        display: inline;
+      }
+
+      &--arbv {
+        @media (min-width: 400px) {
+          display: none;
+        }
+      }
+
+      &--full {
+        @media (max-width: 399px) {
+          display: none;
+        }
+      }
+
+      &--city {
+        @include media-breakpoint-down(sm) {
+          display: none;
+        }
+      }
+    }
   }
 }

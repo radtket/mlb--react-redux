@@ -19,10 +19,12 @@
     border-bottom: $bdb-tabs-item;
     color: $c-tabs-item;
     display: inline-block;
-    margin: $m-tabs-item;
-    min-width: $miw-tabs-item;
     padding: $p-tabs-item;
     position: relative;
+
+    // margin: $m-tabs-item;
+    // min-width: $miw-tabs-item;
+    width: 50%;
 
     &:hover {
       color: $c-tabs-item-hover;

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Row from "react-bootstrap/Row";
 import DivisionComponent from "./MegaMenu/DivisionComponent";
 import { sortTeamsByDivion } from "../../utils/helpers";
 
@@ -20,7 +19,11 @@ class Header extends Component {
         />
       );
       if ((index + 1) % 3 === 0) {
-        rows.push(<Row key={LeaugeName}>{cols}</Row>);
+        rows.push(
+          <div className="row" key={LeaugeName}>
+            {cols}
+          </div>
+        );
         cols = [];
       }
       return rows;

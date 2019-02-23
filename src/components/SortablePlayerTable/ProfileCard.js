@@ -15,24 +15,30 @@ const ProfileCard = ({ player }) => {
     Weight,
     BirthDate,
     BirthCity,
-    BirthState
+    BirthState,
   } = player;
   return (
     <tr>
       <td>
         <img src={PhotoUrl} alt={`${FirstName} ${LastName}`} />
       </td>
-      <td>
+      <td data-th="Name" style={{ textAlign: "left" }}>
         {FirstName} {LastName}
         <small> {typeof Jersey === "number" ? Jersey : ""}</small>
       </td>
-      <td>{typeof Position === "string" ? Position : "-"}</td>
-      <td>{typeof BatHand === "string" ? BatHand : "-"}</td>
-      <td>{typeof ThrowHand === "string" ? ThrowHand : "-"}</td>
-      <td>{birthday(BirthDate)}</td>
-      <td>{typeof Height === "number" ? inchesToFeet(Height) : "-"}</td>
-      <td>{typeof Weight === "number" ? Weight : "-"}</td>
-      <td>
+      <td data-th="Position">
+        {typeof Position === "string" ? Position : "-"}
+      </td>
+      <td data-th="Bat Hand">{typeof BatHand === "string" ? BatHand : "-"}</td>
+      <td data-th="Throw Hand">
+        {typeof ThrowHand === "string" ? ThrowHand : "-"}
+      </td>
+      <td data-th="Age">{birthday(BirthDate)}</td>
+      <td data-th="Height">
+        {typeof Height === "number" ? inchesToFeet(Height) : "-"}
+      </td>
+      <td data-th="Weight">{typeof Weight === "number" ? Weight : "-"}</td>
+      <td data-th="Birthplace">
         {{ BirthCity } && { BirthState }
           ? `${BirthCity}${BirthState !== null ? `, ${BirthState}` : ""}`
           : { BirthCity }}
@@ -52,8 +58,8 @@ ProfileCard.propTypes = {
     BirthDate: PropTypes.string,
     Height: PropTypes.number,
     Weight: PropTypes.number,
-    BirthCity: PropTypes.string
-  })
+    BirthCity: PropTypes.string,
+  }),
 };
 
 ProfileCard.defaultProps = {
@@ -67,8 +73,8 @@ ProfileCard.defaultProps = {
     BirthDate: "-",
     Height: "-",
     Weight: "-",
-    BirthCity: "-"
-  })
+    BirthCity: "-",
+  }),
 };
 
 export default ProfileCard;

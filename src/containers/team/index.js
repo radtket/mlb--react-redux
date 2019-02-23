@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import TeamRoster from "./components/TeamRoster";
 import TeamRecentGames from "./components/TeamRecentGames";
 import { fetchTeamRoster } from "../../modules/teamRoster/actions";
@@ -80,20 +77,20 @@ class Team extends Component {
     }
 
     return (
-      <Container>
-        <Row>
+      <div className="container">
+        <div className="row">
           <h1>{currentTeamAbrv}</h1>
-        </Row>
+        </div>
 
-        <Row>
-          <Col sm={8}>
+        <div className="row">
+          <div className="col-sm-8">
             <TeamRoster
               teamRoster={teamRoster}
               teamRosterError={teamRosterError}
               teamRosterLoading={teamRosterLoading}
             />
-          </Col>
-          <Col sm={4}>
+          </div>
+          <div className="col-sm-4">
             <TeamStandings
               activeTeam={currentTeamAbrv}
               activeTeamObj={activeTeamObj}
@@ -103,9 +100,9 @@ class Team extends Component {
               activeTeam={currentTeamAbrv}
               recentGames={recentGames}
             />
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     );
   }
 }

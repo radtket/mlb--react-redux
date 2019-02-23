@@ -12,7 +12,11 @@ class Sort extends Component {
       <thead>
         <tr>
           <th>&nbsp;</th>
-          <th onClick={() => this.sortRoster("LastName")}>Name</th>
+          <th
+            onClick={() => this.sortRoster("LastName")}
+            style={{ textAlign: "left" }}>
+            Name
+          </th>
           <th onClick={() => this.sortRoster("Position")}>Position</th>
           <th onClick={() => this.sortRoster("BatHand")}>Bat</th>
           <th onClick={() => this.sortRoster("ThrowHand")}>Throw</th>
@@ -29,7 +33,7 @@ class Sort extends Component {
 Sort.propTypes = {
   sortRosterStateBy: PropTypes.func.isRequired,
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
-  direction: PropTypes.number.isRequired
+  direction: PropTypes.number.isRequired,
 };
 
 export default Sort;

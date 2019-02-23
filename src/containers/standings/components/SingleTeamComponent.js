@@ -36,8 +36,8 @@ const StandingsSingleTeam = ({ team }) => {
           .replace(/^0+/, "")}
       </td>
       <td>{GamesBehind || "-"}</td>
-      <td>{`${HomeWins} - ${HomeLosses}`}</td>
-      <td>{`${AwayWins} - ${AwayLosses}`}</td>
+      <td className="standings__sec-stat">{`${HomeWins} - ${HomeLosses}`}</td>
+      <td className="standings__sec-stat">{`${AwayWins} - ${AwayLosses}`}</td>
     </tr>
   );
 };

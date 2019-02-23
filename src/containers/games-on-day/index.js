@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import moment from "moment";
-import Button from "react-bootstrap/Button";
 import { fetchGamesOnDay } from "../../modules/games-on-day/actions";
 
 import {
@@ -81,10 +80,14 @@ class GamesOnDayList extends Component {
 
         <h1>Games For {dateOfGame.format("dddd, MMMM Do YYYY").toString()}</h1>
         <nav>
-          <Button onClick={() => this.previousDaysGame(dateOfGame)}>
+          <button
+            onClick={() => this.previousDaysGame(dateOfGame)}
+            type="button">
             Previous
-          </Button>
-          <Button onClick={() => this.nextDaysGame(dateOfGame)}>Next</Button>
+          </button>
+          <button onClick={() => this.nextDaysGame(dateOfGame)} type="button">
+            Next
+          </button>
         </nav>
         <ul>
           {gamesOnDay &&

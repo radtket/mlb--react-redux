@@ -12,80 +12,46 @@ const TeamRow = styled.tr`
       font-weight: bold;
     }
   }
-  td {
-    font-size: 11px;
-    color: #000;
-    font-weight: 400;
-    vertical-align: middle;
-    padding: 5px 10px;
-    vertical-align: middle;
-  }
-`;
-
-const TeamLogo = styled.td`
-  position: relative;
-  text-align: left;
-  white-space: nowrap;
-  > a {
-    display: inline-block;
-    height: 36px;
-    line-height: 30px;
-    white-space: nowrap;
-    img {
-      height: 36px;
-      margin-right: 5px;
-      vertical-align: middle;
-      width: 36px;
-    }
-    figcaption {
-      color: #000;
-      display: inline;
-      font-size: 11px;
-      vertical-align: middle;
-
-      &.standings__team--arbv {
-        display: none;
-      }
-    }
-  }
-`;
-
-const StandingsColumn = styled.td`
-  position: relative;
-  white-space: nowrap;
 `;
 
 const StandingsTeam = ({
   activeTeam,
   TeamKey,
   TeamName,
+  City,
   Wins,
   Losses,
   Percentage,
   GamesBehind,
-}) => (
-  <TeamRow className={activeTeam ? "standings__active-team" : ""}>
-    <TeamLogo>
-      <Link to={`/teams/${TeamKey}`}>
-        <img src={espnLogo(`${TeamKey}`, 36)} alt={`${TeamName} Logo`} />
-        <figcaption className="standings__team--arbv">{TeamKey}</figcaption>
-        <figcaption className="standings__team--full">{TeamName}</figcaption>
-      </Link>
-    </TeamLogo>
-    <StandingsColumn>{Wins}</StandingsColumn>
-    <StandingsColumn>{Losses}</StandingsColumn>
-    {Percentage && <StandingsColumn>{Percentage}</StandingsColumn>}
-    {(GamesBehind || GamesBehind == null) && (
-      <StandingsColumn>
-        {GamesBehind != null ? GamesBehind : "-"}
-      </StandingsColumn>
-    )}
-  </TeamRow>
-);
+}) => {
+  return (
+    <TeamRow className={activeTeam ? "standings__active-team" : ""}>
+      <td className="standings__team">
+        <Link to={`/teams/${TeamKey}`}>
+          <img
+            src={espnLogo(`${TeamKey}`, 36)}
+            alt={`${City} ${TeamName} Logo`}
+          />
+          <figcaption className="standings__team--arbv">{TeamKey}</figcaption>
+          {/* <figcaption className="standings__team--city">{City} </figcaption> */}
+          <figcaption className="standings__team--full">{TeamName}</figcaption>
+        </Link>
+      </td>
+
+      <td>{Wins}</td>
+      <td>{Losses}</td>
+      {Percentage && <td>{Percentage}</td>}
+      {(GamesBehind || GamesBehind == null) && (
+        <td>{GamesBehind != null ? GamesBehind : "-"}</td>
+      )}
+    </TeamRow>
+  );
+};
 
 export default StandingsTeam;
 
 StandingsTeam.propTypes = {
+  City: PropTypes.string.isRequired,
   TeamKey: PropTypes.string.isRequired,
   TeamName: PropTypes.string.isRequired,
   Wins: PropTypes.number.isRequired,

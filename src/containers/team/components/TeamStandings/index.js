@@ -1,27 +1,10 @@
 import React, { Component } from "react";
-import { Tabs, Tab } from "react-toolbox/lib/tabs";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import StandingsTeam from "./StandingsTeam";
 import { largestToSmallest, getLeagueName } from "../../../../utils/helpers";
-
-const StandingsTable = styled.table`
-  width: 100%;
-  margin: auto;
-  border: 0;
-  border-spacing: 0;
-  border-collapse: separate;
-`;
+import Tabs from "../../../../components/Tabs/Tabs";
 
 class TeamStandings extends Component {
-  state = {
-    fixedIndex: 1,
-  };
-
-  handleFixedTabChange = index => {
-    this.setState({ fixedIndex: index });
-  };
-
   createStandingsTable = (standings, activeTeamObj, division = false) => {
     return standings.reduce((divisionTeams, team) => {
       const {
@@ -33,6 +16,7 @@ class TeamStandings extends Component {
         League: TeamLeague,
         Division: TeamDivision,
         Key: TeamKey,
+        City,
         Name,
         Wins,
         Losses,
@@ -47,6 +31,7 @@ class TeamStandings extends Component {
             <StandingsTeam
               activeTeam={TeamKey === ActiveKey}
               key={TeamKey}
+              City={City}
               GamesBehind={GamesBehind}
               Losses={Losses}
               TeamKey={TeamKey}
@@ -61,6 +46,7 @@ class TeamStandings extends Component {
               activeTeam={TeamKey === ActiveKey}
               key={TeamKey}
               Losses={Losses}
+              City={City}
               Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
               TeamKey={TeamKey}
               TeamName={Name}
@@ -74,30 +60,46 @@ class TeamStandings extends Component {
 
   render() {
     const { standings, activeTeamObj } = this.props;
-    const { fixedIndex } = this.state;
     const { Division, League } = activeTeamObj;
     return (
       <div>
         <h5>Standings</h5>
-        <Tabs index={fixedIndex} onChange={this.handleFixedTabChange} fixed>
-          <Tab label={`${League} ${Division}`}>
-            <StandingsTable>
+        <Tabs>
+          <div label={`${League} ${Division}`}>
+            <table className="table table--standings">
+              <thead>
+                <tr>
+                  <th />
+                  <th>W</th>
+                  <th>L</th>
+                  <th>GB</th>
+                </tr>
+              </thead>
               <tbody>
                 {standings &&
                   this.createStandingsTable(standings, activeTeamObj, true)}
               </tbody>
-            </StandingsTable>
-          </Tab>
-          <Tab label={getLeagueName(League)}>
-            <StandingsTable>
+            </table>
+          </div>
+          <div label={getLeagueName(League)}>
+            <table className="table table--standings">
+              <thead>
+                <tr>
+                  <th />
+                  <th>W</th>
+                  <th>L</th>
+                  <th>PCT</th>
+                </tr>
+              </thead>
               <tbody>
                 {standings &&
-                  this.createStandingsTable(standings, activeTeamObj).sort(
-                    largestToSmallest("Percentage")
+                  this.createStandingsTable(
+                    standings.sort(largestToSmallest("Percentage")),
+                    activeTeamObj
                   )}
               </tbody>
-            </StandingsTable>
-          </Tab>
+            </table>
+          </div>
         </Tabs>
       </div>
     );
