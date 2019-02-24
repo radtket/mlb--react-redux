@@ -15,14 +15,14 @@ class TeamRoster extends Component {
     }
 
     return (
-      <>
-        <h5>Roster</h5>
+      <div className="card">
+        <h5 className="card__headline">Roster</h5>
         {teamRoster && (
           <SortablePlayerTable
             players={teamRoster.filter(player => player.Status === "Active")}
           />
         )}
-      </>
+      </div>
     );
   }
 }
@@ -30,11 +30,11 @@ class TeamRoster extends Component {
 TeamRoster.propTypes = {
   teamRosterError: null || PropTypes.bool,
   teamRosterLoading: PropTypes.bool.isRequired,
-  teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired
+  teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 TeamRoster.defaultProps = {
-  teamRosterError: null
+  teamRosterError: null,
 };
 
 export default TeamRoster;

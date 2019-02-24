@@ -20,9 +20,9 @@ class TeamRecentGames extends Component {
   render() {
     const { activeTeam, recentGames } = this.props;
     return (
-      <>
-        <h5>Recent Games</h5>
-        <ul>
+      <div className="card">
+        <h5 className="card__headline">Recent Games</h5>
+        <ul style={{ marginBottom: 0 }}>
           {recentGames &&
             this.renderLast15Games(
               recentGames,
@@ -30,7 +30,7 @@ class TeamRecentGames extends Component {
               DEV_PLACEHOLDER_DATE
             )}
         </ul>
-      </>
+      </div>
     );
   }
 }

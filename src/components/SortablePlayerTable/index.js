@@ -47,7 +47,7 @@ class SortablePlayerTable extends Component {
     const { players: StatePlayers, direction } = this.state;
 
     return (
-      <table className="table table--responsive">
+      <table className="table table--roster">
         <Sort
           direction={direction}
           players={PropsPlayers}

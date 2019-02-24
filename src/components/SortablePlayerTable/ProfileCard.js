@@ -19,8 +19,13 @@ const ProfileCard = ({ player }) => {
   } = player;
   return (
     <tr>
-      <td>
-        <img src={PhotoUrl} alt={`${FirstName} ${LastName}`} />
+      <td className="table--roster__avatar">
+        <figure
+          className="rounded"
+          style={{ backgroundImage: `url(${PhotoUrl})` }}
+          alt={`${FirstName} ${LastName}`}
+        />
+        {/* <img src={PhotoUrl} alt={`${FirstName} ${LastName}`} /> */}
       </td>
       <td data-th="Name" style={{ textAlign: "left" }}>
         {FirstName} {LastName}

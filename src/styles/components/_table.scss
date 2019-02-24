@@ -21,12 +21,15 @@
 
 
 .table {
-  background-color: $bgc-table;
-  border: $bd-table;
   border-collapse: collapse;
   color: $c-table-text;
   max-width: $mwi-table;
   width: $w-table;
+
+  &--border {
+    background-color: $bgc-table;
+    border: $bd-table;
+  }
 
   th,
   td {
@@ -164,7 +167,19 @@
 .table--standings {
 
   thead {
-    text-transform: uppercase;
+    th {
+      font-size: $fz-small;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-image: linear-gradient(rgba($c-light, .33), rgba($c-light, .33));
+      }
+    }
   }
 
   th,
@@ -198,6 +213,10 @@
       a {
         color: inherit;
 
+        &:hover {
+          text-decoration: underline;
+        }
+
         >* {
           vertical-align: middle;
         }
@@ -230,6 +249,90 @@
         @include media-breakpoint-down(sm) {
           display: none;
         }
+      }
+    }
+  }
+}
+
+
+.table--roster {
+
+
+
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+
+    @include media-breakpoint-down(sm) {
+      border: 0;
+    }
+
+    &::before {
+      color: $c-table-heading;
+      content: attr(data-th)': ';
+      display: block;
+      font-weight: normal;
+
+      @include media-breakpoint-up(sm) {
+        display: none;
+      }
+    }
+
+    &:first-child {
+      border-top: $bd-table;
+    }
+  }
+
+  th,
+  td {
+    text-align: left;
+
+    @include media-breakpoint-up(sm) {
+      border-top: $bd-table;
+      display: table-cell;
+    }
+  }
+
+
+  thead {
+    th {
+      font-size: $fz-small;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+    }
+  }
+
+  th,
+  td {
+    color: rgba($c-table-text, .85);
+    font-size: 14px;
+    padding: $spacing-small;
+    vertical-align: middle;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  &__avatar {
+    &::before {
+      display: none !important;
+    }
+
+    >figure {
+      height: 80px;
+      width: 80px;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      @include media-breakpoint-up(sm) {
+        height: 60px;
+        width: 60px;
+        margin: 0 auto;
       }
     }
   }

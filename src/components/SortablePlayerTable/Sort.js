@@ -17,13 +17,13 @@ class Sort extends Component {
             style={{ textAlign: "left" }}>
             Name
           </th>
-          <th onClick={() => this.sortRoster("Position")}>Position</th>
-          <th onClick={() => this.sortRoster("BatHand")}>Bat</th>
-          <th onClick={() => this.sortRoster("ThrowHand")}>Throw</th>
-          <th onClick={() => this.sortRoster("BirthDate")}>Age</th>
-          <th onClick={() => this.sortRoster("Height")}>Height</th>
-          <th onClick={() => this.sortRoster("Weight")}>Weight</th>
-          <th>Birthplace</th>
+          <th onClick={() => this.sortRoster("Position")}>POS</th>
+          <th onClick={() => this.sortRoster("BatHand")}>BAT</th>
+          <th onClick={() => this.sortRoster("ThrowHand")}>THW</th>
+          <th onClick={() => this.sortRoster("BirthDate")}>AGE</th>
+          <th onClick={() => this.sortRoster("Height")}>HT</th>
+          <th onClick={() => this.sortRoster("Weight")}>WT</th>
+          <th>Birth Place</th>
         </tr>
       </thead>
     );

@@ -14,6 +14,7 @@ $c-warning: #f0ad4e !default;
 $c-error: #e74c3c !default;
 $c-gray: #969da6 !default;
 $c-gray-light: #eceff1 !default;
+$c-gray-dark: #31404b !default;
 
 $c-primary: #03a9f4 !default;
 $c-secondary: #e91e63 !default;
@@ -25,6 +26,7 @@ $c-link: $c-primary !default;
 $c-link-hover: rgba($c-primary, .8) !default;
 
 $bgc-body: $c-white !default;
+$bgc-card: $c-white !default;
 
 $c-map: ('primary': $c-primary,
 'dark': $c-dark,
@@ -243,12 +245,13 @@ $fz-table-heading: $fz-small !default;
 $bdb-tabs-item-selected: 3px solid $c-primary !default;
 $bdb-tabs-item: 3px solid transparent !default;
 $bdb-tabs: $bd-medium !default;
-$c-tabs-item-hover: $c-primary !default;
-$c-tabs-item-selected: $c-primary !default;
-$c-tabs-item: $c-gray !default;
-$m-tabs-item: 0 $m-medium 0 0 !default;
+$c-tabs-item-hover: $c-text !default;
+$c-tabs-item-selected: $c-text !default;
+
+$c-tabs-item: rgba($c-text, 0.4) !default;
+$m-tabs-item: 0 !default;
 $miw-tabs-item: 70px !default;
-$p-tabs-item: $p-big !default;
+$p-tabs-item: $spacing-small $spacing-xsmall !default;
 
 // Tags
 $bg-tag-dot: $bgc-body !default;

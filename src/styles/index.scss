@@ -57,13 +57,14 @@ li.game {
   margin: 0;
 
   >a {
-    background: #f9f9fb;
+    // background: #f9f9fb;
     display: table;
     padding: 10px 8px;
     width: 100%;
 
     &:hover {
       background: #fff;
+      background-image: linear-gradient(rgba(223, 227, 232, .3), rgba(223, 227, 232, .3));
     }
 
     .opponent-logo {

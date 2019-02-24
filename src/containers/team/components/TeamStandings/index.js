@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import StandingsTeam from "./StandingsTeam";
 import { largestToSmallest, getLeagueName } from "../../../../utils/helpers";
 import Tabs from "../../../../components/Tabs/Tabs";
@@ -62,14 +63,14 @@ class TeamStandings extends Component {
     const { standings, activeTeamObj } = this.props;
     const { Division, League } = activeTeamObj;
     return (
-      <div>
-        <h5>Standings</h5>
+      <div className="card">
+        <h5 className="card__headline">Standings</h5>
         <Tabs>
-          <div label={`${League} ${Division}`}>
+          <div label="Division">
             <table className="table table--standings">
               <thead>
                 <tr>
-                  <th />
+                  <th>{`${League} ${Division}`}</th>
                   <th>W</th>
                   <th>L</th>
                   <th>GB</th>
@@ -81,11 +82,11 @@ class TeamStandings extends Component {
               </tbody>
             </table>
           </div>
-          <div label={getLeagueName(League)}>
+          <div label="League">
             <table className="table table--standings">
               <thead>
                 <tr>
-                  <th />
+                  <th>{getLeagueName(League)}</th>
                   <th>W</th>
                   <th>L</th>
                   <th>PCT</th>
@@ -101,6 +102,11 @@ class TeamStandings extends Component {
             </table>
           </div>
         </Tabs>
+        <footer className="card__footer">
+          <Link class="text-uppercase" to="/standings">
+            Full Standings
+          </Link>
+        </footer>
       </div>
     );
   }
