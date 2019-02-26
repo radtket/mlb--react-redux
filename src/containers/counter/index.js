@@ -8,7 +8,7 @@ import {
   increment,
   incrementAsync,
   decrement,
-  decrementAsync
+  decrementAsync,
 } from "../../modules/counter";
 
 class Counters extends Component {
@@ -21,7 +21,7 @@ class Counters extends Component {
       decrement,
       decrementAsync,
       isDecrementing,
-      changePage
+      changePage,
     } = this.props;
     return (
       <div>
@@ -65,7 +65,7 @@ class Counters extends Component {
 const mapStateToProps = ({ counter }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
-  isDecrementing: counter.isDecrementing
+  isDecrementing: counter.isDecrementing,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch =>
       incrementAsync,
       decrement,
       decrementAsync,
-      changePage: () => push("/teams/:teamAbrv")
+      changePage: () => push("/teams/:teamAbrv"),
     },
     dispatch
   );

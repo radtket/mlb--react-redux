@@ -6,7 +6,7 @@ const NewsArticle = ({ Title }) => {
 };
 
 NewsArticle.propTypes = {
-  Title: PropTypes.string.isRequired
+  Title: PropTypes.string.isRequired,
 };
 
 export default NewsArticle;

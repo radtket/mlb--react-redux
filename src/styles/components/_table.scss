@@ -178,6 +178,10 @@
       &:hover {
         background-image: linear-gradient(rgba($c-light, .33), rgba($c-light, .33));
       }
+
+      &.active-team {
+        font-weight: 600;
+      }
     }
   }
 

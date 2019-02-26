@@ -1,18 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { espnLogo } from "../../../../utils/helpers";
-
-const TeamRow = styled.tr`
-  background-color: #fff;
-
-  &.standings__active-team {
-    td {
-      font-weight: bold;
-    }
-  }
-`;
 
 const StandingsTeam = ({
   activeTeam,
@@ -25,7 +14,7 @@ const StandingsTeam = ({
   GamesBehind,
 }) => {
   return (
-    <TeamRow className={activeTeam ? "standings__active-team" : ""}>
+    <tr className={activeTeam ? "active-team" : ""}>
       <td className="standings__team">
         <Link to={`/teams/${TeamKey}`}>
           <img
@@ -44,7 +33,7 @@ const StandingsTeam = ({
       {(GamesBehind || GamesBehind == null) && (
         <td>{GamesBehind != null ? GamesBehind : "-"}</td>
       )}
-    </TeamRow>
+    </tr>
   );
 };
 

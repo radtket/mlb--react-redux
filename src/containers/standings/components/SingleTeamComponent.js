@@ -21,7 +21,6 @@ const StandingsSingleTeam = ({ team }) => {
     <tr key={TeamID}>
       <td className="standings__team">
         <Link to={`/teams/${Key}`}>
-          {/* <img src={logo} alt={`${City} ${Name} Logo`} /> */}
           <img src={espnLogo(`${Key}`, 36)} alt={`${City} ${Name} Logo`} />
           <figcaption className="standings__team--arbv">{Key}</figcaption>
           <figcaption className="standings__team--city">{City} </figcaption>

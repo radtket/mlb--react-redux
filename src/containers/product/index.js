@@ -6,7 +6,8 @@ import { fetchProducts } from "../../modules/product/actions";
 
 class ProductList extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
+    const { fetchProducts: getProducts } = this.props;
+    getProducts();
   }
 
   render() {
@@ -32,23 +33,23 @@ ProductList.propTypes = {
   productsFail: null || PropTypes.bool,
   productsLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchProducts: PropTypes.func.isRequired
+  fetchProducts: PropTypes.func.isRequired,
 };
 
 ProductList.defaultProps = {
-  productsFail: null
+  productsFail: null,
 };
 
 const mapStateToProps = ({ products }) => ({
   products: products.productsData,
   productsLoading: products.productsLoading,
-  productsFail: products.productsError
+  productsFail: products.productsError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchProducts
+      fetchProducts,
     },
     dispatch
   );

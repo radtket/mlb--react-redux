@@ -10,10 +10,8 @@ import {
   // TODO: Add When API is Live
   // TodaysDate,
   DEV_PLACEHOLDER_DATE,
-  teamFinder,
 } from "../../utils/helpers";
 import SingleGame from "./SingleGame";
-import TeamLogo from "./TeamLogo";
 
 class GamesOnDayList extends Component {
   state = {
@@ -81,15 +79,6 @@ class GamesOnDayList extends Component {
 
     return (
       <div>
-        <header>
-          <figure className="away">
-            <TeamLogo Team={teamFinder("MIL")} />
-          </figure>
-          <figure className="home">
-            <TeamLogo Team={teamFinder("WSH")} />
-          </figure>
-        </header>
-
         <h1>Games For {dateOfGame.format("dddd, MMMM Do YYYY").toString()}</h1>
         <nav>
           <button

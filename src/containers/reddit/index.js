@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import {
   fetchPostsIfNeeded,
   invalidateSubreddit,
-  selectSubreddit
+  selectSubreddit,
 } from "../../modules/reddit/reddit-actions";
 import Picker from "./components/Picker";
 import Posts from "./components/Posts";
@@ -74,11 +74,11 @@ RedditAsyncApp.propTypes = {
   selectedSubreddit: PropTypes.string.isRequired,
   posts: PropTypes.arrayOf(PropTypes.object),
   isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number
+  lastUpdated: PropTypes.number,
 };
 
 RedditAsyncApp.defaultProps = {
-  posts: []
+  posts: [],
 };
 
 function mapStateToProps(state) {
@@ -87,14 +87,14 @@ function mapStateToProps(state) {
     selectedSubreddit
   ] || {
     isFetching: true,
-    items: []
+    items: [],
   };
 
   return {
     selectedSubreddit,
     posts,
     isFetching,
-    lastUpdated
+    lastUpdated,
   };
 }
 
@@ -103,7 +103,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchPostsIfNeeded,
       invalidateSubreddit,
-      selectSubreddit
+      selectSubreddit,
     },
     dispatch
   );

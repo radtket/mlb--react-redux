@@ -22,6 +22,7 @@ const SingleGame = ({
   InningHalf,
   Outs,
   Strikes,
+  Status,
   standings,
   IsClosed,
 }) => {
@@ -41,10 +42,18 @@ const SingleGame = ({
     HomeWins: HomeTeamHomeWins,
   } = standings.find(team => team.Key === HomeTeam);
 
-  console.log(IsClosed);
+  const GameIsFinal = IsClosed && Status === "Final";
+  const GameIsScheduled = Status === "Scheduled";
+
+  const HomeTeamWin = HomeTeamRuns > AwayTeamRuns;
 
   return (
-    <div className="scoreboard-wrapper">
+    <div
+      className={`scoreboard-wrapper
+      ${!IsClosed && Status === "Scheduled" && "in-progress"}
+      ${GameIsFinal && "is-final"}
+      ${HomeTeamWin && GameIsFinal && "home-winner"}
+      ${!HomeTeamWin && GameIsFinal && "away-winner"}`}>
       <section className="scoreboard">
         <table
           className={`table table--scoreboard ${
@@ -53,12 +62,12 @@ const SingleGame = ({
           <thead>
             <tr>
               <th className="date-time">
-                {!IsClosed
+                {!GameIsScheduled && Status}
+                {!IsClosed && GameIsScheduled
                   ? `${inningHalfDecoder(InningHalf)} ${getNumberWithOrdinal(
                       Inning
                     )}`
-                  : "Final"}
-                {/* {getNumberWithOrdinal(Inning)} */}
+                  : ""}
               </th>
               <th className="score">R</th>
               <th className="score">H</th>
@@ -232,25 +241,35 @@ const SingleGame = ({
 
 SingleGame.propTypes = {
   AwayTeam: PropTypes.string.isRequired,
-  AwayTeamErrors: PropTypes.number.isRequired,
-  AwayTeamHits: PropTypes.number.isRequired,
-  AwayTeamRuns: PropTypes.number.isRequired,
+  AwayTeamErrors: PropTypes.number,
+  AwayTeamHits: PropTypes.number,
+  AwayTeamRuns: PropTypes.number,
   Balls: PropTypes.number,
   HomeTeam: PropTypes.string.isRequired,
-  HomeTeamErrors: PropTypes.number.isRequired,
-  HomeTeamHits: PropTypes.number.isRequired,
-  HomeTeamRuns: PropTypes.number.isRequired,
-  Inning: PropTypes.number.isRequired,
-  InningHalf: PropTypes.string.isRequired,
+  HomeTeamErrors: PropTypes.number,
+  HomeTeamHits: PropTypes.number,
+  HomeTeamRuns: PropTypes.number,
+  Inning: PropTypes.number,
+  InningHalf: PropTypes.string,
   Outs: PropTypes.number,
   Strikes: PropTypes.number,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  IsClosed: PropTypes.bool.isRequired,
+  Status: PropTypes.string.isRequired,
 };
 
 SingleGame.defaultProps = {
   Outs: null,
   Strikes: null,
   Balls: null,
+  Inning: null,
+  HomeTeamErrors: null,
+  HomeTeamHits: null,
+  HomeTeamRuns: null,
+  AwayTeamErrors: null,
+  AwayTeamHits: null,
+  AwayTeamRuns: null,
+  InningHalf: null,
 };
 
 export default SingleGame;

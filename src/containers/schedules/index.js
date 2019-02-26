@@ -39,23 +39,23 @@ class SchedulesList extends Component {
 SchedulesList.propTypes = {
   schedulesError: null || PropTypes.bool,
   schedulesLoading: PropTypes.bool.isRequired,
-  schedules: PropTypes.arrayOf(PropTypes.object).isRequired
+  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 SchedulesList.defaultProps = {
-  schedulesError: null
+  schedulesError: null,
 };
 
 const mapStateToProps = ({ schedules }) => ({
   schedules: schedules.schedulesData,
   schedulesLoading: schedules.schedulesLoading,
-  schedulesError: schedules.schedulesError
+  schedulesError: schedules.schedulesError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchSchedules
+      fetchSchedules,
     },
     dispatch
   );

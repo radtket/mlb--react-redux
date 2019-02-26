@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { espnLogo } from "../../utils/helpers";
 
 const TeamLogo = ({ Team }) => {
@@ -12,6 +13,15 @@ const TeamLogo = ({ Team }) => {
       </figure>
     </div>
   );
+};
+
+TeamLogo.propTypes = {
+  Team: PropTypes.shape({
+    Name: PropTypes.string,
+    City: PropTypes.string,
+    Key: PropTypes.string,
+    PrimaryColor: PropTypes.string,
+  }).isRequired,
 };
 
 export default TeamLogo;

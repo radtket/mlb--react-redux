@@ -38,23 +38,23 @@ NewsAllTeamsList.propTypes = {
   newsAllError: null || PropTypes.bool,
   newsAllLoading: PropTypes.bool.isRequired,
   newsAllTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchNewsAllTeams: PropTypes.func.isRequired
+  fetchNewsAllTeams: PropTypes.func.isRequired,
 };
 
 NewsAllTeamsList.defaultProps = {
-  newsAllError: null
+  newsAllError: null,
 };
 
 const mapStateToProps = ({ newsAllTeams }) => ({
   newsAllTeams: newsAllTeams.newsAllTeamsData,
   newsAllLoading: newsAllTeams.newsAllLoading,
-  newsAllError: newsAllTeams.newsAllError
+  newsAllError: newsAllTeams.newsAllError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchNewsAllTeams
+      fetchNewsAllTeams,
     },
     dispatch
   );
