@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import moment from "moment";
 import { fetchGamesOnDay } from "../../modules/games-on-day/actions";
+import { fetchStandings } from "../../modules/standings/actions";
 import {
   // TODO: Add When API is Live
   // TodaysDate,
@@ -55,16 +56,28 @@ class GamesOnDayList extends Component {
   nextDaysGame = date => this.changeDate(moment(date).add(1, "d"));
 
   render() {
-    const { gamesOnDayFail, gamesOnDayLoading, gamesOnDay } = this.props;
+    const {
+      gamesOnDayFail,
+      gamesOnDayLoading,
+      standingsError,
+      gamesOnDay,
+      standings,
+      standingsLoading,
+    } = this.props;
     const { dateOfGame } = this.state;
 
     if (gamesOnDayFail) {
       return <div>Error! {gamesOnDayFail.message}</div>;
     }
+    if (standingsError) {
+      return <div>Error! {standingsError.message}</div>;
+    }
 
-    if (gamesOnDayLoading) {
+    if (gamesOnDayLoading || standingsLoading) {
       return <div>Loading...</div>;
     }
+
+    // console.log(gamesOnDay, standings);
 
     return (
       <div>
@@ -90,7 +103,9 @@ class GamesOnDayList extends Component {
         </nav>
         <ul>
           {gamesOnDay &&
-            gamesOnDay.map(game => <SingleGame key={game.GameID} {...game} />)}
+            gamesOnDay.map(game => (
+              <SingleGame key={game.GameID} standings={standings} {...game} />
+            ))}
         </ul>
       </div>
     );
@@ -102,22 +117,30 @@ GamesOnDayList.propTypes = {
   gamesOnDayLoading: PropTypes.bool.isRequired,
   gamesOnDay: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchGamesOnDay: PropTypes.func.isRequired,
+  standingsError: null || PropTypes.bool,
+  standingsLoading: PropTypes.bool.isRequired,
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 GamesOnDayList.defaultProps = {
   gamesOnDayFail: null,
+  standingsError: null,
 };
 
-const mapStateToProps = ({ gamesOnDay }) => ({
+const mapStateToProps = ({ gamesOnDay, standings }) => ({
   gamesOnDay: gamesOnDay.gamesOnDayData,
   gamesOnDayLoading: gamesOnDay.gamesOnDayLoading,
   gamesOnDayFail: gamesOnDay.gamesOnDayError,
+  standings: standings.standingsData,
+  standingsLoading: standings.standingsLoading,
+  standingsError: standings.standingsError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchGamesOnDay,
+      fetchStandings,
     },
     dispatch
   );

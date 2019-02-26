@@ -97,6 +97,27 @@ export const slugify = string => {
     .replace(/-+$/, ""); // Trim - from end of text
 };
 
+export const getNumberWithOrdinal = n => {
+  const s = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
+
+export const inningHalfDecoder = inningArg => {
+  let inning;
+  switch (inningArg) {
+    case "B":
+      inning = "Bottom ";
+      break;
+    case "T":
+      inning = "Top ";
+      break;
+    default:
+      inning = "Middle ";
+  }
+  return inning;
+};
+
 // teams.reduce((allTeams, team) => {
 //   const { Key, City, Name, PrimaryColor } = team;
 //   allTeams.push({ Key, City, Name, PrimaryColor });

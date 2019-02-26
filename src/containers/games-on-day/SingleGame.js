@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./styles/TeamLogo.scss";
-import { espnLogo, teamFinder } from "../../utils/helpers";
+import {
+  espnLogo,
+  getNumberWithOrdinal,
+  inningHalfDecoder,
+} from "../../utils/helpers";
 
 const SingleGame = ({
   AwayTeam,
@@ -18,18 +22,43 @@ const SingleGame = ({
   InningHalf,
   Outs,
   Strikes,
+  standings,
+  IsClosed,
 }) => {
-  const { Name: HomeTeamName } = teamFinder(HomeTeam);
-  const { Name: AwayTeamName } = teamFinder(AwayTeam);
+  const {
+    Name: AwayTeamName,
+    Losses: AwayTeamLosses,
+    Wins: AwayTeamWins,
+    AwayLosses: AwayTeamAwayLosses,
+    AwayWins: AwayTeamAwayWins,
+  } = standings.find(team => team.Key === AwayTeam);
+
+  const {
+    Name: HomeTeamName,
+    Losses: HomeTeamLosses,
+    Wins: HomeTeamWins,
+    HomeLosses: HomeTeamHomeLosses,
+    HomeWins: HomeTeamHomeWins,
+  } = standings.find(team => team.Key === HomeTeam);
+
+  console.log(IsClosed);
 
   return (
     <div className="scoreboard-wrapper">
       <section className="scoreboard">
-        <table className="table table--scoreboard">
+        <table
+          className={`table table--scoreboard ${
+            IsClosed ? "in-progress" : ""
+          }`}>
           <thead>
             <tr>
               <th className="date-time">
-                {InningHalf} {Inning}
+                {!IsClosed
+                  ? `${inningHalfDecoder(InningHalf)} ${getNumberWithOrdinal(
+                      Inning
+                    )}`
+                  : "Final"}
+                {/* {getNumberWithOrdinal(Inning)} */}
               </th>
               <th className="score">R</th>
               <th className="score">H</th>
@@ -53,8 +82,11 @@ const SingleGame = ({
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
-                      (2-0
-                      <span className="team__record--away">, 0-0 away</span>)
+                      ({AwayTeamWins}-{AwayTeamLosses}
+                      <span className="team__record--away">
+                        , {AwayTeamAwayWins}-{AwayTeamAwayLosses} away
+                      </span>
+                      )
                     </li>
                   </ul>
                 </div>
@@ -80,8 +112,11 @@ const SingleGame = ({
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
-                      (2-0
-                      <span className="team__record--home">, 0-0 home</span>)
+                      ({HomeTeamWins}-{HomeTeamLosses}
+                      <span className="team__record--home">
+                        , {HomeTeamHomeWins}-{HomeTeamHomeLosses} home
+                      </span>
+                      )
                     </li>
                   </ul>
                 </div>
@@ -209,6 +244,7 @@ SingleGame.propTypes = {
   InningHalf: PropTypes.string.isRequired,
   Outs: PropTypes.number,
   Strikes: PropTypes.number,
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 SingleGame.defaultProps = {
