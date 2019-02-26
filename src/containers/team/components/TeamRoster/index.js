@@ -15,7 +15,7 @@ class TeamRoster extends Component {
     }
 
     return (
-      <div className="card">
+      <div className="card" style={{ position: "relative" }}>
         <h5 className="card__headline">Roster</h5>
         {teamRoster && (
           <SortablePlayerTable

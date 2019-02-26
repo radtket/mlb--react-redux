@@ -8,14 +8,28 @@ class SortablePlayerTable extends Component {
   state = {
     players: [],
     direction: 1,
+    isScrolling: false,
   };
 
   componentDidMount() {
     const { players } = this.props;
+    this.handleTableScroll();
     this.setState({
       players,
     });
   }
+
+  handleTableScroll = () => {
+    document.querySelector(".table--wrap").addEventListener("scroll", () => {
+      const { isScrolling } = this.state;
+      if (!isScrolling) {
+        this.setState({ isScrolling: true });
+        setTimeout(() => {
+          this.setState({ isScrolling: false });
+        }, 300);
+      }
+    });
+  };
 
   sortRosterStateBy = (field, players, direction) => {
     players.sort((a, b) => {
@@ -44,17 +58,18 @@ class SortablePlayerTable extends Component {
   render() {
     // Return page with stats data and Roster
     const { players: PropsPlayers } = this.props;
-    const { players: StatePlayers, direction } = this.state;
-
+    const { players: StatePlayers, direction, isScrolling } = this.state;
     return (
-      <table className="table table--roster">
-        <Sort
-          direction={direction}
-          players={PropsPlayers}
-          sortRosterStateBy={this.sortRosterStateBy}
-        />
-        <Roster players={StatePlayers} />
-      </table>
+      <div className={`table--wrap  ${isScrolling && "isScrolling"}`}>
+        <table className="table table--roster">
+          <Sort
+            direction={direction}
+            players={PropsPlayers}
+            sortRosterStateBy={this.sortRosterStateBy}
+          />
+          <Roster players={StatePlayers} />
+        </table>
+      </div>
     );
   }
 }

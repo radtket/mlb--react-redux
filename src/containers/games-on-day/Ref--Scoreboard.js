@@ -1,36 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import "./styles/TeamLogo.scss";
-import { espnLogo, teamFinder } from "../../utils/helpers";
 
-const SingleGame = ({
-  AwayTeam,
-  AwayTeamErrors,
-  AwayTeamHits,
-  AwayTeamRuns,
-  Balls,
-  HomeTeam,
-  HomeTeamErrors,
-  HomeTeamHits,
-  HomeTeamRuns,
-  Inning,
-  InningHalf,
-  Outs,
-  Strikes,
-}) => {
-  const { Name: HomeTeamName } = teamFinder(HomeTeam);
-  const { Name: AwayTeamName } = teamFinder(AwayTeam);
-
+const RefScoreboard = () => {
   return (
     <div className="scoreboard-wrapper">
       <section className="scoreboard">
         <table className="table table--scoreboard">
           <thead>
             <tr>
-              <th className="date-time">
-                {InningHalf} {Inning}
-              </th>
+              <th className="date-time">Top 8th</th>
               <th className="score">R</th>
               <th className="score">H</th>
               <th className="score">E</th>
@@ -39,17 +17,17 @@ const SingleGame = ({
           <tbody>
             <tr className="away">
               <td className="team team__away">
-                <Link to={`/teams/${AwayTeam}`} className="team__logo--wrap">
+                <Link to="/" className="team__logo--wrap">
                   <img
                     className="team__logo"
-                    src={espnLogo(`${AwayTeam}`, 70)}
+                    src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/bal.png&h=70&w=70"
                     alt=""
                   />
                 </Link>
                 <div className="team__meta">
-                  <Link to={`/teams/${AwayTeam}`} className="team__name">
-                    <span className="team__name--full">{AwayTeamName}</span>
-                    <span className="team__name--abrv">{AwayTeam}</span>
+                  <Link to="/" className="team__name">
+                    <span className="team__name--full">Orioles</span>
+                    <span className="team__name--abrv">BAL</span>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
@@ -59,24 +37,24 @@ const SingleGame = ({
                   </ul>
                 </div>
               </td>
-              <td className="score score__total">{AwayTeamRuns}</td>
-              <td className="score">{AwayTeamHits}</td>
-              <td className="score">{AwayTeamErrors}</td>
+              <td className="score score__total">1</td>
+              <td className="score">6</td>
+              <td className="score">2</td>
             </tr>
 
             <tr className="home">
               <td className="team team__home">
-                <Link to={`/teams/${HomeTeam}`} className="team__logo--wrap">
+                <Link to="/" className="team__logo--wrap">
                   <img
                     className="team__logo"
-                    src={espnLogo(`${HomeTeam}`, 70)}
+                    src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/min.png&h=70&w=70"
                     alt=""
                   />
                 </Link>
                 <div className="team__meta">
-                  <Link to={`/teams/${HomeTeam}`} className="team__name">
-                    <span className="team__name--full">{HomeTeamName}</span>
-                    <span className="team__name--abrv">{HomeTeam}</span>
+                  <Link to="/" className="team__name">
+                    <span className="team__name--full">Twins</span>
+                    <span className="team__name--abrv">MIN</span>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
@@ -86,9 +64,9 @@ const SingleGame = ({
                   </ul>
                 </div>
               </td>
-              <td className="score score__total">{HomeTeamRuns}</td>
-              <td className="score">{HomeTeamHits}</td>
-              <td className="score">{HomeTeamErrors}</td>
+              <td className="score score__total">1</td>
+              <td className="score">6</td>
+              <td className="score">2</td>
             </tr>
           </tbody>
         </table>
@@ -111,21 +89,21 @@ const SingleGame = ({
                   <span className="circle balls " />
                   <span className="circle balls " />
                   <span className="circle balls " />
-                  <span className="description">{Balls} Balls</span>
+                  <span className="description">0 Balls</span>
                 </div>
                 <div className="circleGraph ">
                   <span className="abbrev">S</span>
                   <span className="circle strikes " />
                   <span className="circle strikes " />
                   <span className="circle strikes " />
-                  <span className="description">{Strikes} Strikes</span>
+                  <span className="description">0 Strikes</span>
                 </div>
                 <div className="circleGraph ">
                   <span className="abbrev">O</span>
                   <span className="circle outs " />
                   <span className="circle outs " />
                   <span className="circle outs " />
-                  <span className="description">{Outs} Outs</span>
+                  <span className="description">0 Outs</span>
                 </div>
               </div>
               <p className="last-play">
@@ -195,26 +173,4 @@ const SingleGame = ({
   );
 };
 
-SingleGame.propTypes = {
-  AwayTeam: PropTypes.string.isRequired,
-  AwayTeamErrors: PropTypes.number.isRequired,
-  AwayTeamHits: PropTypes.number.isRequired,
-  AwayTeamRuns: PropTypes.number.isRequired,
-  Balls: PropTypes.number,
-  HomeTeam: PropTypes.string.isRequired,
-  HomeTeamErrors: PropTypes.number.isRequired,
-  HomeTeamHits: PropTypes.number.isRequired,
-  HomeTeamRuns: PropTypes.number.isRequired,
-  Inning: PropTypes.number.isRequired,
-  InningHalf: PropTypes.string.isRequired,
-  Outs: PropTypes.number,
-  Strikes: PropTypes.number,
-};
-
-SingleGame.defaultProps = {
-  Outs: null,
-  Strikes: null,
-  Balls: null,
-};
-
-export default SingleGame;
+export default RefScoreboard;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { birthday, inchesToFeet } from "../../utils/helpers";
 
 const ProfileCard = ({ player }) => {
@@ -10,6 +11,7 @@ const ProfileCard = ({ player }) => {
     Position,
     BatHand,
     Jersey,
+    PlayerID,
     ThrowHand,
     Height,
     Weight,
@@ -19,17 +21,21 @@ const ProfileCard = ({ player }) => {
   } = player;
   return (
     <tr>
-      <td className="table--roster__avatar">
-        <figure
-          className="rounded"
-          style={{ backgroundImage: `url(${PhotoUrl})` }}
-          alt={`${FirstName} ${LastName}`}
-        />
-        {/* <img src={PhotoUrl} alt={`${FirstName} ${LastName}`} /> */}
-      </td>
-      <td data-th="Name" style={{ textAlign: "left" }}>
-        {FirstName} {LastName}
-        <small> {typeof Jersey === "number" ? Jersey : ""}</small>
+      <td data-th="Name">
+        <Link to={`/player/${PlayerID}`} className="table--roster__avatar">
+          <figure
+            className="rounded"
+            style={{ backgroundImage: `url(${PhotoUrl})` }}
+            alt={`${FirstName} ${LastName}`}
+          />
+          <span style={{ display: "none" }}>
+            {typeof Jersey === "number" ? Jersey : ""}
+          </span>
+          <span>
+            <small>{FirstName} </small>
+            {LastName}
+          </span>
+        </Link>
       </td>
       <td data-th="Position">
         {typeof Position === "string" ? Position : "-"}

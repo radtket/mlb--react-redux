@@ -40,11 +40,18 @@
 
   thead {
     border-bottom: $bd-table;
+
+    th {
+      font-size: $fz-small;
+      font-weight: $fw-bold;
+      text-transform: uppercase;
+    }
   }
 
   th {
     background-color: $bgc-table-header;
-    color: $c-table-heading;
+    // color: $c-table-heading;
+    color: rgba($c-table-text, .85);
     font-size: $fz-table-heading;
     font-weight: $fw-table-heading;
     padding: $p-table-heading;
@@ -166,14 +173,6 @@
 
 .table--standings {
 
-  thead {
-    th {
-      font-size: $fz-small;
-      font-weight: $fw-bold;
-      text-transform: uppercase;
-    }
-  }
-
   tbody {
     tr {
       &:hover {
@@ -186,7 +185,6 @@
   td {
     color: rgba($c-table-text, .85);
     display: table-cell;
-    font-size: 14px;
     padding: $spacing-small;
     text-align: center;
     vertical-align: middle;
@@ -255,16 +253,24 @@
 }
 
 
+
+
+
+
 .table--roster {
 
-
+  tr {
+    @include media-breakpoint-down(sm) {
+      border-bottom: $bd-table;
+    }
+  }
 
   th {
     display: none;
   }
 
   td {
-    display: block;
+    display: inline-block;
 
     @include media-breakpoint-down(sm) {
       border: 0;
@@ -280,59 +286,95 @@
         display: none;
       }
     }
-
-    &:first-child {
-      border-top: $bd-table;
-    }
   }
 
   th,
   td {
-    text-align: left;
-
-    @include media-breakpoint-up(sm) {
-      border-top: $bd-table;
-      display: table-cell;
-    }
-  }
-
-
-  thead {
-    th {
-      font-size: $fz-small;
-      font-weight: $fw-bold;
-      text-transform: uppercase;
-    }
-  }
-
-  th,
-  td {
-    color: rgba($c-table-text, .85);
-    font-size: 14px;
     padding: $spacing-small;
     vertical-align: middle;
+    text-align: left;
+    white-space: nowrap;
+
+    @include media-breakpoint-up(sm) {
+      display: table-cell;
+    }
+
+    &:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      background: lighten(#d5d9db, 10);
+
+
+      &:after {
+        @include position(absolute, 0 null 0 100%);
+        content: '';
+        pointer-events: none;
+        width: 6px;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity .2s ease-out;
+        background: linear-gradient(90deg, rgba(0, 0, 0, .2), transparent);
+      }
+    }
   }
 
-  td {
-    vertical-align: middle;
-  }
-
+  // Player Name & Image
   &__avatar {
     &::before {
       display: none !important;
     }
 
     >figure {
-      height: 80px;
-      width: 80px;
+      @include size(80px);
       background-size: contain;
       background-position: center center;
       background-repeat: no-repeat;
+      display: inline-block;
+      vertical-align: middle;
 
       @include media-breakpoint-up(sm) {
-        height: 60px;
-        width: 60px;
-        margin: 0 auto;
+        @include size(40px);
+        margin-right: $spacing-xsmall;
+      }
+
+      @include media-breakpoint-up(xl) {
+        @include size(60px);
+      }
+    }
+  }
+}
+
+
+// Table Wrap for Horizontal Scrolling
+.table--wrap {
+  overflow-x: scroll;
+
+  &::after {
+    @include position(absolute, 52px 0 0 null);
+    background: linear-gradient(270deg, rgba(0, 0, 0, .2), transparent);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity .2s ease-out;
+    width: 6px;
+    z-index: 1;
+  }
+
+  &.isScrolling {
+    &::after {
+      opacity: 1;
+    }
+
+    .table--roster {
+
+      th:nth-child(1),
+      td:nth-child(1) {
+
+        &:after {
+          opacity: 1;
+        }
       }
     }
   }

@@ -103,7 +103,7 @@ class TeamStandings extends Component {
           </div>
         </Tabs>
         <footer className="card__footer">
-          <Link class="text-uppercase" to="/standings">
+          <Link className="text-uppercase" to="/standings">
             Full Standings
           </Link>
         </footer>

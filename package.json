@@ -28,6 +28,7 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "bourbon": "^5.1.0",
+    "bourbon-neat": "^3.0.1",
     "connected-react-router": "4.5.0",
     "cross-fetch": "^3.0.1",
     "history": "^4.7.2",

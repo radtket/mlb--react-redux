@@ -79,7 +79,9 @@ class Team extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h1>{currentTeamAbrv}</h1>
+          <div className="col-sm-8">
+            <h1>{currentTeamAbrv}</h1>
+          </div>
         </div>
 
         <div className="row">
