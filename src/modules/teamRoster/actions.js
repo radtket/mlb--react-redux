@@ -7,17 +7,17 @@ export const FETCH_TEAM_ROSTER_SUCCESS = "FETCH_TEAM_ROSTER_SUCCESS";
 export const FETCH_TEAM_ROSTER_FAILURE = "FETCH_TEAM_ROSTER_FAILURE";
 
 export const fetchTeamRosterBegin = () => ({
-  type: FETCH_TEAM_ROSTER_BEGIN
+  type: FETCH_TEAM_ROSTER_BEGIN,
 });
 
 export const fetchTeamRosterSuccess = teamRoster => ({
   type: FETCH_TEAM_ROSTER_SUCCESS,
-  payload: { teamRoster }
+  payload: { teamRoster },
 });
 
 export const fetchTeamRosterFailure = error => ({
   type: FETCH_TEAM_ROSTER_FAILURE,
-  payload: { error }
+  payload: { error },
 });
 
 function getTeamRoster(teamArg) {

@@ -6,17 +6,17 @@ export const FETCH_TEAMS_SUCCESS = "FETCH_TEAMS_SUCCESS";
 export const FETCH_TEAMS_FAILURE = "FETCH_TEAMS_FAILURE";
 
 export const fetchTeamsBegin = () => ({
-  type: FETCH_TEAMS_BEGIN
+  type: FETCH_TEAMS_BEGIN,
 });
 
 export const fetchTeamsSuccess = teams => ({
   type: FETCH_TEAMS_SUCCESS,
-  payload: { teams }
+  payload: { teams },
 });
 
 export const fetchTeamsFailure = teamsFail => ({
   type: FETCH_TEAMS_FAILURE,
-  payload: { teamsFail }
+  payload: { teamsFail },
 });
 
 function getTeams() {

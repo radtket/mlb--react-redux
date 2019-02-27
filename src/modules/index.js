@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import counter from "./counter";
 import products from "./product/reducers";
+import player from "./player/reducers";
 import gamesOnDay from "./games-on-day/reducers";
 import schedules from "./schedules/reducers";
 import newsAllTeams from "./newsAllTeams/reducers";
@@ -15,9 +16,10 @@ export default combineReducers({
   selectedSubreddit,
   standings,
   products,
+  player,
   gamesOnDay,
   schedules,
   newsAllTeams,
   teamRoster,
-  teams
+  teams,
 });
