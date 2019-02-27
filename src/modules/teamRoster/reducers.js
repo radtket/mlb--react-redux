@@ -1,13 +1,13 @@
 import {
   FETCH_TEAM_ROSTER_BEGIN,
   FETCH_TEAM_ROSTER_SUCCESS,
-  FETCH_TEAM_ROSTER_FAILURE
+  FETCH_TEAM_ROSTER_FAILURE,
 } from "./actions";
 
 const initialState = {
   teamRosterData: [],
   teamRosterLoading: false,
-  teamRosterError: null
+  teamRosterError: null,
 };
 
 export default function reducers(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         teamRosterLoading: true,
-        teamRosterError: null
+        teamRosterError: null,
       };
 
     case FETCH_TEAM_ROSTER_SUCCESS:
@@ -27,7 +27,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         teamRosterLoading: false,
-        teamRosterData: action.payload.teamRoster
+        teamRosterData: action.payload.teamRoster,
       };
 
     case FETCH_TEAM_ROSTER_FAILURE:
@@ -40,7 +40,7 @@ export default function reducers(state = initialState, action) {
         ...state,
         teamRosterLoading: false,
         teamRosterError: action.payload.error,
-        teamRosterData: []
+        teamRosterData: [],
       };
 
     default:

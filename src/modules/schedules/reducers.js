@@ -1,13 +1,13 @@
 import {
   FETCH_SCHEDULES_BEGIN,
   FETCH_SCHEDULES_SUCCESS,
-  FETCH_SCHEDULES_FAILURE
+  FETCH_SCHEDULES_FAILURE,
 } from "./actions";
 
 const initialState = {
   schedulesData: [],
   schedulesLoading: false,
-  schedulesError: null
+  schedulesError: null,
 };
 
 export default function schedulesReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function schedulesReducer(state = initialState, action) {
       return {
         ...state,
         schedulesLoading: true,
-        schedulesError: null
+        schedulesError: null,
       };
 
     case FETCH_SCHEDULES_SUCCESS:
@@ -27,7 +27,7 @@ export default function schedulesReducer(state = initialState, action) {
       return {
         ...state,
         schedulesLoading: false,
-        schedulesData: action.payload.schedules
+        schedulesData: action.payload.schedules,
       };
 
     case FETCH_SCHEDULES_FAILURE:
@@ -40,7 +40,7 @@ export default function schedulesReducer(state = initialState, action) {
         ...state,
         schedulesLoading: false,
         schedulesError: action.payload.error,
-        schedulesData: []
+        schedulesData: [],
       };
 
     default:

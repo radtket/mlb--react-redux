@@ -5,17 +5,17 @@ export const FETCH_GAMES_ON_DAY_SUCCESS = "FETCH_GAMES_ON_DAY_SUCCESS";
 export const FETCH_GAMES_ON_DAY_FAILURE = "FETCH_GAMES_ON_DAY_FAILURE";
 
 export const fetchGamesOnDayBegin = () => ({
-  type: FETCH_GAMES_ON_DAY_BEGIN
+  type: FETCH_GAMES_ON_DAY_BEGIN,
 });
 
 export const fetchGamesOnDaySuccess = gamesOnDay => ({
   type: FETCH_GAMES_ON_DAY_SUCCESS,
-  payload: { gamesOnDay }
+  payload: { gamesOnDay },
 });
 
 export const fetchGamesOnDayFailure = gamesOnDayFail => ({
   type: FETCH_GAMES_ON_DAY_FAILURE,
-  payload: { gamesOnDayFail }
+  payload: { gamesOnDayFail },
 });
 
 function getGamesOnDay(dateArg) {

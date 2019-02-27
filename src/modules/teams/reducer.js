@@ -1,13 +1,13 @@
 import {
   FETCH_TEAMS_BEGIN,
   FETCH_TEAMS_SUCCESS,
-  FETCH_TEAMS_FAILURE
+  FETCH_TEAMS_FAILURE,
 } from "./actions";
 
 const initialState = {
   teamsData: [],
   teamsLoading: false,
-  teamsError: null
+  teamsError: null,
 };
 
 export default function teamsReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function teamsReducer(state = initialState, action) {
       return {
         ...state,
         teamsLoading: true,
-        teamsError: null
+        teamsError: null,
       };
 
     case FETCH_TEAMS_SUCCESS:
@@ -27,7 +27,7 @@ export default function teamsReducer(state = initialState, action) {
       return {
         ...state,
         teamsLoading: false,
-        teamsData: action.payload.teams
+        teamsData: action.payload.teams,
       };
 
     case FETCH_TEAMS_FAILURE:
@@ -40,7 +40,7 @@ export default function teamsReducer(state = initialState, action) {
         ...state,
         teamsLoading: false,
         teamsError: action.payload.error,
-        teamsData: []
+        teamsData: [],
       };
 
     default:

@@ -1,13 +1,13 @@
 import {
   FETCH_STANDINGS_BEGIN,
   FETCH_STANDINGS_SUCCESS,
-  FETCH_STANDINGS_FAILURE
+  FETCH_STANDINGS_FAILURE,
 } from "./actions";
 
 const initialState = {
   standingsData: [],
   standingsLoading: false,
-  standingsError: null
+  standingsError: null,
 };
 
 export default function reducers(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         standingsLoading: true,
-        standingsError: null
+        standingsError: null,
       };
 
     case FETCH_STANDINGS_SUCCESS:
@@ -27,7 +27,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         standingsLoading: false,
-        standingsData: action.payload.standings
+        standingsData: action.payload.standings,
       };
 
     case FETCH_STANDINGS_FAILURE:
@@ -40,7 +40,7 @@ export default function reducers(state = initialState, action) {
         ...state,
         standingsLoading: false,
         standingsError: action.payload.error,
-        standingsData: []
+        standingsData: [],
       };
 
     default:

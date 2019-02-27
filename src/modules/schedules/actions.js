@@ -5,17 +5,17 @@ export const FETCH_SCHEDULES_SUCCESS = "FETCH_SCHEDULES_SUCCESS";
 export const FETCH_SCHEDULES_FAILURE = "FETCH_SCHEDULES_FAILURE";
 
 export const fetchSchedulesBegin = () => ({
-  type: FETCH_SCHEDULES_BEGIN
+  type: FETCH_SCHEDULES_BEGIN,
 });
 
 export const fetchSchedulesSuccess = schedules => ({
   type: FETCH_SCHEDULES_SUCCESS,
-  payload: { schedules }
+  payload: { schedules },
 });
 
 export const fetchSchedulesFailure = schedulesFail => ({
   type: FETCH_SCHEDULES_FAILURE,
-  payload: { schedulesFail }
+  payload: { schedulesFail },
 });
 
 function getSchedules() {

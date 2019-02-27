@@ -6,17 +6,17 @@ export const FETCH_STANDINGS_SUCCESS = "FETCH_STANDINGS_SUCCESS";
 export const FETCH_STANDINGS_FAILURE = "FETCH_STANDINGS_FAILURE";
 
 export const fetchStandingsBegin = () => ({
-  type: FETCH_STANDINGS_BEGIN
+  type: FETCH_STANDINGS_BEGIN,
 });
 
 export const fetchStandingsSuccess = standings => ({
   type: FETCH_STANDINGS_SUCCESS,
-  payload: { standings }
+  payload: { standings },
 });
 
 export const fetchStandingsFailure = standingsFail => ({
   type: FETCH_STANDINGS_FAILURE,
-  payload: { standingsFail }
+  payload: { standingsFail },
 });
 
 function getStandings() {

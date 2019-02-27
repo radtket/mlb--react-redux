@@ -1,13 +1,13 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
 } from "./actions";
 
 const initialState = {
   productsData: [],
   productsLoading: false,
-  productsError: null
+  productsError: null,
 };
 
 export default function productReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productsLoading: true,
-        productsError: null
+        productsError: null,
       };
 
     case FETCH_PRODUCTS_SUCCESS:
@@ -27,7 +27,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productsLoading: false,
-        productsData: action.payload.products
+        productsData: action.payload.products,
       };
 
     case FETCH_PRODUCTS_FAILURE:
@@ -40,7 +40,7 @@ export default function productReducer(state = initialState, action) {
         ...state,
         productsLoading: false,
         productsError: action.payload.error,
-        productsData: []
+        productsData: [],
       };
 
     default:

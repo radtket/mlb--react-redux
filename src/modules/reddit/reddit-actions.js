@@ -9,21 +9,21 @@ export const INVALIDATE_SUBREDDIT = "INVALIDATE_SUBREDDIT";
 export function selectSubreddit(subreddit) {
   return {
     type: SELECT_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
 export function invalidateSubreddit(subreddit) {
   return {
     type: INVALIDATE_SUBREDDIT,
-    subreddit
+    subreddit,
   };
 }
 
 function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
-    subreddit
+    subreddit,
   };
 }
 
@@ -33,7 +33,7 @@ function receivePosts(subreddit, json) {
     type: RECEIVE_POSTS,
     subreddit,
     posts: children.map(child => child.data),
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   };
 }
 

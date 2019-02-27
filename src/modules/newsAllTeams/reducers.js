@@ -1,13 +1,13 @@
 import {
   FETCH_NEWS_ALL_TEAMS_BEGIN,
   FETCH_NEWS_ALL_TEAMS_SUCCESS,
-  FETCH_NEWS_ALL_TEAMS_FAILURE
+  FETCH_NEWS_ALL_TEAMS_FAILURE,
 } from "./actions";
 
 const initialState = {
   newsAllTeamsData: [],
   newsAllLoading: false,
-  newsAllError: null
+  newsAllError: null,
 };
 
 export default function newsAllTeamsReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       return {
         ...state,
         newsAllLoading: true,
-        newsAllError: null
+        newsAllError: null,
       };
 
     case FETCH_NEWS_ALL_TEAMS_SUCCESS:
@@ -27,7 +27,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       return {
         ...state,
         newsAllLoading: false,
-        newsAllTeamsData: action.payload.newsAllTeams
+        newsAllTeamsData: action.payload.newsAllTeams,
       };
 
     case FETCH_NEWS_ALL_TEAMS_FAILURE:
@@ -40,7 +40,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
         ...state,
         newsAllLoading: false,
         newsAllError: action.payload.error,
-        newsAllTeamsData: []
+        newsAllTeamsData: [],
       };
 
     default:

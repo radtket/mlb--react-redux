@@ -5,17 +5,17 @@ export const FETCH_NEWS_ALL_TEAMS_SUCCESS = "FETCH_NEWS_ALL_TEAMS_SUCCESS";
 export const FETCH_NEWS_ALL_TEAMS_FAILURE = "FETCH_NEWS_ALL_TEAMS_FAILURE";
 
 export const fetchNewsAllTeamsBegin = () => ({
-  type: FETCH_NEWS_ALL_TEAMS_BEGIN
+  type: FETCH_NEWS_ALL_TEAMS_BEGIN,
 });
 
 export const fetchNewsAllTeamsSuccess = newsAllTeams => ({
   type: FETCH_NEWS_ALL_TEAMS_SUCCESS,
-  payload: { newsAllTeams }
+  payload: { newsAllTeams },
 });
 
 export const fetchNewsAllTeamsFailure = error => ({
   type: FETCH_NEWS_ALL_TEAMS_FAILURE,
-  payload: { error }
+  payload: { error },
 });
 
 function getNewsAllTeams() {

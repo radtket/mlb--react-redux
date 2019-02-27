@@ -2,7 +2,7 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS
+  RECEIVE_POSTS,
 } from "./reddit-actions";
 
 export function selectedSubreddit(state = "reactjs", action) {
@@ -18,26 +18,26 @@ export function posts(
   state = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: [],
   },
   action
 ) {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       return Object.assign({}, state, {
-        didInvalidate: true
+        didInvalidate: true,
       });
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
       });
     case RECEIVE_POSTS:
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       });
     default:
       return state;
@@ -50,7 +50,7 @@ export function postsBySubreddit(state = {}, action) {
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
+        [action.subreddit]: posts(state[action.subreddit], action),
       });
     default:
       return state;
