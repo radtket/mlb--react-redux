@@ -3,30 +3,33 @@
 // @charset 'UTF-8';
 
 // Settings
-@import 'settings';
+@import "settings";
 
 // Utils
-@import 'utils/breakpoints';
-@import 'utils/reset';
-@import 'utils/default';
-@import 'utils/background';
-@import 'utils/border';
-@import 'utils/aligner';
-@import 'utils/helpers';
-@import 'utils/layout';
-@import 'utils/typography';
+@import "utils/breakpoints";
+@import "utils/reset";
+@import "utils/default";
+@import "utils/background";
+@import "utils/border";
+@import "utils/aligner";
+@import "utils/helpers";
+@import "utils/layout";
+@import "utils/typography";
 
 // Components
-@import 'components/badge';
-@import 'components/buttons';
-@import 'components/forms';
-@import 'components/loading-bar';
-@import 'components/loading-spinner';
-@import 'components/notification';
-@import 'components/paginator';
-@import 'components/table';
-@import 'components/tabs';
-@import 'components/tag';
+@import "components/badge";
+@import "components/buttons";
+@import "components/card";
+@import "components/forms";
+@import "components/loading-bar";
+@import "components/loading-spinner";
+@import "components/notification";
+@import "components/paginator";
+@import "components/table";
+@import "components/tabs";
+@import "components/tag";
+@import "components/mega-menu";
+@import "components/player-hero";
 
 // Twitter bootstrap's grid v4.1.0
 // More info: https://getbootstrap.com/examples/grid/
@@ -34,18 +37,11 @@
 // @import 'grid/grid';
 // @import 'utils/grid';
 
-
-
-
-@import './navbar';
-@import './scoreboard';
+@import "./navbar";
+@import "./scoreboard";
+@import "components/fox-sports";
 
 // @import "./calender";
-@media screen and (min-width: 1024px) {
-  .navbar-nav .dropdown-menu {
-    min-width: 1024px;
-  }
-}
 
 .team-city {
   display: none;
@@ -68,7 +64,7 @@ li.game {
 
     &:hover {
       background: #fff;
-      background-image: linear-gradient(rgba(223, 227, 232, .3), rgba(223, 227, 232, .3));
+      background-image: linear-gradient(rgba(223, 227, 232, 0.3), rgba(223, 227, 232, 0.3));
     }
 
     .opponent-logo {
@@ -138,7 +134,6 @@ li.game {
     }
   }
 }
-
 
 // $bgDefault : #9b59b6;
 // $bgHighlight : #8e44ad;
@@ -335,7 +330,6 @@ li.game {
 //   }
 // }
 
-
 .field {
   position: relative;
 
@@ -352,7 +346,7 @@ li.game {
     bottom: 0;
     left: 0;
     right: 0;
-    font-size: .9em;
+    font-size: 0.9em;
 
     .fielder {
       display: block;
@@ -380,32 +374,32 @@ li.game {
 
       &.second {
         bottom: 37%;
-        left: 48%
+        left: 48%;
       }
 
       &.shortstop {
         bottom: 37%;
-        left: 21%
+        left: 21%;
       }
 
       &.third {
         bottom: 23%;
-        left: 13%
+        left: 13%;
       }
 
       &.lf {
         bottom: 62%;
-        left: 8%
+        left: 8%;
       }
 
       &.cf {
         bottom: 74%;
-        left: 33%
+        left: 33%;
       }
 
       &.rf {
         bottom: 62%;
-        left: 55%
+        left: 55%;
       }
 
       a {
@@ -415,9 +409,6 @@ li.game {
     }
   }
 }
-
-
-
 
 $color_nobel_approx: #b4b4b4;
 $color_mine_shaft_approx: #333;
@@ -432,11 +423,7 @@ $red: #f00;
 $wild_sand: #f4f4f4;
 $color_silver_chalice_approx: #aaa;
 
-
 $font_0: Open Sans;
-
-
-
 
 %extend_1 {
   position: absolute;
@@ -445,7 +432,6 @@ $font_0: Open Sans;
   margin: auto;
   z-index: 10;
 }
-
 
 #field_view {
   overflow: hidden;
@@ -458,7 +444,7 @@ $font_0: Open Sans;
   }
 
   h1 {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     color: $color_mine_shaft_approx;
     text-align: center;
     font-size: 1.1em;
@@ -488,7 +474,7 @@ $font_0: Open Sans;
     bottom: 0;
     left: 0;
     right: 0;
-    font-size: .9em;
+    font-size: 0.9em;
 
     .onthefield-hitchart-marker {
       display: none;
@@ -577,7 +563,7 @@ $font_0: Open Sans;
     a {
       color: $black;
 
-      text-shadow: 0 0 .25em $color_mountain_mist_approx;
+      text-shadow: 0 0 0.25em $color_mountain_mist_approx;
     }
 
     &.pitcher {
@@ -630,13 +616,12 @@ $font_0: Open Sans;
     @extend %extend_1;
 
     a {
-
       background-clip: padding-box;
       background: $color_black_80_approx;
 
       border-radius: 8px;
       color: $white;
-      padding: .4em;
+      padding: 0.4em;
 
       text-shadow: 0 0 2px $black;
       z-index: 12;
@@ -730,7 +715,7 @@ $font_0: Open Sans;
       float: none;
     }
 
-    img[data-load-error=true] {
+    img[data-load-error="true"] {
       height: 36px;
     }
 
@@ -775,9 +760,9 @@ $font_0: Open Sans;
       padding: 0 21px;
     }
 
-    input[type=checkbox]:checked::after {
+    input[type="checkbox"]:checked::after {
       position: absolute;
-      content: '';
+      content: "";
       left: 21%;
       top: 25%;
       height: 5px;
@@ -791,7 +776,6 @@ $font_0: Open Sans;
 }
 
 .onfield-hover-data {
-
   transition: all 150ms ease-in-out;
   visibility: hidden;
   min-width: 125px;
@@ -801,7 +785,7 @@ $font_0: Open Sans;
   font-family: $font_0;
   font-style: normal;
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
   text-align: left;
   padding: 8px;
   line-height: 14px;

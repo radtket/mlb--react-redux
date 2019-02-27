@@ -1,0 +1,39 @@
+@media screen and (min-width: 1024px) {
+  .navbar-nav .dropdown-menu {
+    min-width: 650px;
+
+    .col-sm-4 {
+      margin-top: 6px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    h6 {
+      color: #48494a;
+      // font-size: $fz-small;
+      font-weight: $fw-bold;
+      text-transform: $tt-button;
+    }
+
+    nav {
+      padding-top: 3px;
+      padding-bottom: 3px;
+
+      >a {
+        color: #6c6d6f;
+        padding-top: 3px;
+        padding-bottom: 3px;
+
+        >img {
+          height: 24px;
+          width: 24px;
+          margin-right: 6px;
+        }
+
+        >* {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
