@@ -307,3 +307,126 @@ export const teamFinder = teamKey => {
     },
   ].find(team => teamKey === team.Key);
 };
+
+export const socialMedia = {
+  LAA: {
+    Twitter: "Angels",
+    Instagram: "angels",
+  },
+  HOU: {
+    Twitter: "astros",
+    Instagram: "astrosbaseball",
+  },
+  OAK: {
+    Twitter: "Athletics",
+    Instagram: "athletics",
+  },
+  BAL: {
+    Twitter: "Orioles",
+    Instagram: "baltimoreorioles",
+  },
+  TOR: {
+    Twitter: "BlueJays",
+    Instagram: "bluejays",
+  },
+  ATL: {
+    Twitter: "Braves",
+    Instagram: "braves",
+  },
+  MIL: {
+    Twitter: "Brewers",
+    Instagram: "brewers",
+  },
+  STL: {
+    Twitter: "Cardinals",
+    Instagram: "cardinals",
+  },
+  CHC: {
+    Twitter: "Cubs",
+    Instagram: "cubs",
+  },
+  ARI: {
+    Twitter: "Dbacks",
+    Instagram: "dbacks",
+  },
+  LAD: {
+    Twitter: "Dodgers",
+    Instagram: "dodgers",
+  },
+  CLE: {
+    Twitter: "Indians",
+    Instagram: "indians",
+  },
+  KC: {
+    Twitter: "Royals",
+    Instagram: "kcroyals",
+  },
+  SEA: {
+    Twitter: "Mariners",
+    Instagram: "mariners",
+  },
+  MIA: {
+    Twitter: "Marlins",
+    Instagram: "marlins",
+  },
+  NYM: {
+    Twitter: "Mets",
+    Instagram: "mets",
+  },
+  WAS: {
+    Twitter: "Nationals",
+    Instagram: "nationals",
+  },
+  SD: {
+    Twitter: "Padres",
+    Instagram: "padres",
+  },
+  PHI: {
+    Twitter: "Phillies",
+    Instagram: "phillies",
+  },
+  PIT: {
+    Twitter: "Pirates",
+    Instagram: "pirates",
+  },
+  TEX: {
+    Twitter: "Rangers",
+    Instagram: "rangers",
+  },
+  TB: {
+    Twitter: "RaysBaseball",
+    Instagram: "raysbaseball",
+  },
+  CIN: {
+    Twitter: "Reds",
+    Instagram: "redsbaseball",
+  },
+  BOS: {
+    Twitter: "RedSox",
+    Instagram: "redsox",
+  },
+  COL: {
+    Twitter: "Rockies",
+    Instagram: "rockies",
+  },
+  SF: {
+    Twitter: "SFGiants",
+    Instagram: "sfgiants",
+  },
+  DET: {
+    Twitter: "tigers",
+    Instagram: "tigers",
+  },
+  MIN: {
+    Twitter: "Twins",
+    Instagram: "twins",
+  },
+  CHW: {
+    Twitter: "whitesox",
+    Instagram: "whitesox",
+  },
+  NYY: {
+    Twitter: "Yankees",
+    Instagram: "yankees",
+  },
+};

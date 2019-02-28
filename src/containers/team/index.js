@@ -7,6 +7,7 @@ import TeamRecentGames from "./components/TeamRecentGames";
 import { fetchTeamRoster } from "../../modules/teamRoster/actions";
 import { fetchStandings } from "../../modules/standings/actions";
 import TeamStandings from "./components/TeamStandings";
+import TeamHeader from "./components/TeamHeader";
 
 class Team extends Component {
   state = {
@@ -49,6 +50,11 @@ class Team extends Component {
     return teams.find(team => team.Key === activeTeam);
   };
 
+  changeTeams = e => {
+    const { history } = this.props;
+    history.push(`/teams/${e.value}`);
+  };
+
   render() {
     const {
       teamRosterError,
@@ -77,34 +83,35 @@ class Team extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-8">
-            <h1>{currentTeamAbrv}</h1>
+      <>
+        <TeamHeader
+          {...activeTeamObj}
+          teams={teams}
+          changeTeams={this.changeTeams}
+        />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-8">
+              <TeamRoster
+                teamRoster={teamRoster}
+                teamRosterError={teamRosterError}
+                teamRosterLoading={teamRosterLoading}
+              />
+            </div>
+            <div className="col-sm-4">
+              <TeamStandings
+                activeTeam={currentTeamAbrv}
+                activeTeamObj={activeTeamObj}
+                standings={standings}
+              />
+              <TeamRecentGames
+                activeTeam={currentTeamAbrv}
+                recentGames={recentGames}
+              />
+            </div>
           </div>
         </div>
-
-        <div className="row">
-          <div className="col-sm-8">
-            <TeamRoster
-              teamRoster={teamRoster}
-              teamRosterError={teamRosterError}
-              teamRosterLoading={teamRosterLoading}
-            />
-          </div>
-          <div className="col-sm-4">
-            <TeamStandings
-              activeTeam={currentTeamAbrv}
-              activeTeamObj={activeTeamObj}
-              standings={standings}
-            />
-            <TeamRecentGames
-              activeTeam={currentTeamAbrv}
-              recentGames={recentGames}
-            />
-          </div>
-        </div>
-      </div>
+      </>
     );
   }
 }
@@ -130,6 +137,9 @@ Team.propTypes = {
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 Team.defaultProps = {

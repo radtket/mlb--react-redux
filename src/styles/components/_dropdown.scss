@@ -1,0 +1,103 @@
+$white: white;
+$black_6: rgba(0, 0, 0, 0.06);
+$color_black_squeeze: #f2f9fc;
+$color_celeste: #ccc;
+$color_mountain_mist: #999;
+$color_mine_shaft: #333;
+$color_mine_shaft_80: rgba($color_mine_shaft, 0.8);
+
+.Dropdown {
+  &-root {
+    display: inline-block;
+    position: relative;
+  }
+
+  &-control {
+    background-color: $white;
+    border-radius: 2px;
+    border: 1px solid $color_celeste;
+    box-sizing: border-box;
+    color: $color_mine_shaft;
+    cursor: default;
+    display: inline-block;
+    outline: none;
+    overflow: hidden;
+    padding: $spacing-xsmall $spacing-huge $spacing-xsmall $spacing-small;
+    position: relative;
+    transition: all 200ms ease;
+
+    &:hover {
+      box-shadow: 0 1px 0 $black_6;
+    }
+  }
+
+  &-arrow {
+    @include position(absolute, $spacing-small $spacing-small null null);
+    @include size(0);
+    border-color: $color_mountain_mist transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    content: ' ';
+    display: block;
+    margin-top: -ceil(2.5);
+
+    .is-open & {
+      border-color: transparent transparent $color_mountain_mist;
+      border-width: 0 5px 5px;
+    }
+
+  }
+
+  &-menu {
+    background-color: $white;
+    border: 1px solid $color_celeste;
+    box-shadow: 0 1px 0 $black_6;
+    box-sizing: border-box;
+    margin-top: -1px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 1000;
+
+    .Dropdown-group {
+      >.Dropdown-title {
+        @include padding($spacing-small $spacing-xsmall);
+        color: $color_mine_shaft;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &-option {
+    @include padding($spacing-small $spacing-xsmall);
+    box-sizing: border-box;
+    color: $color_mine_shaft_80;
+    cursor: pointer;
+    display: block;
+
+    &:last-child {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+
+    &:hover,
+    &.is-selected {
+      background-color: $color_black_squeeze;
+      color: $color_mine_shaft;
+    }
+  }
+
+  &-noresults {
+    @include padding($spacing-small $spacing-xsmall);
+    box-sizing: border-box;
+    color: $color_celeste;
+    cursor: default;
+    display: block;
+  }
+
+
+
+}
