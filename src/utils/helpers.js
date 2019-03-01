@@ -430,3 +430,14 @@ export const socialMedia = {
     Instagram: "yankees",
   },
 };
+
+export const getExcerpt = (str, limit) => {
+  const fullText = str;
+  let shortText = str;
+  shortText = `${shortText.substr(0, shortText.lastIndexOf(" ", limit))}...`;
+  const returnString = {
+    fullText,
+    shortText,
+  };
+  return returnString;
+};

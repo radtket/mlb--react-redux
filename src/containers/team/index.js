@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import TeamRoster from "./components/TeamRoster";
-import TeamRecentGames from "./components/TeamRecentGames";
 import { fetchTeamRoster } from "../../modules/teamRoster/actions";
 import { fetchStandings } from "../../modules/standings/actions";
-import TeamStandings from "./components/TeamStandings";
 import TeamHeader from "./components/TeamHeader";
+import TeamHome from "./pages";
 
 class Team extends Component {
   state = {
@@ -57,14 +55,14 @@ class Team extends Component {
 
   render() {
     const {
-      teamRosterError,
-      teamRosterLoading,
       match,
-      teams,
-      teamRoster,
       standings,
       standingsError,
       standingsLoading,
+      teamRoster,
+      teamRosterError,
+      teamRosterLoading,
+      teams,
     } = this.props;
     const { recentGames } = this.state;
     const { teamAbrv: currentTeamAbrv } = match.params;
@@ -89,28 +87,15 @@ class Team extends Component {
           teams={teams}
           changeTeams={this.changeTeams}
         />
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-8">
-              <TeamRoster
-                teamRoster={teamRoster}
-                teamRosterError={teamRosterError}
-                teamRosterLoading={teamRosterLoading}
-              />
-            </div>
-            <div className="col-sm-4">
-              <TeamStandings
-                activeTeam={currentTeamAbrv}
-                activeTeamObj={activeTeamObj}
-                standings={standings}
-              />
-              <TeamRecentGames
-                activeTeam={currentTeamAbrv}
-                recentGames={recentGames}
-              />
-            </div>
-          </div>
-        </div>
+        <TeamHome
+          currentTeamAbrv={currentTeamAbrv}
+          activeTeamObj={activeTeamObj}
+          recentGames={recentGames}
+          standings={standings}
+          teamRoster={teamRoster}
+          teamRosterError={teamRosterError}
+          teamRosterLoading={teamRosterLoading}
+        />
       </>
     );
   }

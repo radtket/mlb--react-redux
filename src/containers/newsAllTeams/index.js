@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchNewsAllTeams } from "../../modules/newsAllTeams/actions";
 import NewsArticle from "./NewsArticle";
+import NewsCard from "../../components/NewsCard";
 
 class NewsAllTeamsList extends Component {
   constructor(props) {
@@ -23,13 +24,13 @@ class NewsAllTeamsList extends Component {
     }
 
     return (
-      <ul>
+      <div className="container-fluid posts-wrap">
         {newsAllTeams &&
           newsAllTeams.map(article => {
             const { NewsID } = article;
             return <NewsArticle key={NewsID} {...article} />;
           })}
-      </ul>
+      </div>
     );
   }
 }
