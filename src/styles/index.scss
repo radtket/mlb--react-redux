@@ -45,6 +45,17 @@
 @import "components/fox-sports";
 
 // @import "./calender";
+.split-logo {
+  img {
+    position: absolute;
+
+    &:nth-of-type(2) {
+      clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+      background: inherit;
+      overflow: hidden;
+    }
+  }
+}
 
 .team-city {
   display: none;

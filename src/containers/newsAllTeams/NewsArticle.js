@@ -2,6 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { espnLogo, getExcerpt } from "../../utils/helpers";
 
+const SplitLogo = (team1, team2) => {
+  return (
+    <figure className="split-logo">
+      {team1 && <img src={espnLogo(team1, 50)} alt={`${team1} Logo`} />}
+      {team2 && <img src={espnLogo(team2, 50)} alt={`${team2} Logo`} />}
+      {!team1 && !team2 && <img src="/images/mlb-logo.png" alt="MLB Logo" />}
+    </figure>
+  );
+};
+
 const NewsArticle = ({
   Title,
   Url,
@@ -12,26 +22,25 @@ const NewsArticle = ({
   PlayerID2,
   Author,
   Team,
+  Team2,
 }) => {
   return (
     <article className="news-card">
       <a href={Url} target="_blank" rel="noopener noreferrer">
-        <figure className="news-card__image">
+        <figure
+          className="news-card__image"
+          style={
+            {
+              // backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
+            }
+          }>
           <figcaption className="news-card__label">{Categories}</figcaption>
         </figure>
       </a>
       <div className="news-card__inner">
-        <a
-          href={Url}
-          className="news-card__cta"
-          style={{
-            backgroundImage: `url(${
-              Team
-                ? espnLogo(Team, 48)
-                : "http://content.sportslogos.net/logos/4/490/full/1986.gif"
-            })`,
-          }}
-        />
+        <a href={Url} className="news-card__cta">
+          {SplitLogo(Team, Team2)}
+        </a>
         <time dateTime="2016-08-23" className="news-card__date">
           {TimeAgo}
         </time>
@@ -58,12 +67,10 @@ const NewsArticle = ({
             2369
           </li>
           <li className="news-card__meta-item news-card__meta-item--likes">
-            <a href="#">
-              <i className="meta-like icon-heart" /> 530
-            </a>
+            <i className="meta-like icon-heart" /> 530
           </li>
           <li className="news-card__meta-item news-card__meta-item--comments">
-            <a href="#">18</a>
+            18
           </li>
         </ul>
       </footer>
@@ -81,6 +88,7 @@ NewsArticle.propTypes = {
   PlayerID2: PropTypes.number,
   Author: PropTypes.string.isRequired,
   Team: PropTypes.string,
+  Team2: PropTypes.string,
 };
 
 NewsArticle.defaultProps = {
@@ -88,6 +96,7 @@ NewsArticle.defaultProps = {
   PlayerID: null,
   PlayerID2: null,
   Team: null,
+  Team2: null,
 };
 
 export default NewsArticle;

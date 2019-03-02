@@ -124,6 +124,7 @@
     float: left;
 
     &--photo {
+      position: relative;
 
       @media (min-width: 992px) {
         flex-basis: 33%;
@@ -133,6 +134,11 @@
 
       @media (min-width: 1200px) {
         width: 400px;
+      }
+
+      img {
+        position: absolute;
+        bottom: 0;
       }
     }
 

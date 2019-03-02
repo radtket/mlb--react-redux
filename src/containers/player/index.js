@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../../modules/player/actions";
+import PlayerHero from "../../components/PlayerHero";
 
 class PlayerList extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class PlayerList extends Component {
 
   render() {
     const { playerFail, playerLoading, player } = this.props;
-    const { Name, Position, Team } = player;
+    const { Team } = player;
 
     if (playerFail) {
       return <div>Error! {playerFail.message}</div>;
@@ -26,13 +27,10 @@ class PlayerList extends Component {
 
     return (
       player && (
-        <ul>
-          <li>
-            <Link to={`/teams/${Team}`}>{Team}</Link>
-          </li>
-          <li>{Name}</li>
-          <li>{Position}</li>
-        </ul>
+        <div>
+          <PlayerHero {...player} />
+          <Link to={`/teams/${Team}`}>{Team}</Link>
+        </div>
       )
     );
   }

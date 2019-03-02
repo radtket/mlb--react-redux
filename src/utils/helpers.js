@@ -12,6 +12,12 @@ export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
   return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamAbrv.toLowerCase()}.png&h=${size}&w=${size}`;
 }
 
+export const UsaTodayHeadshotNoBackgroundImage = (urlArg, imgSize) => {
+  const parts = urlArg.split("?imageID=");
+  const searchParam = parts[parts.length - 1];
+  return `https://www.gannett-cdn.com/usatsimg/image/thumb/${imgSize}-${imgSize}/${searchParam}.png`;
+};
+
 // TODO: remove in production with Todays date
 export const DEV_PLACEHOLDER_DATE = moment("2018-05-04T00:00:00");
 
@@ -123,6 +129,7 @@ export const inningHalfDecoder = inningArg => {
 //   allTeams.push({ Key, City, Name, PrimaryColor });
 //   return allTeams;
 // }, []);
+
 export const teamFinder = teamKey => {
   return [
     {
@@ -429,6 +436,23 @@ export const socialMedia = {
     Twitter: "Yankees",
     Instagram: "yankees",
   },
+};
+
+export const PositionsBaseball = {
+  SP: "Starting Pitcher",
+  RP: "Relief Pitcer",
+  CP: "Closer",
+  P: "Pitcher",
+  C: "Catcher",
+  "1B": "1st Base",
+  "2B": "2nd Base",
+  "3B": "3rd Base",
+  SS: "Shortstop",
+  LF: "Left Field",
+  CF: "Center Field",
+  RF: "Right Field",
+  OF: "Outfield",
+  DH: "Designated hitter",
 };
 
 export const getExcerpt = (str, limit) => {
