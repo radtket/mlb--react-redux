@@ -20,14 +20,29 @@ export const fetchPlayerFailure = playerFail => ({
 
 function getPlayer(playerArg) {
   // TODO: Add When API is Live
-  // function getTeamRoster(playerArg) {
-  // return fetch(
-  //   `https://api.fantasydata.net/v3/mlb/stats/json/PlayerSeasonStatsByPlayer/${season}/${playerid}`,
-  //   apiHeaders
-  // )
-  return fetch(`/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
-    .then(handleErrors)
-    .then(res => res.json());
+  // return Promise.all([
+  //   fetch(
+  //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerSeasonStatsByPlayer/${season}/${playerid}`,
+  //     apiHeaders
+  //   )
+  //     .then(handleErrors)
+  //     .then(value => value.json()),
+  //   fetch(
+  //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerDetailsByPlayer/${playerid}`,
+  //     apiHeaders
+  //   )
+  //     .then(handleErrors)
+  //     .then(value => value.json()),
+  // ]);
+
+  return Promise.all([
+    fetch(`/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
+      .then(handleErrors)
+      .then(value => value.json()),
+    fetch(`/data/players/PlayerDetailsByPlayer.${playerArg}.json`)
+      .then(handleErrors)
+      .then(value => value.json()),
+  ]);
 }
 
 export function fetchPlayer(playerArg) {
@@ -35,8 +50,9 @@ export function fetchPlayer(playerArg) {
     dispatch(fetchPlayerBegin());
     return getPlayer(playerArg)
       .then(data => {
-        dispatch(fetchPlayerSuccess(data));
-        return data;
+        const combinedData = { ...data[0], ...data[1] };
+        dispatch(fetchPlayerSuccess(combinedData));
+        return combinedData;
       })
       .catch(error => dispatch(fetchPlayerFailure(error)));
   };
