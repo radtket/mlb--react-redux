@@ -36,12 +36,10 @@ const NewsCard = () => {
             2369
           </li>
           <li className="news-card__meta-item news-card__meta-item--likes">
-            <a href="#">
-              <i className="meta-like icon-heart" /> 530
-            </a>
+            <i className="meta-like icon-heart" /> 530
           </li>
           <li className="news-card__meta-item news-card__meta-item--comments">
-            <a href="#">18</a>
+            18
           </li>
         </ul>
       </footer>

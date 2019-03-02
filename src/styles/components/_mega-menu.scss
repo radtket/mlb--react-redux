@@ -1,6 +1,17 @@
 @media screen and (min-width: 1024px) {
-  .navbar-nav .dropdown-menu {
+
+  .dropdown__button {
+    position: relative;
+  }
+
+  .dropdown__content {
     min-width: 650px;
+    position: absolute;
+    top: 100%;
+    background: white;
+    box-shadow: 0 2px 24px 0 rgba(0, 0, 0, .09);
+    z-index: 99;
+    color: black;
 
     .col-sm-4 {
       margin-top: 6px;

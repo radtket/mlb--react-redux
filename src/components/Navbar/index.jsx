@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import NavDropdown from "react-bootstrap/NavDropdown";
+
 import DivisionComponent from "./MegaMenu/DivisionComponent";
 import { sortTeamsByDivion } from "../../utils/helpers";
+import Dropdown from "../Dropdown";
+import { SiteLogo } from "../Icons";
 
 class Header extends Component {
   createMegaMenu = teams => {
@@ -33,49 +35,38 @@ class Header extends Component {
   render() {
     const { teams } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">
-          Home
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
+      <header className="header">
+        <div className="container header__inner">
+          <figure className="header__logo">
+            <Link to="/">
+              <SiteLogo />
+            </Link>
+          </figure>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/scores">
-                Scores
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/standings">
-                Standings
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/news">
-                News
-              </Link>
-            </li>
-            <NavDropdown title="Teams" id="basic-nav-dropdown">
-              {teams && this.createMegaMenu(teams)}
-            </NavDropdown>
-          </ul>
+          <div className="header__nav">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/scores">Scores</Link>
+              </li>
+              <li>
+                <Link to="/standings">Standings</Link>
+              </li>
+              <li>
+                <Link to="/news">News</Link>
+              </li>
+              <li>
+                <Dropdown
+                  Title="Teams"
+                  MenuItems={teams && this.createMegaMenu(teams)}
+                />
+              </li>
+            </ul>
+          </div>
         </div>
-      </nav>
+      </header>
     );
   }
 }
