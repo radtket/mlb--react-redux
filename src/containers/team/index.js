@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamRoster } from "../../modules/teamRoster/actions";
 import { fetchStandings } from "../../modules/standings/actions";
 import TeamHeader from "./components/TeamHeader";
-import TeamHome from "./pages";
+import PageTeamHome from "./pages";
+import PageTeamRoster from "./pages/roster";
+import PageTeamStats from "./pages/stats";
+import PageTeamDepth from "./pages/depth-chart";
 
 class Team extends Component {
   state = {
@@ -87,7 +91,7 @@ class Team extends Component {
           teams={teams}
           changeTeams={this.changeTeams}
         />
-        <TeamHome
+        {/* <PageTeamHome
           currentTeamAbrv={currentTeamAbrv}
           activeTeamObj={activeTeamObj}
           recentGames={recentGames}
@@ -95,6 +99,40 @@ class Team extends Component {
           teamRoster={teamRoster}
           teamRosterError={teamRosterError}
           teamRosterLoading={teamRosterLoading}
+        /> */}
+
+        <Route
+          exact
+          path="/teams/:teamAbrv"
+          render={() => (
+            <PageTeamHome
+              activeTeamObj={activeTeamObj}
+              currentTeamAbrv={currentTeamAbrv}
+              recentGames={recentGames}
+              standings={standings}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/roster"
+          render={() => (
+            <PageTeamRoster
+              teamRoster={teamRoster}
+              teamRosterError={teamRosterError}
+              teamRosterLoading={teamRosterLoading}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/stats"
+          render={() => <PageTeamStats />}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/depth"
+          render={() => <PageTeamDepth />}
         />
       </>
     );
