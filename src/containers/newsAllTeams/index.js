@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchNewsAllTeams } from "../../modules/newsAllTeams/actions";
 import NewsArticle from "./NewsArticle";
-import NewsCard from "../../components/NewsCard";
 
 class NewsAllTeamsList extends Component {
   constructor(props) {

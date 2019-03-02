@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchTeamRoster } from "../../modules/teamRoster/actions";
 import { fetchStandings } from "../../modules/standings/actions";
 import TeamHeader from "./components/TeamHeader";
 import PageTeamHome from "./pages";
@@ -17,20 +16,18 @@ class Team extends Component {
   };
 
   componentDidMount() {
-    const { schedules, match, fetchTeamRoster: getTeamRoster } = this.props;
+    const { schedules, match } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     this.findTeamSchedule(schedules, currentTeamAbrv);
-    getTeamRoster(currentTeamAbrv);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, schedules, fetchTeamRoster: getTeamRoster } = this.props;
+    const { match, schedules } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     const { teamAbrv: prevTeamAbrv } = prevProps.match.params;
 
     if (currentTeamAbrv !== prevTeamAbrv) {
       this.findTeamSchedule(schedules, currentTeamAbrv);
-      getTeamRoster(currentTeamAbrv);
     }
   }
 
@@ -63,24 +60,18 @@ class Team extends Component {
       standings,
       standingsError,
       standingsLoading,
-      teamRoster,
-      teamRosterError,
-      teamRosterLoading,
+
       teams,
     } = this.props;
     const { recentGames } = this.state;
     const { teamAbrv: currentTeamAbrv } = match.params;
     const activeTeamObj = this.getActiveTeamObj(teams, currentTeamAbrv);
 
-    if (teamRosterError) {
-      return <div>Error! {teamRosterError.message}</div>;
-    }
-
     if (standingsError) {
       return <div>Error! {standingsError.message}</div>;
     }
 
-    if (teamRosterLoading || standingsLoading || !activeTeamObj) {
+    if (standingsLoading || !activeTeamObj) {
       return <div>Loading...</div>;
     }
 
@@ -117,11 +108,7 @@ class Team extends Component {
           exact
           path="/teams/:teamAbrv/roster"
           render={() => (
-            <PageTeamRoster
-              teamRoster={teamRoster}
-              teamRosterError={teamRosterError}
-              teamRosterLoading={teamRosterLoading}
-            />
+            <PageTeamRoster match={match} currentTeamAbrv={currentTeamAbrv} />
           )}
         />
         <Route
@@ -141,9 +128,6 @@ class Team extends Component {
 
 Team.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  teamRosterError: null || PropTypes.bool,
-  teamRosterLoading: PropTypes.bool.isRequired,
-  teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       teamAbrv: PropTypes.string.isRequired,
@@ -156,7 +140,6 @@ Team.propTypes = {
       HomeTeam: PropTypes.string,
     })
   ).isRequired,
-  fetchTeamRoster: PropTypes.func.isRequired,
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -166,14 +149,10 @@ Team.propTypes = {
 };
 
 Team.defaultProps = {
-  teamRosterError: null,
   standingsError: null,
 };
 
-const mapStateToProps = ({ teamRoster, standings }) => ({
-  teamRoster: teamRoster.teamRosterData,
-  teamRosterLoading: teamRoster.teamRosterLoading,
-  teamRosterError: teamRoster.teamRosterError,
+const mapStateToProps = ({ standings }) => ({
   standings: standings.standingsData,
   standingsLoading: standings.standingsLoading,
   standingsError: standings.standingsError,
@@ -182,7 +161,6 @@ const mapStateToProps = ({ teamRoster, standings }) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchTeamRoster,
       fetchStandings,
     },
     dispatch
