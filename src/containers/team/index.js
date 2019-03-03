@@ -114,7 +114,7 @@ class Team extends Component {
         <Route
           exact
           path="/teams/:teamAbrv/stats"
-          render={() => <PageTeamStats />}
+          render={() => <PageTeamStats match={match} />}
         />
         <Route
           exact
