@@ -18,6 +18,10 @@ export const UsaTodayHeadshotNoBackgroundImage = (urlArg, imgSize) => {
   return `https://www.gannett-cdn.com/usatsimg/image/thumb/${imgSize}-${imgSize}/${searchParam}.png`;
 };
 
+export const PlayerPhotoByID = playerId => {
+  return `https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/${playerId}.png`;
+};
+
 // TODO: remove in production with Todays date
 export const DEV_PLACEHOLDER_DATE = moment("2018-05-04T00:00:00");
 
@@ -464,4 +468,47 @@ export const getExcerpt = (str, limit) => {
     shortText,
   };
   return returnString;
+};
+
+export const calcBattingAverage = (Hits, AtBats) => {
+  if (AtBats <= 0) {
+    return 0;
+  }
+  return Number.parseFloat(Hits / AtBats)
+    .toFixed(3)
+    .replace(/^0+/, "");
+};
+
+export const calcBattingOBP = (
+  AtBats,
+  Hits,
+  Walks,
+  HitbyPitch,
+  SacrificeFlies
+) => {
+  if (AtBats <= 0) {
+    return 0;
+  }
+  return Number.parseFloat(
+    (Hits + Walks + HitbyPitch) / (AtBats + Walks + HitbyPitch + SacrificeFlies)
+  )
+    .toFixed(3)
+    .replace(/^0+/, "");
+};
+
+export const calcBattingSlug = (
+  AtBats,
+  Singles,
+  Doubles,
+  Triples,
+  HomeRuns
+) => {
+  if (AtBats <= 0) {
+    return 0;
+  }
+  return Number.parseFloat(
+    (Singles + 2 * Doubles + 3 * Triples + 4 * HomeRuns) / AtBats
+  )
+    .toFixed(3)
+    .replace(/^0+/, "");
 };

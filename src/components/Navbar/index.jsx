@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import DivisionComponent from "./MegaMenu/DivisionComponent";
@@ -46,16 +46,24 @@ class Header extends Component {
           <div className="header__nav">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <NavLink exact to="/">
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link to="/scores">Scores</Link>
+                <NavLink exact to="/scores">
+                  Scores
+                </NavLink>
               </li>
               <li>
-                <Link to="/standings">Standings</Link>
+                <NavLink exact to="/standings">
+                  Standings
+                </NavLink>
               </li>
               <li>
-                <Link to="/news">News</Link>
+                <NavLink exact to="/news">
+                  News
+                </NavLink>
               </li>
               <li>
                 <Dropdown

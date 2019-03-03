@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamStats } from "../../../modules/teamStats/actions";
+import StatsPlayerTable from "../../../components/StatsTable";
 
 class PageTeamStats extends Component {
   componentDidMount() {
     const { match, fetchTeamStats: getTeamStats } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
-    console.log("shitttt", currentTeamAbrv);
-
     getTeamStats(currentTeamAbrv);
   }
 
@@ -46,77 +45,10 @@ class PageTeamStats extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <h1>PageTeamStats</h1>
-            <table className="table table--responsive">
-              <thead>
-                <tr>
-                  <th>NAME</th>
-                  <th>GP</th>
-                  <th>AB</th>
-                  <th>R</th>
-                  <th>H</th>
-                  <th>2B</th>
-                  <th>3B</th>
-                  <th>HR</th>
-                  <th>RBI</th>
-                  <th>TB</th>
-                  <th>BB</th>
-                  <th>SO</th>
-                  <th>SB</th>
-                  <th>BA</th>
-                  <th>OBP</th>
-                  <th>SLG</th>
-                  <th>OPS</th>
-                </tr>
-              </thead>
-              <tbody>
-                {teamStats &&
-                  teamStats.map(player => {
-                    const {
-                      Name,
-                      Games,
-                      StatID,
-                      PlayerID,
-                      AtBats,
-                      Runs,
-                      Hits,
-                      Doubles,
-                      Triples,
-                      HomeRuns,
-                      RunsBattedIn,
-                      TotalBases,
-                      Walks,
-                      Strikeouts,
-                      StolenBases,
-                      BattingAverage,
-                      OnBasePercentage,
-                      SluggingPercentage,
-                      OnBasePlusSlugging,
-                    } = player;
-                    return (
-                      <tr key={`${StatID} ${PlayerID}`}>
-                        <td>{Name}</td>
-                        <td>{Games}</td>
-                        <td>{AtBats}</td>
-                        <td>{Runs}</td>
-                        <td>{Hits}</td>
-                        <td>{Doubles}</td>
-                        <td>{Triples}</td>
-                        <td>{HomeRuns}</td>
-                        <td>{RunsBattedIn}</td>
-                        <td>{TotalBases}</td>
-                        <td>{Walks}</td>
-                        <td>{Strikeouts}</td>
-                        <td>{StolenBases}</td>
-                        <td>{BattingAverage}</td>
-                        <td>{OnBasePercentage}</td>
-                        <td>{SluggingPercentage}</td>
-                        <td>{OnBasePlusSlugging}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <div className="card" style={{ position: "relative" }}>
+              <h5 className="card__headline">Batting Stats</h5>
+              <StatsPlayerTable players={teamStats} />
+            </div>
           </div>
         </div>
       </div>

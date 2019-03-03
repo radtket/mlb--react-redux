@@ -36,10 +36,27 @@
         >a,
         >button {
           @include padding(null $spacing-small);
+          display: inline-block;
           opacity: .75;
           color: #fff;
           height: 60px;
           line-height: 60px;
+          position: relative;
+
+          &.active {
+            opacity: 1;
+
+            &:after {
+              content: '';
+              height: 4px;
+              position: absolute;
+              bottom: 0;
+              background: #bada55;
+              width: 100%;
+              left: 0;
+            }
+
+          }
 
           &:hover {
             opacity: 1;
