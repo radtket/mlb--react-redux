@@ -1,257 +1,253 @@
 .player-heading {
-  background-color: #1e2024;
-  background-image: url('http://alchemists.dan-fisher.com/basketball/assets/images/page-heading.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  position: relative;
-  overflow: hidden;
+	background-color: $color-dark-1;
+	background-image: url("htttp://alchemists.dan-fisher.com/basketball/assets/images/page-heading.jpg");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	position: relative;
 
-  &::after,
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+	&::after,
+	&::before {
+		@include position(absolute, null 0 0 0);
+		content: "";
+		display: block;
+	}
 
-  &::before {
-    height: 24px;
-    background-image: linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(236, 240, 246, .15) 4px, transparent 0), linear-gradient(90deg, rgba(0, 0, 0, .1) 4px, transparent 0), linear-gradient(90deg, rgba(0, 0, 0, .11) 4px, transparent 0);
-    background-repeat: repeat-x;
-    background-size: 36px 12px, 36px 15px, 36px 17px, 36px 20px, 36px 18px, 36px 15px, 72px 15px, 108px 18px;
-    background-position: 0 100%, 6px 100%, 12px 100%, 18px 100%, 24px 100%, 30px 100%, 6px 100%, 24px 100%;
-  }
+	&::before {
+		background-image: linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-gray-light-15 4px, transparent 0), linear-gradient(90deg, $c-black-12 4px, transparent 0), linear-gradient(90deg, $c-black-14 4px, transparent 0);
+		background-position: 0 100%, 6px 100%, 12px 100%, 18px 100%, 24px 100%, 30px 100%, 6px 100%, 24px 100%;
+		background-repeat: repeat-x;
+		background-size: 36px 12px, 36px 15px, 36px 17px, 36px 20px, 36px 18px, 36px 15px, 72px 15px, 108px 18px;
+		height: 24px;
+	}
 
-  &::after {
-    top: 0;
-    z-index: 1;
-    background-image: url('http://alchemists.dan-fisher.com/basketball/assets/images/page-heading-pattern.png');
-    background-size: auto;
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    opacity: .4;
-  }
+	&::after {
+		background-image: url("http://alchemists.dan-fisher.com/basketball/assets/images/page-heading-pattern.png");
+		background-position: 100% 0;
+		background-repeat: no-repeat;
+		background-size: auto;
+		opacity: .4;
+		top: 0;
+		z-index: 1;
+	}
 
-  .container {
-    position: relative;
-    z-index: 2;
-  }
+	.container {
+		position: relative;
+		z-index: 2;
+	}
 }
 
 
 .player-info {
-  color: #fff;
-  position: relative;
-  width: 100%;
+	color: $c-white;
+	position: relative;
+	width: 100%;
 
-  @media (min-width: 992px) {
-    display: flex;
-  }
+	@media (min-width: 992px) {
+		display: flex;
+	}
 
-  &-details {
-    display: flex;
-    flex-wrap: wrap;
+	&-details {
+		display: flex;
+		flex-wrap: wrap;
 
-    &__title {
-      font-size: 10px;
-      color: #9a9da2;
-      line-height: 1.2em;
-      margin-bottom: .1em;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
+		&__title {
+			color: $c-gray--10;
+			font-size: 10px;
+			font-weight: 400;
+			line-height: 1.2em;
+			margin-bottom: .1em;
+			text-transform: uppercase;
+		}
 
-    &__value {
-      font-family: Montserrat, sans-serif;
-      font-size: 15px;
-      line-height: 1.2em;
-      font-weight: 700;
-    }
+		&__value {
+			font-family: Montserrat, sans-serif;
+			font-size: 15px;
+			font-weight: 700;
+			line-height: 1.2em;
+		}
 
-    &__item {
-      padding: 10px 0;
+		&__item {
+			padding: 10px 0;
 
-      &--height,
-      &--weight,
-      &--age {
-        flex-basis: 33%;
-      }
+			&--height,
+			&--weight,
+			&--age {
+				flex-basis: 33%;
+			}
 
-      &--height {
-        @media (min-width: 992px) {
-          flex-basis: 19%;
-        }
-      }
+			&--height {
+				@media (min-width: 992px) {
+					flex-basis: 19%;
+				}
+			}
 
-      &--weight {
-        @media (min-width: 992px) {
-          flex-basis: 24%;
-        }
-      }
+			&--weight {
+				@media (min-width: 992px) {
+					flex-basis: 24%;
+				}
+			}
 
-      &--age {
-        @media (min-width: 992px) {
-          flex-basis: 15%;
-        }
-      }
+			&--age {
+				@media (min-width: 992px) {
+					flex-basis: 15%;
+				}
+			}
 
-      &--college,
-      &--born,
-      &--position {
-        flex-basis: 100%;
-      }
+			&--college,
+			&--born,
+			&--position {
+				flex-basis: 100%;
+			}
 
-      &--college,
-      &--position {
-        @media (min-width: 992px) {
-          flex-basis: 42%;
-        }
-      }
+			&--college,
+			&--position {
+				@media (min-width: 992px) {
+					flex-basis: 42%;
+				}
+			}
 
-      &--born {
-        @media (min-width: 992px) {
-          flex-basis: 58%;
-        }
-      }
+			&--born {
+				@media (min-width: 992px) {
+					flex-basis: 58%;
+				}
+			}
 
-    }
-  }
+		}
+	}
 
-  &__item {
-    float: left;
+	&__item {
+		float: left;
 
-    &--photo {
-      position: relative;
+		&--photo {
+			position: relative;
 
-      @media (min-width: 992px) {
-        flex-basis: 33%;
-        width: 312px;
-        margin: 0;
-      }
+			@media (min-width: 992px) {
+				flex-basis: 33%;
+				margin: 0;
+				width: 312px;
+			}
 
-      @media (min-width: 1200px) {
-        width: 400px;
-      }
+			@media (min-width: 1200px) {
+				width: 400px;
+			}
 
-      img {
-        position: absolute;
-        bottom: 0;
-      }
-    }
+			img {
+				bottom: 0;
+				position: absolute;
+			}
+		}
 
-    &--details {
-      width: 400px;
+		&--details {
+			width: 400px;
 
-      @media (min-width: 992px) {
-        flex-basis: 38%;
-        padding: 48px 0;
-        width: 352px;
-      }
+			@media (min-width: 992px) {
+				flex-basis: 38%;
+				padding: 48px 0;
+				width: 352px;
+			}
 
-      @media (min-width: 1200px) {
-        width: 460px;
-      }
-    }
-  }
+			@media (min-width: 1200px) {
+				width: 460px;
+			}
+		}
+	}
 
-  &__number {
-    font-size: 54px;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: -.02em;
-    color: #fff;
-    line-height: 1em;
-    display: inline-block;
-    vertical-align: middle;
+	&__number {
+		color: $c-white;
+		display: inline-block;
+		font-size: 54px;
+		font-weight: 700;
+		letter-spacing: -.02em;
+		line-height: 1em;
+		text-transform: uppercase;
+		vertical-align: middle;
 
-    @media (min-width: 992px) {
-      font-size: 64px;
-      margin-left: -80px;
-    }
+		@media (min-width: 992px) {
+			font-size: 64px;
+			margin-left: -80px;
+		}
 
-    @media (min-width: 1200px) {
-      font-size: 92px;
-      margin-left: -123px;
-      margin-right: 5px;
-    }
-  }
+		@media (min-width: 1200px) {
+			font-size: 92px;
+			margin-left: -123px;
+			margin-right: 5px;
+		}
+	}
 
 
-  &__name {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 32px;
-    line-height: 1em;
-    color: #fff;
-    margin: 0;
+	&__name {
+		color: $c-white;
+		display: inline-block;
+		font-size: 32px;
+		line-height: 1em;
+		margin: 0;
+		vertical-align: middle;
 
-    @media (min-width: 992px) {
-      font-size: 32px;
-    }
+		@media (min-width: 992px) {
+			font-size: 32px;
+		}
 
-    @media (min-width: 1200px) {
-      font-size: 54px;
-      line-height: 46px;
-    }
-  }
+		@media (min-width: 1200px) {
+			font-size: 54px;
+			line-height: 46px;
+		}
+	}
 
-  &__first-name {
-    display: block;
-    font-size: 16px;
-    line-height: 1em;
+	&__first-name {
+		display: block;
+		font-size: 16px;
+		line-height: 1em;
 
-    @media (min-width: 992px) {
-      font-size: 18px;
-    }
+		@media (min-width: 992px) {
+			font-size: 18px;
+		}
 
-    @media (min-width: 1200px) {
-      font-size: 26px;
-    }
-  }
+		@media (min-width: 1200px) {
+			font-size: 26px;
+		}
+	}
 
-  &__last-name {
-    color: #ffdc11;
-  }
+	&__last-name {
+		color: $color-yellow-2;
+	}
 
-  &__team-logo {
-    position: absolute;
-    left: -45%;
-    top: -5%;
-    opacity: .05;
-    z-index: 0;
+	&__team-logo {
+		left: -45%;
+		opacity: .05;
+		position: absolute;
+		top: -5%;
+		z-index: 0;
 
-    @media (min-width: 992px) {
-      left: -10%;
-      opacity: .1;
-    }
+		@media (min-width: 992px) {
+			left: -10%;
+			opacity: .1;
+		}
 
-    img {
-      border-style: none;
-      height: auto;
-      max-width: 100%;
-      vertical-align: middle;
-    }
-  }
+		img {
+			border-style: none;
+			height: auto;
+			max-width: 100%;
+			vertical-align: middle;
+		}
+	}
 
-  &__title {
-    margin-bottom: 17px;
+	&__title {
+		margin-bottom: 17px;
 
-    &--desktop {
-      display: none;
+		&--desktop {
+			display: none;
 
-      @media (min-width: 992px) {
-        display: block;
-      }
-    }
+			@media (min-width: 992px) {
+				display: block;
+			}
+		}
 
-    &--mobile {
-      padding: 35px 0 0;
-      text-align: center;
-      display: none;
-    }
-  }
-
+		&--mobile {
+			display: none;
+			padding: 35px 0 0;
+			text-align: center;
+		}
+	}
 }

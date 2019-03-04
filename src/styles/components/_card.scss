@@ -13,25 +13,25 @@
  */
 
 .card {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.12);
-  border-radius: $bdr-base;
-  background-color: $bgc-card;
-  border: $bd-medium;
-  margin-bottom: $spacing-base;
+	background-color: $bgc-card;
+	border: $bd-medium;
+	border-radius: $bdr-base;
+	box-shadow: 0 8px 16px 0 $c-black-12;
+	margin-bottom: $spacing-base;
 
-  &__headline {
-    font-family: "proxima-nova", Arial, Helvetica, sans-serif;
-    font-size: $fz-base;
-    font-weight: $fw-bold;
-    line-height: 1.2;
-    padding: 16px;
-    border-bottom: $bd-medium;
-  }
+	&__headline {
+		border-bottom: $bd-medium;
+		font-family: "proxima-nova", Arial, Helvetica, sans-serif;
+		font-size: $fz-base;
+		font-weight: $fw-bold;
+		line-height: 1.2;
+		padding: 16px;
+	}
 
-  &__footer {
-    text-align: center;
-    font-size: $fz-small;
-    font-weight: $fw-bold;
-    padding: $spacing-small;
-  }
+	&__footer {
+		font-size: $fz-small;
+		font-weight: $fw-bold;
+		padding: $spacing-small;
+		text-align: center;
+	}
 }

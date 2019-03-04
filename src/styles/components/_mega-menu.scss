@@ -1,50 +1,60 @@
 @media screen and (min-width: 1024px) {
 
-  .dropdown__button {
-    position: relative;
-  }
+	.dropdown {
+		&__button {
+			position: relative;
+		}
 
-  .dropdown__content {
-    min-width: 650px;
-    position: absolute;
-    top: 100%;
-    background: white;
-    box-shadow: 0 2px 24px 0 rgba(0, 0, 0, .09);
-    z-index: 99;
-    color: black;
+		&__content {
+			background: $c-white;
+			box-shadow: 0 2px 24px 0 $c-black-09;
+			color: $c-black;
+			min-width: 650px;
+			position: absolute;
+			top: 100%;
+			z-index: 99;
 
-    .col-sm-4 {
-      margin-top: 6px;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
+			.col-sm-4 {
+				font-size: 14px;
+				margin-bottom: 6px;
+				margin-top: 6px;
+			}
 
-    h6 {
-      color: #48494a;
-      // font-size: $fz-small;
-      font-weight: $fw-bold;
-      text-transform: $tt-button;
-    }
+			h6 {
+				color: $c-gray-3;
+				font-weight: $fw-bold;
+				text-transform: $tt-button;
+			}
 
-    nav {
-      padding-top: 3px;
-      padding-bottom: 3px;
+			nav {
+				padding-bottom: 3px;
+				padding-top: 3px;
 
-      >a {
-        color: #6c6d6f;
-        padding-top: 3px;
-        padding-bottom: 3px;
+				>a {
+					color: $c-gray-2;
+					padding-bottom: 3px;
+					padding-top: 3px;
 
-        >img {
-          height: 24px;
-          width: 24px;
-          margin-right: 6px;
-        }
+					>img {
+						@include size(24px);
+						margin-right: 6px;
+					}
 
-        >* {
-          vertical-align: middle;
-        }
-      }
-    }
-  }
+					>* {
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+.team-city {
+	display: none;
+
+	@media screen and (min-width: 1024px) {
+		display: inline;
+	}
 }

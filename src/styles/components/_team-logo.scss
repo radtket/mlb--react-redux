@@ -1,0 +1,89 @@
+@media screen and (min-width: 768px) {
+	.team {
+		&__banner {
+			background: $c-gray--17;
+			height: 80px;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			width: 120px;
+
+			// AWAY TEAM
+			.away & {
+				left: 0;
+				transform: skew(-25deg) translateX(-40px);
+
+				&__wrapper {
+					&::before {
+						right: 8px;
+					}
+
+					&::after {
+						right: 50px;
+					}
+
+					img {
+						left: 22%;
+						transform: skew(25deg) translateY(-50%);
+					}
+				}
+			}
+
+			// HOME TEAM
+			.home & {
+				right: 0;
+				transform: skew(25deg) translateX(40px);
+
+				&__wrapper {
+					&::before {
+						left: 8px;
+					}
+
+					&::after {
+						left: 50px;
+					}
+
+					img {
+						right: 22%;
+						transform: skew(-25deg) translateY(-50%);
+					}
+				}
+			}
+
+			&__wrapper {
+				height: 100%;
+				margin: 0;
+				position: relative;
+
+				&::before,
+				&::after {
+					bottom: 0;
+					content: "";
+					position: absolute;
+					top: 0;
+					z-index: 2;
+				}
+
+				&::before {
+					background: $c-white;
+					width: 1px;
+				}
+
+				&::after {
+					background: linear-gradient(90deg, $c-black-30, transparent);
+					width: 10px;
+				}
+
+				img {
+					display: block;
+					max-height: 128px !important;
+					max-width: 128px !important;
+					position: absolute;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					width: 128px;
+				}
+			}
+		}
+	}
+}

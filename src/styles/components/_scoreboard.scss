@@ -1,0 +1,560 @@
+.scoreboard {
+	display: flex;
+	// border: 1px solid red;
+
+	&-wrapper {
+		@include grid-container;
+		background-color: $c-white;
+		border: 1px solid $c-gray-1;
+		clear: both;
+		margin-bottom: 18px;
+		// max-width: 400px;
+		position: relative;
+		width: auto;
+	}
+
+
+	.table--scoreboard {
+		width: 400px;
+		// float: left;
+
+		.home-winner & {
+			tr {
+				&.home {
+					td {
+						&:last-child {
+							&::after {
+								border-color: transparent $c-gray-3 transparent transparent;
+								border-style: solid;
+								border-width: 6px 6px 6px 0;
+								content: "";
+								height: 0;
+								margin-top: 3px;
+								position: absolute;
+								right: 0 !important;
+								width: 0;
+							}
+						}
+					}
+				}
+
+				&.away {
+
+					>td,
+					>td {
+						a {
+							color: $c-gray-9;
+						}
+					}
+				}
+			}
+		}
+
+
+		.away-winner & {
+			tr {
+				&.away {
+					td {
+						&:last-child {
+							&::after {
+								border-color: transparent $c-gray-3 transparent transparent;
+								border-style: solid;
+								border-width: 6px 6px 6px 0;
+								content: "";
+								height: 0;
+								margin-top: 3px;
+								position: absolute;
+								right: 0 !important;
+								width: 0;
+							}
+						}
+					}
+				}
+
+				&.home {
+
+					>td,
+					>td {
+						a {
+							color: $c-gray-9;
+						}
+					}
+				}
+			}
+		}
+
+		thead {
+			tr {
+				width: 100%;
+
+				th {
+					font-weight: 400;
+
+					&.date-time {
+						color: $c-gray-2;
+						font-size: 14px;
+						font-weight: 600;
+						text-transform: none;
+
+
+						@media screen and (min-width: 768px) {
+							.in-progress & {
+								color: $color-loss;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		td,
+		th {
+			border-bottom: 0;
+			text-align: center;
+			width: 50px;
+
+			&:first-of-type {
+				text-align: left;
+				width: unset;
+			}
+		}
+
+		td {
+			&.score {
+				font-size: 16px;
+				font-weight: 400;
+
+				&__total {
+					font-weight: 600;
+				}
+			}
+		}
+
+		.team {
+			&__logo {
+				max-width: 35px;
+
+				&--wrap {
+					display: table-cell;
+				}
+			}
+
+			&__meta {
+				display: table-cell;
+				font-size: 11px;
+				line-height: 1.2;
+				max-width: 120px;
+				padding-left: 8px;
+				vertical-align: middle;
+				width: 100%;
+			}
+
+			&__name {
+				color: $c-gray-3;
+				font-size: 14px;
+				font-weight: 600;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				&--abrv {
+					display: none;
+				}
+			}
+
+			&__record {
+				color: $c-gray-9;
+				font-size: 10px;
+				line-height: 14px;
+				margin-bottom: 0;
+				margin-top: 4px;
+				min-width: 0;
+				text-align: inherit;
+				text-transform: capitalize;
+
+				&--away,
+				&--home {
+					text-transform: inherit;
+				}
+
+				&--wrap {
+					display: block;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+}
+
+
+
+// Detail
+
+.scoreboard-detail {
+	border-left: 1px solid $c-gray-1;
+	border-right: 1px solid $c-gray-1;
+	overflow: hidden;
+	padding: 9px 9px 0;
+	width: 225px;
+	// float: left;
+	// height: 159px;
+
+	.play-by-play {
+		color: $c-gray-2;
+		font-size: 11px;
+		height: 100%;
+		position: relative;
+	}
+
+	.mlb-icons {
+		display: none;
+		float: left;
+		height: 35px;
+		margin-bottom: 20px;
+		width: 45px;
+
+		@media screen and (min-width: 768px) {
+			display: block;
+		}
+
+		@media screen and (min-width: 1260px) {
+			margin-top: -5px;
+		}
+	}
+
+
+
+	.bases {
+		display: block;
+		margin: 0;
+	}
+
+	.base {
+		@include size(0);
+		border-color: transparent transparent $c-gray-1;
+		border-style: solid;
+		border-width: 10px;
+		position: relative;
+		top: -10px;
+
+		&::after {
+			@include size(0);
+			border-color: transparent;
+			border-style: solid;
+			border-top-color: $c-gray-1;
+			border-width: 10px;
+			content: "";
+			left: -10px;
+			position: absolute;
+			top: 10px;
+		}
+
+
+		&-1-1-0 {
+			.base {
+
+				&__first,
+				&__second {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+		&-1-0-1 {
+			.base {
+
+				&__first,
+				&__third {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+		&-1-1-1 {
+			.base {
+
+				&__first,
+				&__second,
+				&__third {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+		&-0-1-1 {
+			.base {
+
+				&__second,
+				&__third {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+		&-1-0-0 {
+			.base {
+				&__first {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+
+		&-0-1-0 {
+			.base {
+				&__second {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+		&-0-0-1 {
+			.base {
+				&__third {
+					border-bottom-color: $c-primary;
+
+					&::after {
+						border-top-color: $c-primary;
+					}
+				}
+			}
+		}
+
+
+		&__first {
+			float: right;
+		}
+
+		&__second {
+			clear: both;
+			margin: 0 auto;
+			top: -2px !important;
+		}
+
+		&__third {
+			float: left;
+			margin-right: 4px;
+		}
+	}
+
+	.baseball-details {
+		clear: both;
+
+		@media screen and (min-width: 1260px) {
+			clear: none;
+		}
+	}
+
+	.last-play {
+		bottom: 5px;
+		box-sizing: content-box;
+		color: $c-gray-2;
+		font-size: 11px;
+		margin-top: 10px;
+		overflow-y: auto;
+		position: absolute;
+		top: 75px;
+		width: 100%;
+
+		@media screen and (min-width: 1260px) {
+			bottom: 28px;
+			clear: both;
+			padding-top: 7px;
+			top: 45px;
+		}
+
+		span {
+			&.title {
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.play-by-play-link {
+		bottom: 10px;
+		color: $c-primary;
+		display: none;
+		left: 0;
+		position: absolute;
+
+		@media screen and (min-width: 1260px) {
+			display: block;
+		}
+	}
+
+}
+
+
+.scoreboard-detail__xtra {
+	width: 300px;
+
+	.sb {
+		&-header {
+			color: $c-gray-9;
+			font-size: 12px;
+			font-weight: 400;
+			margin-bottom: 8px;
+			overflow: hidden;
+			padding: 10px 8px 0;
+			text-transform: uppercase;
+
+			>h1 {
+				line-height: 1;
+			}
+		}
+
+		&-content {
+			color: $c-gray-9;
+			padding: 0 8px;
+
+			ul {
+				margin: 0;
+
+				li {
+					table-layout: fixed;
+					width: 100%;
+				}
+
+				>li {
+					display: table;
+					margin-top: 10px;
+					overflow: hidden;
+
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+
+				figure {
+					@include size(40px);
+					background-position: center center;
+					background-repeat: no-repeat;
+					background-size: contain;
+					display: table-cell;
+					margin-right: 6px;
+					vertical-align: middle;
+				}
+
+			}
+
+
+		}
+
+		&-meta {
+			display: table-cell;
+			font-size: 11px;
+			line-height: 1.2;
+			padding-left: 9px;
+			vertical-align: middle;
+			// width: 100%;
+			width: auto;
+
+			>* {
+				margin: 0;
+			}
+
+			h2 {
+				font-size: 11px;
+				font-weight: 600;
+				line-height: 1.2;
+
+				>a {
+					color: $c-gray-3;
+					display: inline-block;
+					max-width: 110px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					vertical-align: top;
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+
+}
+
+
+.circle-graphs {
+	border-bottom: 1px solid $c-gray-1;
+	border-top: 1px solid $c-gray-1;
+	overflow: hidden;
+	padding: 5px 0;
+	width: 100%;
+
+	@media screen and (min-width: 1260px) {
+		border-bottom: 0;
+		border-top: 0;
+		float: right;
+		padding: 2px 0 5px;
+		width: auto;
+	}
+}
+
+.circle-graph {
+	color: $c-gray-2;
+	float: left;
+	font-size: 10px;
+	line-height: 11px;
+	margin-right: 12px;
+	overflow: hidden;
+	width: 52px;
+
+	@media screen and (min-width: 1260px) {
+		float: none;
+		margin-bottom: 5px;
+		margin-right: 6px;
+		width: auto;
+	}
+
+	&.four {
+		width: 64px;
+	}
+
+	span {
+		display: block;
+
+		&.abbrev {
+			float: left;
+			margin-right: 5px;
+		}
+
+		&.circle {
+			background-color: $c-gray-1;
+			border-radius: 10px;
+			float: left;
+			height: 10px;
+			margin-right: 3px;
+			width: 10px;
+		}
+
+		&.description {
+			display: none;
+		}
+	}
+}

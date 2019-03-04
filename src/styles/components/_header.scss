@@ -1,0 +1,76 @@
+$navbar--height: 60px;
+
+.header {
+	background: $color-dark;
+	position: relative;
+	width: 100%;
+
+	&__logo {
+		float: left;
+		margin-right: $spacing-base;
+
+		>a {
+			height: $navbar--height;
+			line-height: $navbar--height;
+
+			img {
+				height: $spacing-base;
+			}
+
+			svg {
+				fill: $bada55;
+				height: $spacing-base;
+			}
+		}
+	}
+
+	&__nav {
+		float: left;
+
+		>ul {
+			display: block;
+			margin-bottom: 0;
+
+			>li {
+				display: inline-block;
+				margin-bottom: 0;
+
+				>a,
+				>button {
+					@include padding(null $spacing-small);
+					color: $c-white;
+					display: inline-block;
+					height: $navbar--height;
+					line-height: $navbar--height;
+					opacity: .75;
+					position: relative;
+
+					&.active {
+						opacity: 1;
+
+						&::after {
+							@include position(absolute, null null 0 0);
+							@include size(100%, 4px);
+							background: $bada55;
+							content: "";
+						}
+
+					}
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+
+				>button {
+					border: 0;
+
+					svg {
+						height: $spacing-xsmall;
+						margin-left: $spacing-xsmall;
+					}
+				}
+			}
+		}
+	}
+}

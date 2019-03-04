@@ -1,0 +1,72 @@
+.field {
+	position: relative;
+
+	.img {
+		@include position(relative, 0 null null 0);
+		margin: 0;
+	}
+
+	.onthefield {
+		@include position(absolute, 0);
+		font-size: .9em;
+
+		.fielder {
+			display: block;
+			margin: auto;
+			position: absolute;
+			text-align: center;
+			width: 33%;
+			z-index: 10;
+
+			&.pitcher {
+				bottom: 27%;
+				left: 33%;
+			}
+
+			&.catcher {
+				bottom: 12%;
+				left: 33%;
+			}
+
+			&.first {
+				bottom: 23%;
+				left: 53%;
+			}
+
+			&.second {
+				bottom: 37%;
+				left: 48%;
+			}
+
+			&.shortstop {
+				bottom: 37%;
+				left: 21%;
+			}
+
+			&.third {
+				bottom: 23%;
+				left: 13%;
+			}
+
+			&.lf {
+				bottom: 62%;
+				left: 8%;
+			}
+
+			&.cf {
+				bottom: 74%;
+				left: 33%;
+			}
+
+			&.rf {
+				bottom: 62%;
+				left: 55%;
+			}
+
+			a {
+				color: $c-black;
+				text-shadow: 0 0 .25em $c-gray--14;
+			}
+		}
+	}
+}

@@ -1,0 +1,79 @@
+$fs-team-primary: #c71414;
+$fs-team-secondary: #e68217;
+
+.bio {
+	@include grid-container;
+	background-color: $bada55;
+	display: block;
+	min-height: 246px;
+	overflow: hidden;
+	position: relative;
+	z-index: 5;
+
+	&__branding {
+		@include size(100%);
+		@include position(absolute, 0 null null 0);
+		background-color: $fs-team-primary;
+
+		&--team-branding {
+			@include size(253.3px, 226.5px);
+			@include position(absolute, -80px null null -110px);
+			transform: rotate(-45deg);
+			z-index: 1;
+		}
+
+		&--team {
+			margin-bottom: 3px;
+			padding-top: 115px;
+			position: relative;
+		}
+
+		&--stripe {
+			background-color: $fs-team-secondary;
+			height: 70px;
+
+			&-offset {
+				@include size(100%, 3px);
+				@include position(absolute, null null 2px null);
+				background-color: $fs-team-primary;
+
+				&__top {
+					@include size(100%);
+					@include position(absolute, null null 60px null);
+					background: linear-gradient(to bottom, $fs-team-primary 0, $fs-team-primary 3px, $fs-team-secondary 3px, $fs-team-secondary 5px, $fs-team-primary 5px);
+				}
+			}
+		}
+
+		img {
+			@include position(absolute, 85px null -10px 45px);
+			height: 184px;
+			max-width: none;
+			transform: rotate(45deg);
+			vertical-align: baseline;
+		}
+	}
+
+	&__headshot {
+		bottom: 0;
+		height: 187px;
+		margin-left: 18px;
+		position: absolute;
+		z-index: 1;
+
+		img {
+			height: 187px;
+		}
+	}
+
+	&__info {
+		color: $c-white;
+		display: block;
+		margin-left: 185px;
+		padding-top: 22px;
+
+		h2 {
+			font-size: 28px;
+		}
+	}
+}

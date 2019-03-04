@@ -3,11 +3,10 @@
  */
 
 .bg {
-
-  @each $type,
-  $color in $c-map {
-    &-#{$type} {
-      background-color: $color;
-    }
-  }
+	@each $type,
+	$color in $c-map {
+		&-#{$type} {
+			background-color: $color;
+		}
+	}
 }

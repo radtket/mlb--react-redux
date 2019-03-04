@@ -1,0 +1,85 @@
+li {
+	&.game {
+		border-bottom: 1px solid $c-gray--11;
+		list-style: none;
+		margin: 0;
+
+		>a {
+			// background: #f9f9fb;
+			display: table;
+			padding: 10px 8px;
+			width: 100%;
+
+			&:hover {
+				background: $c-white;
+				background-image: linear-gradient($c-gray-light-30, $c-gray-light-30);
+			}
+
+			.opponent-logo {
+				display: table-cell;
+				height: 20px;
+				margin: 0;
+				vertical-align: middle;
+				width: 20px;
+
+				>img {
+					display: block;
+					width: 20px;
+				}
+			}
+
+			.opponent-info {
+				color: $c-gray-3;
+				display: table-cell;
+				font-size: 11px;
+				font-weight: 600;
+				padding-left: 6px;
+				vertical-align: middle;
+				width: 57%;
+
+				&__arbv {
+					@media (min-width: 768px) {
+						display: none;
+					}
+				}
+
+				&__full {
+					@media (max-width: 767px) {
+						display: none;
+					}
+				}
+			}
+
+			.game-meta {
+				color: $c-gray-3;
+				display: table-cell;
+				font-size: 11px;
+				font-weight: 600;
+				padding-top: 2px;
+				text-align: right;
+				vertical-align: middle;
+
+				&__result {
+					display: inline-block;
+					font-weight: 700;
+					text-align: left;
+					width: 14px;
+
+					&.loss {
+						color: $color-loss;
+					}
+
+					&.win {
+						color: $color-win;
+					}
+				}
+
+				&__score {
+					display: inline-block;
+					white-space: nowrap;
+					width: 44px;
+				}
+			}
+		}
+	}
+}

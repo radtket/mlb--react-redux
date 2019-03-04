@@ -39,6 +39,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "2.3.0",
     "sanitize.css": "7.0.3",
+    "sass-lint": "^1.12.1",
     "serve": "10.1.2",
     "styled-components": "^4.1.3"
   },

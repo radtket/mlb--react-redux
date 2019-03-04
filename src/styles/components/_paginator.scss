@@ -6,40 +6,40 @@
  *
  *  <ul class="paginator">
  *    <li class="paginator-item">
- *      <a href="#" class="paginator-itemLink">< Prev</a>
+ *      <a href="#" class="paginator-item__link">< Prev</a>
  *    </li>
  *    <li class="paginator-item">
- *      <a href="#" class="paginator-itemLink">1</a>
+ *      <a href="#" class="paginator-item__link">1</a>
  *    </li>
  *    <li class="paginator-item">
- *      <a href="#" class="paginator-itemLink is-active">2</a>
+ *      <a href="#" class="paginator-item__link is-active">2</a>
  *    </li>
  *    <li class="paginator-item">
- *      <a href="#" class="paginator-itemLink">3</a>
+ *      <a href="#" class="paginator-item__link">3</a>
  *    </li>
  *    <li class="paginator-item">
- *      <a href="#" class="paginator-itemLink">Next ></a>
+ *      <a href="#" class="paginator-item__link">Next ></a>
  *    </li>
  *  </ul>
  */
 
 .paginator {
 
-  &-item {
-    display: inline-block;
-    margin-right: $mr-paginator-item;
+	&-item {
+		display: inline-block;
+		margin-right: $mr-paginator-item;
 
-    &Link {
-      background-color: $bg-paginator-item;
-      border-radius: $bdr-paginator-item;
-      display: block;
-      padding: $p-paginator-item;
+		&__link {
+			background-color: $bg-paginator-item;
+			border-radius: $bdr-paginator-item;
+			display: block;
+			padding: $p-paginator-item;
 
-      &.is-active {
-        background-color: $bg-paginator-item-active;
-        color: $c-paginator-item-active;
-        cursor: default;
-      }
-    }
-  }
+			&.is-active {
+				background-color: $bg-paginator-item-active;
+				color: $c-paginator-item-active;
+				cursor: default;
+			}
+		}
+	}
 }

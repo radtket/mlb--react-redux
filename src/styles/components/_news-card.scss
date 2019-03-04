@@ -1,0 +1,245 @@
+.posts-wrap {
+	@include margin($spacing-base null);
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container-fluid {
+	@include grid-container;
+}
+
+// .col-md-4 {
+//   @include grid-column(3);
+// }
+
+$footer-height: 60px;
+
+.news-card {
+	// @include grid-column();
+	background-color: $c-white;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px 0 $c-black-20, 0 1px 1px 0 $c-black-14, 0 2px 1px -1px $c-black-12;
+	margin: 0 auto 24px;
+	max-width: 400px;
+	overflow: hidden;
+	padding-bottom: $footer-height;
+	position: relative;
+
+	@media (min-width: 600px) {
+		@include grid-column(6);
+		max-width: 100%;
+	}
+
+	@media (min-width: 900px) {
+		@include grid-column(4);
+	}
+
+	@media (min-width: 1200px) {
+		@include grid-column(3);
+	}
+
+	&__image {
+		background-image: url("https://via.placeholder.com/320x180");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		display: block;
+		height: 0;
+		padding-top: 56.25%;
+		position: relative;
+	}
+
+	&__label {
+		background-color: $color-yellow-1;
+		border-radius: .25em;
+		color: $c-white;
+		font-family: Montserrat, sans-serif;
+		font-size: 10px;
+		font-weight: 700;
+		left: $spacing-small;
+		line-height: 1;
+		padding: 6px 12px;
+		position: absolute;
+		text-align: center;
+		text-transform: uppercase;
+		top: $spacing-small;
+		vertical-align: baseline;
+		white-space: nowrap;
+	}
+
+	&__inner {
+		// padding: 16px;
+		padding: 24px;
+		padding-top: 18px;
+		position: relative;
+	}
+
+	&__cta {
+		background-color: $color-yellow-1;
+		background-position: center center;
+		background-size: 75%;
+		border-radius: 50%;
+		display: block;
+		height: 50px;
+		overflow: hidden;
+		position: absolute;
+		right: 23px;
+		top: 0;
+		transform: translateY(-50%);
+		width: 50px;
+	}
+
+	&__date {
+		color: $c-gray;
+		display: inline-block;
+		font-family: Montserrat, sans-serif;
+		font-size: 10px;
+		line-height: 1.2em;
+		text-transform: uppercase;
+
+		@media (min-width: 992px) {
+			font-size: 11px;
+		}
+	}
+
+	&__headline {
+		color: $c-black-87;
+		font-size: 18px;
+		font-weight: 700;
+		letter-spacing: 0;
+		line-height: 1.33;
+		margin-bottom: 8px;
+		margin-top: 5px;
+
+		@media (min-width: 992px) {
+			font-size: 24px;
+			margin-top: 10px;
+		}
+	}
+
+	&__body {
+		color: $c-black-87;
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: .01071em;
+		line-height: 1.5;
+		margin-top: 6px;
+	}
+
+	&__footer {
+		@include position(absolute, null null 0 0);
+		border-top: 1px solid $c-gray-8;
+		display: table;
+		height: $footer-height;
+		padding: 17px 24px;
+		position: absolute;
+		width: 100%;
+	}
+
+	&__meta {
+		display: table-cell;
+		text-align: right;
+		width: 50%;
+
+		&-item {
+			display: inline-block;
+			font-family: Montserrat, sans-serif;
+			font-size: 10px;
+			line-height: 1.2em;
+			text-transform: uppercase;
+			vertical-align: middle;
+
+			a {
+				color: $c-gray;
+				transition: color .2s ease;
+			}
+
+			.meta-like {
+				font-size: 12px;
+				margin-right: 6px;
+				vertical-align: middle;
+			}
+
+			+.news-card {
+				&__meta-item {
+					margin-left: 8px;
+
+					@media (min-width: 992px) {
+						margin-left: 15px;
+					}
+				}
+			}
+
+			&::before {
+				-moz-osx-font-smoothing: grayscale; // sass-lint:disable-line no-vendor-prefixes
+				-webkit-font-smoothing: antialiased; // sass-lint:disable-line no-vendor-prefixes
+				content: "\e087";
+				font-family: simple-line-icons;
+				font-size: 13px;
+				font-style: normal;
+				font-variant: normal;
+				font-weight: 400;
+				line-height: 1em;
+				margin-right: 4px;
+				position: relative;
+				text-transform: none;
+				top: -1px;
+				vertical-align: middle;
+
+				@media (min-width: 992px) {
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+
+	.post-author {
+		display: table-cell;
+		text-align: left;
+		width: 50%;
+
+		&__avatar {
+			@include size(24px);
+			border-radius: 50%;
+			display: inline-block;
+			margin: 0 14px 0 0;
+			overflow: hidden;
+			vertical-align: middle;
+
+			img {
+				height: auto;
+				max-width: 100%;
+				vertical-align: top;
+			}
+		}
+
+		&__info {
+			display: inline-block;
+			position: relative;
+			vertical-align: middle;
+		}
+
+		&__name {
+			color: $c-gray;
+			font-size: 10px;
+			font-style: normal;
+			font-weight: 400;
+			text-transform: uppercase;
+		}
+	}
+}
+
+
+
+
+.split-logo {
+	img {
+		position: absolute;
+
+		&:nth-of-type(2) {
+			background: inherit;
+			clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+			overflow: hidden;
+		}
+	}
+}

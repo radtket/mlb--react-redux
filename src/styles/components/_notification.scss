@@ -12,21 +12,21 @@
  */
 
 .notification {
-  border-radius: $bdr-notification;
-  color: $c-notification;
-  margin-bottom: $mb-notification;
-  padding: $p-notification;
+	border-radius: $bdr-notification;
+	color: $c-notification;
+	margin-bottom: $mb-notification;
+	padding: $p-notification;
 
-  p {
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+	p {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 
-  @each $type,
-  $color in $c-map {
-    &--#{$type} {
-      background-color: $color;
-    }
-  }
+	@each $type,
+	$color in $c-map {
+		&--#{$type} {
+			background-color: $color;
+		}
+	}
 }

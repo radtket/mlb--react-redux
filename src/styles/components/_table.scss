@@ -21,42 +21,42 @@
 
 
 .table {
-  border-collapse: collapse;
-  color: $c-table-text;
-  max-width: $mwi-table;
-  width: $w-table;
+	border-collapse: collapse;
+	color: $c-table-text;
+	max-width: $mwi-table;
+	width: $w-table;
 
-  &--border {
-    background-color: $bgc-table;
-    border: $bd-table;
-  }
+	&--border {
+		background-color: $bgc-table;
+		border: $bd-table;
+	}
 
-  th,
-  td {
-    border-bottom: $bd-table;
-    padding: $p-table-cell;
-    position: relative;
-  }
+	th,
+	td {
+		border-bottom: $bd-table;
+		padding: $p-table-cell;
+		position: relative;
+	}
 
-  thead {
-    border-bottom: $bd-table;
+	thead {
+		border-bottom: $bd-table;
 
-    th {
-      font-size: $fz-small;
-      font-weight: $fw-bold;
-      text-transform: uppercase;
-    }
-  }
+		th {
+			font-size: $fz-small;
+			font-weight: $fw-bold;
+			text-transform: uppercase;
+		}
+	}
 
-  th {
-    background-color: $bgc-table-header;
-    // color: $c-table-heading;
-    color: rgba($c-table-text, .85);
-    font-size: $fz-table-heading;
-    font-weight: $fw-table-heading;
-    padding: $p-table-heading;
-    white-space: nowrap;
-  }
+	th {
+		background-color: $bgc-table-header;
+		// color: $c-table-heading;
+		color: $c-dark-85;
+		font-size: $fz-table-heading;
+		font-weight: $fw-table-heading;
+		padding: $p-table-heading;
+		white-space: nowrap;
+	}
 }
 
 /**
@@ -97,42 +97,43 @@
 
 .table--responsive {
 
-  th {
-    display: none;
-  }
+	th {
+		display: none;
+	}
 
-  td {
-    display: block;
+	td {
+		display: block;
 
-    @include media-breakpoint-down(sm) {
-      border: 0;
-    }
+		@include media-breakpoint-down(sm) {
+			border: 0;
 
-    &::before {
-      color: $c-table-heading;
-      content: attr(data-th)': ';
-      display: block;
-      font-weight: normal;
+		}
 
-      @include media-breakpoint-up(sm) {
-        display: none;
-      }
-    }
+		&::before {
+			color: $c-table-heading;
+			content: attr(data-th)": ";
+			display: block;
+			font-weight: normal;
 
-    &:first-child {
-      border-top: $bd-table;
-    }
-  }
+			@include media-breakpoint-up(sm) {
+				display: none;
+			}
+		}
 
-  th,
-  td {
-    text-align: left;
+		&:first-child {
+			border-top: $bd-table;
+		}
+	}
 
-    @include media-breakpoint-up(sm) {
-      border-top: $bd-table;
-      display: table-cell;
-    }
-  }
+	th,
+	td {
+		text-align: left;
+
+		@include media-breakpoint-up(sm) {
+			border-top: $bd-table;
+			display: table-cell;
+		}
+	}
 }
 
 
@@ -173,87 +174,87 @@
 
 .table--standings {
 
-  tbody {
-    tr {
-      &:hover {
-        background-image: linear-gradient(rgba($c-light, .33), rgba($c-light, .33));
-      }
+	tbody {
+		tr {
+			&:hover {
+				background-image: linear-gradient($c-gray-light-30, $c-gray-light-30);
+			}
 
-      &.active-team {
-        font-weight: 600;
-      }
-    }
-  }
+			&.active-team {
+				font-weight: 600;
+			}
+		}
+	}
 
-  th,
-  td {
-    color: rgba($c-table-text, .85);
-    display: table-cell;
-    padding: $spacing-small;
-    text-align: center;
-    vertical-align: middle;
+	th,
+	td {
+		color: $c-dark-85;
+		display: table-cell;
+		padding: $spacing-small;
+		text-align: center;
+		vertical-align: middle;
 
-    &:first-child {
-      text-align: left;
-    }
+		&:first-child {
+			text-align: left;
+		}
 
-    &.secondary-stat {
-      @include media-breakpoint-down(sm) {
-        display: none;
-      }
-    }
-  }
+		&.secondary-stat {
+			@include media-breakpoint-down(sm) {
+				display: none;
+			}
+		}
+	}
 
-  .standings {
-    &__sec-stat {
-      @include media-breakpoint-down(sm) {
-        display: none;
-      }
-    }
+	.standings {
+		&__sec-stat {
+			@include media-breakpoint-down(sm) {
+				display: none;
+			}
+		}
 
-    &__team {
-      a {
-        color: inherit;
+		&__team {
+			a {
+				color: inherit;
 
-        &:hover {
-          text-decoration: underline;
-        }
+				&:hover {
+					text-decoration: underline;
+				}
 
-        >* {
-          vertical-align: middle;
-        }
-      }
+				>* {
+					vertical-align: middle;
+				}
+			}
 
-      img {
-        @include size($spacing-base);
-        margin-right: $spacing-xsmall;
-      }
+			img {
+				@include size($spacing-base);
+				margin-right: $spacing-xsmall;
+			}
 
-      &--arbv,
-      &--city,
-      &--full {
-        display: inline;
-      }
+			&--arbv,
+			&--city,
+			&--full {
+				display: inline;
+			}
 
-      &--arbv {
-        @media (min-width: 400px) {
-          display: none;
-        }
-      }
+			&--arbv {
+				@media (min-width: 400px) {
+					display: none;
+				}
+			}
 
-      &--full {
-        @media (max-width: 399px) {
-          display: none;
-        }
-      }
+			&--full {
+				@media (max-width: 399px) {
+					display: none;
+				}
+			}
 
-      &--city {
-        @include media-breakpoint-down(sm) {
-          display: none;
-        }
-      }
-    }
-  }
+			&--city {
+				@include media-breakpoint-down(sm) {
+					display: none;
+				}
+			}
+		}
+	}
 }
 
 
@@ -263,123 +264,125 @@
 
 .table--roster {
 
-  tr {
-    @include media-breakpoint-down(sm) {
-      border-bottom: $bd-table;
-    }
-  }
+	tr {
+		@include media-breakpoint-down(sm) {
+			border-bottom: $bd-table;
+		}
+	}
 
-  th {
-    display: none;
-  }
+	th {
+		display: none;
+	}
 
-  td {
-    display: inline-block;
+	td {
+		display: inline-block;
 
-    @include media-breakpoint-down(sm) {
-      border: 0;
-    }
+		@include media-breakpoint-down(sm) {
+			border: 0;
+		}
 
-    &::before {
-      color: $c-table-heading;
-      content: attr(data-th)': ';
-      display: block;
-      font-weight: normal;
+		&::before {
+			color: $c-table-heading;
+			content: attr(data-th)": ";
+			display: block;
+			font-weight: normal;
 
-      @include media-breakpoint-up(sm) {
-        display: none;
-      }
-    }
-  }
+			@include media-breakpoint-up(sm) {
+				display: none;
+			}
+		}
+	}
 
-  th,
-  td {
-    padding: $spacing-small;
-    vertical-align: middle;
-    text-align: left;
-    white-space: nowrap;
+	th,
+	td {
+		padding: $spacing-small;
+		text-align: left;
+		vertical-align: middle;
+		white-space: nowrap;
 
-    @include media-breakpoint-up(sm) {
-      display: table-cell;
-    }
+		@include media-breakpoint-up(sm) {
+			display: table-cell;
+		}
 
-    &:nth-child(1) {
-      position: sticky;
-      left: 0;
-      z-index: 1;
-      background: lighten(#d5d9db, 10);
+		&:nth-child(1) {
+			background: lighten($c-gray--18, 10);
+			left: 0;
+			position: sticky;
+			z-index: 1;
 
 
-      &:after {
-        @include position(absolute, 0 null 0 100%);
-        content: '';
-        pointer-events: none;
-        width: 6px;
-        z-index: 1;
-        opacity: 0;
-        transition: opacity .2s ease-out;
-        background: linear-gradient(90deg, rgba(0, 0, 0, .2), transparent);
-      }
-    }
-  }
+			&::after {
+				@include position(absolute, 0 null 0 100%);
+				background: linear-gradient(90deg, $c-black-20, transparent);
+				content: "";
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity .2s ease-out;
+				width: 6px;
+				z-index: 1;
+			}
+		}
+	}
 
-  // Player Name & Image
-  &__avatar {
-    &::before {
-      display: none !important;
-    }
+	// Player Name & Image
+	&__avatar {
+		&::before {
+			display: none !important;
+		}
 
-    >figure {
-      @include size(80px);
-      background-size: contain;
-      background-position: center center;
-      background-repeat: no-repeat;
-      display: inline-block;
-      vertical-align: middle;
+		>figure {
+			@include size(80px);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			display: inline-block;
+			vertical-align: middle;
 
-      @include media-breakpoint-up(sm) {
-        @include size(40px);
-        margin-right: $spacing-xsmall;
-      }
+			@include media-breakpoint-up(sm) {
+				@include size(40px);
+				margin-right: $spacing-xsmall;
+			}
 
-      @include media-breakpoint-up(xl) {
-        @include size(60px);
-      }
-    }
-  }
+			@include media-breakpoint-up(xl) {
+				@include size(60px);
+			}
+		}
+	}
 }
 
 
 // Table Wrap for Horizontal Scrolling
 .table--wrap {
-  overflow-x: scroll;
+	overflow-x: scroll;
 
-  &::after {
-    @include position(absolute, 52px 0 0 null);
-    background: linear-gradient(270deg, rgba(0, 0, 0, .2), transparent);
-    content: "";
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: opacity .2s ease-out;
-    width: 6px;
-    z-index: 1;
-  }
+	&::after {
+		@include position(absolute, 52px 0 0 null);
+		background: linear-gradient(270deg, $c-black-20, transparent);
+		content: "";
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		transition: opacity .2s ease-out;
+		width: 6px;
+		z-index: 1;
+	}
 
-  &.isScrolling {
-    &::after {
-      opacity: 1;
-    }
+	&.isScrolling {
+		&::after {
+			opacity: 1;
+		}
 
-    .table--roster {
+		.table--roster {
 
-      th:nth-child(1),
-      td:nth-child(1) {
+			th,
+			td {
+				&:nth-child(1) {
 
-        &:after {
-          opacity: 1;
-        }
-      }
-    }
-  }
+					&::after {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
 }

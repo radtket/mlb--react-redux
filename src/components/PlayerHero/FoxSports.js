@@ -5,7 +5,7 @@ export default class FoxSports extends Component {
     return (
       <section className="bio">
         <div className="bio__branding">
-          <div className="bio__branding--teamBranding">
+          <div className="bio__branding--team-branding">
             <div className="bio__branding--team">
               <div className="bio__branding--stripe" />
               <div className="bio__branding--stripe-offset" />

@@ -1,0 +1,160 @@
+.test-component {
+	.team-roster {
+		&__holder {
+			background-color: $c-white;
+			border: 1px solid $c-gray-8;
+			border-radius: 4px;
+			display: flex;
+			overflow: hidden;
+		}
+
+		&__img {
+			flex-shrink: 0;
+			overflow: hidden;
+			position: relative;
+
+			>a {
+				display: block;
+				position: relative;
+
+				&::before {
+					background-color: $c-dark;
+					bottom: 0;
+					content: "";
+					display: block;
+					left: 0;
+					opacity: 0;
+					position: absolute;
+					right: 0;
+					top: 0;
+					transition: opacity .3s ease;
+				}
+
+				img {
+					display: block;
+				}
+
+				.btn-fab {
+					background-color: $color-yellow-1;
+					border-radius: 50%;
+					display: block;
+					height: 50px;
+					left: 50%;
+					margin: -25px 0 0 -25px;
+					overflow: hidden;
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: scale(0);
+					transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+					width: 50px;
+					z-index: 2;
+
+					&::after,
+					&::before {
+						background-color: $c-white;
+						content: "";
+						display: block;
+						left: 50%;
+						position: absolute;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						transition: transform .25s ease;
+					}
+
+					&::before {
+						height: 3px;
+						width: 17px;
+					}
+
+					&::after {
+						height: 17px;
+						width: 3px;
+					}
+				}
+			}
+		}
+
+
+		&__content {
+			min-width: 0;
+			padding: 24px;
+		}
+
+		&__member-header {
+			align-items: center;
+			display: flex;
+		}
+
+		&__member-number {
+			color: $color-yellow-2;
+			font-family: Montserrat, sans-serif;
+			font-size: 40px;
+			font-weight: 700;
+			letter-spacing: -.02em;
+			line-height: 1em;
+			padding-right: .12em;
+			text-transform: uppercase;
+		}
+
+		&__member-name {
+			font-size: 12px;
+			margin-bottom: 0;
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&__member-first-name,
+		&__member-last-name {
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&__member-last-name {
+			font-size: 20px;
+			letter-spacing: 0;
+			line-height: 1.1em;
+		}
+
+		&__member-subheader {
+			padding-top: 3px;
+		}
+
+		&__member-position {
+			display: block;
+			font-family: Montserrat, sans-serif;
+			font-size: 10px;
+			font-weight: 400;
+			letter-spacing: -.02em;
+			line-height: 1.2em;
+			text-transform: uppercase;
+		}
+
+		&__member-details {
+			margin: 0;
+			padding: 20px 0 0;
+
+			&-item {
+				color: $c-gray-dark;
+				display: inline-block;
+				font-family: Montserrat, sans-serif;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: -.02em;
+				line-height: 1.2em;
+				padding: 0 13px 0 0;
+				text-transform: uppercase;
+
+				.item-title {
+					color: $c-gray--10;
+					font-weight: 400;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}
