@@ -6,7 +6,7 @@
 
 		&__content {
 			background: $c-white;
-			box-shadow: 0 2px 24px 0 $c-black-09;
+			box-shadow: $box-shadow-card;
 			color: $c-black;
 			min-width: 650px;
 			position: absolute;

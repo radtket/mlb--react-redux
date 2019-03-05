@@ -18,7 +18,7 @@ $footer-height: 60px;
 	// @include grid-column();
 	background-color: $c-white;
 	border-radius: 4px;
-	box-shadow: 0 1px 3px 0 $c-black-20, 0 1px 1px 0 $c-black-14, 0 2px 1px -1px $c-black-12;
+	box-shadow: $box-shadow-card;
 	margin: 0 auto 24px;
 	max-width: 400px;
 	overflow: hidden;
@@ -51,7 +51,7 @@ $footer-height: 60px;
 
 	&__label {
 		background-color: $color-yellow-1;
-		border-radius: .25em;
+		border-radius: 0.25em;
 		color: $c-white;
 		font-family: Montserrat, sans-serif;
 		font-size: 10px;
@@ -103,7 +103,7 @@ $footer-height: 60px;
 	}
 
 	&__headline {
-		color: $c-black-87;
+		color: $c-black-85;
 		font-size: 18px;
 		font-weight: 700;
 		letter-spacing: 0;
@@ -118,10 +118,10 @@ $footer-height: 60px;
 	}
 
 	&__body {
-		color: $c-black-87;
+		color: $c-black-85;
 		font-size: 16px;
 		font-weight: 400;
-		letter-spacing: .01071em;
+		letter-spacing: 0.01071em;
 		line-height: 1.5;
 		margin-top: 6px;
 	}
@@ -151,7 +151,7 @@ $footer-height: 60px;
 
 			a {
 				color: $c-gray-light;
-				transition: color .2s ease;
+				transition: color 0.2s ease;
 			}
 
 			.meta-like {

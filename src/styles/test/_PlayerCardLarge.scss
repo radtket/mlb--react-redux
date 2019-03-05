@@ -2,7 +2,7 @@
 	.widget {
 		&__content {
 			background-color: $color-yellow-2;
-			background-image: linear-gradient(180deg, $color-yellow-2, $color-orange);
+			background-image: linear-gradient(180deg, $color-yellow-2, $c-warning);
 			border-radius: 0;
 			border-top: 0;
 			color: $c-white;

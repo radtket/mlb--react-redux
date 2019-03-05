@@ -16,7 +16,7 @@
 	background-color: $bgc-card;
 	border: $bd-medium;
 	border-radius: $bdr-base;
-	box-shadow: 0 8px 16px 0 $c-black-12;
+	box-shadow: $box-shadow-card;
 	margin-bottom: $spacing-base;
 
 	&__headline {

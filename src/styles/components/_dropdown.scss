@@ -20,7 +20,7 @@
 		transition: all 200ms ease;
 
 		&:hover {
-			box-shadow: 0 1px 0 $c-black-06;
+			box-shadow: $box-shadow-subtle;
 		}
 	}
 
@@ -43,7 +43,7 @@
 	&-menu {
 		background-color: $c-white;
 		border: 1px solid $c-gray-x-light;
-		box-shadow: 0 1px 0 $c-black-06;
+		box-shadow: $box-shadow-subtle;
 		box-sizing: border-box;
 		margin-top: -1px;
 		max-height: 200px;
@@ -54,7 +54,7 @@
 		z-index: 1000;
 
 		.Dropdown-group {
-			> .Dropdown-title {
+			>.Dropdown-title {
 				@include padding($spacing-small $spacing-xsmall);
 				color: $c-gray-dark;
 				font-weight: bold;

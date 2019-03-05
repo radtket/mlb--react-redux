@@ -169,6 +169,8 @@
  */
 
 .table--standings {
+	box-shadow: $box-shadow-big;
+
 	tbody {
 		tr {
 			&:hover {
@@ -215,7 +217,7 @@
 					text-decoration: underline;
 				}
 
-				> * {
+				>* {
 					vertical-align: middle;
 				}
 			}
@@ -318,7 +320,7 @@
 			display: none !important;
 		}
 
-		> figure {
+		>figure {
 			@include size(80px);
 			background-position: center center;
 			background-repeat: no-repeat;
@@ -360,6 +362,7 @@
 		}
 
 		.table--roster {
+
 			th,
 			td {
 				&:nth-child(1) {

@@ -15,33 +15,42 @@ $c-info: #5bc0de !default;
 $c-warning: #f0ad4e !default;
 $c-error: #e74c3c !default;
 
+$bada55: #bada55;
 $color-yellow-1: #fc0;
 $color-yellow-2: #ffdc11;
-
-$color-orange: #f29400;
-
 $color-win: #094;
 $color-loss: #d00;
-
-$bada55: #bada55;
 
 $c-primary: #03a9f4 !default;
 $c-secondary: #e91e63 !default;
 $c-dark: #18232f !default;
 $c-light: #eceff1 !default;
+$c-off-white: #f5f5f5;
 
-$c-gray-x-dark: #272727; // 3 file | 4 background
+$c-gray-x-dark: #272727;
 $c-gray-dark: #333 !default;
 $c-gray-medium: #48494a !default;
 $c-gray: #6c6d6f !default;
 $c-gray-light: #969da6 !default;
 $c-gray-x-light: #d5d9db !default;
 
-$c-gray-dark-80: rgba($c-gray-dark, .8); // 1 file, 1 font-color
+$c-black-85: rgba($c-black, .85);
+$c-black-30: rgba($c-black, .3);
+$c-black-20: rgba($c-black, .2);
+$c-black-14: rgba($c-black, .14);
+$c-black-12: rgba($c-black, .12);
+
+$c-dark-85: rgba($c-dark, .85);
+$c-dark-08: rgba($c-dark, .08);
+
+$c-light-30: rgba($c-light, .3);
+$c-light-15: rgba($c-light, .15);
+
+$c-primary-85: rgba($c-primary, .85);
 
 $c-text: $c-gray-x-dark !default;
 $c-link: $c-primary !default;
-$c-link-hover: rgba($c-primary, .8) !default;
+$c-link-hover: $c-primary-85 !default;
 
 $bgc-body: $c-white !default;
 $bgc-card: $c-white !default;
@@ -57,41 +66,12 @@ $c-map: ("primary": $c-primary,
 "gray": $c-gray-light,
 "gray-light": $c-light) !default;
 
-// Social colors
-$c-fb: rgb(59, 89, 182) !default;
-$c-tw: rgb(64, 153, 255) !default;
-$c-googleplus: rgb(215, 61, 50) !default;
-$c-pinterest: rgb(203, 32, 39) !default;
-$c-skype: rgb(18, 165, 244) !default;
-$c-spotify: rgb(129, 183, 26) !default;
-$c-instagram: #4e433c !default;
-$c-tumblr: #2b4964 !default;
-$c-vimeo: #86b32d !default;
-$c-soundcloud: #f76600 !default;
-$c-youtube: #f33 !default;
-$c-linkedin: #4875b4 !default;
-$c-flickr: #fe0883 !default;
-$c-foursquare: #8fd400 !default;
-
-$c-black-87: rgba($c-black, .87);
-$c-black-30: rgba($c-black, .3);
-$c-black-20: rgba($c-black, .2);
-$c-black-14: rgba($c-black, .14);
-$c-black-12: rgba($c-black, .12);
-$c-black-09: rgba($c-black, .09);
-$c-black-06: rgba($c-black, .06);
-
-$c-light-30: rgba($c-light, .3);
-$c-light-15: rgba($c-light, .15);
-
-$c-dark-95: rgba($c-dark, .95);
-$c-dark-85: rgba($c-dark, .85);
-$c-dark-60: rgba($c-dark, .6);
-$c-dark-08: rgba($c-dark, .08);
-
 // Shadows
-$bxsh-base: 0 0 5px $c-black-20 !default;
-$bxsh-medium: $bxsh-base !default;
+$box-shadow-card: 0 8px 16px 0 $c-black-12;
+$box-shadow-subtle: 0 1px 0 $c-dark-08;
+$box-shadow-big: 0 2px 4px -1px $c-black-20,
+0 4px 5px 0 $c-black-14,
+0 1px 10px 0 $c-black-12;
 
 // Typography
 $fw-light: 300 !default;
