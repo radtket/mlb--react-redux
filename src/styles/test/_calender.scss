@@ -7,13 +7,13 @@
 	padding: 0;
 
 	th {
-		background: $c-gray-4;
-		padding: .5rem 1rem;
+		background: $c-gray-x-light;
+		padding: 0.5rem 1rem;
 		text-align: center;
 	}
 
 	td {
-		padding: .25rem;
+		padding: 0.25rem;
 		text-align: center;
 	}
 
@@ -36,7 +36,7 @@
 		}
 
 		&.weekend {
-			background: $c-gray-4;
+			background: $c-gray-x-light;
 			color: $c-black;
 		}
 
@@ -59,14 +59,14 @@
 
 		&.today {
 			.Day-inner {
-				background: $c-gray-6;
+				background: #fafad2;
 				color: $c-black;
 			}
 		}
 
 		&:hover {
 			.Day-inner {
-				background: $c-gray-7;
+				background: $c-light;
 				color: $c-black;
 			}
 		}

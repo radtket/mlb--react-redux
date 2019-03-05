@@ -19,7 +19,6 @@
  *
  */
 
-
 .table {
 	border-collapse: collapse;
 	color: $c-table-text;
@@ -96,7 +95,6 @@
  */
 
 .table--responsive {
-
 	th {
 		display: none;
 	}
@@ -106,12 +104,11 @@
 
 		@include media-breakpoint-down(sm) {
 			border: 0;
-
 		}
 
 		&::before {
 			color: $c-table-heading;
-			content: attr(data-th)": ";
+			content: attr(data-th) ": ";
 			display: block;
 			font-weight: normal;
 
@@ -135,7 +132,6 @@
 		}
 	}
 }
-
 
 /**
  *  TABLE STANDINGS
@@ -173,11 +169,10 @@
  */
 
 .table--standings {
-
 	tbody {
 		tr {
 			&:hover {
-				background-image: linear-gradient($c-gray-light-30, $c-gray-light-30);
+				background-image: linear-gradient($c-light-30, $c-light-30);
 			}
 
 			&.active-team {
@@ -220,7 +215,7 @@
 					text-decoration: underline;
 				}
 
-				>* {
+				> * {
 					vertical-align: middle;
 				}
 			}
@@ -257,13 +252,7 @@
 	}
 }
 
-
-
-
-
-
 .table--roster {
-
 	tr {
 		@include media-breakpoint-down(sm) {
 			border-bottom: $bd-table;
@@ -283,7 +272,7 @@
 
 		&::before {
 			color: $c-table-heading;
-			content: attr(data-th)": ";
+			content: attr(data-th) ": ";
 			display: block;
 			font-weight: normal;
 
@@ -305,11 +294,10 @@
 		}
 
 		&:nth-child(1) {
-			background: lighten($c-gray--18, 10);
+			background: $c-light;
 			left: 0;
 			position: sticky;
 			z-index: 1;
-
 
 			&::after {
 				@include position(absolute, 0 null 0 100%);
@@ -317,7 +305,7 @@
 				content: "";
 				opacity: 0;
 				pointer-events: none;
-				transition: opacity .2s ease-out;
+				transition: opacity 0.2s ease-out;
 				width: 6px;
 				z-index: 1;
 			}
@@ -330,7 +318,7 @@
 			display: none !important;
 		}
 
-		>figure {
+		> figure {
 			@include size(80px);
 			background-position: center center;
 			background-repeat: no-repeat;
@@ -350,7 +338,6 @@
 	}
 }
 
-
 // Table Wrap for Horizontal Scrolling
 .table--wrap {
 	overflow-x: scroll;
@@ -362,7 +349,7 @@
 		opacity: 0;
 		pointer-events: none;
 		position: absolute;
-		transition: opacity .2s ease-out;
+		transition: opacity 0.2s ease-out;
 		width: 6px;
 		z-index: 1;
 	}
@@ -373,11 +360,9 @@
 		}
 
 		.table--roster {
-
 			th,
 			td {
 				&:nth-child(1) {
-
 					&::after {
 						opacity: 1;
 					}

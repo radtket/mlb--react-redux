@@ -14,33 +14,6 @@ $c-success: #4caf50 !default;
 $c-info: #5bc0de !default;
 $c-warning: #f0ad4e !default;
 $c-error: #e74c3c !default;
-$c-gray: #969da6 !default;
-$c-gray-light: #eceff1 !default;
-$c-gray-dark: #31404b !default;
-
-$color-dark: #272727;
-$color-dark-1: #1e2024;
-
-$c-gray-1: #cbccce;
-$c-gray-2: #6c6d6f;
-$c-gray-3: #48494a;
-$c-gray-4: #ddd;
-$c-gray-5: #bdc3c7;
-$c-gray-6: #fafad2;
-$c-gray-7: #eee;
-$c-gray-8: #e4e7ed;
-$c-gray-9: #a5a6a7;
-$c-gray--10: #9a9da2;
-$c-gray--11: #dcdddf;
-$c-gray--12: #f2f9fc;
-$c-gray--13: #ccc;
-$c-gray--14: #999;
-$c-gray--15: #333;
-$c-gray--15-80: rgba($c-gray--15, .8);
-$c-gray--16: #f5f5f5;
-$c-gray--17: #f1f2f3;
-$c-gray--18: #d5d9db; // $bdc-base border-color-base
-
 
 $color-yellow-1: #fc0;
 $color-yellow-2: #ffdc11;
@@ -52,12 +25,21 @@ $color-loss: #d00;
 
 $bada55: #bada55;
 
-
-
 $c-primary: #03a9f4 !default;
 $c-secondary: #e91e63 !default;
 $c-dark: #18232f !default;
-$c-light: $c-gray-light !default;
+$c-light: #eceff1 !default;
+$color-dark: #272727; // 3 file | 4 background
+
+
+
+$c-gray-x-dark: #333 !default;
+$c-gray-dark: #48494a !default;
+$c-gray-medium: #6c6d6f;
+$c-gray: #969da6 !default;
+$c-gray-x-light: #d5d9db !default;
+
+$c-gray-x-dark-80: rgba($c-gray-x-dark, .8); // 1 file, 1 font-color
 
 $c-text: $color-dark !default;
 $c-link: $c-primary !default;
@@ -75,7 +57,7 @@ $c-map: ("primary": $c-primary,
 "warning": $c-warning,
 "error": $c-error,
 "gray": $c-gray,
-"gray-light": $c-gray-light) !default;
+"gray-light": $c-light) !default;
 
 // Social colors
 $c-fb: rgb(59, 89, 182) !default;
@@ -93,26 +75,21 @@ $c-linkedin: #4875b4 !default;
 $c-flickr: #fe0883 !default;
 $c-foursquare: #8fd400 !default;
 
-
 $c-black-87: rgba($c-black, .87);
-$c-black-30: rgba($c-black, .30);
-$c-black-20: rgba($c-black, .20);
+$c-black-30: rgba($c-black, .3);
+$c-black-20: rgba($c-black, .2);
 $c-black-14: rgba($c-black, .14);
 $c-black-12: rgba($c-black, .12);
 $c-black-09: rgba($c-black, .09);
 $c-black-06: rgba($c-black, .06);
 
-
-$c-gray-light-30: rgba($c-gray-light, .30);
-$c-gray-light-15: rgba($c-gray-light, .15);
-
+$c-light-30: rgba($c-light, .3);
+$c-light-15: rgba($c-light, .15);
 
 $c-dark-95: rgba($c-dark, .95);
 $c-dark-85: rgba($c-dark, .85);
 $c-dark-60: rgba($c-dark, .6);
 $c-dark-08: rgba($c-dark, .08);
-
-
 
 // Shadows
 $bxsh-base: 0 0 5px $c-black-20 !default;
@@ -155,7 +132,7 @@ $fw-body: $fw-base !default;
 $lh-body: $lh-base !default;
 
 // Border
-$bdc-base: $c-gray--18 !default;
+$bdc-base: $c-gray-x-light !default;
 $bd-medium: 1px solid $bdc-base !default;
 $bdr-base: 3px !default;
 $bdr-medium: $bdr-base !default;

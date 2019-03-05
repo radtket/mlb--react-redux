@@ -5,14 +5,13 @@
 	&-wrapper {
 		@include grid-container;
 		background-color: $c-white;
-		border: 1px solid $c-gray-1;
+		border: 1px solid $c-gray-x-light;
 		clear: both;
 		margin-bottom: 18px;
 		// max-width: 400px;
 		position: relative;
 		width: auto;
 	}
-
 
 	.table--scoreboard {
 		width: 400px;
@@ -24,7 +23,7 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-3 transparent transparent;
+								border-color: transparent $c-gray-dark transparent transparent;
 								border-style: solid;
 								border-width: 6px 6px 6px 0;
 								content: "";
@@ -43,13 +42,12 @@
 					>td,
 					>td {
 						a {
-							color: $c-gray-9;
+							color: $c-gray;
 						}
 					}
 				}
 			}
 		}
-
 
 		.away-winner & {
 			tr {
@@ -57,7 +55,7 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-3 transparent transparent;
+								border-color: transparent $c-gray-dark transparent transparent;
 								border-style: solid;
 								border-width: 6px 6px 6px 0;
 								content: "";
@@ -76,7 +74,7 @@
 					>td,
 					>td {
 						a {
-							color: $c-gray-9;
+							color: $c-gray;
 						}
 					}
 				}
@@ -91,11 +89,10 @@
 					font-weight: 400;
 
 					&.date-time {
-						color: $c-gray-2;
+						color: $c-gray-medium;
 						font-size: 14px;
 						font-weight: 600;
 						text-transform: none;
-
 
 						@media screen and (min-width: 768px) {
 							.in-progress & {
@@ -150,7 +147,7 @@
 			}
 
 			&__name {
-				color: $c-gray-3;
+				color: $c-gray-dark;
 				font-size: 14px;
 				font-weight: 600;
 				overflow: hidden;
@@ -163,7 +160,7 @@
 			}
 
 			&__record {
-				color: $c-gray-9;
+				color: $c-gray;
 				font-size: 10px;
 				line-height: 14px;
 				margin-bottom: 0;
@@ -184,16 +181,13 @@
 			}
 		}
 	}
-
 }
-
-
 
 // Detail
 
 .scoreboard-detail {
-	border-left: 1px solid $c-gray-1;
-	border-right: 1px solid $c-gray-1;
+	border-left: 1px solid $c-gray-x-light;
+	border-right: 1px solid $c-gray-x-light;
 	overflow: hidden;
 	padding: 9px 9px 0;
 	width: 225px;
@@ -201,7 +195,7 @@
 	// height: 159px;
 
 	.play-by-play {
-		color: $c-gray-2;
+		color: $c-gray-medium;
 		font-size: 11px;
 		height: 100%;
 		position: relative;
@@ -223,8 +217,6 @@
 		}
 	}
 
-
-
 	.bases {
 		display: block;
 		margin: 0;
@@ -232,7 +224,7 @@
 
 	.base {
 		@include size(0);
-		border-color: transparent transparent $c-gray-1;
+		border-color: transparent transparent $c-gray-x-light;
 		border-style: solid;
 		border-width: 10px;
 		position: relative;
@@ -242,14 +234,13 @@
 			@include size(0);
 			border-color: transparent;
 			border-style: solid;
-			border-top-color: $c-gray-1;
+			border-top-color: $c-gray-x-light;
 			border-width: 10px;
 			content: "";
 			left: -10px;
 			position: absolute;
 			top: 10px;
 		}
-
 
 		&-1-1-0 {
 			.base {
@@ -320,7 +311,6 @@
 			}
 		}
 
-
 		&-0-1-0 {
 			.base {
 				&__second {
@@ -344,7 +334,6 @@
 				}
 			}
 		}
-
 
 		&__first {
 			float: right;
@@ -373,7 +362,7 @@
 	.last-play {
 		bottom: 5px;
 		box-sizing: content-box;
-		color: $c-gray-2;
+		color: $c-gray-medium;
 		font-size: 11px;
 		margin-top: 10px;
 		overflow-y: auto;
@@ -407,16 +396,14 @@
 			display: block;
 		}
 	}
-
 }
-
 
 .scoreboard-detail__xtra {
 	width: 300px;
 
 	.sb {
 		&-header {
-			color: $c-gray-9;
+			color: $c-gray;
 			font-size: 12px;
 			font-weight: 400;
 			margin-bottom: 8px;
@@ -430,7 +417,7 @@
 		}
 
 		&-content {
-			color: $c-gray-9;
+			color: $c-gray;
 			padding: 0 8px;
 
 			ul {
@@ -460,10 +447,7 @@
 					margin-right: 6px;
 					vertical-align: middle;
 				}
-
 			}
-
-
 		}
 
 		&-meta {
@@ -485,7 +469,7 @@
 				line-height: 1.2;
 
 				>a {
-					color: $c-gray-3;
+					color: $c-gray-dark;
 					display: inline-block;
 					max-width: 110px;
 					overflow: hidden;
@@ -496,13 +480,11 @@
 			}
 		}
 	}
-
 }
 
-
 .circle-graphs {
-	border-bottom: 1px solid $c-gray-1;
-	border-top: 1px solid $c-gray-1;
+	border-bottom: 1px solid $c-gray-x-light;
+	border-top: 1px solid $c-gray-x-light;
 	overflow: hidden;
 	padding: 5px 0;
 	width: 100%;
@@ -517,7 +499,7 @@
 }
 
 .circle-graph {
-	color: $c-gray-2;
+	color: $c-gray-medium;
 	float: left;
 	font-size: 10px;
 	line-height: 11px;
@@ -545,7 +527,7 @@
 		}
 
 		&.circle {
-			background-color: $c-gray-1;
+			background-color: $c-gray-x-light;
 			border-radius: 10px;
 			float: left;
 			height: 10px;

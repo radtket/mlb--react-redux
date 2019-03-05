@@ -128,7 +128,7 @@ $footer-height: 60px;
 
 	&__footer {
 		@include position(absolute, null null 0 0);
-		border-top: 1px solid $c-gray-8;
+		border-top: 1px solid $c-gray-x-light;
 		display: table;
 		height: $footer-height;
 		padding: 17px 24px;
@@ -228,9 +228,6 @@ $footer-height: 60px;
 		}
 	}
 }
-
-
-
 
 .split-logo {
 	img {

@@ -2,7 +2,7 @@
 	.team-roster {
 		&__holder {
 			background-color: $c-white;
-			border: 1px solid $c-gray-8;
+			border: 1px solid $c-gray-x-light;
 			border-radius: 4px;
 			display: flex;
 			overflow: hidden;
@@ -27,7 +27,7 @@
 					position: absolute;
 					right: 0;
 					top: 0;
-					transition: opacity .3s ease;
+					transition: opacity 0.3s ease;
 				}
 
 				img {
@@ -46,7 +46,7 @@
 					right: 0;
 					top: 50%;
 					transform: scale(0);
-					transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+					transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 					width: 50px;
 					z-index: 2;
 
@@ -59,7 +59,7 @@
 						position: absolute;
 						top: 50%;
 						transform: translate(-50%, -50%);
-						transition: transform .25s ease;
+						transition: transform 0.25s ease;
 					}
 
 					&::before {
@@ -74,7 +74,6 @@
 				}
 			}
 		}
-
 
 		&__content {
 			min-width: 0;
@@ -91,9 +90,9 @@
 			font-family: Montserrat, sans-serif;
 			font-size: 40px;
 			font-weight: 700;
-			letter-spacing: -.02em;
+			letter-spacing: -0.02em;
 			line-height: 1em;
-			padding-right: .12em;
+			padding-right: 0.12em;
 			text-transform: uppercase;
 		}
 
@@ -129,7 +128,7 @@
 			font-family: Montserrat, sans-serif;
 			font-size: 10px;
 			font-weight: 400;
-			letter-spacing: -.02em;
+			letter-spacing: -0.02em;
 			line-height: 1.2em;
 			text-transform: uppercase;
 		}
@@ -139,18 +138,18 @@
 			padding: 20px 0 0;
 
 			&-item {
-				color: $c-gray-dark;
+				color: $c-gray-x-dark;
 				display: inline-block;
 				font-family: Montserrat, sans-serif;
 				font-size: 11px;
 				font-weight: 700;
-				letter-spacing: -.02em;
+				letter-spacing: -0.02em;
 				line-height: 1.2em;
 				padding: 0 13px 0 0;
 				text-transform: uppercase;
 
 				.item-title {
-					color: $c-gray--10;
+					color: $c-gray;
 					font-weight: 400;
 					text-transform: uppercase;
 				}

@@ -1,6 +1,6 @@
 .header-team {
 	@include padding($spacing-base null null null);
-	background-color: $c-gray--16;
+	background-color: $c-light;
 	box-shadow: 0 2px 4px -1px $c-black-20, 0 4px 5px 0 $c-black-14, 0 1px 10px 0 $c-black-12;
 	color: $c-black-87;
 	margin-bottom: $spacing-huge;
@@ -44,7 +44,6 @@
 				display: inline-block;
 				margin-bottom: 0;
 				margin-left: 12px;
-
 
 				a {
 					display: block;

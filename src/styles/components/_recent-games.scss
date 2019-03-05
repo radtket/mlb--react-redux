@@ -1,6 +1,6 @@
 li {
 	&.game {
-		border-bottom: 1px solid $c-gray--11;
+		border-bottom: 1px solid $c-gray-x-light;
 		list-style: none;
 		margin: 0;
 
@@ -12,7 +12,7 @@ li {
 
 			&:hover {
 				background: $c-white;
-				background-image: linear-gradient($c-gray-light-30, $c-gray-light-30);
+				background-image: linear-gradient($c-light-30, $c-light-30);
 			}
 
 			.opponent-logo {
@@ -29,7 +29,7 @@ li {
 			}
 
 			.opponent-info {
-				color: $c-gray-3;
+				color: $c-gray-dark;
 				display: table-cell;
 				font-size: 11px;
 				font-weight: 600;
@@ -51,7 +51,7 @@ li {
 			}
 
 			.game-meta {
-				color: $c-gray-3;
+				color: $c-gray-dark;
 				display: table-cell;
 				font-size: 11px;
 				font-weight: 600;

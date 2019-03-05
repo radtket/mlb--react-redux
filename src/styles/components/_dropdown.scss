@@ -7,10 +7,10 @@
 
 	&-control {
 		background-color: $c-white;
-		border: 1px solid $c-gray--13;
+		border: 1px solid $c-gray-x-light;
 		border-radius: 2px;
 		box-sizing: border-box;
-		color: $c-gray--15;
+		color: $c-gray-x-dark;
 		cursor: default;
 		display: inline-block;
 		outline: none;
@@ -27,7 +27,7 @@
 	&-arrow {
 		@include position(absolute, $spacing-small $spacing-small null null);
 		@include size(0);
-		border-color: $c-gray--14 transparent transparent;
+		border-color: $c-gray transparent transparent;
 		border-style: solid;
 		border-width: 5px 5px 0;
 		content: "";
@@ -35,15 +35,14 @@
 		margin-top: -ceil(2.5);
 
 		.is-open & {
-			border-color: transparent transparent $c-gray--14;
+			border-color: transparent transparent $c-gray;
 			border-width: 0 5px 5px;
 		}
-
 	}
 
 	&-menu {
 		background-color: $c-white;
-		border: 1px solid $c-gray--13;
+		border: 1px solid $c-gray-x-light;
 		box-shadow: 0 1px 0 $c-black-06;
 		box-sizing: border-box;
 		margin-top: -1px;
@@ -57,7 +56,7 @@
 		.Dropdown-group {
 			>.Dropdown-title {
 				@include padding($spacing-small $spacing-xsmall);
-				color: $c-gray--15;
+				color: $c-gray-x-dark;
 				font-weight: bold;
 				text-transform: capitalize;
 			}
@@ -67,7 +66,7 @@
 	&-option {
 		@include padding($spacing-small $spacing-xsmall);
 		box-sizing: border-box;
-		color: $c-gray--15-80;
+		color: $c-dark-85;
 		cursor: pointer;
 		display: block;
 
@@ -78,19 +77,17 @@
 
 		&:hover,
 		&.is-selected {
-			background-color: $c-gray--12;
-			color: $c-gray--15;
+			background: $c-white;
+			background-image: linear-gradient($c-light-30, $c-light-30);
+			color: $c-dark;
 		}
 	}
 
 	&-noresults {
 		@include padding($spacing-small $spacing-xsmall);
 		box-sizing: border-box;
-		color: $c-gray--13;
+		color: $c-gray-x-light;
 		cursor: default;
 		display: block;
 	}
-
-
-
 }
