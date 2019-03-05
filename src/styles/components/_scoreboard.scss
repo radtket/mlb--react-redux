@@ -23,7 +23,7 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-dark transparent transparent;
+								border-color: transparent $c-gray-medium transparent transparent;
 								border-style: solid;
 								border-width: 6px 6px 6px 0;
 								content: "";
@@ -42,7 +42,7 @@
 					>td,
 					>td {
 						a {
-							color: $c-gray;
+							color: $c-gray-light;
 						}
 					}
 				}
@@ -55,7 +55,7 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-dark transparent transparent;
+								border-color: transparent $c-gray-medium transparent transparent;
 								border-style: solid;
 								border-width: 6px 6px 6px 0;
 								content: "";
@@ -74,7 +74,7 @@
 					>td,
 					>td {
 						a {
-							color: $c-gray;
+							color: $c-gray-light;
 						}
 					}
 				}
@@ -89,7 +89,7 @@
 					font-weight: 400;
 
 					&.date-time {
-						color: $c-gray-medium;
+						color: $c-gray;
 						font-size: 14px;
 						font-weight: 600;
 						text-transform: none;
@@ -147,7 +147,7 @@
 			}
 
 			&__name {
-				color: $c-gray-dark;
+				color: $c-gray-medium;
 				font-size: 14px;
 				font-weight: 600;
 				overflow: hidden;
@@ -160,7 +160,7 @@
 			}
 
 			&__record {
-				color: $c-gray;
+				color: $c-gray-light;
 				font-size: 10px;
 				line-height: 14px;
 				margin-bottom: 0;
@@ -195,7 +195,7 @@
 	// height: 159px;
 
 	.play-by-play {
-		color: $c-gray-medium;
+		color: $c-gray;
 		font-size: 11px;
 		height: 100%;
 		position: relative;
@@ -362,7 +362,7 @@
 	.last-play {
 		bottom: 5px;
 		box-sizing: content-box;
-		color: $c-gray-medium;
+		color: $c-gray;
 		font-size: 11px;
 		margin-top: 10px;
 		overflow-y: auto;
@@ -403,7 +403,7 @@
 
 	.sb {
 		&-header {
-			color: $c-gray;
+			color: $c-gray-light;
 			font-size: 12px;
 			font-weight: 400;
 			margin-bottom: 8px;
@@ -417,7 +417,7 @@
 		}
 
 		&-content {
-			color: $c-gray;
+			color: $c-gray-light;
 			padding: 0 8px;
 
 			ul {
@@ -469,7 +469,7 @@
 				line-height: 1.2;
 
 				>a {
-					color: $c-gray-dark;
+					color: $c-gray-medium;
 					display: inline-block;
 					max-width: 110px;
 					overflow: hidden;
@@ -499,7 +499,7 @@
 }
 
 .circle-graph {
-	color: $c-gray-medium;
+	color: $c-gray;
 	float: left;
 	font-size: 10px;
 	line-height: 11px;

@@ -150,11 +150,11 @@
 			}
 
 			&__last-name {
-				color: $c-gray-x-dark;
+				color: $c-gray-dark;
 			}
 
 			&__content {
-				background-color: $color-dark;
+				background-color: $c-gray-x-dark;
 				left: 0;
 				overflow: hidden;
 				padding: 12px 0;
@@ -240,7 +240,7 @@
 				z-index: 1;
 
 				&-txt {
-					background-color: $color-dark;
+					background-color: $c-gray-x-dark;
 					color: $c-white;
 					display: inline-block;
 					font-family: Montserrat, sans-serif;

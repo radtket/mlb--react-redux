@@ -90,7 +90,7 @@ $footer-height: 60px;
 	}
 
 	&__date {
-		color: $c-gray;
+		color: $c-gray-light;
 		display: inline-block;
 		font-family: Montserrat, sans-serif;
 		font-size: 10px;
@@ -150,7 +150,7 @@ $footer-height: 60px;
 			vertical-align: middle;
 
 			a {
-				color: $c-gray;
+				color: $c-gray-light;
 				transition: color .2s ease;
 			}
 
@@ -220,7 +220,7 @@ $footer-height: 60px;
 		}
 
 		&__name {
-			color: $c-gray;
+			color: $c-gray-light;
 			font-size: 10px;
 			font-style: normal;
 			font-weight: 400;

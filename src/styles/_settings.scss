@@ -29,19 +29,17 @@ $c-primary: #03a9f4 !default;
 $c-secondary: #e91e63 !default;
 $c-dark: #18232f !default;
 $c-light: #eceff1 !default;
-$color-dark: #272727; // 3 file | 4 background
 
-
-
-$c-gray-x-dark: #333 !default;
-$c-gray-dark: #48494a !default;
-$c-gray-medium: #6c6d6f;
-$c-gray: #969da6 !default;
+$c-gray-x-dark: #272727; // 3 file | 4 background
+$c-gray-dark: #333 !default;
+$c-gray-medium: #48494a !default;
+$c-gray: #6c6d6f !default;
+$c-gray-light: #969da6 !default;
 $c-gray-x-light: #d5d9db !default;
 
-$c-gray-x-dark-80: rgba($c-gray-x-dark, .8); // 1 file, 1 font-color
+$c-gray-dark-80: rgba($c-gray-dark, .8); // 1 file, 1 font-color
 
-$c-text: $color-dark !default;
+$c-text: $c-gray-x-dark !default;
 $c-link: $c-primary !default;
 $c-link-hover: rgba($c-primary, .8) !default;
 
@@ -56,7 +54,7 @@ $c-map: ("primary": $c-primary,
 "info": $c-info,
 "warning": $c-warning,
 "error": $c-error,
-"gray": $c-gray,
+"gray": $c-gray-light,
 "gray-light": $c-light) !default;
 
 // Social colors
@@ -195,7 +193,7 @@ $fz-badge-small: .7em !default;
 $badges-color-map: (primary: $c-primary,
 secondary: $c-secondary,
 dark: $c-dark,
-light: $c-gray,
+light: $c-gray-light,
 success: $c-success,
 error: $c-error,
 warning: $c-warning) !default;
@@ -230,11 +228,11 @@ $bd-form: $bd-medium !default;
 $fz-form: $fz-body !default;
 $bgc-form-focus: lighten($bgc-form, 5%) !default;
 $trs-form: background-color .2s ease-in-out !default;
-$c-form-placeholder: $c-gray !default;
+$c-form-placeholder: $c-gray-light !default;
 $mih-form-textarea: 120px !default;
 $p-form: $p-medium $p-big !default;
 $size-form-input-icon: 16px !default;
-$c-form-input-icon: $c-gray !default;
+$c-form-input-icon: $c-gray-light !default;
 $bd-form-error: 1px solid $c-error !default;
 $bgc-form-error: $bgc-form !default;
 
@@ -268,7 +266,7 @@ $p-paginator-item: $p-medium $p-big !default;
 $bgc-table-header: $bgc-body !default;
 $bgc-table: $c-light !default;
 $bd-table: $bd-medium !default;
-$c-table-heading: $c-gray !default;
+$c-table-heading: $c-gray-light !default;
 $c-table-text: $c-text !default;
 $fw-table-heading: normal !default;
 $mwi-table: 100% !default;

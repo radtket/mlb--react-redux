@@ -13,7 +13,7 @@
 			overflow: hidden;
 			position: relative;
 
-			>a {
+			> a {
 				display: block;
 				position: relative;
 
@@ -138,7 +138,7 @@
 			padding: 20px 0 0;
 
 			&-item {
-				color: $c-gray-x-dark;
+				color: $c-gray-dark;
 				display: inline-block;
 				font-family: Montserrat, sans-serif;
 				font-size: 11px;
@@ -149,7 +149,7 @@
 				text-transform: uppercase;
 
 				.item-title {
-					color: $c-gray;
+					color: $c-gray-light;
 					font-weight: 400;
 					text-transform: uppercase;
 				}

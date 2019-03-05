@@ -10,7 +10,7 @@
 		border: 1px solid $c-gray-x-light;
 		border-radius: 2px;
 		box-sizing: border-box;
-		color: $c-gray-x-dark;
+		color: $c-gray-dark;
 		cursor: default;
 		display: inline-block;
 		outline: none;
@@ -27,7 +27,7 @@
 	&-arrow {
 		@include position(absolute, $spacing-small $spacing-small null null);
 		@include size(0);
-		border-color: $c-gray transparent transparent;
+		border-color: $c-gray-light transparent transparent;
 		border-style: solid;
 		border-width: 5px 5px 0;
 		content: "";
@@ -35,7 +35,7 @@
 		margin-top: -ceil(2.5);
 
 		.is-open & {
-			border-color: transparent transparent $c-gray;
+			border-color: transparent transparent $c-gray-light;
 			border-width: 0 5px 5px;
 		}
 	}
@@ -54,9 +54,9 @@
 		z-index: 1000;
 
 		.Dropdown-group {
-			>.Dropdown-title {
+			> .Dropdown-title {
 				@include padding($spacing-small $spacing-xsmall);
-				color: $c-gray-x-dark;
+				color: $c-gray-dark;
 				font-weight: bold;
 				text-transform: capitalize;
 			}

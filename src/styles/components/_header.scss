@@ -1,7 +1,7 @@
 $navbar--height: 60px;
 
 .header {
-	background: $color-dark;
+	background: $c-gray-x-dark;
 	position: relative;
 	width: 100%;
 
@@ -9,7 +9,7 @@ $navbar--height: 60px;
 		float: left;
 		margin-right: $spacing-base;
 
-		>a {
+		> a {
 			height: $navbar--height;
 			line-height: $navbar--height;
 
@@ -27,22 +27,22 @@ $navbar--height: 60px;
 	&__nav {
 		float: left;
 
-		>ul {
+		> ul {
 			display: block;
 			margin-bottom: 0;
 
-			>li {
+			> li {
 				display: inline-block;
 				margin-bottom: 0;
 
-				>a,
-				>button {
+				> a,
+				> button {
 					@include padding(null $spacing-small);
 					color: $c-white;
 					display: inline-block;
 					height: $navbar--height;
 					line-height: $navbar--height;
-					opacity: .75;
+					opacity: 0.75;
 					position: relative;
 
 					&.active {
@@ -54,7 +54,6 @@ $navbar--height: 60px;
 							background: $bada55;
 							content: "";
 						}
-
 					}
 
 					&:hover {
@@ -62,7 +61,7 @@ $navbar--height: 60px;
 					}
 				}
 
-				>button {
+				> button {
 					border: 0;
 
 					svg {
