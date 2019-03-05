@@ -178,7 +178,7 @@
 			}
 
 			&.active-team {
-				font-weight: 600;
+				font-weight: $fw-bold;
 			}
 		}
 	}
@@ -307,7 +307,7 @@
 				content: "";
 				opacity: 0;
 				pointer-events: none;
-				transition: opacity 0.2s ease-out;
+				transition: opacity .2s ease-out;
 				width: 6px;
 				z-index: 1;
 			}
@@ -351,7 +351,7 @@
 		opacity: 0;
 		pointer-events: none;
 		position: absolute;
-		transition: opacity 0.2s ease-out;
+		transition: opacity .2s ease-out;
 		width: 6px;
 		z-index: 1;
 	}

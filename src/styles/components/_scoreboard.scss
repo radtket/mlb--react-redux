@@ -86,12 +86,12 @@
 				width: 100%;
 
 				th {
-					font-weight: 400;
+					font-weight: $fw-normal;
 
 					&.date-time {
 						color: $c-gray;
 						font-size: 14px;
-						font-weight: 600;
+						font-weight: $fw-bold;
 						text-transform: none;
 
 						@media screen and (min-width: 768px) {
@@ -119,10 +119,10 @@
 		td {
 			&.score {
 				font-size: 16px;
-				font-weight: 400;
+				font-weight: $fw-normal;
 
 				&__total {
-					font-weight: 600;
+					font-weight: $fw-bold;
 				}
 			}
 		}
@@ -149,7 +149,7 @@
 			&__name {
 				color: $c-gray-medium;
 				font-size: 14px;
-				font-weight: 600;
+				font-weight: $fw-bold;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -379,7 +379,7 @@
 
 		span {
 			&.title {
-				font-weight: 600;
+				font-weight: $fw-bold;
 				text-transform: uppercase;
 			}
 		}
@@ -405,7 +405,7 @@
 		&-header {
 			color: $c-gray-light;
 			font-size: 12px;
-			font-weight: 400;
+			font-weight: $fw-normal;
 			margin-bottom: 8px;
 			overflow: hidden;
 			padding: 10px 8px 0;
@@ -465,7 +465,7 @@
 
 			h2 {
 				font-size: 11px;
-				font-weight: 600;
+				font-weight: $fw-bold;
 				line-height: 1.2;
 
 				>a {

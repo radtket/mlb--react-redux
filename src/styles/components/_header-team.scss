@@ -21,14 +21,14 @@
 		&__name {
 			display: inline-block;
 			font-size: 28px;
-			font-weight: 600;
+			font-weight: $fw-bold;
 			line-height: 64px;
 			margin-left: $spacing-small;
 			text-transform: uppercase;
 
 			&--city {
 				color: initial;
-				font-weight: 300;
+				font-weight: $fw-light;
 			}
 		}
 
@@ -101,7 +101,7 @@
 
 						&.active {
 							color: $c-dark;
-							font-weight: 600;
+							font-weight: $fw-bold;
 
 							&::after {
 								background-color: $bada55;

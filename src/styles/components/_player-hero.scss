@@ -31,7 +31,7 @@
 		background-position: 100% 0;
 		background-repeat: no-repeat;
 		background-size: auto;
-		opacity: 0.4;
+		opacity: .4;
 		top: 0;
 		z-index: 1;
 	}
@@ -58,9 +58,9 @@
 		&__title {
 			color: $c-gray-light;
 			font-size: 10px;
-			font-weight: 400;
+			font-weight: $fw-normal;
 			line-height: 1.2em;
-			margin-bottom: 0.1em;
+			margin-bottom: .1em;
 			text-transform: uppercase;
 		}
 
@@ -161,7 +161,7 @@
 		display: inline-block;
 		font-size: 54px;
 		font-weight: 700;
-		letter-spacing: -0.02em;
+		letter-spacing: -.02em;
 		line-height: 1em;
 		text-transform: uppercase;
 		vertical-align: middle;
@@ -216,14 +216,14 @@
 
 	&__team-logo {
 		left: -45%;
-		opacity: 0.05;
+		opacity: .05;
 		position: absolute;
 		top: -5%;
 		z-index: 0;
 
 		@media (min-width: 992px) {
 			left: -10%;
-			opacity: 0.1;
+			opacity: .1;
 		}
 
 		img {

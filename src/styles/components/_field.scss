@@ -8,7 +8,7 @@
 
 	.onthefield {
 		@include position(absolute, 0);
-		font-size: 0.9em;
+		font-size: .9em;
 
 		.fielder {
 			display: block;
@@ -65,7 +65,7 @@
 
 			a {
 				color: $c-black;
-				text-shadow: 0 0 0.25em $c-gray-light;
+				text-shadow: 0 0 .25em $c-gray-light;
 			}
 		}
 	}
