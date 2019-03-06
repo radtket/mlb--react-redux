@@ -16,7 +16,7 @@ class Tab extends Component {
   render() {
     const {
       onClick,
-      props: { activeTab, label },
+      props: { activeTab, label, itemWidth },
     } = this;
 
     let className = "tabs-item";
@@ -26,7 +26,10 @@ class Tab extends Component {
     }
 
     return (
-      <li className={className} onClick={onClick}>
+      <li
+        className={className}
+        onClick={onClick}
+        style={{ width: `${itemWidth || "auto"}` }}>
         {label}
       </li>
     );

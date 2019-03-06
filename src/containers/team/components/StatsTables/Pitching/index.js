@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import Sort from "./Sort";
 import Roster from "./Roster";
 
-class StatsPlayerTable extends Component {
+class StatsTablePitching extends Component {
   state = {
     players: [],
     direction: 1,
@@ -61,7 +61,7 @@ class StatsPlayerTable extends Component {
     const { players: StatePlayers, direction, isScrolling } = this.state;
     return (
       <div className={`table--wrap  ${isScrolling && "isScrolling"}`}>
-        <table className="table table--roster">
+        <table className="table table--roster" style={{ marginTop: 24 }}>
           <Sort
             direction={direction}
             players={PropsPlayers}
@@ -74,4 +74,4 @@ class StatsPlayerTable extends Component {
   }
 }
 
-export default StatsPlayerTable;
+export default StatsTablePitching;

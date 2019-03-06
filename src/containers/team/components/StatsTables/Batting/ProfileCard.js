@@ -6,7 +6,7 @@ import {
   calcBattingAverage,
   calcBattingOBP,
   calcBattingSlug,
-} from "../../utils/helpers";
+} from "../../../../../utils/helpers";
 
 const ProfileCard = ({ player }) => {
   const {
@@ -24,7 +24,6 @@ const ProfileCard = ({ player }) => {
     Walks,
     Strikeouts,
     StolenBases,
-
     SacrificeFlies,
     HitByPitch,
     Singles,

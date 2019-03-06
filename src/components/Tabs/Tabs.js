@@ -26,7 +26,7 @@ class Tabs extends Component {
   render() {
     const {
       onClickTabItem,
-      props: { children },
+      props: { children, itemWidth },
       state: { activeTab },
     } = this;
 
@@ -41,6 +41,7 @@ class Tabs extends Component {
                 key={label}
                 label={label}
                 onClick={onClickTabItem}
+                itemWidth={itemWidth}
               />
             );
           })}

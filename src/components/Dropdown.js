@@ -34,7 +34,6 @@ class Dropdown extends Component {
           type="button">
           {Title}
           <IconCaret />
-          {/* <span className="caret" /> */}
         </button>
         {showMenu ? (
           <div

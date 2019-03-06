@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamStats } from "../../../modules/teamStats/actions";
-import StatsPlayerTable from "../../../components/StatsTable";
+
+import Tabs from "../../../components/Tabs/Tabs";
+import StatsTableBatting from "../components/StatsTables/Batting";
+import StatsTablePitching from "../components/StatsTables/Pitching";
 
 class PageTeamStats extends Component {
   componentDidMount() {
@@ -28,6 +31,7 @@ class PageTeamStats extends Component {
 
   render() {
     const { teamStatsFail, teamStatsLoading, teamStats } = this.props;
+    const { pitcher, batter } = this.splitStatsByPosition(teamStats);
 
     if (teamStatsFail) {
       return <div>Error! {teamStatsFail.message}</div>;
@@ -37,18 +41,18 @@ class PageTeamStats extends Component {
       return <div>Loading...</div>;
     }
 
-    // console.log(this.splitStatsByPosition(teamStats));
-
-    // console.log(teamStats);
-
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <div className="card" style={{ position: "relative" }}>
-              <h5 className="card__headline">Batting Stats</h5>
-              <StatsPlayerTable players={teamStats} />
-            </div>
+            <Tabs itemWidth="25%">
+              <div label="Batting">
+                <StatsTableBatting players={batter} />
+              </div>
+              <div label="Pitching">
+                <StatsTablePitching players={pitcher} />
+              </div>
+            </Tabs>
           </div>
         </div>
       </div>
@@ -61,6 +65,11 @@ PageTeamStats.propTypes = {
   teamStatsLoading: PropTypes.bool.isRequired,
   teamStats: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamStats: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      teamAbrv: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
 PageTeamStats.defaultProps = {
