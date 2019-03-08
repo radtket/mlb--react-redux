@@ -492,6 +492,20 @@ export const PositionsBaseball = {
   DH: "Designated hitter",
 };
 
+export const DefualtAvatar =
+  "https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/0.png";
+
+export const RotoBallerReporters = {
+  Staff: {
+    Twitter: "@RotoBaller",
+    Avatar: "https://avatars.io/twitter/RotoBaller",
+  },
+  "Caden Inaba": {
+    Twitter: "@CadenTKC",
+    Avatar: "https://avatars.io/twitter/CadenTKC",
+  },
+};
+
 export const getExcerpt = (str, limit) => {
   const fullText = str;
   let shortText = str;

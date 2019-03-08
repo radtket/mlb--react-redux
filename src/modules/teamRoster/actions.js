@@ -1,6 +1,6 @@
 import { handleErrors } from "../../utils/helpers";
 // TODO: Add When API is Live
-// import apiHeaders from "../../utils/api";
+// import ApiHeadersMLB from "../../utils/api";
 
 export const FETCH_TEAM_ROSTER_BEGIN = "FETCH_TEAM_ROSTER_BEGIN";
 export const FETCH_TEAM_ROSTER_SUCCESS = "FETCH_TEAM_ROSTER_SUCCESS";
@@ -25,7 +25,7 @@ function getTeamRoster(teamArg) {
   // function getTeamRoster(teamArg) {
   // return fetch(
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${teamArg}`,
-  //   apiHeaders
+  //   ApiHeadersMLB
   // )
   return fetch(`/data/teams/${teamArg}/roster.${teamArg}.json`)
     .then(handleErrors)

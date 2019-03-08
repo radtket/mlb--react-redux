@@ -23,7 +23,7 @@ function getGamesOnDay(dateArg) {
   // TODO: Add When API is Live
   // return fetch(
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${date}`,
-  //   apiHeaders
+  //   ApiHeadersMLB
   // )
   return fetch(`/data/GamesByDate/${date}.json`)
     .then(handleErrors)

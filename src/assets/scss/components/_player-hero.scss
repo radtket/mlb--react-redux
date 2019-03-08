@@ -1,10 +1,11 @@
 .player-heading {
 	background-color: $c-gray-x-dark;
-	background-image: url("htttp://alchemists.dan-fisher.com/basketball/assets/images/page-heading.jpg");
+	background-image: url("http://alchemists.dan-fisher.com/basketball/assets/images/page-heading.jpg");
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: hidden;
+	margin-bottom: $spacing-huge;
 	position: relative;
 
 	&::after,

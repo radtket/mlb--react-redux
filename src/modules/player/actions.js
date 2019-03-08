@@ -23,13 +23,13 @@ function getPlayer(playerArg) {
   // return Promise.all([
   //   fetch(
   //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerSeasonStatsByPlayer/${season}/${playerid}`,
-  //     apiHeaders
+  //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
   //     .then(value => value.json()),
   //   fetch(
   //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerDetailsByPlayer/${playerid}`,
-  //     apiHeaders
+  //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
   //     .then(value => value.json()),

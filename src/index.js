@@ -6,7 +6,7 @@ import store, { history } from "./store";
 import App from "./containers/app";
 
 import "sanitize.css";
-import "./styles/index.scss";
+import "./assets/scss/index.scss";
 
 render(
   <Provider store={store}>

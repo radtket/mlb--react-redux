@@ -1,6 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { espnLogo, getExcerpt } from "../../utils/helpers";
+import {
+  espnLogo,
+  getExcerpt,
+  RotoBallerReporters,
+  DefualtAvatar,
+} from "../../utils/helpers";
 
 const SplitLogo = (team1, team2) => {
   return (
@@ -23,15 +28,18 @@ const NewsArticle = ({
   Author,
   Team,
   Team2,
+  MLBAMID,
+  cardSize,
 }) => {
   return (
-    <article className="news-card">
+    <article
+      className={`news-card ${cardSize ? `news-card--${cardSize}` : ""}`}>
       <a href={Url} target="_blank" rel="noopener noreferrer">
         <figure
           className="news-card__image"
           style={
-            {
-              // backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
+            MLBAMID && {
+              backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
             }
           }>
           <figcaption className="news-card__label">{Categories}</figcaption>
@@ -53,8 +61,12 @@ const NewsArticle = ({
         <div className="post-author">
           <figure className="post-author__avatar">
             <img
-              src="http://alchemists.dan-fisher.com/basketball/assets/images/samples/avatar-1.jpg"
-              alt="Post Author Avatar"
+              src={
+                RotoBallerReporters[Author]
+                  ? RotoBallerReporters[Author].Avatar
+                  : DefualtAvatar
+              }
+              alt={Author}
             />
           </figure>
           <div className="post-author__info">

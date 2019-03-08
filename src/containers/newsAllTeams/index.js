@@ -27,7 +27,7 @@ class NewsAllTeamsList extends Component {
         {newsAllTeams &&
           newsAllTeams.map(article => {
             const { NewsID } = article;
-            return <NewsArticle key={NewsID} {...article} />;
+            return <NewsArticle cardSize="qrt" key={NewsID} {...article} />;
           })}
       </div>
     );

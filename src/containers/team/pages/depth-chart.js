@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
-
 import { fetchTeamDepths } from "../../../modules/teamDepth/actions";
 import { fetchTeamRoster } from "../../../modules/teamRoster/actions";
+import { DefualtAvatar } from "../../../utils/helpers";
 
 class PageTeamDepth extends Component {
   componentDidMount() {
@@ -59,11 +59,7 @@ class PageTeamDepth extends Component {
             className={`depth-chart__position depth-chart__position--${name.toLowerCase()}`}>
             <figure className="depth-chart__position--image">
               <img
-                src={
-                  StarterObj
-                    ? StarterObj.PhotoUrl
-                    : "https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/0.png"
-                }
+                src={StarterObj ? StarterObj.PhotoUrl : DefualtAvatar}
                 alt={`${StarterFirstName} ${StarterLastName}`}
               />
             </figure>

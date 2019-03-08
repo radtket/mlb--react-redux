@@ -23,7 +23,7 @@ function getTeamStats(teamArg) {
   // function getTeamRoster(teamArg) {
   // return fetch(
   //   `https://api.fantasydata.net/v3/mlb/stats/{format}/PlayerSeasonStatsByTeam/{season}/${teamArg}`,
-  //   apiHeaders
+  //   ApiHeadersMLB
   // )
   return fetch(`/data/teams/${teamArg}/playerstats.${teamArg}.json`)
     .then(handleErrors)

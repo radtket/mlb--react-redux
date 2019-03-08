@@ -87,7 +87,11 @@ class TeamStandings extends Component {
             </table>
           </div>
           <div label="League">
-            <table className="table table--standings">
+            <table
+              className="table table--standings"
+              style={{
+                boxShadow: "none",
+              }}>
               <thead>
                 <tr>
                   <th>{getLeagueName(League)}</th>
