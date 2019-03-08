@@ -119,7 +119,7 @@ class Team extends Component {
         <Route
           exact
           path="/teams/:teamAbrv/depth"
-          render={() => <PageTeamDepth />}
+          render={() => <PageTeamDepth currentTeamAbrv={currentTeamAbrv} />}
         />
       </>
     );
