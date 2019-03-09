@@ -82,16 +82,6 @@ class Team extends Component {
           teams={teams}
           changeTeams={this.changeTeams}
         />
-        {/* <PageTeamHome
-          currentTeamAbrv={currentTeamAbrv}
-          activeTeamObj={activeTeamObj}
-          recentGames={recentGames}
-          standings={standings}
-          teamRoster={teamRoster}
-          teamRosterError={teamRosterError}
-          teamRosterLoading={teamRosterLoading}
-        /> */}
-
         <Route
           exact
           path="/teams/:teamAbrv"
@@ -101,6 +91,7 @@ class Team extends Component {
               currentTeamAbrv={currentTeamAbrv}
               recentGames={recentGames}
               standings={standings}
+              match={match}
             />
           )}
         />

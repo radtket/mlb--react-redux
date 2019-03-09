@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import {
   espnLogo,
   getExcerpt,
@@ -23,13 +24,17 @@ const NewsArticle = ({
   Categories,
   Content,
   TimeAgo,
-  PlayerID,
-  PlayerID2,
   Author,
   Team,
   Team2,
   MLBAMID,
   cardSize,
+  Updated,
+  FeaturedImage,
+  DatePublished,
+  Source,
+  // PlayerID,
+  // PlayerID2,
 }) => {
   return (
     <article
@@ -38,9 +43,10 @@ const NewsArticle = ({
         <figure
           className="news-card__image"
           style={
-            MLBAMID && {
+            (FeaturedImage && { backgroundImage: `url(${FeaturedImage})` }) ||
+            (MLBAMID && {
               backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
-            }
+            })
           }>
           <figcaption className="news-card__label">{Categories}</figcaption>
         </figure>
@@ -49,8 +55,14 @@ const NewsArticle = ({
         <a href={Url} className="news-card__cta">
           {SplitLogo(Team, Team2)}
         </a>
-        <time dateTime="2016-08-23" className="news-card__date">
-          {TimeAgo}
+        <time
+          dateTime={
+            moment(Updated).format("YYYY-MM-DD") ||
+            moment(DatePublished).format("YYYY-MM-DD") ||
+            "2016-08-23"
+          }
+          className="news-card__date">
+          {TimeAgo || moment(DatePublished).format("YYYY-MM-DD")}
         </time>
         <h1 className="news-card__headline">{Title}</h1>
         <div className="news-card__body">
@@ -70,7 +82,7 @@ const NewsArticle = ({
             />
           </figure>
           <div className="post-author__info">
-            <h4 className="post-author__name">{Author}</h4>
+            <h4 className="post-author__name">{Author || Source}</h4>
           </div>
         </div>
 
@@ -95,20 +107,34 @@ NewsArticle.propTypes = {
   Url: PropTypes.string.isRequired,
   Categories: PropTypes.string,
   Content: PropTypes.string.isRequired,
-  TimeAgo: PropTypes.string.isRequired,
-  PlayerID: PropTypes.number,
-  PlayerID2: PropTypes.number,
-  Author: PropTypes.string.isRequired,
+  TimeAgo: PropTypes.string,
+  Author: PropTypes.string,
+  Source: PropTypes.string,
   Team: PropTypes.string,
   Team2: PropTypes.string,
+  MLBAMID: PropTypes.string,
+  cardSize: PropTypes.string,
+  Updated: PropTypes.string,
+  FeaturedImage: PropTypes.string,
+  DatePublished: PropTypes.string,
+  // PlayerID: PropTypes.number,
+  // PlayerID2: PropTypes.number,
 };
 
 NewsArticle.defaultProps = {
   Categories: "News",
-  PlayerID: null,
-  PlayerID2: null,
   Team: null,
   Team2: null,
+  TimeAgo: null,
+  MLBAMID: null,
+  cardSize: null,
+  Updated: null,
+  FeaturedImage: null,
+  DatePublished: null,
+  Author: null,
+  Source: null,
+  // PlayerID: null,
+  // PlayerID2: null,
 };
 
 export default NewsArticle;
