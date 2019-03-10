@@ -20,10 +20,13 @@ export const fetchTeamDepthsFailure = teamDepthsFail => ({
 });
 
 function getTeamDepths(teamAbrv) {
+  const currentTeamAbrv = teamAbrv === "CHW" ? "CWS" : teamAbrv;
   return fetch("/data/all-teams-depth.json")
     .then(handleErrors)
     .then(res => res.json())
-    .then(shit => shit.teams.find(team => team.abbr == teamAbrv));
+    .then(allTeams =>
+      allTeams.teams.find(team => team.abbr == currentTeamAbrv)
+    );
 }
 
 export function fetchTeamDepths(teamAbrv) {
