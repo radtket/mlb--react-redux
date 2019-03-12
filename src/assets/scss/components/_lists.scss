@@ -1,0 +1,63 @@
+/**
+ *  LINE LIST
+ *
+ *  Markup:
+ *  -------
+ *
+ *  <ul class="list--line">
+ *  	<li>List Item #1</li>
+ *  	<li>List Item #2</li>
+  *  	<li>List Item #3</li>
+ *	</ul>
+ */
+
+.list--line {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	margin: 0 0 16px;
+	padding: 0 0 0 48px;
+
+	li {
+		list-style: none;
+		margin: 0 0 8px;
+		padding: 0;
+		position: relative;
+
+		&::before {
+			@include position(absolute, 0 100% null null);
+			content: "\2014";
+			display: block;
+			margin-right: .6em;
+		}
+	}
+}
+
+/**
+ *  HOVER NAV LIST
+ *
+ *  Markup:
+ *  -------
+ *
+ *  <ul class="list--nav">
+ *  	<li>List Item #1</li>
+ *  	<li>List Item #2</li>
+  *  	<li>List Item #3</li>
+ *	</ul>
+ */
+
+.list--nav {
+	li {
+		margin-bottom: 0;
+
+		>a {
+			display: block;
+			padding: $spacing-small;
+			transition: background-color 150ms cubic-bezier(.4, 0, .2, 1) 0ms;
+
+			&:hover {
+				background-color: $c-dark-08;
+			}
+		}
+	}
+}

@@ -7,6 +7,7 @@ import TeamStandings from "../components/TeamStandings";
 import NewsArticle from "../../newsAllTeams/NewsArticle";
 import { fetchNewsTeams } from "../../../modules/newsTeam/actions";
 import { fetchTeamRssNews } from "../../../modules/teamRssNews/actions";
+import TeamRssFeed from "../components/TeamRssFeed";
 
 class PageTeamHome extends Component {
   componentDidMount() {
@@ -105,17 +106,7 @@ class PageTeamHome extends Component {
               activeTeam={currentTeamAbrv}
               recentGames={recentGames}
             />
-            <ul>
-              {teamRssNews &&
-                teamRssNews.map(article => {
-                  const { title, link } = article;
-                  return (
-                    <li key={article["mlb:display-date-epoch"]}>
-                      <a href={link}>{title}</a>
-                    </li>
-                  );
-                })}
-            </ul>
+            <TeamRssFeed teamRssNews={teamRssNews} />
           </div>
         </div>
       </div>
