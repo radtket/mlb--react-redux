@@ -6,21 +6,32 @@ import TeamRecentGames from "../components/TeamRecentGames";
 import TeamStandings from "../components/TeamStandings";
 import NewsArticle from "../../newsAllTeams/NewsArticle";
 import { fetchNewsTeams } from "../../../modules/newsTeam/actions";
+import { fetchTeamRssNews } from "../../../modules/teamRssNews/actions";
 
 class PageTeamHome extends Component {
   componentDidMount() {
-    const { match, fetchNewsTeams: getNewsTeams } = this.props;
+    const {
+      match,
+      fetchNewsTeams: getNewsTeams,
+      fetchTeamRssNews: getTeamRssNews,
+    } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     getNewsTeams(currentTeamAbrv);
+    getTeamRssNews(currentTeamAbrv);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, fetchNewsTeams: getNewsTeams } = this.props;
+    const {
+      match,
+      fetchNewsTeams: getNewsTeams,
+      fetchTeamRssNews: getTeamRssNews,
+    } = this.props;
     const { teamAbrv: currentTeamAbrv } = match.params;
     const { teamAbrv: prevTeamAbrv } = prevProps.match.params;
 
     if (currentTeamAbrv !== prevTeamAbrv) {
       getNewsTeams(currentTeamAbrv);
+      getTeamRssNews(currentTeamAbrv);
     }
   }
 
@@ -33,13 +44,20 @@ class PageTeamHome extends Component {
       newsTeamsFail,
       newsTeamsLoading,
       newsTeams,
+      teamRssNewsFail,
+      teamRssNewsLoading,
+      teamRssNews,
     } = this.props;
 
     if (newsTeamsFail) {
       return <div>Error! {newsTeamsFail.message}</div>;
     }
 
-    if (newsTeamsLoading) {
+    if (teamRssNewsFail) {
+      return <div>Error! {teamRssNewsFail.message}</div>;
+    }
+
+    if (newsTeamsLoading || teamRssNewsLoading) {
       return <div>Loading...</div>;
     }
 
@@ -87,6 +105,17 @@ class PageTeamHome extends Component {
               activeTeam={currentTeamAbrv}
               recentGames={recentGames}
             />
+            <ul>
+              {teamRssNews &&
+                teamRssNews.map(article => {
+                  const { title, link } = article;
+                  return (
+                    <li key={article["mlb:display-date-epoch"]}>
+                      <a href={link}>{title}</a>
+                    </li>
+                  );
+                })}
+            </ul>
           </div>
         </div>
       </div>
@@ -113,22 +142,31 @@ PageTeamHome.propTypes = {
       teamAbrv: PropTypes.string.isRequired,
     }),
   }).isRequired,
+  teamRssNewsFail: null || PropTypes.bool,
+  teamRssNewsLoading: PropTypes.bool.isRequired,
+  teamRssNews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchTeamRssNews: PropTypes.func.isRequired,
 };
 
 PageTeamHome.defaultProps = {
   newsTeamsFail: null,
+  teamRssNewsFail: null,
 };
 
-const mapStateToProps = ({ newsTeams }) => ({
+const mapStateToProps = ({ newsTeams, teamRssNews }) => ({
   newsTeams: newsTeams.newsTeamsData,
   newsTeamsLoading: newsTeams.newsTeamsLoading,
   newsTeamsFail: newsTeams.newsTeamsError,
+  teamRssNews: teamRssNews.teamRssNewsData,
+  teamRssNewsLoading: teamRssNews.teamRssNewsLoading,
+  teamRssNewsFail: teamRssNews.teamRssNewsError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       fetchNewsTeams,
+      fetchTeamRssNews,
     },
     dispatch
   );
