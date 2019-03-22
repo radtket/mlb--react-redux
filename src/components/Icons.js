@@ -36,3 +36,19 @@ export const SiteLogo = () => {
     </svg>
   );
 };
+
+export const ChevronRight = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 40">
+      <path d="M0 37.92L2.08 40 22 20 2.08 0 0 2.08 17.84 20 0 37.92z" />
+    </svg>
+  );
+};
+
+export const ChevronLeft = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 40">
+      <path d="M22 2.08L19.92 0 0 20l19.92 20L22 37.92 4.16 20 22 2.08z" />
+    </svg>
+  );
+};
