@@ -5,8 +5,10 @@ class TeamRssFeed extends Component {
   renderRssHeadlines = teamRssNews => {
     return teamRssNews.map(article => {
       const { title, link } = article;
+      const { id, teamcode } = article["mlb:team"][0].$;
+
       return (
-        <li key={article["mlb:display-date-epoch"]}>
+        <li key={`${teamcode} ${link} ${id}`}>
           <a href={link} target="_blank" rel="noopener noreferrer">
             {title}
           </a>

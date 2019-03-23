@@ -84,6 +84,11 @@ class TeamHeader extends Component {
                     Depth Chart
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink exact to={`/teams/${Key}/schedule`}>
+                    Schedule
+                  </NavLink>
+                </li>
               </ul>
               <ul className="team__social">
                 <li className="team__social--item">

@@ -1,12 +1,33 @@
 import React, { Component } from "react";
 import dateFns from "date-fns";
+import moment from "moment";
+import PropTypes from "prop-types";
 import { ChevronLeft, ChevronRight } from "../../components/Icons";
+import { espnLogo } from "../../utils/helpers";
 
 class Calendar extends Component {
   state = {
     currentMonth: new Date(),
     selectedDate: new Date(),
+    teamGames: {},
   };
+
+  componentDidMount() {
+    const { currentTeamAbrv, schedule } = this.props;
+    this.setTeamGames(schedule, currentTeamAbrv);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      currentTeamAbrv: PrevTeamAbrv,
+      schedule: PrevTeamSchedule,
+    } = prevProps;
+
+    const { currentTeamAbrv, schedule } = this.props;
+    if (schedule !== PrevTeamSchedule || currentTeamAbrv !== PrevTeamAbrv) {
+      this.setTeamGames(schedule, currentTeamAbrv);
+    }
+  }
 
   onDateClick = day => {
     this.setState({
@@ -28,8 +49,25 @@ class Calendar extends Component {
     });
   };
 
+  setTeamGames = (schedule, teamAbrv) => {
+    this.setState({
+      teamGames: schedule.reduce((games, game) => {
+        const { Day, AwayTeam, HomeTeam } = game;
+        const formatedDay = moment(Day).format("YYYY-MM-DD");
+
+        const teamGamesObj = games;
+        teamGamesObj[formatedDay] = {
+          ...game,
+          opponent: AwayTeam === teamAbrv ? HomeTeam : AwayTeam,
+        };
+
+        return games;
+      }, {}),
+    });
+  };
+
   renderCells() {
-    const { currentMonth, selectedDate } = this.state;
+    const { currentMonth, selectedDate, teamGames } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -46,14 +84,27 @@ class Calendar extends Component {
       for (let i = 0; i < 7; i += 1) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
+        const momentDay = moment(day).format("YYYY-MM-DD");
+        const gameOnDate = teamGames[momentDay];
+
         days.push(
           <button
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart) ? "disabled" : ""
             } ${dateFns.isSameDay(day, selectedDate) ? "selected" : ""}`}
             key={day}
+            game={gameOnDate && gameOnDate}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
             type="button">
+            <img
+              src={
+                gameOnDate && espnLogo(gameOnDate && gameOnDate.opponent, 40)
+              }
+              alt={gameOnDate && gameOnDate.opponent}
+            />
+
+            <h6>{gameOnDate && gameOnDate.opponent}</h6>
+            {gameOnDate && moment(gameOnDate.DateTime).format("LT")}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
           </button>
@@ -120,5 +171,10 @@ class Calendar extends Component {
     );
   }
 }
+
+Calendar.propTypes = {
+  schedule: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currentTeamAbrv: PropTypes.string.isRequired,
+};
 
 export default Calendar;

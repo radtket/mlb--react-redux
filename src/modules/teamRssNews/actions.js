@@ -25,9 +25,10 @@ function getTeamRssNews(teamAbrv) {
   const TeamName = Name.toLocaleLowerCase();
 
   return fetch(
-    `${
-      process.env.REACT_APP_CORS
-    }https://www.mlb.com/${TeamName}/feeds/news/rss.xml`
+    `${process.env.REACT_APP_CORS}https://www.mlb.com/${TeamName.replace(
+      / /g,
+      ""
+    )}/feeds/news/rss.xml`
   )
     .then(handleErrors)
     .then(response => {

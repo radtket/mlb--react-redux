@@ -9,6 +9,7 @@ import PageTeamHome from "./pages";
 import PageTeamRoster from "./pages/roster";
 import PageTeamStats from "./pages/stats";
 import PageTeamDepth from "./pages/depth-chart";
+import PageTeamSchedule from "./pages/schedule";
 
 class Team extends Component {
   state = {
@@ -111,6 +112,16 @@ class Team extends Component {
           exact
           path="/teams/:teamAbrv/depth"
           render={() => <PageTeamDepth currentTeamAbrv={currentTeamAbrv} />}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/schedule"
+          render={() => (
+            <PageTeamSchedule
+              currentTeamAbrv={currentTeamAbrv}
+              schedule={recentGames}
+            />
+          )}
         />
       </>
     );
