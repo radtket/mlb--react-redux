@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import dateFns from "date-fns";
 import moment from "moment";
 import PropTypes from "prop-types";
-import { ChevronLeft, ChevronRight } from "../../components/Icons";
-import { espnLogo } from "../../utils/helpers";
+import { ChevronLeft, ChevronRight } from "./Icons";
+import { espnLogo } from "../utils/helpers";
 
 class Calendar extends Component {
   state = {

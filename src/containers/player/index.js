@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../../modules/player/actions";
 import { fetchPlayerNews } from "../../modules/playerNews/actions";
+import { fetchPlayerStats } from "../../modules/playerStats/actions";
 
 import PlayerHero from "../../components/PlayerHero";
 import NewsArticle from "../newsAllTeams/NewsArticle";
@@ -14,11 +15,32 @@ class PlayerList extends Component {
     const {
       fetchPlayer: getPlayer,
       fetchPlayerNews: getPlayerNews,
+      fetchPlayerStats: getPlayerStats,
+      player,
       match,
     } = this.props;
+    const { RotoWirePlayerID, PositionCategory } = player;
     const { playerArg } = match.params;
     getPlayer(playerArg);
     getPlayerNews(playerArg);
+    RotoWirePlayerID &&
+      PositionCategory &&
+      getPlayerStats(RotoWirePlayerID, PositionCategory);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      RotoWirePlayerID: PrevRotoWirePlayerID,
+      PositionCategory: PrevPositionCategory,
+    } = prevProps.player;
+
+    const { RotoWirePlayerID, PositionCategory } = this.props.player;
+    if (
+      RotoWirePlayerID !== PrevRotoWirePlayerID ||
+      PositionCategory !== PrevPositionCategory
+    ) {
+      this.props.fetchPlayerStats(RotoWirePlayerID, PositionCategory);
+    }
   }
 
   render() {
@@ -29,6 +51,9 @@ class PlayerList extends Component {
       playerNewsFail,
       playerNewsLoading,
       playerNews,
+      playerStatsFail,
+      playerStatsLoading,
+      playerStats,
     } = this.props;
     const { Team, MLBAMID } = player;
 
@@ -40,9 +65,15 @@ class PlayerList extends Component {
       return <div>Error! {playerNewsFail.message}</div>;
     }
 
-    if (playerLoading || playerNewsLoading) {
+    if (playerStatsFail) {
+      return <div>Error! {playerStatsFail.message}</div>;
+    }
+
+    if (playerLoading || playerNewsLoading || playerStatsLoading) {
       return <div>Loading...</div>;
     }
+
+    console.log(playerStats);
 
     return (
       player && (
@@ -95,20 +126,28 @@ PlayerList.propTypes = {
   playerNewsLoading: PropTypes.bool.isRequired,
   playerNews: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchPlayerNews: PropTypes.func.isRequired,
+  playerStatsFail: null || PropTypes.bool,
+  playerStatsLoading: PropTypes.bool.isRequired,
+  playerStats: PropTypes.object.isRequired,
+  fetchPlayerStats: PropTypes.func.isRequired,
 };
 
 PlayerList.defaultProps = {
   playerFail: null,
   playerNewsFail: null,
+  playerStatsFail: null,
 };
 
-const mapStateToProps = ({ player, playerNews }) => ({
+const mapStateToProps = ({ player, playerNews, playerStats }) => ({
   player: player.playerData,
   playerLoading: player.playerLoading,
   playerFail: player.playerError,
   playerNews: playerNews.playerNewsData,
   playerNewsLoading: playerNews.playerNewsLoading,
   playerNewsFail: playerNews.playerNewsError,
+  playerStats: playerStats.playerStatsData,
+  playerStatsLoading: playerStats.playerStatsLoading,
+  playerStatsFail: playerStats.playerStatsError,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -116,6 +155,7 @@ const mapDispatchToProps = dispatch =>
     {
       fetchPlayer,
       fetchPlayerNews,
+      fetchPlayerStats,
     },
     dispatch
   );

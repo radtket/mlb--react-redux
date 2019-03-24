@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import counter from "./counter";
 import products from "./product/reducers";
+import playerStats from "./playerStats/reducers";
 import teamRssNews from "./teamRssNews/reducers";
 import newsTeams from "./newsTeam/reducers";
 import playerNews from "./playerNews/reducers";
@@ -21,6 +22,7 @@ export default combineReducers({
   selectedSubreddit,
   standings,
   products,
+  playerStats,
   teamRssNews,
   newsTeams,
   playerNews,

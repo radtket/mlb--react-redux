@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Calendar from "../../home/Calendar";
+import Calendar from "../../../components/Calendar";
 
 class PageTeamSchedule extends Component {
   render() {
