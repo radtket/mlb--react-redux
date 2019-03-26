@@ -21,17 +21,14 @@ class PitcherStats extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {
-      // data,
-      RotoWirePlayerID: ThisRotoWirePlayerID,
-    } = this.state;
+    const { data, RotoWirePlayerID: ThisRotoWirePlayerID } = this.state;
     const { RotoWirePlayerID: PrevRotoWirePlayerID } = prevState;
 
     if (PrevRotoWirePlayerID !== ThisRotoWirePlayerID) {
-      // this.setState({
-      //   data,
-      //   RotoWirePlayerID: ThisRotoWirePlayerID,
-      // });
+      this.setState({
+        data,
+        RotoWirePlayerID: ThisRotoWirePlayerID,
+      });
       this.getData();
     }
   }
