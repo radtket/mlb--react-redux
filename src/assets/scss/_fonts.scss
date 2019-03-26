@@ -1,3 +1,10 @@
+@include font-face("rsuite-icon-font",
+"../fonts/RSuiteIcons/rsuite-icon-font",
+("woff", "otf", "ttf", "svg")) {
+	font-weight: 400;
+	font-style: normal;
+}
+
 @include font-face("Graphik",
 "../fonts/Graphik/Graphik-Light",
 ("woff", "otf", "ttf", "svg")) {

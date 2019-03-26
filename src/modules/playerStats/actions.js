@@ -19,12 +19,11 @@ export const fetchPlayerStatsFailure = playerStatsFail => ({
 });
 
 function getPlayerStats(playerId, PositionCategory) {
+  const PosCat = PositionCategory === "P" ? "pitching" : "batting";
   return fetch(
     `${
       process.env.REACT_APP_CORS
-    }https://www.rotowire.com/baseball/ajax/player-page-data.php?id=${playerId}&stats=${
-      PositionCategory === "P" ? "pitching" : "batting"
-    }`,
+    }https://www.rotowire.com/baseball/ajax/player-page-data.php?id=${playerId}&stats=${PosCat}`,
     {
       credentials: "omit",
       headers: {
@@ -45,10 +44,10 @@ function getPlayerStats(playerId, PositionCategory) {
     .then(res => res.json());
 }
 
-export function fetchPlayerStats(playerId, playerName) {
+export function fetchPlayerStats(playerId, PositionCategory) {
   return dispatch => {
     dispatch(fetchPlayerStatsBegin());
-    return getPlayerStats(playerId, playerName)
+    return getPlayerStats(playerId, PositionCategory)
       .then(data => {
         dispatch(fetchPlayerStatsSuccess(data));
         return data;

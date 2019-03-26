@@ -9,6 +9,8 @@ import { fetchPlayerStats } from "../../modules/playerStats/actions";
 
 import PlayerHero from "../../components/PlayerHero";
 import NewsArticle from "../newsAllTeams/NewsArticle";
+import BatterStats from "./BatterStats";
+import PitcherStats from "./PitcherStats";
 
 class PlayerList extends Component {
   componentDidMount() {
@@ -28,19 +30,36 @@ class PlayerList extends Component {
       getPlayerStats(RotoWirePlayerID, PositionCategory);
   }
 
-  componentDidUpdate(prevProps) {
-    const {
-      RotoWirePlayerID: PrevRotoWirePlayerID,
-      PositionCategory: PrevPositionCategory,
-    } = prevProps.player;
+  componentDidUpdate(prevProps, _prevState, snapshot) {
+    const { fetchPlayerStats: getPlayerStats, player, match } = this.props;
+    const { playerArg: currentplayerArg } = match.params;
+    const { playerArg: prevplayerArg } = prevProps.match.params;
 
-    const { RotoWirePlayerID, PositionCategory } = this.props.player;
-    if (
-      RotoWirePlayerID !== PrevRotoWirePlayerID ||
-      PositionCategory !== PrevPositionCategory
-    ) {
-      this.props.fetchPlayerStats(RotoWirePlayerID, PositionCategory);
+    const { RotoWirePlayerID, PositionCategory } = player;
+
+    if (snapshot !== null) {
+      const { thisRotoWirePlayerID, thisPositionCategory } = snapshot;
+      getPlayerStats(thisRotoWirePlayerID, thisPositionCategory);
     }
+
+    if (currentplayerArg !== prevplayerArg) {
+      getPlayerStats(RotoWirePlayerID, PositionCategory);
+    }
+  }
+
+  getSnapshotBeforeUpdate(prevProps) {
+    const { player: thisPlayer } = this.props;
+    const { player: prevPlayer } = prevProps;
+    const {
+      RotoWirePlayerID: thisRotoWirePlayerID,
+      PositionCategory: thisPositionCategory,
+    } = thisPlayer;
+    const { RotoWirePlayerID: prevRotoWirePlayerID } = prevPlayer;
+
+    if (prevRotoWirePlayerID !== thisRotoWirePlayerID) {
+      return { thisRotoWirePlayerID, thisPositionCategory };
+    }
+    return null;
   }
 
   render() {
@@ -55,7 +74,7 @@ class PlayerList extends Component {
       playerStatsLoading,
       playerStats,
     } = this.props;
-    const { Team, MLBAMID } = player;
+    const { Team, MLBAMID, PositionCategory, RotoWirePlayerID } = player;
 
     if (playerFail) {
       return <div>Error! {playerFail.message}</div>;
@@ -69,11 +88,14 @@ class PlayerList extends Component {
       return <div>Error! {playerStatsFail.message}</div>;
     }
 
-    if (playerLoading || playerNewsLoading || playerStatsLoading) {
+    if (
+      playerLoading ||
+      playerNewsLoading ||
+      playerStatsLoading ||
+      !playerStats.basic
+    ) {
       return <div>Loading...</div>;
     }
-
-    console.log(playerStats);
 
     return (
       player && (
@@ -81,7 +103,7 @@ class PlayerList extends Component {
           <PlayerHero {...player} />
           <div className="container">
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-sm-12">
                 {playerNews.length ? (
                   playerNews.map(article => {
                     const { NewsID } = article;
@@ -96,9 +118,25 @@ class PlayerList extends Component {
                 ) : (
                   <h1>No News</h1>
                 )}
-              </div>
-              <div className="col-sm-4">
-                <Link to={`/teams/${Team}`}>{Team}</Link>
+                <h3>
+                  <Link to={`/teams/${Team}`}>{Team}</Link>
+                </h3>
+                <h3>
+                  {PositionCategory === "P" ? "Pitching" : "Batting"} Stats
+                </h3>
+                {PositionCategory === "P"
+                  ? playerStats.basic.pitching && (
+                      <PitcherStats
+                        data={playerStats.basic.pitching.body}
+                        RotoWirePlayerID={RotoWirePlayerID}
+                      />
+                    )
+                  : playerStats.basic.batting && (
+                      <BatterStats
+                        data={playerStats.basic.batting.body}
+                        RotoWirePlayerID={RotoWirePlayerID}
+                      />
+                    )}
               </div>
             </div>
           </div>
@@ -120,6 +158,8 @@ PlayerList.propTypes = {
     Team: PropTypes.string,
     Name: PropTypes.string,
     Position: PropTypes.string,
+    RotoWirePlayerID: PropTypes.number,
+    PositionCategory: PropTypes.string,
   }).isRequired,
   fetchPlayer: PropTypes.func.isRequired,
   playerNewsFail: null || PropTypes.bool,
@@ -128,7 +168,9 @@ PlayerList.propTypes = {
   fetchPlayerNews: PropTypes.func.isRequired,
   playerStatsFail: null || PropTypes.bool,
   playerStatsLoading: PropTypes.bool.isRequired,
-  playerStats: PropTypes.object.isRequired,
+  playerStats: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  ).isRequired,
   fetchPlayerStats: PropTypes.func.isRequired,
 };
 
