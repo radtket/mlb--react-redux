@@ -1,4 +1,5 @@
 import { handleErrors } from "../../utils/helpers";
+// import ApiHeadersMLB from "../../utils/api";
 
 export const FETCH_PLAYER_BEGIN = "FETCH_PLAYER_BEGIN";
 export const FETCH_PLAYER_SUCCESS = "FETCH_PLAYER_SUCCESS";
@@ -18,17 +19,17 @@ export const fetchPlayerFailure = playerFail => ({
   payload: { playerFail },
 });
 
-function getPlayer(playerArg) {
+function getPlayer(playerArg, season = 2018) {
   // TODO: Add When API is Live
   // return Promise.all([
   //   fetch(
-  //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerSeasonStatsByPlayer/${season}/${playerid}`,
+  //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerSeasonStatsByPlayer/${season}/${playerArg}`,
   //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
   //     .then(value => value.json()),
   //   fetch(
-  //     `https://api.fantasydata.net/v3/mlb/stats/json/PlayerDetailsByPlayer/${playerid}`,
+  //     `https://api.fantasydata.net/v3/mlb/stats/JSON/Player/${playerArg}`,
   //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
