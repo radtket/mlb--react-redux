@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  playerStatsData: {},
+  playerStatsData: [],
   playerStatsLoading: false,
   playerStatsError: null,
 };
@@ -40,7 +40,7 @@ export default function playerStatsReducer(state = initialState, action) {
         ...state,
         playerStatsLoading: false,
         playerStatsError: action.payload.error,
-        playerStatsData: {},
+        playerStatsData: [],
       };
 
     default:

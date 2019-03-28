@@ -41,7 +41,8 @@ function getPlayerStats(playerId, PositionCategory) {
     }
   )
     .then(handleErrors)
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(statType => statType.basic[PosCat].body);
 }
 
 export function fetchPlayerStats(playerId, PositionCategory) {
