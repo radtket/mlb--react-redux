@@ -70,7 +70,6 @@ class PlayerBasicStats extends Component {
 
   render() {
     const { sortColumn, sortType, loading } = this.state;
-    const { PositionCategory } = this.props;
     const { playerStatsFail, playerStatsLoading, playerStats } = this.props;
 
     if (playerStatsFail) {
@@ -81,249 +80,252 @@ class PlayerBasicStats extends Component {
       return <div>Loading...</div>;
     }
 
-    const pitcher = PositionCategory === "P";
-    const batter = !pitcher;
+    const { isPitcher, basic } = playerStats;
+
     return (
       <div>
-        <Table
-          autoHeight
-          data={this.getData(playerStats)}
-          loading={loading}
-          sortColumn={sortColumn}
-          sortType={sortType}
-          onSortColumn={this.handleSortColumn}>
-          <Column flexGrow={1} align="center" sortable fixed>
-            <HeaderCell>Season</HeaderCell>
-            <Cell dataKey="season" />
-          </Column>
-          <Column flexGrow={1} align="center" sortable fixed>
-            <HeaderCell>Team</HeaderCell>
-            <ImageCell dataKey="team" />
-          </Column>
-          <Column flexGrow={1} align="center" sortable fixed>
-            <HeaderCell>Lg</HeaderCell>
-            <Cell dataKey="league_level" />
-          </Column>
-          <Column flexGrow={1} align="center" sortable>
-            <HeaderCell>Age</HeaderCell>
-            <Cell dataKey="age" />
-          </Column>
-          <Column flexGrow={1} align="center" sortable>
-            <HeaderCell>G</HeaderCell>
-            <Cell dataKey="games" />
-          </Column>
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>PA</HeaderCell>
-              <Cell dataKey="pa" />
+        <h1>hi</h1>
+        {basic && basic.body && (
+          <Table
+            autoHeight
+            data={this.getData(basic.body)}
+            loading={loading}
+            sortColumn={sortColumn}
+            sortType={sortType}
+            onSortColumn={this.handleSortColumn}>
+            <Column flexGrow={1} align="center" sortable fixed>
+              <HeaderCell>Season</HeaderCell>
+              <Cell dataKey="season" />
             </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>AB</HeaderCell>
-              <Cell dataKey="ab" />
+            <Column flexGrow={1} align="center" sortable fixed>
+              <HeaderCell>Team</HeaderCell>
+              <ImageCell dataKey="team" />
             </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>R</HeaderCell>
-              <Cell dataKey="r" />
+            <Column flexGrow={1} align="center" sortable fixed>
+              <HeaderCell>Lg</HeaderCell>
+              <Cell dataKey="league_level" />
             </Column>
-          )}
-          {batter && (
             <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>H</HeaderCell>
-              <Cell dataKey="h" />
+              <HeaderCell>Age</HeaderCell>
+              <Cell dataKey="age" />
             </Column>
-          )}
-          {batter && (
             <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>XBH</HeaderCell>
-              <Cell dataKey="xbh" />
+              <HeaderCell>G</HeaderCell>
+              <Cell dataKey="games" />
             </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>2B</HeaderCell>
-              <Cell dataKey="b2" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>3B</HeaderCell>
-              <Cell dataKey="b3" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>HR</HeaderCell>
-              <Cell dataKey="hr" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>RBI</HeaderCell>
-              <Cell dataKey="rbi" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>SB</HeaderCell>
-              <Cell dataKey="sb" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>CS</HeaderCell>
-              <Cell dataKey="cs" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>BB</HeaderCell>
-              <Cell dataKey="bb" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>SO</HeaderCell>
-              <Cell dataKey="so" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>SH</HeaderCell>
-              <Cell dataKey="sh" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>SF</HeaderCell>
-              <Cell dataKey="sf" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>HBP</HeaderCell>
-              <Cell dataKey="hbp" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>AVG</HeaderCell>
-              <Cell dataKey="avg" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>OBP</HeaderCell>
-              <Cell dataKey="obp" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>SLG</HeaderCell>
-              <Cell dataKey="slg" />
-            </Column>
-          )}
-          {batter && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>OPS</HeaderCell>
-              <Cell dataKey="ops" />
-            </Column>
-          )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>PA</HeaderCell>
+                <Cell dataKey="pa" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>AB</HeaderCell>
+                <Cell dataKey="ab" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>R</HeaderCell>
+                <Cell dataKey="r" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>H</HeaderCell>
+                <Cell dataKey="h" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>XBH</HeaderCell>
+                <Cell dataKey="xbh" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>2B</HeaderCell>
+                <Cell dataKey="b2" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>3B</HeaderCell>
+                <Cell dataKey="b3" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>HR</HeaderCell>
+                <Cell dataKey="hr" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>RBI</HeaderCell>
+                <Cell dataKey="rbi" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>SB</HeaderCell>
+                <Cell dataKey="sb" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>CS</HeaderCell>
+                <Cell dataKey="cs" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>BB</HeaderCell>
+                <Cell dataKey="bb" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>SO</HeaderCell>
+                <Cell dataKey="so" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>SH</HeaderCell>
+                <Cell dataKey="sh" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>SF</HeaderCell>
+                <Cell dataKey="sf" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>HBP</HeaderCell>
+                <Cell dataKey="hbp" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>AVG</HeaderCell>
+                <Cell dataKey="avg" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>OBP</HeaderCell>
+                <Cell dataKey="obp" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>SLG</HeaderCell>
+                <Cell dataKey="slg" />
+              </Column>
+            )}
+            {!isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>OPS</HeaderCell>
+                <Cell dataKey="ops" />
+              </Column>
+            )}
 
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>GS</HeaderCell>
-              <Cell dataKey="gs" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>sh</HeaderCell>
-              <Cell dataKey="sh" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>ip</HeaderCell>
-              <Cell dataKey="ip" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>H</HeaderCell>
-              <Cell dataKey="h" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>er</HeaderCell>
-              <Cell dataKey="er" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>hr</HeaderCell>
-              <Cell dataKey="hr" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>k</HeaderCell>
-              <Cell dataKey="k" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>bb</HeaderCell>
-              <Cell dataKey="bb" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>w</HeaderCell>
-              <Cell dataKey="w" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>l</HeaderCell>
-              <Cell dataKey="l" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>sv</HeaderCell>
-              <Cell dataKey="sv" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>bs</HeaderCell>
-              <Cell dataKey="bs" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>hld</HeaderCell>
-              <Cell dataKey="hld" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>era</HeaderCell>
-              <Cell dataKey="era" />
-            </Column>
-          )}
-          {pitcher && (
-            <Column flexGrow={1} align="center" sortable>
-              <HeaderCell>whip</HeaderCell>
-              <Cell dataKey="whip" />
-            </Column>
-          )}
-        </Table>
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>GS</HeaderCell>
+                <Cell dataKey="gs" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>sh</HeaderCell>
+                <Cell dataKey="sh" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>ip</HeaderCell>
+                <Cell dataKey="ip" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>H</HeaderCell>
+                <Cell dataKey="h" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>er</HeaderCell>
+                <Cell dataKey="er" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>hr</HeaderCell>
+                <Cell dataKey="hr" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>k</HeaderCell>
+                <Cell dataKey="k" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>bb</HeaderCell>
+                <Cell dataKey="bb" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>w</HeaderCell>
+                <Cell dataKey="w" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>l</HeaderCell>
+                <Cell dataKey="l" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>sv</HeaderCell>
+                <Cell dataKey="sv" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>bs</HeaderCell>
+                <Cell dataKey="bs" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>hld</HeaderCell>
+                <Cell dataKey="hld" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>era</HeaderCell>
+                <Cell dataKey="era" />
+              </Column>
+            )}
+            {isPitcher && (
+              <Column flexGrow={1} align="center" sortable>
+                <HeaderCell>whip</HeaderCell>
+                <Cell dataKey="whip" />
+              </Column>
+            )}
+          </Table>
+        )}
       </div>
     );
   }

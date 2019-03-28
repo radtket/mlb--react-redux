@@ -19,7 +19,8 @@ export const fetchPlayerStatsFailure = playerStatsFail => ({
 });
 
 function getPlayerStats(playerId, PositionCategory) {
-  const PosCat = PositionCategory === "P" ? "pitching" : "batting";
+  const isPitcher = PositionCategory === "P";
+  const PosCat = isPitcher ? "pitching" : "batting";
   return fetch(
     `${
       process.env.REACT_APP_CORS
@@ -42,7 +43,26 @@ function getPlayerStats(playerId, PositionCategory) {
   )
     .then(handleErrors)
     .then(res => res.json())
-    .then(statType => statType.basic[PosCat].body);
+    .then(statType =>
+      Object.entries(statType).reduce(
+        (all, single) => {
+          const [statCategory, stats] = single;
+          const AllStats = all;
+          if (statCategory === "basic" || statCategory === "advanced") {
+            AllStats[statCategory] = { ...stats[PosCat] };
+          }
+          if (statCategory === "gamelog") {
+            AllStats[statCategory] = { ...stats };
+          }
+          if (statCategory === "gamesByPos" || statCategory === "defensive") {
+            AllStats[statCategory] = stats;
+          }
+          console.log(statCategory, all);
+          return all;
+        },
+        { isPitcher }
+      )
+    );
 }
 
 export function fetchPlayerStats(playerId, PositionCategory) {
@@ -50,6 +70,9 @@ export function fetchPlayerStats(playerId, PositionCategory) {
     dispatch(fetchPlayerStatsBegin());
     return getPlayerStats(playerId, PositionCategory)
       .then(data => {
+        // const { basic } = data;
+        // dispatch(fetchPlayerStatsSuccess(basic.body));
+        // return basic.body;
         dispatch(fetchPlayerStatsSuccess(data));
         return data;
       })
