@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import SortablePlayerTable from "../../../../components/SortablePlayerTable";
+import Card from "../../../../components/Card";
 
 class TeamRoster extends Component {
   render() {
@@ -15,14 +16,17 @@ class TeamRoster extends Component {
     }
 
     return (
-      <div className="card" style={{ position: "relative" }}>
-        <h5 className="card__headline">Roster</h5>
-        {teamRoster && (
-          <SortablePlayerTable
-            players={teamRoster.filter(player => player.Status === "Active")}
-          />
-        )}
-      </div>
+      <Card
+        title="Roster"
+        body={
+          teamRoster && (
+            <SortablePlayerTable
+              players={teamRoster.filter(player => player.Status === "Active")}
+            />
+          )
+        }
+        style={{ position: "relative" }}
+      />
     );
   }
 }

@@ -9,7 +9,8 @@ export function handleErrors(response) {
 }
 
 export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
-  return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamAbrv.toLowerCase()}.png&h=${size}&w=${size}`;
+  const teamName = teamAbrv === "CWS" ? "CHW" : teamAbrv;
+  return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamName.toLowerCase()}.png&h=${size}&w=${size}`;
 }
 
 export const UsaTodayHeadshotNoBackgroundImage = (urlArg, imgSize) => {

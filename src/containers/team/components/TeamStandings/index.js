@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StandingsTeam from "./StandingsTeam";
 import { largestToSmallest, getLeagueName } from "../../../../utils/helpers";
 import Tabs from "../../../../components/Tabs/Tabs";
+import Card from "../../../../components/Card";
 
 class TeamStandings extends Component {
   createStandingsTable = (standings, activeTeamObj, division = false) => {
@@ -63,59 +64,63 @@ class TeamStandings extends Component {
     const { standings, activeTeamObj } = this.props;
     const { Division, League } = activeTeamObj;
     return (
-      <div className="card">
-        <h5 className="card__headline">Standings</h5>
-        <Tabs itemWidth="50%">
-          <div label="Division">
-            <table
-              className="table table--standings"
-              style={{
-                boxShadow: "none",
-              }}>
-              <thead>
-                <tr>
-                  <th>{`${League} ${Division}`}</th>
-                  <th>W</th>
-                  <th>L</th>
-                  <th>GB</th>
-                </tr>
-              </thead>
-              <tbody>
-                {standings &&
-                  this.createStandingsTable(standings, activeTeamObj, true)}
-              </tbody>
-            </table>
-          </div>
-          <div label="League">
-            <table
-              className="table table--standings"
-              style={{
-                boxShadow: "none",
-              }}>
-              <thead>
-                <tr>
-                  <th>{getLeagueName(League)}</th>
-                  <th>W</th>
-                  <th>L</th>
-                  <th>PCT</th>
-                </tr>
-              </thead>
-              <tbody>
-                {standings &&
-                  this.createStandingsTable(
-                    standings.sort(largestToSmallest("Percentage")),
-                    activeTeamObj
-                  )}
-              </tbody>
-            </table>
-          </div>
-        </Tabs>
-        <footer className="card__footer">
-          <Link className="text-uppercase" to="/standings">
-            Full Standings
-          </Link>
-        </footer>
-      </div>
+      <Card
+        title="Standings"
+        body={
+          <>
+            <Tabs itemWidth="50%">
+              <div label="Division">
+                <table
+                  className="table table--standings"
+                  style={{
+                    boxShadow: "none",
+                  }}>
+                  <thead>
+                    <tr>
+                      <th>{`${League} ${Division}`}</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>GB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {standings &&
+                      this.createStandingsTable(standings, activeTeamObj, true)}
+                  </tbody>
+                </table>
+              </div>
+              <div label="League">
+                <table
+                  className="table table--standings"
+                  style={{
+                    boxShadow: "none",
+                  }}>
+                  <thead>
+                    <tr>
+                      <th>{getLeagueName(League)}</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>PCT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {standings &&
+                      this.createStandingsTable(
+                        standings.sort(largestToSmallest("Percentage")),
+                        activeTeamObj
+                      )}
+                  </tbody>
+                </table>
+              </div>
+            </Tabs>
+            <footer className="card__footer">
+              <Link className="text-uppercase" to="/standings">
+                Full Standings
+              </Link>
+            </footer>
+          </>
+        }
+      />
     );
   }
 }

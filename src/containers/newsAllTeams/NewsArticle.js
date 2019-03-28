@@ -112,7 +112,7 @@ NewsArticle.propTypes = {
   Source: PropTypes.string,
   Team: PropTypes.string,
   Team2: PropTypes.string,
-  MLBAMID: PropTypes.string,
+  MLBAMID: PropTypes.number,
   cardSize: PropTypes.string,
   Updated: PropTypes.string,
   FeaturedImage: PropTypes.string,

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import SingleGame from "./SingleGame";
 import { DEV_PLACEHOLDER_DATE, TodaysDate } from "../../../../utils/helpers";
+import Card from "../../../../components/Card";
 
 class TeamRecentGames extends Component {
   renderLast15Games = (data, activeTeam, beforeDate = TodaysDate) => {
@@ -20,17 +21,19 @@ class TeamRecentGames extends Component {
   render() {
     const { activeTeam, recentGames } = this.props;
     return (
-      <div className="card">
-        <h5 className="card__headline">Recent Games</h5>
-        <ul style={{ marginBottom: 0 }}>
-          {recentGames &&
-            this.renderLast15Games(
-              recentGames,
-              activeTeam,
-              DEV_PLACEHOLDER_DATE
-            )}
-        </ul>
-      </div>
+      <Card
+        title="Recent Games"
+        body={
+          <ul style={{ marginBottom: 0 }}>
+            {recentGames &&
+              this.renderLast15Games(
+                recentGames,
+                activeTeam,
+                DEV_PLACEHOLDER_DATE
+              )}
+          </ul>
+        }
+      />
     );
   }
 }

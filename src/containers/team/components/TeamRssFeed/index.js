@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Card from "../../../../components/Card";
 
 class TeamRssFeed extends Component {
   renderRssHeadlines = teamRssNews => {
@@ -20,12 +21,14 @@ class TeamRssFeed extends Component {
   render() {
     const { teamRssNews } = this.props;
     return (
-      <div className="card">
-        <h5 className="card__headline">RSS Feed</h5>
-        <ul className="list--nav" style={{ marginBottom: 0 }}>
-          {teamRssNews && this.renderRssHeadlines(teamRssNews)}
-        </ul>
-      </div>
+      <Card
+        title="RSS Feed"
+        body={
+          <ul className="list--nav" style={{ marginBottom: 0 }}>
+            {teamRssNews && this.renderRssHeadlines(teamRssNews)}
+          </ul>
+        }
+      />
     );
   }
 }

@@ -84,7 +84,6 @@ class PlayerBasicStats extends Component {
 
     return (
       <div>
-        <h1>hi</h1>
         {basic && basic.body && (
           <Table
             autoHeight
@@ -332,22 +331,38 @@ class PlayerBasicStats extends Component {
 }
 
 PlayerBasicStats.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  RotoWirePlayerID: PropTypes.number.isRequired,
-  PositionCategory: PropTypes.string.isRequired,
-};
-
-PlayerBasicStats.propTypes = {
+  // data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  RotoWirePlayerID: PropTypes.number,
+  PositionCategory: PropTypes.string,
   playerStatsFail: null || PropTypes.bool,
   playerStatsLoading: PropTypes.bool.isRequired,
-  playerStats: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
-  ).isRequired,
+  // playerStats: PropTypes.arrayOf(
+  //   PropTypes.oneOfType(PropTypes.array, PropTypes.object)
+  // ).isRequired,
+  // playerStats: PropTypes.objectOf(
+  //   PropTypes.oneOf([PropTypes.array, PropTypes.object,])
+  // ).isRequired,
+  playerStats: PropTypes.shape({
+    isPitcher: PropTypes.bool,
+    advanced: PropTypes.shape({
+      body: PropTypes.array,
+      footer: PropTypes.array,
+    }),
+    basic: PropTypes.shape({ body: PropTypes.array, footer: PropTypes.array }),
+    defensive: PropTypes.arrayOf(PropTypes.object),
+    gamelog: PropTypes.shape({
+      majors: PropTypes.object,
+      minors: PropTypes.object,
+    }),
+    gamesByPos: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
   fetchPlayerStats: PropTypes.func.isRequired,
 };
 
 PlayerBasicStats.defaultProps = {
   playerStatsFail: null,
+  RotoWirePlayerID: null,
+  PositionCategory: "",
 };
 
 const mapStateToProps = ({ playerStats }) => ({
