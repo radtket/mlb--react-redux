@@ -82,6 +82,9 @@ class PlayerBasicStats extends Component {
 
     const { isPitcher, basic } = playerStats;
 
+    console.log(playerStats);
+
+
     return (
       <div>
         {basic && basic.body && (
@@ -241,13 +244,13 @@ class PlayerBasicStats extends Component {
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>sh</HeaderCell>
+                <HeaderCell>SH</HeaderCell>
                 <Cell dataKey="sh" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>ip</HeaderCell>
+                <HeaderCell>IP</HeaderCell>
                 <Cell dataKey="ip" />
               </Column>
             )}
@@ -259,67 +262,67 @@ class PlayerBasicStats extends Component {
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>er</HeaderCell>
+                <HeaderCell>ER</HeaderCell>
                 <Cell dataKey="er" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>hr</HeaderCell>
+                <HeaderCell>HR</HeaderCell>
                 <Cell dataKey="hr" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>k</HeaderCell>
+                <HeaderCell>K</HeaderCell>
                 <Cell dataKey="k" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>bb</HeaderCell>
+                <HeaderCell>BB</HeaderCell>
                 <Cell dataKey="bb" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>w</HeaderCell>
+                <HeaderCell>W</HeaderCell>
                 <Cell dataKey="w" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>l</HeaderCell>
+                <HeaderCell>L</HeaderCell>
                 <Cell dataKey="l" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>sv</HeaderCell>
+                <HeaderCell>SV</HeaderCell>
                 <Cell dataKey="sv" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>bs</HeaderCell>
+                <HeaderCell>BS</HeaderCell>
                 <Cell dataKey="bs" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>hld</HeaderCell>
+                <HeaderCell>HLD</HeaderCell>
                 <Cell dataKey="hld" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>era</HeaderCell>
+                <HeaderCell>ERA</HeaderCell>
                 <Cell dataKey="era" />
               </Column>
             )}
             {isPitcher && (
               <Column flexGrow={1} align="center" sortable>
-                <HeaderCell>whip</HeaderCell>
+                <HeaderCell>WHIP</HeaderCell>
                 <Cell dataKey="whip" />
               </Column>
             )}
