@@ -1,7 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { Table } from "rsuite";
-import { espnLogo } from "../../utils/helpers";
+import { espnLogo } from "../../../utils/helpers";
 
 const ImageCell = ({ rowData, dataKey, ...props }) => {
   const { league_level: leagueLevel, team } = rowData;

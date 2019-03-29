@@ -6,9 +6,8 @@ import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../../modules/player/actions";
 
 import PlayerHero from "../../components/PlayerHero";
-import PlayerBasicStats from "./PlayerBasicStats";
+import PlayerStats from "./PlayerStats";
 import PlayerNews from "./components/PlayerNews";
-import Card from "../../components/Card";
 // import NewsArticle from "../newsAllTeams/NewsArticle";
 
 class PlayerList extends Component {
@@ -52,16 +51,9 @@ class PlayerList extends Component {
                   <Link to={`/teams/${Team}`}>{Team}</Link>
                 </h3>
                 <PlayerNews MLBAMID={MLBAMID} playerArg={playerArg} />
-                <Card
-                  title={`${
-                    PositionCategory === "P" ? "Pitching" : "Batting"
-                  } Stats`}
-                  body={
-                    <PlayerBasicStats
-                      RotoWirePlayerID={RotoWirePlayerID}
-                      PositionCategory={PositionCategory}
-                    />
-                  }
+                <PlayerStats
+                  RotoWirePlayerID={RotoWirePlayerID}
+                  PositionCategory={PositionCategory}
                 />
               </div>
             </div>

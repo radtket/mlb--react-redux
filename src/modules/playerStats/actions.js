@@ -60,7 +60,7 @@ function getPlayerStats(playerId, PositionCategory) {
           console.log(statCategory, all);
           return all;
         },
-        { isPitcher }
+        { isPitcher, playerId }
       )
     );
 }
