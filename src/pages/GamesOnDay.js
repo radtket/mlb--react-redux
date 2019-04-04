@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import { addDays, subDays, format } from "date-fns";
 import { fetchGamesOnDay } from "../modules/games-on-day/actions";
 import { fetchStandings } from "../modules/standings/actions";
 import {
@@ -49,9 +49,9 @@ class GamesOnDayList extends Component {
     });
   };
 
-  previousDaysGame = date => this.changeDate(moment(date).subtract(1, "d"));
+  previousDaysGame = date => this.changeDate(subDays(new Date(date), 1));
 
-  nextDaysGame = date => this.changeDate(moment(date).add(1, "d"));
+  nextDaysGame = date => this.changeDate(addDays(new Date(date), 1));
 
   render() {
     const {
@@ -75,11 +75,9 @@ class GamesOnDayList extends Component {
       return <div>Loading...</div>;
     }
 
-    // console.log(gamesOnDay, standings);
-
     return (
       <div>
-        <h1>Games For {dateOfGame.format("dddd, MMMM Do YYYY").toString()}</h1>
+        <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
         <nav>
           <button
             onClick={() => this.previousDaysGame(dateOfGame)}

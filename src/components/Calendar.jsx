@@ -83,9 +83,9 @@ class Calendar extends Component {
       for (let i = 0; i < 7; i += 1) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
-        const momentDay = dateFns.format(new Date(cloneDay), "YYYY-MM-DD");
+        const formatedDay = dateFns.format(new Date(cloneDay), "YYYY-MM-DD");
 
-        const gameOnDate = teamGames[momentDay];
+        const gameOnDate = teamGames[formatedDay];
 
         days.push(
           <button

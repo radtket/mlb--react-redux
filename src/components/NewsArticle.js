@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import { format } from "date-fns";
 import {
   espnLogo,
   getExcerpt,
@@ -57,12 +57,11 @@ const NewsArticle = ({
         </a>
         <time
           dateTime={
-            moment(Updated).format("YYYY-MM-DD") ||
-            moment(DatePublished).format("YYYY-MM-DD") ||
-            "2016-08-23"
+            format(new Date(Updated), "YYYY-MM-DD HH:mm") ||
+            format(new Date(DatePublished), "YYYY-MM-DD HH:mm")
           }
           className="news-card__date">
-          {TimeAgo || moment(DatePublished).format("YYYY-MM-DD")}
+          {TimeAgo || format(new Date(DatePublished), "YYYY-MM-DD")}
         </time>
         <h1 className="news-card__headline">{Title}</h1>
         <div className="news-card__body">

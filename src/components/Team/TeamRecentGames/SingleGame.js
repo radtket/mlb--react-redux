@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import moment from "moment";
+import { format } from "date-fns";
 import { teamFinder, espnLogo } from "../../../utils/helpers";
 
 const SingleGame = ({
@@ -56,10 +56,10 @@ const SingleGame = ({
           {GameIsScheduled && (
             <>
               <li className="game-meta__date">
-                {moment(DateTime).format("M[/]D")}
+                {format(new Date(DateTime), "M[/]D")}
               </li>
               <li className="game-meta__time">
-                {moment(DateTime).format("h:mm A")}
+                {format(new Date(DateTime), "h:mm A")}
               </li>
               <li className="game-meta__network">{Channel}</li>
             </>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import { isBefore } from "date-fns";
 import SingleGame from "./SingleGame";
 import { TodaysDate } from "../../../utils/helpers";
 import Card from "../../Card";
@@ -10,7 +10,7 @@ class TeamRecentGames extends Component {
     return data
       .filter(gameOnDay => {
         const { Day } = gameOnDay;
-        return moment(Day).isBefore(beforeDate) && gameOnDay;
+        return isBefore(Day, beforeDate) && gameOnDay;
       })
       .map(game => {
         const { GameID } = game;

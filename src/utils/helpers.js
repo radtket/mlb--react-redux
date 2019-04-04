@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import moment from "moment";
+import { differenceInYears, format } from "date-fns";
 
 export function handleErrors(response) {
   if (!response.ok) {
@@ -24,15 +24,15 @@ export const PlayerPhotoByID = playerId => {
 };
 
 // TODO: remove in production with Todays date
-export const DEV_PLACEHOLDER_DATE = moment("2018-05-04T00:00:00");
+export const DEV_PLACEHOLDER_DATE = format(new Date("2018-05-04T00:00:00"));
 
-export const TodaysDate = moment({}).format("YYYY-MM-DD");
+export const TodaysDate = format(new Date(), "YYYY-MM-DD");
 
 export const formatApiArgDatedate = date => {
-  return moment(date).format("YYYY-MM-DD");
+  return format(new Date(date), "YYYY-MM-DD");
 };
 
-export const birthday = dob => moment().diff(dob, "years", false);
+export const birthday = dob => differenceInYears(new Date(), dob);
 
 export const inchesToFeet = inches => {
   const feetFromInches = Math.floor(inches / 12);

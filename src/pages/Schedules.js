@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import { isSameDay } from "date-fns";
 import { fetchSchedules } from "../modules/schedules/actions";
 import SingleGame from "../components/Standings/SingleGame";
 import { DEV_PLACEHOLDER_DATE } from "../utils/helpers";
@@ -26,7 +26,8 @@ class SchedulesList extends Component {
           {schedules &&
             schedules.reduce((acc, game) => {
               const { Day, GameID } = game;
-              moment(Day).isSame(DEV_PLACEHOLDER_DATE) &&
+
+              isSameDay(Day, DEV_PLACEHOLDER_DATE) &&
                 acc.push(<SingleGame key={GameID} {...game} />);
               return acc;
             }, [])}
