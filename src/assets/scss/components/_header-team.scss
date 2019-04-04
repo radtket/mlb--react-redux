@@ -21,7 +21,7 @@
 		&__name {
 			display: inline-block;
 			font-size: 28px;
-			font-weight: $fw-bold;
+			font-weight: $fw-semi-bold;
 			line-height: 64px;
 			margin-left: $spacing-small;
 			text-transform: uppercase;
@@ -101,7 +101,7 @@
 
 						&.active {
 							color: $c-dark;
-							font-weight: $fw-bold;
+							font-weight: $fw-semi-bold;
 
 							&::after {
 								background-color: $bada55;

@@ -76,7 +76,10 @@ $box-shadow-big: 0 2px 4px -1px $c-black-20,
 // Typography
 $fw-light: 300 !default;
 $fw-normal: 400 !default;
-$fw-bold: 600 !default;
+$fw-medium: 500 !default;
+$fw-semi-bold: 600 !default;
+$fw-bold: 700 !default;
+$fw-black: 800 !default;
 $fw-headings: $fw-light !default;
 
 $ff-base: "Graphik",
@@ -117,7 +120,7 @@ $bdr-medium: $bdr-base !default;
 $bdr-rounded-corners: 5px !default;
 
 // Defaults (HTML elements)
-$fw-strong: $fw-bold !default;
+$fw-strong: $fw-semi-bold !default;
 $mb-p: 1.5em !default;
 $mb-ul: 1em !default;
 $mb-li: 0.5em !default;
@@ -188,7 +191,7 @@ $bd-button: 1px solid $bdc-button !default;
 $bdr-button: 200px !default;
 $ff-button: $ff-body !default;
 $fz-button: $fz-medium !default;
-$fw-button: $fw-bold !default;
+$fw-button: $fw-semi-bold !default;
 $lh-button: $lh-body !default;
 $m-button: 0 $m-small $m-medium $m-small !default;
 $p-button: $p-medium $p-big !default;

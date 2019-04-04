@@ -26,6 +26,7 @@ class PageTeamDepth extends Component {
       teamRoster,
       teamRosterError,
       teamRosterLoading,
+      currentTeamAbrv,
     } = this.props;
 
     const { positions } = teamDepths;
@@ -104,9 +105,15 @@ class PageTeamDepth extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-8">
+          <div className="col-sm-12">
             <h1>PageTeamDepth</h1>
-            <figure className="depth-chart">{TeamDepthChart}</figure>
+            <figure
+              className="depth-chart"
+              style={{
+                backgroundImage: `url('/data/stadiums/${currentTeamAbrv}.png')`,
+              }}>
+              {TeamDepthChart}
+            </figure>
           </div>
         </div>
       </div>

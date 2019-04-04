@@ -1,13 +1,17 @@
 $headshot--height: 60px;
 $headshot--width: 51px;
 $player-card--width: 200px;
+$field-width: 1152px;
+$field-height: 462.316px;
 
 .depth-chart {
 	background: transparent url("http://mlb.mlb.com/images/team/depth_chart/y2010/depthchart_bg.jpg") no-repeat;
-	height: 524px;
-	margin-bottom: 25px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: $field-height;
 	position: relative;
-	width: 649px;
+	width: 100%;
 
 	&__position {
 		font: 12px Arial, Helvetica, sans-serif;
@@ -73,62 +77,69 @@ $player-card--width: 200px;
 		}
 
 		&--lf {
-			left: 117px;
+			left: 25%;
+			top: 32%;
 		}
 
 		&--cf {
-			left: 298px;
-			top: 36px;
+			left: 45%;
+			top: 22%;
 		}
 
 		&--rf {
-			left: 482px;
+			left: 65%;
+			top: 32%;
 		}
 
 		&--3b {
-			left: -21px;
+			right: 61%;
+			top: 65%;
 		}
 
 		&--ss {
-			left: 193px;
-			top: 131px;
+			right: 45.5%;
+			top: 50%;
 		}
 
 		&--2b {
-			left: 342px;
-			top: 122px;
+			left: 54%;
+			top: 50%;
 		}
 
 		&--1b {
-			left: 454px;
-			top: 176px;
+			left: 61%;
+			top: 65%;
 		}
 
 		&--c {
-			left: 146px;
-			top: 317px;
+			// left: 146px;
+			// top: 317px;
+			left: 39%;
+			top: 87.5%;
 		}
 
 		&--dh {
-			left: 431px;
-			top: 273px;
+			left: 61%;
+			top: 87.5%;
 		}
 
 		&--sp {
-			left: 270px;
+			left: 45%;
+			top: 65%;
 		}
 
 		&--bp,
 		&--cl {
+			left: 28.2%;
 			width: 210px;
 		}
 
 		&--bp {
-			top: 285px;
+			top: 82.8%;
 		}
 
 		&--cl {
-			top: 450px;
+			top: calc(100% + 50px);
 		}
 	}
 }

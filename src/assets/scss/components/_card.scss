@@ -23,14 +23,14 @@
 		border-bottom: $bd-medium;
 		font-family: "proxima-nova", Arial, Helvetica, sans-serif;
 		font-size: $fz-base;
-		font-weight: $fw-bold;
+		font-weight: $fw-semi-bold;
 		line-height: 1.2;
 		padding: 16px;
 	}
 
 	&__footer {
 		font-size: $fz-small;
-		font-weight: $fw-bold;
+		font-weight: $fw-semi-bold;
 		padding: $spacing-small;
 		text-align: center;
 	}

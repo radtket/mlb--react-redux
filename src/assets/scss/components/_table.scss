@@ -42,7 +42,7 @@
 
 		th {
 			font-size: $fz-small;
-			font-weight: $fw-bold;
+			font-weight: $fw-semi-bold;
 			text-transform: uppercase;
 		}
 	}
@@ -178,7 +178,7 @@
 			}
 
 			&.active-team {
-				font-weight: $fw-bold;
+				font-weight: $fw-semi-bold;
 			}
 		}
 	}
@@ -362,7 +362,6 @@
 		}
 
 		.table--roster {
-
 			th,
 			td {
 				&:nth-child(1) {

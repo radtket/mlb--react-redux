@@ -89,27 +89,27 @@ class Calendar extends Component {
 
         days.push(
           <button
-            className={`col cell ${
-              !dateFns.isSameMonth(day, monthStart) ? "disabled" : ""
-            } ${dateFns.isSameDay(day, selectedDate) ? "selected" : ""}`}
+            className={`calendar__col calendar__cell ${
+              !dateFns.isSameMonth(day, monthStart) ? "cell-disabled" : ""
+            } ${dateFns.isSameDay(day, selectedDate) ? "cell-selected" : ""}`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
             type="button">
             {gameOnDate && CalendarGame(gameOnDate)}
-            <span className="number">{formattedDate}</span>
-            <span className="bg">{formattedDate}</span>
+            <span className="calendar__cell--number">{formattedDate}</span>
+            <span className="calendar__cell--bg">{formattedDate}</span>
           </button>
         );
         day = dateFns.addDays(day, 1);
       }
       rows.push(
-        <div className="row" key={day}>
+        <div className="calendar__row" key={day}>
           {days}
         </div>
       );
       days = [];
     }
-    return <div className="calendar-body">{rows}</div>;
+    return <div className="calendar__body">{rows}</div>;
   }
 
   renderDays() {
@@ -121,29 +121,37 @@ class Calendar extends Component {
 
     for (let i = 0; i < 7; i += 1) {
       days.push(
-        <div className="col col-center" key={i}>
+        <div
+          className="calendar__col aligner__center--horitzontal text-center"
+          key={i}>
           {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
         </div>
       );
     }
 
-    return <div className="days row">{days}</div>;
+    return (
+      <div className="calendar__row calendar__row--days text-small text-semibold text-uppercase">
+        {days}
+      </div>
+    );
   }
 
   renderHeader() {
     const dateFormat = "MMMM YYYY";
     const { currentMonth } = this.state;
     return (
-      <header className="header row flex-middle">
-        <div className="col col-start">
+      <header className="calendar__header calendar__row aligner__center--vertical">
+        <div className="calendar__col aligner__center--start text-left">
           <button className="btn-icon" onClick={this.prevMonth} type="button">
             <ChevronLeft />
           </button>
         </div>
-        <div className="col col-center">
-          <span>{dateFns.format(currentMonth, dateFormat)}</span>
+        <div className="calendar__col aligner__center--horitzontal text-center">
+          <h5 className="text-uppercase text-bold">
+            {dateFns.format(currentMonth, dateFormat)}
+          </h5>
         </div>
-        <div className="col col-end">
+        <div className="calendar__col aligner__center--end text-right">
           <button className="btn-icon" onClick={this.nextMonth} type="button">
             <ChevronRight />
           </button>

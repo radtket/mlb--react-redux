@@ -77,6 +77,14 @@ a {
 	font-weight: $fw-normal;
 }
 
+.text-semibold {
+	font-weight: $fw-semi-bold;
+}
+
+.text-bold {
+	font-weight: $fw-bold;
+}
+
 .text-line-through {
 	text-decoration: line-through;
 }
