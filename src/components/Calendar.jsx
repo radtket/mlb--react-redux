@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import dateFns from "date-fns";
-import moment from "moment";
 import PropTypes from "prop-types";
 import { ChevronLeft, ChevronRight } from "./Icons";
 import CalendarGame from "./CalendarGame";
@@ -53,7 +52,7 @@ class Calendar extends Component {
     this.setState({
       teamGames: schedule.reduce((games, game) => {
         const { Day, AwayTeam, HomeTeam } = game;
-        const formatedDay = moment(Day).format("YYYY-MM-DD");
+        const formatedDay = dateFns.format(new Date(Day), "YYYY-MM-DD");
 
         const teamGamesObj = games;
         teamGamesObj[formatedDay] = {
@@ -84,7 +83,8 @@ class Calendar extends Component {
       for (let i = 0; i < 7; i += 1) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
-        const momentDay = moment(day).format("YYYY-MM-DD");
+        const momentDay = dateFns.format(new Date(cloneDay), "YYYY-MM-DD");
+
         const gameOnDate = teamGames[momentDay];
 
         days.push(

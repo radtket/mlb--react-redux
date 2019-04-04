@@ -1,6 +1,6 @@
 import React from "react";
-import moment from "moment";
 import PropTypes from "prop-types";
+import dateFns from "date-fns";
 import { espnLogo } from "../utils/helpers";
 
 const CalendarGame = ({
@@ -16,7 +16,9 @@ const CalendarGame = ({
     (isHomeGame && HomeTeamRuns > AwayTeamRuns) ||
     (!isHomeGame && HomeTeamRuns < AwayTeamRuns);
   const WorL = isWin ? "W" : "L";
-  const dateTime = moment(DateTime);
+  const DateOfGame = new Date(DateTime);
+  const GameTimeStamp = dateFns.format(DateOfGame, "YYYY-MM-DD HH:mm");
+  const GameTime = dateFns.format(DateOfGame, "h:mm A");
   return (
     <>
       <img src={espnLogo(opponent, 40)} alt={opponent} />
@@ -31,7 +33,7 @@ const CalendarGame = ({
           {`, ${HomeTeamRuns} - ${AwayTeamRuns}`}
         </strong>
       ) : (
-        <time dateTime={dateTime.format()}>{dateTime.format("LT")}</time>
+        <time dateTime={GameTimeStamp}>{GameTime}</time>
       )}
     </>
   );
