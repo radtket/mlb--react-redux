@@ -46,7 +46,7 @@ rules:
     - 1
     - size: "tab"
   leading-zero:
-    - 1
+    - 0
     - include: false
   mixin-name-format:
     - 1

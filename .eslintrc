@@ -36,7 +36,8 @@
 			{
 				"trailingComma": "es5",
 				"printWidth": 80,
-				"jsxBracketSameLine": true
+				"jsxBracketSameLine": true,
+				"number-leading-zero": null
 			}
 		]
 	}
