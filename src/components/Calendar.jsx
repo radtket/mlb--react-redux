@@ -3,7 +3,7 @@ import dateFns from "date-fns";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { ChevronLeft, ChevronRight } from "./Icons";
-import { espnLogo } from "../utils/helpers";
+import CalendarGame from "./CalendarGame";
 
 class Calendar extends Component {
   state = {
@@ -93,18 +93,9 @@ class Calendar extends Component {
               !dateFns.isSameMonth(day, monthStart) ? "disabled" : ""
             } ${dateFns.isSameDay(day, selectedDate) ? "selected" : ""}`}
             key={day}
-            game={gameOnDate && gameOnDate}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
             type="button">
-            <img
-              src={
-                gameOnDate && espnLogo(gameOnDate && gameOnDate.opponent, 40)
-              }
-              alt={gameOnDate && gameOnDate.opponent}
-            />
-
-            <h6>{gameOnDate && gameOnDate.opponent}</h6>
-            {gameOnDate && moment(gameOnDate.DateTime).format("LT")}
+            {gameOnDate && CalendarGame(gameOnDate)}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
           </button>

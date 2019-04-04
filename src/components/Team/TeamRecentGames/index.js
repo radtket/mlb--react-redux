@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import SingleGame from "./SingleGame";
-import { DEV_PLACEHOLDER_DATE, TodaysDate } from "../../../utils/helpers";
+import { TodaysDate } from "../../../utils/helpers";
 import Card from "../../Card";
 
 class TeamRecentGames extends Component {
@@ -25,12 +25,7 @@ class TeamRecentGames extends Component {
         title="Recent Games"
         body={
           <ul style={{ marginBottom: 0 }}>
-            {recentGames &&
-              this.renderLast15Games(
-                recentGames,
-                activeTeam,
-                DEV_PLACEHOLDER_DATE
-              )}
+            {recentGames && this.renderLast15Games(recentGames, activeTeam)}
           </ul>
         }
       />

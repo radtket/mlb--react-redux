@@ -29,7 +29,7 @@ class App extends Component {
   componentDidMount() {
     /* eslint-disable react/destructuring-assignment */
     this.props.fetchTeams();
-    this.props.fetchSchedules();
+    this.props.fetchSchedules(2019);
     this.props.fetchStandings();
     /* eslint-enable react/destructuring-assignment */
   }

@@ -18,16 +18,16 @@ export const fetchSchedulesFailure = schedulesFail => ({
   payload: { schedulesFail },
 });
 
-function getSchedules() {
-  return fetch("/data/schedules.json")
+function getSchedules(year = 2019) {
+  return fetch(`/data/schedules-${year}.json`)
     .then(handleErrors)
     .then(res => res.json());
 }
 
-export function fetchSchedules() {
+export function fetchSchedules(year) {
   return dispatch => {
     dispatch(fetchSchedulesBegin());
-    return getSchedules()
+    return getSchedules(year)
       .then(data => {
         dispatch(fetchSchedulesSuccess(data));
         return data;

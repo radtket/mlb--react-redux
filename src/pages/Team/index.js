@@ -38,10 +38,10 @@ class Team extends Component {
     return this.setState({
       recentGames: schedules
         .filter(team => {
-          const { HomeTeam, AwayTeam, Status } = team;
+          const { HomeTeam, AwayTeam } = team;
           return (
-            (HomeTeam === teamAbrv || AwayTeam === teamAbrv) &&
-            Status !== "Scheduled"
+            HomeTeam === teamAbrv || AwayTeam === teamAbrv
+            // && team.Status !== "Scheduled"
           );
         })
         .reverse(),
@@ -63,7 +63,6 @@ class Team extends Component {
       standings,
       standingsError,
       standingsLoading,
-
       teams,
     } = this.props;
     const { recentGames } = this.state;
