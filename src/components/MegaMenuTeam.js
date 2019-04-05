@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { espnLogo } from "../../../utils/helpers";
+import { espnLogo } from "../utils/helpers";
 
-const SingleTeam = ({ Name, City, Key }) => {
+const MegaMenuTeam = ({ Name, City, Key }) => {
   return (
     <Link to={`/teams/${Key}`} style={{ display: "block" }}>
       <img src={espnLogo(Key, 24)} alt={`${Name} ${City} Logo`} />
@@ -15,10 +15,10 @@ const SingleTeam = ({ Name, City, Key }) => {
   );
 };
 
-SingleTeam.propTypes = {
+MegaMenuTeam.propTypes = {
   Name: PropTypes.string.isRequired,
   City: PropTypes.string.isRequired,
   Key: PropTypes.string.isRequired,
 };
 
-export default SingleTeam;
+export default MegaMenuTeam;

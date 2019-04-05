@@ -1,53 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { IconCaret } from "./Icons";
 
-class Dropdown extends Component {
-  state = {
-    showMenu: false,
-  };
-
-  openMenu = event => {
-    event.preventDefault();
-
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener("click", this.closeMenu);
-    });
-  };
-
-  closeMenu = event => {
-    if (!this.dropdownMenu.contains(event.target)) {
-      this.setState({ showMenu: false }, () => {
-        document.removeEventListener("click", this.closeMenu);
-      });
-    }
-  };
-
-  render() {
-    const { showMenu } = this.state;
-    const { MenuItems, Title } = this.props;
-    return (
-      <>
-        <button
-          className="dropdown__button"
-          onClick={this.openMenu}
-          type="button">
-          {Title}
-          <IconCaret />
-        </button>
-        {showMenu ? (
-          <div
-            className="dropdown__content"
-            ref={element => {
-              this.dropdownMenu = element;
-            }}>
-            {MenuItems}
-          </div>
-        ) : null}
-      </>
-    );
-  }
-}
+const Dropdown = ({ MenuItems, Title }) => {
+  const [menuVisible, setMenuVisible] = useState(false);
+  return (
+    <>
+      <button
+        className="dropdown__button"
+        type="button"
+        onClick={() => setMenuVisible(!menuVisible)}>
+        {Title}
+        <IconCaret />
+      </button>
+      {menuVisible && <div className="dropdown__content">{MenuItems}</div>}
+    </>
+  );
+};
 
 Dropdown.propTypes = {
   Title: PropTypes.string.isRequired,

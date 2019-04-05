@@ -23,7 +23,7 @@ import { fetchSchedules } from "./modules/schedules/actions";
 import { fetchStandings } from "./modules/standings/actions";
 
 // Components
-import Header from "./components/Navbar";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   componentDidMount() {
@@ -64,7 +64,7 @@ class App extends Component {
 
     return (
       <div>
-        <Header teams={teams} />
+        <Navbar teams={teams} />
         <main>
           <Route exact path="/" component={Home} />
           <Route exact path="/news" component={NewsAllTeamsList} />
