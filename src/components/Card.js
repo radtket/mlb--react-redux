@@ -13,6 +13,7 @@ const Card = ({ title, body, style }) => {
 Card.propTypes = {
   title: PropTypes.string,
   body: PropTypes.element,
+  // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 };
 

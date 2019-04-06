@@ -1,4 +1,3 @@
-import fetch from "cross-fetch";
 // import { handleErrors } from "../../utils/helpers";
 
 export const REQUEST_POSTS = "REQUEST_POSTS";

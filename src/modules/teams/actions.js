@@ -1,4 +1,3 @@
-import fetch from "cross-fetch";
 import { handleErrors } from "../../utils/helpers";
 
 export const FETCH_TEAMS_BEGIN = "FETCH_TEAMS_BEGIN";
