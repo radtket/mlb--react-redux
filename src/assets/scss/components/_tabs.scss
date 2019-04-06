@@ -15,7 +15,7 @@
 	// border-bottom: $bdb-tabs;
 	text-align: center;
 
-	>nav {
+	> nav {
 		position: relative;
 
 		&::after {
@@ -27,6 +27,7 @@
 	}
 
 	&-item {
+		border: 0;
 		border-bottom: $bdb-tabs-item;
 		color: $c-tabs-item;
 		cursor: pointer;
@@ -38,7 +39,7 @@
 		padding: $p-tabs-item;
 		position: relative;
 		text-transform: $tt-button;
-		transition: color .2s ease-in-out;
+		transition: color 0.2s ease-in-out;
 		// width: 50%;
 
 		&:hover {
