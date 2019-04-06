@@ -1,41 +1,37 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isSameDay } from "date-fns";
 import { fetchSchedules } from "../modules/schedules/actions";
 import SingleGame from "../components/Standings/SingleGame";
-import { DEV_PLACEHOLDER_DATE } from "../utils/helpers";
+import { TodaysDate } from "../utils/helpers";
 
-class SchedulesList extends Component {
-  render() {
-    const { schedulesError, schedulesLoading, schedules } = this.props;
-
-    if (schedulesError) {
-      return <div>Error! {schedulesError.message}</div>;
-    }
-
-    if (schedulesLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div>
-        <h1>Todays Games</h1>
-        <ul>
-          {schedules &&
-            schedules.reduce((acc, game) => {
-              const { Day, GameID } = game;
-
-              isSameDay(Day, DEV_PLACEHOLDER_DATE) &&
-                acc.push(<SingleGame key={GameID} {...game} />);
-              return acc;
-            }, [])}
-        </ul>
-      </div>
-    );
+const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
+  if (schedulesError) {
+    return <div>Error! {schedulesError.message}</div>;
   }
-}
+
+  if (schedulesLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Todays Games</h1>
+      <ul>
+        {schedules &&
+          schedules.reduce((acc, game) => {
+            const { Day, GameID } = game;
+
+            isSameDay(Day, TodaysDate) &&
+              acc.push(<SingleGame key={GameID} {...game} />);
+            return acc;
+          }, [])}
+      </ul>
+    </div>
+  );
+};
 
 SchedulesList.propTypes = {
   schedulesError: null || PropTypes.bool,

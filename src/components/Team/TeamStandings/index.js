@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import StandingsTeam from "./StandingsTeam";
@@ -6,14 +6,18 @@ import { largestToSmallest, getLeagueName } from "../../../utils/helpers";
 import Tabs from "../../Tabs/Tabs";
 import Card from "../../Card";
 
-class TeamStandings extends Component {
-  createStandingsTable = (standings, activeTeamObj, division = false) => {
-    return standings.reduce((divisionTeams, team) => {
+const TeamStandings = ({ standings, activeTeamObj }) => {
+  const createStandingsTable = (
+    standingsArg,
+    activeTeamObjArg,
+    division = false
+  ) => {
+    return standingsArg.reduce((divisionTeams, team) => {
       const {
         League: ActiveLeague,
         Division: ActiveDivision,
         Key: ActiveKey,
-      } = activeTeamObj;
+      } = activeTeamObjArg;
       const {
         League: TeamLeague,
         Division: TeamDivision,
@@ -60,70 +64,67 @@ class TeamStandings extends Component {
     }, []);
   };
 
-  render() {
-    const { standings, activeTeamObj } = this.props;
-    const { Division, League } = activeTeamObj;
-    return (
-      <Card
-        title="Standings"
-        body={
-          <>
-            <Tabs itemWidth="50%">
-              <div label="Division">
-                <table
-                  className="table table--standings"
-                  style={{
-                    boxShadow: "none",
-                  }}>
-                  <thead>
-                    <tr>
-                      <th>{`${League} ${Division}`}</th>
-                      <th>W</th>
-                      <th>L</th>
-                      <th>GB</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {standings &&
-                      this.createStandingsTable(standings, activeTeamObj, true)}
-                  </tbody>
-                </table>
-              </div>
-              <div label="League">
-                <table
-                  className="table table--standings"
-                  style={{
-                    boxShadow: "none",
-                  }}>
-                  <thead>
-                    <tr>
-                      <th>{getLeagueName(League)}</th>
-                      <th>W</th>
-                      <th>L</th>
-                      <th>PCT</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {standings &&
-                      this.createStandingsTable(
-                        standings.sort(largestToSmallest("Percentage")),
-                        activeTeamObj
-                      )}
-                  </tbody>
-                </table>
-              </div>
-            </Tabs>
-            <footer className="card__footer">
-              <Link className="text-uppercase" to="/standings">
-                Full Standings
-              </Link>
-            </footer>
-          </>
-        }
-      />
-    );
-  }
-}
+  const { Division, League } = activeTeamObj;
+  return (
+    <Card
+      title="Standings"
+      body={
+        <>
+          <Tabs itemWidth="50%">
+            <div label="Division">
+              <table
+                className="table table--standings"
+                style={{
+                  boxShadow: "none",
+                }}>
+                <thead>
+                  <tr>
+                    <th>{`${League} ${Division}`}</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>GB</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {standings &&
+                    createStandingsTable(standings, activeTeamObj, true)}
+                </tbody>
+              </table>
+            </div>
+            <div label="League">
+              <table
+                className="table table--standings"
+                style={{
+                  boxShadow: "none",
+                }}>
+                <thead>
+                  <tr>
+                    <th>{getLeagueName(League)}</th>
+                    <th>W</th>
+                    <th>L</th>
+                    <th>PCT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {standings &&
+                    createStandingsTable(
+                      standings.sort(largestToSmallest("Percentage")),
+                      activeTeamObj
+                    )}
+                </tbody>
+              </table>
+            </div>
+          </Tabs>
+          <footer className="card__footer">
+            <Link className="text-uppercase" to="/standings">
+              Full Standings
+            </Link>
+          </footer>
+        </>
+      }
+    />
+  );
+};
 
 TeamStandings.propTypes = {
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,

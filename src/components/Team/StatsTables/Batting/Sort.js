@@ -1,82 +1,74 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class Sort extends Component {
-  sortRoster = field => {
-    const { sortRosterStateBy, players, direction } = this.props;
+const Sort = ({ sortRosterStateBy, players, direction }) => {
+  const sortRoster = field => {
     return sortRosterStateBy(field, players, direction);
   };
-
-  render() {
-    return (
-      <thead>
-        <tr>
-          <th onClick={() => this.sortRoster("Name")}>Name</th>
-          <th title="Games played" onClick={() => this.sortRoster("Games")}>
-            GP
-          </th>
-          <th title="At bats" onClick={() => this.sortRoster("AtBats")}>
-            AB
-          </th>
-          <th title="Runs" onClick={() => this.sortRoster("Runs")}>
-            R
-          </th>
-          <th title="Hits" onClick={() => this.sortRoster("Hits")}>
-            H
-          </th>
-          <th title="Doubles" onClick={() => this.sortRoster("Doubles")}>
-            2B
-          </th>
-          <th title="Triples" onClick={() => this.sortRoster("Triples")}>
-            3B
-          </th>
-          <th title="Home Runs" onClick={() => this.sortRoster("HomeRuns")}>
-            HR
-          </th>
-          <th
-            title="Runs Batted In"
-            onClick={() => this.sortRoster("RunsBattedIn")}>
-            RBI
-          </th>
-          <th title="Total Bases" onClick={() => this.sortRoster("TotalBases")}>
-            TB
-          </th>
-          <th title="Walks" onClick={() => this.sortRoster("Walks")}>
-            BB
-          </th>
-          <th title="Strikeouts" onClick={() => this.sortRoster("Strikeouts")}>
-            SO
-          </th>
-          <th
-            title="Stolen Bases"
-            onClick={() => this.sortRoster("StolenBases")}>
-            SB
-          </th>
-          <th
-            title="Batting Average"
-            onClick={() => this.sortRoster("BattingAverage")}>
-            BA
-          </th>
-          <th
-            title="On Base Percentage"
-            onClick={() => this.sortRoster("OnBasePercentage")}>
-            OBP
-          </th>
-          <th
-            title="Slugging Percentage"
-            onClick={() => this.sortRoster("SluggingPercentage")}>
-            SLG
-          </th>
-          <th
-            title="On Base Plus Slugging"
-            onClick={() => this.sortRoster("OnBasePlusSlugging")}>
-            OPS
-          </th>
-        </tr>
-      </thead>
-    );
-  }
-}
+  return (
+    <thead>
+      <tr>
+        <th onClick={() => sortRoster("Name")}>Name</th>
+        <th title="Games played" onClick={() => sortRoster("Games")}>
+          GP
+        </th>
+        <th title="At bats" onClick={() => sortRoster("AtBats")}>
+          AB
+        </th>
+        <th title="Runs" onClick={() => sortRoster("Runs")}>
+          R
+        </th>
+        <th title="Hits" onClick={() => sortRoster("Hits")}>
+          H
+        </th>
+        <th title="Doubles" onClick={() => sortRoster("Doubles")}>
+          2B
+        </th>
+        <th title="Triples" onClick={() => sortRoster("Triples")}>
+          3B
+        </th>
+        <th title="Home Runs" onClick={() => sortRoster("HomeRuns")}>
+          HR
+        </th>
+        <th title="Runs Batted In" onClick={() => sortRoster("RunsBattedIn")}>
+          RBI
+        </th>
+        <th title="Total Bases" onClick={() => sortRoster("TotalBases")}>
+          TB
+        </th>
+        <th title="Walks" onClick={() => sortRoster("Walks")}>
+          BB
+        </th>
+        <th title="Strikeouts" onClick={() => sortRoster("Strikeouts")}>
+          SO
+        </th>
+        <th title="Stolen Bases" onClick={() => sortRoster("StolenBases")}>
+          SB
+        </th>
+        <th
+          title="Batting Average"
+          onClick={() => sortRoster("BattingAverage")}>
+          BA
+        </th>
+        <th
+          title="On Base Percentage"
+          onClick={() => sortRoster("OnBasePercentage")}>
+          OBP
+        </th>
+        <th
+          title="Slugging Percentage"
+          onClick={() => sortRoster("SluggingPercentage")}>
+          SLG
+        </th>
+        <th
+          title="On Base Plus Slugging"
+          onClick={() => sortRoster("OnBasePlusSlugging")}>
+          OPS
+        </th>
+      </tr>
+    </thead>
+  );
+};
 
 Sort.propTypes = {
   sortRosterStateBy: PropTypes.func.isRequired,

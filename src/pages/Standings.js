@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -7,9 +7,9 @@ import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
 import { sortTeamsByDivion } from "../utils/helpers";
 
-class StandingsList extends Component {
-  createStandingsComponent = standings => {
-    return sortTeamsByDivion(standings).reduce(
+const StandingsList = ({ standings, standingsError, standingsLoading }) => {
+  const createStandingsComponent = standingsArg => {
+    return sortTeamsByDivion(standingsArg).reduce(
       (standingsComponent, divisionComponent) => {
         const [divisionName, divisionTeamsComponents] = divisionComponent;
         standingsComponent.push(
@@ -35,24 +35,20 @@ class StandingsList extends Component {
     );
   };
 
-  render() {
-    const { standings, standingsError, standingsLoading } = this.props;
-
-    if (standingsError) {
-      return <div>Error! {standingsError.message}</div>;
-    }
-
-    if (standingsLoading || standings.length <= 0) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div className="container">
-        {standings && this.createStandingsComponent(standings)}
-      </div>
-    );
+  if (standingsError) {
+    return <div>Error! {standingsError.message}</div>;
   }
-}
+
+  if (standingsLoading || standings.length <= 0) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="container">
+      {standings && createStandingsComponent(standings)}
+    </div>
+  );
+};
 
 StandingsList.propTypes = {
   standingsError: null || PropTypes.bool,

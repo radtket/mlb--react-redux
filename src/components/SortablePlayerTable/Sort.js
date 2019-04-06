@@ -1,29 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class Sort extends Component {
-  sortRoster = field => {
-    const { sortRosterStateBy, players, direction } = this.props;
+const Sort = ({ sortRosterStateBy, players, direction }) => {
+  const sortRoster = field => {
     return sortRosterStateBy(field, players, direction);
   };
 
-  render() {
-    return (
-      <thead>
-        <tr>
-          <th onClick={() => this.sortRoster("LastName")}>Name</th>
-          <th onClick={() => this.sortRoster("Position")}>POS</th>
-          <th onClick={() => this.sortRoster("BatHand")}>BAT</th>
-          <th onClick={() => this.sortRoster("ThrowHand")}>THW</th>
-          <th onClick={() => this.sortRoster("BirthDate")}>AGE</th>
-          <th onClick={() => this.sortRoster("Height")}>HT</th>
-          <th onClick={() => this.sortRoster("Weight")}>WT</th>
-          <th>Birth Place</th>
-        </tr>
-      </thead>
-    );
-  }
-}
+  return (
+    <thead>
+      <tr>
+        <th onClick={() => sortRoster("LastName")}>Name</th>
+        <th onClick={() => sortRoster("Position")}>POS</th>
+        <th onClick={() => sortRoster("BatHand")}>BAT</th>
+        <th onClick={() => sortRoster("ThrowHand")}>THW</th>
+        <th onClick={() => sortRoster("BirthDate")}>AGE</th>
+        <th onClick={() => sortRoster("Height")}>HT</th>
+        <th onClick={() => sortRoster("Weight")}>WT</th>
+        <th>Birth Place</th>
+      </tr>
+    </thead>
+  );
+};
 
 Sort.propTypes = {
   sortRosterStateBy: PropTypes.func.isRequired,

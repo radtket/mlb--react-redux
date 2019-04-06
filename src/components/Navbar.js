@@ -1,36 +1,16 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
-import MegaMenuDivision from "./MegaMenuDivision";
-import { sortTeamsByDivion } from "../utils/helpers";
-import Dropdown from "./Dropdown";
+import MegaMenuDropdown, {
+  DropdownReducer,
+  initialState,
+  DropdownContext,
+} from "./MegaMenuDropdown";
 import { SiteLogo } from "./Icons";
 
 const Navbar = ({ teams }) => {
-  const createMegaMenu = teamsArg => {
-    let cols = [];
-    return sortTeamsByDivion(teamsArg).reduce((rows, element, index) => {
-      const [DivisionName, TeamsInComponents] = element;
-      const { League: LeaugeName } = TeamsInComponents[0];
-      cols.push(
-        <MegaMenuDivision
-          key={DivisionName}
-          DivisionName={DivisionName}
-          TeamsInDivision={TeamsInComponents}
-        />
-      );
-      if ((index + 1) % 3 === 0) {
-        rows.push(
-          <div className="row" key={LeaugeName}>
-            {cols}
-          </div>
-        );
-        cols = [];
-      }
-      return rows;
-    }, []);
-  };
+  const [state, dispatch] = useReducer(DropdownReducer, initialState);
+
   return (
     <header className="header">
       <div className="container header__inner">
@@ -63,7 +43,9 @@ const Navbar = ({ teams }) => {
               </NavLink>
             </li>
             <li>
-              <Dropdown Title="Teams" MenuItems={createMegaMenu(teams)} />
+              <DropdownContext.Provider value={{ state, dispatch }}>
+                <MegaMenuDropdown teams={teams} />
+              </DropdownContext.Provider>
             </li>
           </ul>
         </div>

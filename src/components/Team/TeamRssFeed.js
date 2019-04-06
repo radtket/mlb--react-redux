@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card";
 
-class TeamRssFeed extends Component {
-  renderRssHeadlines = teamRssNews => {
-    return teamRssNews.map(article => {
+const TeamRssFeed = ({ teamRssNews }) => {
+  const renderRssHeadlines = rssArg => {
+    return rssArg.map(article => {
       const { title, link } = article;
       const { id, teamcode } = article["mlb:team"][0].$;
 
@@ -18,20 +18,17 @@ class TeamRssFeed extends Component {
     });
   };
 
-  render() {
-    const { teamRssNews } = this.props;
-    return (
-      <Card
-        title="RSS Feed"
-        body={
-          <ul className="list--nav" style={{ marginBottom: 0 }}>
-            {teamRssNews && this.renderRssHeadlines(teamRssNews)}
-          </ul>
-        }
-      />
-    );
-  }
-}
+  return (
+    <Card
+      title="RSS Feed"
+      body={
+        <ul className="list--nav" style={{ marginBottom: 0 }}>
+          {teamRssNews && renderRssHeadlines(teamRssNews)}
+        </ul>
+      }
+    />
+  );
+};
 
 TeamRssFeed.propTypes = {
   teamRssNews: PropTypes.arrayOf(

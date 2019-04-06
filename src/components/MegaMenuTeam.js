@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { espnLogo } from "../utils/helpers";
+import { DropdownContext } from "./MegaMenuDropdown";
 
 const MegaMenuTeam = ({ Name, City, Key }) => {
+  const { dispatch } = useContext(DropdownContext);
   return (
-    <Link to={`/teams/${Key}`} style={{ display: "block" }}>
+    <Link
+      onClick={() => dispatch("toggle")}
+      to={`/teams/${Key}`}
+      style={{ display: "block" }}>
       <img src={espnLogo(Key, 24)} alt={`${Name} ${City} Logo`} />
       <span>
         <span className="team-city">{City} </span>
