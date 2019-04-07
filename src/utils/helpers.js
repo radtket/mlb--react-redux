@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { differenceInYears, format } from "date-fns";
+import MLBAMIDs from "./MLBAMIDs";
 
 export function handleErrors(response) {
   if (!response.ok) {
@@ -559,4 +560,15 @@ export const calcBattingSlug = (
   )
     .toFixed(3)
     .replace(/^0+/, "");
+};
+
+export const findMLBID = playerIdArg => {
+  const FoundMLBAMID = MLBAMIDs.find(player => {
+    const { PlayerID, MLBAMID } = player;
+    if (PlayerID === playerIdArg) {
+      return MLBAMID;
+    }
+    return false;
+  });
+  return FoundMLBAMID && FoundMLBAMID.MLBAMID;
 };

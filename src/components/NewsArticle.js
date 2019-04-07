@@ -19,20 +19,22 @@ const SplitLogo = (team1, team2) => {
 };
 
 const NewsArticle = ({
-  Title,
-  Url,
+  Author,
+  cardSize,
   Categories,
   Content,
-  TimeAgo,
-  Author,
+  DatePublished,
+  FeaturedImage,
+  MLBAMID,
+  PrimaryColor,
+  Source,
   Team,
   Team2,
-  MLBAMID,
-  cardSize,
+  TimeAgo,
+  Title,
   Updated,
-  FeaturedImage,
-  DatePublished,
-  Source,
+  Url,
+  WikipediaWordMarkUrl,
   // PlayerID,
   // PlayerID2,
 }) => {
@@ -43,7 +45,17 @@ const NewsArticle = ({
         <figure
           className="news-card__image"
           style={
-            (FeaturedImage && { backgroundImage: `url(${FeaturedImage})` }) ||
+            (FeaturedImage && {
+              backgroundImage: `url(${FeaturedImage})`,
+            }) ||
+            (WikipediaWordMarkUrl &&
+              PrimaryColor && {
+                background: `#${PrimaryColor}`,
+                backgroundImage: `url(${WikipediaWordMarkUrl})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center center",
+              }) ||
             (MLBAMID && {
               backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
             })
@@ -102,36 +114,40 @@ const NewsArticle = ({
 };
 
 NewsArticle.propTypes = {
-  Title: PropTypes.string.isRequired,
-  Url: PropTypes.string.isRequired,
+  Author: PropTypes.string,
+  cardSize: PropTypes.string,
   Categories: PropTypes.string,
   Content: PropTypes.string.isRequired,
-  TimeAgo: PropTypes.string,
-  Author: PropTypes.string,
+  DatePublished: PropTypes.string,
+  FeaturedImage: PropTypes.string,
+  MLBAMID: PropTypes.number,
+  PrimaryColor: PropTypes.string,
   Source: PropTypes.string,
   Team: PropTypes.string,
   Team2: PropTypes.string,
-  MLBAMID: PropTypes.number,
-  cardSize: PropTypes.string,
+  TimeAgo: PropTypes.string,
+  Title: PropTypes.string.isRequired,
   Updated: PropTypes.string,
-  FeaturedImage: PropTypes.string,
-  DatePublished: PropTypes.string,
+  Url: PropTypes.string.isRequired,
+  WikipediaWordMarkUrl: PropTypes.string,
   // PlayerID: PropTypes.number,
   // PlayerID2: PropTypes.number,
 };
 
 NewsArticle.defaultProps = {
+  Author: null,
+  cardSize: null,
   Categories: "News",
+  DatePublished: null,
+  FeaturedImage: null,
+  MLBAMID: null,
+  PrimaryColor: null,
+  Source: null,
   Team: null,
   Team2: null,
   TimeAgo: null,
-  MLBAMID: null,
-  cardSize: null,
   Updated: null,
-  FeaturedImage: null,
-  DatePublished: null,
-  Author: null,
-  Source: null,
+  WikipediaWordMarkUrl: null,
   // PlayerID: null,
   // PlayerID2: null,
 };
