@@ -17,7 +17,7 @@ const Roster = ({ players }) => {
 };
 
 Roster.propTypes = {
-  players: PropTypes.arrayOf(PropTypes.object).isRequired
+  players: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Roster;

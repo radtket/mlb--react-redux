@@ -13,6 +13,13 @@ export const isObjectEmpty = myObject => {
   return !Object.keys(myObject).length;
 };
 
+export const isArrayEmpty = arrayArg => {
+  if (arrayArg && arrayArg.length) {
+    return false;
+  }
+  return true;
+};
+
 export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
   const teamName = teamAbrv === "CWS" ? "CHW" : teamAbrv;
   return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamName.toLowerCase()}.png&h=${size}&w=${size}`;

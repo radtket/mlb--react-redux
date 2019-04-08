@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { PlayerPhotoByID } from "../../../../utils/helpers";
 
@@ -56,6 +56,10 @@ const ProfileCard = ({ player }) => {
       <td data-th="Earned run average">{EarnedRunAverage}</td>
     </tr>
   );
+};
+
+ProfileCard.propTypes = {
+  player: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProfileCard;

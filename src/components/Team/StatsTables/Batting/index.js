@@ -1,37 +1,37 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-multi-comp */
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import Sort from "./Sort";
 import Roster from "./Roster";
+import { isArrayEmpty } from "../../../../utils/helpers";
 
-class StatsTableBatting extends Component {
-  state = {
-    players: [],
-    direction: 1,
-    isScrolling: false,
-  };
+const StatsTableBatting = props => {
+  const { players: PropsPlayers } = props;
+  const [StatePlayers, setStatePlayers] = useState([]);
+  const [direction, setDirection] = useState(1);
+  const [isScrolling, setIsScrolling] = useState(false);
 
-  componentDidMount() {
-    const { players } = this.props;
-    this.handleTableScroll();
-    this.setState({
-      players,
-    });
-  }
-
-  handleTableScroll = () => {
+  const handleTableScroll = () => {
     document.querySelector(".table--wrap").addEventListener("scroll", () => {
-      const { isScrolling } = this.state;
       if (!isScrolling) {
-        this.setState({ isScrolling: true });
+        setIsScrolling(true);
+
         setTimeout(() => {
-          this.setState({ isScrolling: false });
+          setIsScrolling(false);
         }, 300);
       }
     });
   };
 
-  sortRosterStateBy = (field, players, direction) => {
+  useEffect(() => {
+    const { players } = props;
+    handleTableScroll();
+
+    isArrayEmpty(StatePlayers) &&
+      !isArrayEmpty(players) &&
+      setStatePlayers(players);
+  });
+
+  const sortRosterStateBy = (field, players, sortDirection) => {
     players.sort((a, b) => {
       if (a[field] === null) {
         return 1;
@@ -43,35 +43,35 @@ class StatsTableBatting extends Component {
         return 0;
       }
       if (a[field] > b[field]) {
-        return -direction;
+        return -sortDirection;
       }
       if (a[field] < b[field]) {
-        return direction;
+        return sortDirection;
       }
       return 0;
     });
 
     // Change state
-    this.setState({ players, direction: -direction });
+    setStatePlayers(players);
+    setDirection(-sortDirection);
   };
 
-  render() {
-    // Return page with stats data and Roster
-    const { players: PropsPlayers } = this.props;
-    const { players: StatePlayers, direction, isScrolling } = this.state;
-    return (
-      <div className={`table--wrap  ${isScrolling && "isScrolling"}`}>
-        <table className="table table--roster" style={{ marginTop: 24 }}>
-          <Sort
-            direction={direction}
-            players={PropsPlayers}
-            sortRosterStateBy={this.sortRosterStateBy}
-          />
-          <Roster players={StatePlayers} />
-        </table>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={`table--wrap  ${isScrolling && "isScrolling"}`}>
+      <table className="table table--roster" style={{ marginTop: 24 }}>
+        <Sort
+          direction={direction}
+          players={PropsPlayers}
+          sortRosterStateBy={sortRosterStateBy}
+        />
+        <Roster players={StatePlayers} />
+      </table>
+    </div>
+  );
+};
+
+StatsTableBatting.propTypes = {
+  players: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default StatsTableBatting;
