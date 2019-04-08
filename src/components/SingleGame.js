@@ -5,7 +5,7 @@ import {
   espnLogo,
   getNumberWithOrdinal,
   inningHalfDecoder,
-} from "../../utils/helpers";
+} from "../utils/helpers";
 
 const SingleGame = ({
   AwayTeam,

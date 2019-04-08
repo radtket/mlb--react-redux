@@ -1,68 +1,65 @@
 /* eslint-disable camelcase */
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPlayerStats } from "../../modules/playerStats/actions";
 
-import BasicStats from "./BasicStats";
-import AdvancedStats from "./AdvancedStats";
+import { AdvancedStats, BasicStats } from ".";
 import Card from "../Card";
 
-class PlayerStats extends Component {
-  componentDidMount() {
-    const {
-      fetchPlayerStats: getPlayerStats,
-      RotoWirePlayerID,
-      PositionCategory,
-    } = this.props;
+const PlayerStats = ({
+  playerStatsFail,
+  playerStatsLoading,
+  playerStats,
+  RotoWirePlayerID,
+  PositionCategory,
+  fetchPlayerStats: getPlayerStats,
+}) => {
+  useEffect(() => {
     getPlayerStats(RotoWirePlayerID, PositionCategory);
+  }, []);
+
+  if (playerStatsFail) {
+    return <div>Error! {playerStatsFail.message}</div>;
   }
 
-  render() {
-    const { playerStatsFail, playerStatsLoading, playerStats } = this.props;
-
-    if (playerStatsFail) {
-      return <div>Error! {playerStatsFail.message}</div>;
-    }
-
-    if (playerStatsLoading) {
-      return <div>Loading...</div>;
-    }
-
-    const { playerId, isPitcher, basic, advanced } = playerStats;
-
-    return (
-      <div>
-        {basic && (
-          <Card
-            title={`${isPitcher ? "Pitching" : "Batting"} Stats`}
-            body={
-              <BasicStats
-                data={basic.body}
-                isPitcher={isPitcher}
-                playerId={playerId}
-              />
-            }
-          />
-        )}
-
-        {advanced && (
-          <Card
-            title={`Advanced ${isPitcher ? "Pitching" : "Batting"} Stats`}
-            body={
-              <AdvancedStats
-                data={advanced.body}
-                isPitcher={isPitcher}
-                playerId={playerId}
-              />
-            }
-          />
-        )}
-      </div>
-    );
+  if (playerStatsLoading) {
+    return <div>Loading...</div>;
   }
-}
+
+  const { playerId, isPitcher, basic, advanced } = playerStats;
+
+  return (
+    <div>
+      {basic && (
+        <Card
+          title={`${isPitcher ? "Pitching" : "Batting"} Stats`}
+          body={
+            <BasicStats
+              data={basic.body}
+              isPitcher={isPitcher}
+              playerId={playerId}
+            />
+          }
+        />
+      )}
+
+      {advanced && (
+        <Card
+          title={`Advanced ${isPitcher ? "Pitching" : "Batting"} Stats`}
+          body={
+            <AdvancedStats
+              data={advanced.body}
+              isPitcher={isPitcher}
+              playerId={playerId}
+            />
+          }
+        />
+      )}
+    </div>
+  );
+};
 
 PlayerStats.propTypes = {
   // data: PropTypes.arrayOf(PropTypes.object).isRequired,

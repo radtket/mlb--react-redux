@@ -8,7 +8,6 @@ import RedditAsyncApp from "./Reddit";
 import SchedulesList from "./Schedules";
 import StandingsList from "./Standings";
 import Team from "./Team";
-import TeamRssNewsList from "./TeamRssNews";
 
 export {
   Counters,
@@ -21,5 +20,4 @@ export {
   SchedulesList,
   StandingsList,
   Team,
-  TeamRssNewsList,
 };

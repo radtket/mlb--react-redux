@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,14 +8,19 @@ import Tabs from "../../../components/Tabs/Tabs";
 import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
 import StatsTablePitching from "../../../components/Team/StatsTables/Pitching";
 
-class PageTeamStats extends Component {
-  componentDidMount() {
-    const { match, fetchTeamStats: getTeamStats } = this.props;
+const PageTeamStats = ({
+  teamStatsFail,
+  teamStatsLoading,
+  teamStats,
+  match,
+  fetchTeamStats: getTeamStats,
+}) => {
+  useEffect(() => {
     const { teamAbrv: currentTeamAbrv } = match.params;
     getTeamStats(currentTeamAbrv);
-  }
+  }, []);
 
-  splitStatsByPosition = stats => {
+  const splitStatsByPosition = stats => {
     return stats.reduce(
       (team, player) => {
         const { PositionCategory } = player;
@@ -29,36 +34,33 @@ class PageTeamStats extends Component {
     );
   };
 
-  render() {
-    const { teamStatsFail, teamStatsLoading, teamStats } = this.props;
-    const { pitcher, batter } = this.splitStatsByPosition(teamStats);
+  const { pitcher, batter } = splitStatsByPosition(teamStats);
 
-    if (teamStatsFail) {
-      return <div>Error! {teamStatsFail.message}</div>;
-    }
+  if (teamStatsFail) {
+    return <div>Error! {teamStatsFail.message}</div>;
+  }
 
-    if (teamStatsLoading) {
-      return <div>Loading...</div>;
-    }
+  if (teamStatsLoading) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
-            <Tabs itemWidth="25%">
-              <div label="Batting">
-                <StatsTableBatting players={batter} />
-              </div>
-              <div label="Pitching">
-                <StatsTablePitching players={pitcher} />
-              </div>
-            </Tabs>
-          </div>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          <Tabs itemWidth="25%">
+            <div label="Batting">
+              <StatsTableBatting players={batter} />
+            </div>
+            <div label="Pitching">
+              <StatsTablePitching players={pitcher} />
+            </div>
+          </Tabs>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 PageTeamStats.propTypes = {
   teamStatsFail: null || PropTypes.bool,

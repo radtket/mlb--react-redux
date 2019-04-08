@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { espnLogo } from "../../utils/helpers";
+import { espnLogo } from "../../../utils/helpers";
 
 const TeamLogo = ({ Team }) => {
   const { Name, City, Key, PrimaryColor } = Team;

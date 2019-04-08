@@ -11,7 +11,7 @@ import {
   // TodaysDate,
   DEV_PLACEHOLDER_DATE,
 } from "../utils/helpers";
-import SingleGame from "../components/GamesOnDay/SingleGame";
+import SingleGame from "../components/SingleGame";
 
 class GamesOnDayList extends Component {
   state = {

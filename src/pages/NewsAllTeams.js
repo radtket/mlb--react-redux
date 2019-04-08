@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,41 +6,41 @@ import { fetchNewsAllTeams } from "../modules/newsAllTeams/actions";
 import NewsArticle from "../components/NewsArticle";
 import { findMLBID } from "../utils/helpers";
 
-class NewsAllTeamsList extends Component {
-  constructor(props) {
-    super();
-    props.fetchNewsAllTeams();
+const NewsAllTeamsList = ({
+  newsAllError,
+  newsAllLoading,
+  newsAllTeams,
+  fetchNewsAllTeams: getNewsAllTeams,
+}) => {
+  useEffect(() => {
+    getNewsAllTeams();
+  }, []);
+
+  if (newsAllError) {
+    return <div>Error! {newsAllError.message}</div>;
   }
 
-  render() {
-    const { newsAllError, newsAllLoading, newsAllTeams } = this.props;
-
-    if (newsAllError) {
-      return <div>Error! {newsAllError.message}</div>;
-    }
-
-    if (newsAllLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div className="container-fluid posts-wrap">
-        {newsAllTeams &&
-          newsAllTeams.map(article => {
-            const { NewsID, MLBAMID, PlayerID } = article;
-            return (
-              <NewsArticle
-                cardSize="qrt"
-                key={NewsID}
-                MLBAMID={MLBAMID || findMLBID(PlayerID)}
-                {...article}
-              />
-            );
-          })}
-      </div>
-    );
+  if (newsAllLoading) {
+    return <div>Loading...</div>;
   }
-}
+
+  return (
+    <div className="container-fluid posts-wrap">
+      {newsAllTeams &&
+        newsAllTeams.map(article => {
+          const { NewsID, MLBAMID, PlayerID } = article;
+          return (
+            <NewsArticle
+              cardSize="qrt"
+              key={NewsID}
+              MLBAMID={MLBAMID || findMLBID(PlayerID)}
+              {...article}
+            />
+          );
+        })}
+    </div>
+  );
+};
 
 NewsAllTeamsList.propTypes = {
   newsAllError: null || PropTypes.bool,

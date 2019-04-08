@@ -1,68 +1,57 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../modules/player/actions";
 
-import PlayerHero from "../components/PlayerHero";
-import PlayerStats from "../components/Player/PlayerStats";
-import PlayerNews from "../components/Player/PlayerNews";
-// import NewsArticle from "../newsAllTeams/NewsArticle";
+import { PlayerHero, PlayerNews, PlayerStats } from "../components/Player";
 
-class PlayerList extends Component {
-  componentDidMount() {
-    const { fetchPlayer: getPlayer, match } = this.props;
+const PlayerList = ({
+  playerFail,
+  playerLoading,
+  player,
+  match,
+  fetchPlayer: getPlayer,
+}) => {
+  useEffect(() => {
     const { playerArg } = match.params;
     getPlayer(playerArg);
+  }, []);
+
+  const { playerArg } = match.params;
+  const { Team, MLBAMID, PositionCategory, RotoWirePlayerID } = player;
+
+  if (playerFail) {
+    return <div>Error! {playerFail.message}</div>;
   }
 
-  componentDidUpdate(prevProps) {
-    const { fetchPlayer: getPlayer, match } = this.props;
-    const { playerArg: ThisPlayerArg } = match.params;
-    const { playerArg: PrevPlayerArg } = prevProps.match.params;
-
-    if (PrevPlayerArg !== ThisPlayerArg) {
-      getPlayer(ThisPlayerArg);
-    }
+  if (playerLoading) {
+    return <div>Loading...</div>;
   }
 
-  render() {
-    const { playerFail, playerLoading, player, match } = this.props;
-    const { playerArg } = match.params;
-    const { Team, MLBAMID, PositionCategory, RotoWirePlayerID } = player;
-
-    if (playerFail) {
-      return <div>Error! {playerFail.message}</div>;
-    }
-
-    if (playerLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      player && (
-        <div>
-          <PlayerHero {...player} />
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12">
-                <h3>
-                  <Link to={`/teams/${Team}`}>{Team}</Link>
-                </h3>
-                <PlayerNews MLBAMID={MLBAMID} playerArg={playerArg} />
-                <PlayerStats
-                  RotoWirePlayerID={RotoWirePlayerID}
-                  PositionCategory={PositionCategory}
-                />
-              </div>
+  return (
+    player && (
+      <div>
+        <PlayerHero {...player} />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+              <h3>
+                <Link to={`/teams/${Team}`}>{Team}</Link>
+              </h3>
+              <PlayerNews MLBAMID={MLBAMID} playerArg={playerArg} />
+              <PlayerStats
+                RotoWirePlayerID={RotoWirePlayerID}
+                PositionCategory={PositionCategory}
+              />
             </div>
           </div>
         </div>
-      )
-    );
-  }
-}
+      </div>
+    )
+  );
+};
 
 PlayerList.propTypes = {
   match: PropTypes.shape({

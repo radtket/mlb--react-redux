@@ -1,43 +1,44 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
 import { fetchTeamRoster } from "../../../modules/teamRoster/actions";
 
-class PageTeamRoster extends Component {
-  componentDidMount() {
-    const { match, fetchTeamRoster: getTeamRoster } = this.props;
+const PageTeamRoster = ({
+  teamRoster,
+  teamRosterError,
+  teamRosterLoading,
+  match,
+  fetchTeamRoster: getTeamRoster,
+}) => {
+  useEffect(() => {
     const { teamAbrv: currentTeamAbrv } = match.params;
     getTeamRoster(currentTeamAbrv);
+  }, []);
+
+  if (teamRosterError) {
+    return <div>Error! {teamRosterError.message}</div>;
   }
 
-  render() {
-    const { teamRoster, teamRosterError, teamRosterLoading } = this.props;
+  if (teamRosterLoading) {
+    return <div>Loading...</div>;
+  }
 
-    if (teamRosterError) {
-      return <div>Error! {teamRosterError.message}</div>;
-    }
-
-    if (teamRosterLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-12">
-            <TeamRoster
-              teamRoster={teamRoster}
-              teamRosterError={teamRosterError}
-              teamRosterLoading={teamRosterLoading}
-            />
-          </div>
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          <TeamRoster
+            teamRoster={teamRoster}
+            teamRosterError={teamRosterError}
+            teamRosterLoading={teamRosterLoading}
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 PageTeamRoster.propTypes = {
   teamRosterError: null || PropTypes.bool,

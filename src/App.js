@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -25,66 +25,63 @@ import { fetchStandings } from "./modules/standings/actions";
 // Components
 import Navbar from "./components/Navbar";
 
-class App extends Component {
-  componentDidMount() {
-    /* eslint-disable react/destructuring-assignment */
-    this.props.fetchTeams();
-    this.props.fetchSchedules(2019);
-    this.props.fetchStandings();
-    /* eslint-enable react/destructuring-assignment */
+const App = ({
+  standingsError,
+  standingsLoading,
+  schedulesError,
+  schedulesLoading,
+  schedules,
+  teamsFail,
+  teamsLoading,
+  teams,
+  fetchTeams: getTeams,
+  fetchSchedules: getSchedules,
+  fetchStandings: getStandings,
+}) => {
+  useEffect(() => {
+    getTeams();
+    getSchedules(2019);
+    getStandings();
+  }, []);
+
+  if (teamsFail) {
+    return <div>Error! {teamsFail.message}</div>;
   }
 
-  render() {
-    const {
-      standingsError,
-      standingsLoading,
-      schedulesError,
-      schedulesLoading,
-      schedules,
-      teamsFail,
-      teamsLoading,
-      teams,
-    } = this.props;
-
-    if (teamsFail) {
-      return <div>Error! {teamsFail.message}</div>;
-    }
-
-    if (schedulesError) {
-      return <div>Error! {schedulesError.message}</div>;
-    }
-
-    if (standingsError) {
-      return <div>Error! {standingsError.message}</div>;
-    }
-
-    if (teamsLoading || schedulesLoading || standingsLoading) {
-      return <div className="loadingBar" />;
-    }
-
-    return (
-      <div>
-        <Navbar teams={teams} />
-        <main>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/news" component={NewsAllTeamsList} />
-          <Route exact path="/product" component={ProductList} />
-          <Route exact path="/player/:playerArg" component={PlayerList} />
-          <Route exact path="/reddit" component={RedditAsyncApp} />
-          <Route exact path="/scores" component={GamesOnDayList} />
-          <Route exact path="/schedules" component={SchedulesList} />
-          <Route exact path="/standings" component={StandingsList} />
-          <Route
-            path="/teams/:teamAbrv"
-            render={props => (
-              <Team {...props} teams={teams} schedules={schedules} />
-            )}
-          />
-        </main>
-      </div>
-    );
+  if (schedulesError) {
+    return <div>Error! {schedulesError.message}</div>;
   }
-}
+
+  if (standingsError) {
+    return <div>Error! {standingsError.message}</div>;
+  }
+
+  if (teamsLoading || schedulesLoading || standingsLoading) {
+    return <div className="loadingBar" />;
+  }
+
+  return (
+    <div>
+      <Navbar teams={teams} />
+      <main>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/news" component={NewsAllTeamsList} />
+        <Route exact path="/product" component={ProductList} />
+        <Route exact path="/player/:playerArg" component={PlayerList} />
+        <Route exact path="/reddit" component={RedditAsyncApp} />
+        <Route exact path="/scores" component={GamesOnDayList} />
+        <Route exact path="/schedules" component={SchedulesList} />
+        <Route exact path="/standings" component={StandingsList} />
+        <Route
+          path="/teams/:teamAbrv"
+          render={props => (
+            <Team {...props} teams={teams} schedules={schedules} />
+          )}
+        />
+      </main>
+    </div>
+  );
+};
 
 App.propTypes = {
   teamsFail: null || PropTypes.bool,

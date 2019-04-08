@@ -59,7 +59,47 @@ const ProfileCard = ({ player }) => {
 };
 
 ProfileCard.propTypes = {
-  player: PropTypes.arrayOf(PropTypes.object).isRequired,
+  player: PropTypes.shape({
+    PlayerID: PropTypes.number,
+    Name: PropTypes.string,
+    Games: PropTypes.number,
+    Started: PropTypes.number,
+    PitchingQualityStarts: PropTypes.number,
+    Wins: PropTypes.number,
+    Losses: PropTypes.number,
+    Saves: PropTypes.number,
+    EarnedRunAverage: PropTypes.number,
+    PitchingHolds: PropTypes.number,
+    InningsPitchedFull: PropTypes.number,
+    PitchingHits: PropTypes.number,
+    PitchingEarnedRuns: PropTypes.number,
+    PitchingHomeRuns: PropTypes.number,
+    PitchingWalks: PropTypes.number,
+    PitchingStrikeouts: PropTypes.number,
+    PitchingStrikeoutsPerNineInnings: PropTypes.number,
+  }),
+};
+
+ProfileCard.defaultProps = {
+  player: PropTypes.shape({
+    PlayerID: "-",
+    Name: "-",
+    Games: "-",
+    Started: "-",
+    PitchingQualityStarts: "-",
+    Wins: "-",
+    Losses: "-",
+    Saves: "-",
+    EarnedRunAverage: "-",
+    PitchingHolds: "-",
+    InningsPitchedFull: "-",
+    PitchingHits: "-",
+    PitchingEarnedRuns: "-",
+    PitchingHomeRuns: "-",
+    PitchingWalks: "-",
+    PitchingStrikeouts: "-",
+    PitchingStrikeoutsPerNineInnings: "-",
+  }),
 };
 
 export default ProfileCard;
