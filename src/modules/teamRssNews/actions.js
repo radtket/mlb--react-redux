@@ -21,7 +21,7 @@ export const fetchTeamRssNewsFailure = teamRssNewsFail => ({
 });
 
 function getTeamRssNews(teamAbrv) {
-  const { Name } = teamFinder(teamAbrv);
+  const { Name } = teamFinder[teamAbrv];
   const TeamName = Name.toLocaleLowerCase();
 
   return fetch(

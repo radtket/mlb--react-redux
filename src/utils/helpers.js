@@ -142,194 +142,192 @@ export const inningHalfDecoder = inningArg => {
 };
 
 // teams.reduce((allTeams, team) => {
-//   const { Key, City, Name, PrimaryColor } = team;
-//   allTeams.push({ Key, City, Name, PrimaryColor });
+//   const { Key, Name, City, PrimaryColor, SecondaryColor } = team;
+//   allTeams[Key] = { Name, City, PrimaryColor, SecondaryColor };
 //   return allTeams;
-// }, []);
+// }, {});
 
-export const teamFinder = teamKey => {
-  return [
-    {
-      Key: "LAD",
-      City: "Los Angeles",
-      Name: "Dodgers",
-      PrimaryColor: "005A9C",
-    },
-    {
-      Key: "CIN",
-      City: "Cincinnati",
-      Name: "Reds",
-      PrimaryColor: "C6011F",
-    },
-    {
-      Key: "TOR",
-      City: "Toronto",
-      Name: "Blue Jays",
-      PrimaryColor: "134A8E",
-    },
-    {
-      Key: "PIT",
-      City: "Pittsburgh",
-      Name: "Pirates",
-      PrimaryColor: "000000",
-    },
-    {
-      Key: "KC",
-      City: "Kansas City",
-      Name: "Royals",
-      PrimaryColor: "004687",
-    },
-    {
-      Key: "CHC",
-      City: "Chicago",
-      Name: "Cubs",
-      PrimaryColor: "0E3386",
-    },
-    {
-      Key: "CLE",
-      City: "Cleveland",
-      Name: "Indians",
-      PrimaryColor: "E31937",
-    },
-    {
-      Key: "TB",
-      City: "Tampa Bay",
-      Name: "Rays",
-      PrimaryColor: "092C5C",
-    },
-    {
-      Key: "PHI",
-      City: "Philadelphia",
-      Name: "Phillies",
-      PrimaryColor: "E81828",
-    },
-    {
-      Key: "SEA",
-      City: "Seattle",
-      Name: "Mariners",
-      PrimaryColor: "0C2C56",
-    },
-    {
-      Key: "ARI",
-      City: "Arizona",
-      Name: "Diamondbacks",
-      PrimaryColor: "A71930",
-    },
-    {
-      Key: "SF",
-      City: "San Francisco",
-      Name: "Giants",
-      PrimaryColor: "FD5A1E",
-    },
-    {
-      Key: "CHW",
-      City: "Chicago",
-      Name: "White Sox",
-      PrimaryColor: "000000",
-    },
-    {
-      Key: "DET",
-      City: "Detroit",
-      Name: "Tigers",
-      PrimaryColor: "0C2C56",
-    },
-    {
-      Key: "NYM",
-      City: "New York",
-      Name: "Mets",
-      PrimaryColor: "002D72",
-    },
-    {
-      Key: "BAL",
-      City: "Baltimore",
-      Name: "Orioles",
-      PrimaryColor: "DF4601",
-    },
-    {
-      Key: "MIN",
-      City: "Minnesota",
-      Name: "Twins",
-      PrimaryColor: "002B5C",
-    },
-    {
-      Key: "LAA",
-      City: "Los Angeles",
-      Name: "Angels",
-      PrimaryColor: "BA0021",
-    },
-    {
-      Key: "MIA",
-      City: "Miami",
-      Name: "Marlins",
-      PrimaryColor: "000000",
-    },
-    {
-      Key: "COL",
-      City: "Colorado",
-      Name: "Rockies",
-      PrimaryColor: "33006F",
-    },
-    {
-      Key: "OAK",
-      City: "Oakland",
-      Name: "Athletics",
-      PrimaryColor: "003831",
-    },
-    {
-      Key: "BOS",
-      City: "Boston",
-      Name: "Red Sox",
-      PrimaryColor: "BD3039",
-    },
-    {
-      Key: "ATL",
-      City: "Atlanta",
-      Name: "Braves",
-      PrimaryColor: "13274F",
-    },
-    {
-      Key: "TEX",
-      City: "Texas",
-      Name: "Rangers",
-      PrimaryColor: "003278",
-    },
-    {
-      Key: "NYY",
-      City: "New York",
-      Name: "Yankees",
-      PrimaryColor: "132448",
-    },
-    {
-      Key: "HOU",
-      City: "Houston",
-      Name: "Astros",
-      PrimaryColor: "002D62",
-    },
-    {
-      Key: "STL",
-      City: "St. Louis",
-      Name: "Cardinals",
-      PrimaryColor: "C41E3A",
-    },
-    {
-      Key: "MIL",
-      City: "Milwaukee",
-      Name: "Brewers",
-      PrimaryColor: "0A2351",
-    },
-    {
-      Key: "SD",
-      City: "San Diego",
-      Name: "Padres",
-      PrimaryColor: "05143F",
-    },
-    {
-      Key: "WSH",
-      City: "Washington",
-      Name: "Nationals",
-      PrimaryColor: "AB0003",
-    },
-  ].find(team => teamKey === team.Key);
+export const teamFinder = {
+  LAD: {
+    Name: "Dodgers",
+    City: "Los Angeles",
+    PrimaryColor: "#005A9C",
+    SecondaryColor: "#FFFFFF",
+  },
+  CIN: {
+    Name: "Reds",
+    City: "Cincinnati",
+    PrimaryColor: "#C6011F",
+    SecondaryColor: "#000000",
+  },
+  TOR: {
+    Name: "Blue Jays",
+    City: "Toronto",
+    PrimaryColor: "#134A8E",
+    SecondaryColor: "#1D2D5C",
+  },
+  PIT: {
+    Name: "Pirates",
+    City: "Pittsburgh",
+    PrimaryColor: "#000000",
+    SecondaryColor: "#FDB827",
+  },
+  KC: {
+    Name: "Royals",
+    City: "Kansas City",
+    PrimaryColor: "#004687",
+    SecondaryColor: "#C09A5B",
+  },
+  CHC: {
+    Name: "Cubs",
+    City: "Chicago",
+    PrimaryColor: "#0E3386",
+    SecondaryColor: "#CC3433",
+  },
+  CLE: {
+    Name: "Indians",
+    City: "Cleveland",
+    PrimaryColor: "#E31937",
+    SecondaryColor: "#002B5C",
+  },
+  TB: {
+    Name: "Rays",
+    City: "Tampa Bay",
+    PrimaryColor: "#092C5C",
+    SecondaryColor: "#8FBCE6",
+  },
+  PHI: {
+    Name: "Phillies",
+    City: "Philadelphia",
+    PrimaryColor: "#E81828",
+    SecondaryColor: "#284898",
+  },
+  SEA: {
+    Name: "Mariners",
+    City: "Seattle",
+    PrimaryColor: "#0C2C56",
+    SecondaryColor: "#C4CED4",
+  },
+  ARI: {
+    Name: "Diamondbacks",
+    City: "Arizona",
+    PrimaryColor: "#A71930",
+    SecondaryColor: "#E3D4AD",
+  },
+  SF: {
+    Name: "Giants",
+    City: "San Francisco",
+    PrimaryColor: "#FD5A1E",
+    SecondaryColor: "#000000",
+  },
+  CHW: {
+    Name: "White Sox",
+    City: "Chicago",
+    PrimaryColor: "#000000",
+    SecondaryColor: "#C4CED4",
+  },
+  DET: {
+    Name: "Tigers",
+    City: "Detroit",
+    PrimaryColor: "#0C2C56",
+    SecondaryColor: "#FF6600",
+  },
+  NYM: {
+    Name: "Mets",
+    City: "New York",
+    PrimaryColor: "#002D72",
+    SecondaryColor: "#FF5910",
+  },
+  BAL: {
+    Name: "Orioles",
+    City: "Baltimore",
+    PrimaryColor: "#DF4601",
+    SecondaryColor: "#000000",
+  },
+  MIN: {
+    Name: "Twins",
+    City: "Minnesota",
+    PrimaryColor: "#002B5C",
+    SecondaryColor: "#D31145",
+  },
+  LAA: {
+    Name: "Angels",
+    City: "Los Angeles",
+    PrimaryColor: "#BA0021",
+    SecondaryColor: "#003263",
+  },
+  MIA: {
+    Name: "Marlins",
+    City: "Miami",
+    PrimaryColor: "#000000",
+    SecondaryColor: "#FF6600",
+  },
+  COL: {
+    Name: "Rockies",
+    City: "Colorado",
+    PrimaryColor: "#33006F",
+    SecondaryColor: "#000000",
+  },
+  OAK: {
+    Name: "Athletics",
+    City: "Oakland",
+    PrimaryColor: "#003831",
+    SecondaryColor: "#EFB21E",
+  },
+  BOS: {
+    Name: "Red Sox",
+    City: "Boston",
+    PrimaryColor: "#BD3039",
+    SecondaryColor: "#0D2B56",
+  },
+  ATL: {
+    Name: "Braves",
+    City: "Atlanta",
+    PrimaryColor: "#13274F",
+    SecondaryColor: "#CE1141",
+  },
+  TEX: {
+    Name: "Rangers",
+    City: "Texas",
+    PrimaryColor: "#003278",
+    SecondaryColor: "#C0111F",
+  },
+  NYY: {
+    Name: "Yankees",
+    City: "New York",
+    PrimaryColor: "#132448",
+    SecondaryColor: "#C4CED4",
+  },
+  HOU: {
+    Name: "Astros",
+    City: "Houston",
+    PrimaryColor: "#002D62",
+    SecondaryColor: "#EB6E1F",
+  },
+  STL: {
+    Name: "Cardinals",
+    City: "St. Louis",
+    PrimaryColor: "#C41E3A",
+    SecondaryColor: "#000066",
+  },
+  MIL: {
+    Name: "Brewers",
+    City: "Milwaukee",
+    PrimaryColor: "#0A2351",
+    SecondaryColor: "#B6922E",
+  },
+  SD: {
+    Name: "Padres",
+    City: "San Diego",
+    PrimaryColor: "#05143F",
+    SecondaryColor: "#FFFFFF",
+  },
+  WSH: {
+    Name: "Nationals",
+    City: "Washington",
+    PrimaryColor: "#AB0003",
+    SecondaryColor: "#11225B",
+  },
 };
 
 export const socialMedia = {
@@ -397,7 +395,7 @@ export const socialMedia = {
     Twitter: "Mets",
     Instagram: "mets",
   },
-  WAS: {
+  WSH: {
     Twitter: "Nationals",
     Instagram: "nationals",
   },

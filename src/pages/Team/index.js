@@ -101,7 +101,11 @@ class Team extends Component {
           exact
           path="/teams/:teamAbrv/roster"
           render={() => (
-            <PageTeamRoster match={match} currentTeamAbrv={currentTeamAbrv} />
+            <PageTeamRoster
+              {...activeTeamObj}
+              match={match}
+              currentTeamAbrv={currentTeamAbrv}
+            />
           )}
         />
         <Route
@@ -112,7 +116,12 @@ class Team extends Component {
         <Route
           exact
           path="/teams/:teamAbrv/depth"
-          render={() => <PageTeamDepth currentTeamAbrv={currentTeamAbrv} />}
+          render={() => (
+            <PageTeamDepth
+              {...activeTeamObj}
+              currentTeamAbrv={currentTeamAbrv}
+            />
+          )}
         />
         <Route
           exact

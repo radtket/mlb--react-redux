@@ -17,6 +17,9 @@ const PageTeamDepth = ({
   teamRosterError,
   teamRosterLoading,
   currentTeamAbrv,
+  PrimaryColor,
+  QuaternaryColor,
+  SecondaryColor,
 }) => {
   useEffect(() => {
     getTeamDepths(currentTeamAbrv);
@@ -51,40 +54,51 @@ const PageTeamDepth = ({
       return (
         <article
           className={`depth-chart__position depth-chart__position--${name.toLowerCase()}`}>
-          <figure className="depth-chart__position--image">
-            <img
-              src={StarterObj ? StarterObj.PhotoUrl : DefualtAvatar}
+          <div>
+            <figure
+              className="depth-chart__position--image"
               alt={`${StarterFirstName} ${StarterLastName}`}
+              style={{
+                background: `url("${
+                  StarterObj ? StarterObj.PhotoUrl : DefualtAvatar
+                }"), #${SecondaryColor ||
+                  PrimaryColor ||
+                  QuaternaryColor} no-repeat`,
+                backgroundSize: "85%",
+                backgroundPosition: "1px center",
+              }}
             />
-          </figure>
-          <ul>
-            <li className="depth-chart__position--header">
-              {desc === "Starting Pitcher" ? "ROTATION" : desc.toUpperCase()}
-            </li>
+            <ul>
+              <li className="depth-chart__position--header">
+                {desc === "Starting Pitcher" ? "ROTATION" : desc.toUpperCase()}
+              </li>
 
-            {players &&
-              players.map(activeRosterMember => {
-                const {
-                  first_name: FirstName,
-                  last_name: LastName,
-                  id,
-                } = activeRosterMember;
-                const PlayerObj = teamRoster.find(
-                  player => player.SportRadarPlayerID === id
-                );
+              {players &&
+                players.map(activeRosterMember => {
+                  const {
+                    first_name: FirstName,
+                    last_name: LastName,
+                    id,
+                  } = activeRosterMember;
+                  const PlayerObj = teamRoster.find(
+                    player => player.SportRadarPlayerID === id
+                  );
 
-                return (
-                  <li key={id}>
-                    {PlayerObj && (
-                      <Link to={`/player/${PlayerObj.PlayerID}`}>
-                        {`${FirstName.charAt(0)}. ${LastName}`}
-                      </Link>
-                    )}
-                    {!PlayerObj && `${FirstName.charAt(0)}. ${LastName}`}
-                  </li>
-                );
-              })}
-          </ul>
+                  return (
+                    <li key={id}>
+                      {PlayerObj && (
+                        <Link
+                          style={{ color: `#${PrimaryColor}` }}
+                          to={`/player/${PlayerObj.PlayerID}`}>
+                          {`${FirstName.charAt(0)}. ${LastName}`}
+                        </Link>
+                      )}
+                      {!PlayerObj && `${FirstName.charAt(0)}. ${LastName}`}
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
         </article>
       );
     }
@@ -125,11 +139,17 @@ PageTeamDepth.propTypes = {
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,
   currentTeamAbrv: PropTypes.string.isRequired,
+  PrimaryColor: PropTypes.string,
+  QuaternaryColor: PropTypes.string,
+  SecondaryColor: PropTypes.string,
 };
 
 PageTeamDepth.defaultProps = {
   teamDepthsFail: null,
   teamRosterError: null,
+  PrimaryColor: null,
+  QuaternaryColor: null,
+  SecondaryColor: null,
 };
 
 const mapStateToProps = ({ teamDepths, teamRoster }) => ({

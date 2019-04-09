@@ -21,7 +21,7 @@ const SingleGame = ({
   const MyTeamScore = isHomeTeam ? HomeTeamRuns : AwayTeamRuns;
   const OpponentScore = isHomeTeam ? AwayTeamRuns : HomeTeamRuns;
 
-  const { City: OpponentCity, Name: OpponentName } = teamFinder(OpponentKey);
+  const { City: OpponentCity, Name: OpponentName } = teamFinder[OpponentKey];
 
   const GameIsFinal = IsClosed && Status === "Final";
   const GameIsScheduled = Status === "Scheduled";

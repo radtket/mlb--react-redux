@@ -29,7 +29,7 @@ function getNewsTeams(teamName) {
 }
 
 export function fetchNewsTeams(teamName) {
-  const { Name } = teamFinder(teamName);
+  const { Name } = teamFinder[teamName];
   return dispatch => {
     dispatch(fetchNewsTeamsBegin());
     return getNewsTeams(Name.toLowerCase())
