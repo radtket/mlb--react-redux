@@ -1,33 +1,32 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchProducts } from "../modules/product/actions";
 
-class ProductList extends Component {
-  componentDidMount() {
-    const { fetchProducts: getProducts } = this.props;
+const ProductList = ({
+  productsFail,
+  productsLoading,
+  products,
+  fetchProducts: getProducts,
+}) => {
+  useEffect(() => {
     getProducts();
+  }, []);
+  if (productsFail) {
+    return <div>Error! {productsFail.message}</div>;
   }
 
-  render() {
-    const { productsFail, productsLoading, products } = this.props;
-
-    if (productsFail) {
-      return <div>Error! {productsFail.message}</div>;
-    }
-
-    if (productsLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <ul>
-        {products && products.map(item => <li key={item.Key}>{item.Name}</li>)}
-      </ul>
-    );
+  if (productsLoading) {
+    return <div>Loading...</div>;
   }
-}
+
+  return (
+    <ul>
+      {products && products.map(item => <li key={item.Key}>{item.Name}</li>)}
+    </ul>
+  );
+};
 
 ProductList.propTypes = {
   productsFail: null || PropTypes.bool,

@@ -12,29 +12,43 @@ import Posts from "../components/Reddit/Posts";
 
 class RedditAsyncApp extends Component {
   componentDidMount() {
-    const { selectedSubreddit } = this.props;
-    this.props.fetchPostsIfNeeded(selectedSubreddit);
+    const {
+      selectedSubreddit,
+      fetchPostsIfNeeded: getPostsIfNeeded,
+    } = this.props;
+    getPostsIfNeeded(selectedSubreddit);
   }
 
   componentDidUpdate(prevProps) {
     const { selectedSubreddit: thisSelectedSubredditt } = this.props;
     if (thisSelectedSubredditt !== prevProps.selectedSubreddit) {
-      const { selectedSubreddit } = this.props;
-      this.props.fetchPostsIfNeeded(selectedSubreddit);
+      const {
+        selectedSubreddit,
+        fetchPostsIfNeeded: getPostsIfNeeded,
+      } = this.props;
+      getPostsIfNeeded(selectedSubreddit);
     }
   }
 
   handleChange = nextSubreddit => {
-    this.props.selectSubreddit(nextSubreddit);
-    this.props.fetchPostsIfNeeded(nextSubreddit);
+    const {
+      selectSubreddit: activeSelectSubreddit,
+      fetchPostsIfNeeded: getPostsIfNeeded,
+    } = this.props;
+    activeSelectSubreddit(nextSubreddit);
+    getPostsIfNeeded(nextSubreddit);
   };
 
   handleRefreshClick = e => {
     e.preventDefault();
 
-    const { selectedSubreddit } = this.props;
-    this.props.invalidateSubreddit(selectedSubreddit);
-    this.props.fetchPostsIfNeeded(selectedSubreddit);
+    const {
+      selectedSubreddit,
+      fetchPostsIfNeeded: getPostsIfNeeded,
+      invalidateSubreddit: invalidSubreddit,
+    } = this.props;
+    invalidSubreddit(selectedSubreddit);
+    getPostsIfNeeded(selectedSubreddit);
   };
 
   render() {
@@ -75,10 +89,14 @@ RedditAsyncApp.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object),
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
+  fetchPostsIfNeeded: PropTypes.func.isRequired,
+  selectSubreddit: PropTypes.func.isRequired,
+  invalidateSubreddit: PropTypes.func.isRequired,
 };
 
 RedditAsyncApp.defaultProps = {
   posts: [],
+  lastUpdated: null,
 };
 
 function mapStateToProps(state) {

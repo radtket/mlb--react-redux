@@ -6,7 +6,7 @@ import { TodaysDate } from "../../../utils/helpers";
 import Card from "../../Card";
 
 const TeamRecentGames = ({ activeTeam, recentGames }) => {
-  const renderLast15Games = (data, activeTeam, beforeDate = TodaysDate) => {
+  const renderLast15Games = (data, activeTeamArg, beforeDate = TodaysDate) => {
     return data
       .filter(gameOnDay => {
         const { Day } = gameOnDay;
@@ -14,7 +14,7 @@ const TeamRecentGames = ({ activeTeam, recentGames }) => {
       })
       .map(game => {
         const { GameID } = game;
-        return <SingleGame activeTeam={activeTeam} key={GameID} {...game} />;
+        return <SingleGame activeTeam={activeTeamArg} key={GameID} {...game} />;
       });
   };
 

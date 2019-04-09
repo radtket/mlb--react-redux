@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -13,91 +13,64 @@ import {
 } from "../utils/helpers";
 import SingleGame from "../components/SingleGame";
 
-class GamesOnDayList extends Component {
-  state = {
-    // TODO: Add When API is Live
-    // dateOfGame: TodaysDate
-    dateOfGame: DEV_PLACEHOLDER_DATE,
-  };
+const GamesOnDayList = ({
+  gamesOnDayFail,
+  gamesOnDayLoading,
+  standingsError,
+  gamesOnDay,
+  standings,
+  standingsLoading,
+  fetchGamesOnDay: getGamesOnDay,
+}) => {
+  const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 
-  componentDidMount() {
-    const { dateOfGame } = this.state;
-    const { fetchGamesOnDay: getGamesOnDay } = this.props;
+  useEffect(() => {
     getGamesOnDay(dateOfGame);
-  }
+  }, []);
 
-  componentDidUpdate(_prevProps, _prevState, snapshot) {
-    if (snapshot !== null) {
-      const { fetchGamesOnDay: getGamesOnDay } = this.props;
-      this.changeDate(snapshot);
-      getGamesOnDay(snapshot);
-    }
-  }
-
-  getSnapshotBeforeUpdate(_prevProps, prevState) {
-    const { dateOfGame: thisDateOfGame } = this.state;
-    const { dateOfGame: prevDateOfGame } = prevState;
-    if (prevDateOfGame !== thisDateOfGame) {
-      return thisDateOfGame;
-    }
-    return null;
-  }
-
-  changeDate = date => {
-    return this.setState({
-      dateOfGame: date,
-    });
+  const previousDaysGame = date => {
+    const newDay = subDays(new Date(date), 1);
+    setdateOfGame(newDay);
+    getGamesOnDay(newDay);
   };
 
-  previousDaysGame = date => this.changeDate(subDays(new Date(date), 1));
+  const nextDaysGame = date => {
+    const newDay = addDays(new Date(date), 1);
+    setdateOfGame(newDay);
+    getGamesOnDay(newDay);
+  };
 
-  nextDaysGame = date => this.changeDate(addDays(new Date(date), 1));
-
-  render() {
-    const {
-      gamesOnDayFail,
-      gamesOnDayLoading,
-      standingsError,
-      gamesOnDay,
-      standings,
-      standingsLoading,
-    } = this.props;
-    const { dateOfGame } = this.state;
-
-    if (gamesOnDayFail) {
-      return <div>Error! {gamesOnDayFail.message}</div>;
-    }
-    if (standingsError) {
-      return <div>Error! {standingsError.message}</div>;
-    }
-
-    if (gamesOnDayLoading || standingsLoading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div>
-        <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
-        <nav>
-          <button
-            onClick={() => this.previousDaysGame(dateOfGame)}
-            type="button">
-            Previous
-          </button>
-          <button onClick={() => this.nextDaysGame(dateOfGame)} type="button">
-            Next
-          </button>
-        </nav>
-        <ul>
-          {gamesOnDay &&
-            gamesOnDay.map(game => (
-              <SingleGame key={game.GameID} standings={standings} {...game} />
-            ))}
-        </ul>
-      </div>
-    );
+  if (gamesOnDayFail) {
+    return <div>Error! {gamesOnDayFail.message}</div>;
   }
-}
+  if (standingsError) {
+    return <div>Error! {standingsError.message}</div>;
+  }
+
+  if (gamesOnDayLoading || standingsLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
+      <nav>
+        <button onClick={() => previousDaysGame(dateOfGame)} type="button">
+          Previous
+        </button>
+        <button onClick={() => nextDaysGame(dateOfGame)} type="button">
+          Next
+        </button>
+      </nav>
+      <ul>
+        {gamesOnDay &&
+          gamesOnDay.map(game => (
+            <SingleGame key={game.GameID} standings={standings} {...game} />
+          ))}
+      </ul>
+    </div>
+  );
+};
 
 GamesOnDayList.propTypes = {
   gamesOnDayFail: null || PropTypes.bool,
