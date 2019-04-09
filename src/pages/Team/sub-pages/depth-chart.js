@@ -51,10 +51,36 @@ const PageTeamDepth = ({
         player => player.SportRadarPlayerID === StarterID
       );
 
+      const bullpenElementWrapper = document.querySelector(
+        ".depth-chart__position--bp"
+      );
+      const bullpenElement =
+        bullpenElementWrapper &&
+        bullpenElementWrapper.querySelector("div:first-child");
+
+      const isCloser = name === "CL";
+      const elHeight =
+        bullpenElementWrapper && bullpenElementWrapper.clientHeight;
+      const elWidth = bullpenElement && bullpenElement.clientWidth;
+
       return (
         <article
+          style={
+            isCloser
+              ? {
+                  top: `calc(82.8% + ${elHeight}px)`,
+                }
+              : { background: "inital" }
+          }
           className={`depth-chart__position depth-chart__position--${name.toLowerCase()}`}>
-          <div>
+          <div
+            style={
+              isCloser
+                ? {
+                    width: `${elWidth}px`,
+                  }
+                : { width: "auto" }
+            }>
             <figure
               className="depth-chart__position--image"
               alt={`${StarterFirstName} ${StarterLastName}`}
