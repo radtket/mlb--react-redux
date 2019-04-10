@@ -15,7 +15,7 @@ const Navbar = ({ teams }) => {
     <header className="header">
       <div className="container header__inner">
         <figure className="header__logo">
-          <Link to="/">
+          <Link to="/" onClick={() => dispatch("reset")}>
             <SiteLogo />
           </Link>
         </figure>
@@ -23,22 +23,22 @@ const Navbar = ({ teams }) => {
         <div className="header__nav">
           <ul>
             <li>
-              <NavLink exact to="/">
+              <NavLink exact to="/" onClick={() => dispatch("reset")}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/scores">
+              <NavLink exact to="/scores" onClick={() => dispatch("reset")}>
                 Scores
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/standings">
+              <NavLink exact to="/standings" onClick={() => dispatch("reset")}>
                 Standings
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/news">
+              <NavLink exact to="/news" onClick={() => dispatch("reset")}>
                 News
               </NavLink>
             </li>

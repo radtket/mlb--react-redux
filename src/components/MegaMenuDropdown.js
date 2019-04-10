@@ -23,33 +23,33 @@ export const DropdownReducer = (state, action) => {
   }
 };
 
+const createMegaMenu = teamsArg => {
+  let cols = [];
+  return sortTeamsByDivion(teamsArg).reduce((rows, element, index) => {
+    const [DivisionName, TeamsInComponents] = element;
+    const { League: LeaugeName } = TeamsInComponents[0];
+    cols.push(
+      <MegaMenuDivision
+        key={DivisionName}
+        DivisionName={DivisionName}
+        TeamsInDivision={TeamsInComponents}
+      />
+    );
+    if ((index + 1) % 3 === 0) {
+      rows.push(
+        <div className="row" key={LeaugeName}>
+          {cols}
+        </div>
+      );
+      cols = [];
+    }
+    return rows;
+  }, []);
+};
+
 const MegaMenuDropdown = ({ teams }) => {
   const { state, dispatch } = useContext(DropdownContext);
   const { isOpen } = state;
-
-  const createMegaMenu = teamsArg => {
-    let cols = [];
-    return sortTeamsByDivion(teamsArg).reduce((rows, element, index) => {
-      const [DivisionName, TeamsInComponents] = element;
-      const { League: LeaugeName } = TeamsInComponents[0];
-      cols.push(
-        <MegaMenuDivision
-          key={DivisionName}
-          DivisionName={DivisionName}
-          TeamsInDivision={TeamsInComponents}
-        />
-      );
-      if ((index + 1) % 3 === 0) {
-        rows.push(
-          <div className="row" key={LeaugeName}>
-            {cols}
-          </div>
-        );
-        cols = [];
-      }
-      return rows;
-    }, []);
-  };
 
   return (
     <>
