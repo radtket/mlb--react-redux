@@ -325,7 +325,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			@include size(18px);
 			animation: t .6s infinite linear;
 			border-color: $color-shady-lady transparent transparent;
-			border-radius: 50%;
+			border-radius: $bdr-circle;
 			border-style: solid;
 			border-width: 3px;
 			content: "";
@@ -338,7 +338,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		&:before {
 			@include size(18px);
 			border: 3px solid $color-whisper-80;
-			border-radius: 50%;
+			border-radius: $bdr-circle;
 			content: "";
 			display: block;
 			left: 0;

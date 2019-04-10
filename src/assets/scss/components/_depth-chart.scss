@@ -1,6 +1,5 @@
-$headshot--height: 60px;
-$headshot--width: 51px;
 $player-card--width: 200px;
+$player-card--width--half: $player-card--width / 2;
 $field-width: 1152px;
 $field-height: 462.316px;
 
@@ -13,31 +12,38 @@ $field-height: 462.316px;
 	position: relative;
 	width: 100%;
 
+	&__bullpen-wrap {
+		left: 28.2%;
+		position: absolute;
+		top: 87%;
+	}
+
+	&__bullpen-wrap,
+	&__position>div {
+		background: $c-off-white;
+		border-radius: $bdr-rounded-corners;
+		display: inline-block;
+		padding: $p-small;
+	}
+
 	&__position {
-		font: 12px Arial, Helvetica, sans-serif;
+		font-size: $fz-small;
+		line-height: $lh-small;
 		position: absolute;
 		width: $player-card--width;
 
 		&--image {
-			background: transparent url("http://mlb.mlb.com/images/team/depth_chart/y2010/player_bg.png") no-repeat;
+			@include size(40px);
+			border-radius: $bdr-circle;
 			float: left;
-			height: $headshot--height;
-			width: $headshot--width;
-
-			img {
-				height: $headshot--height - 10px;
-				padding: 1px 0 0 3px;
-				width: $headshot--width - 10px;
-			}
+			margin-right: $m-xsmall;
 		}
 
 		ul {
+			@include margin(0);
 			float: left;
-			margin: 0;
-			overflow: hidden;
 			position: relative;
-			top: -1px;
-			width: $player-card--width - $headshot--width;
+			text-align: left;
 
 			li {
 				margin-bottom: 0;
@@ -45,13 +51,15 @@ $field-height: 462.316px;
 		}
 
 		&--header {
-			font-size: 12px;
 			font-weight: bold;
 		}
 
 		&--3b,
 		&--c {
 			ul {
+				float: right;
+				margin-left: 0;
+				margin-right: $m-xsmall;
 				text-align: right;
 			}
 
@@ -60,86 +68,84 @@ $field-height: 462.316px;
 			}
 		}
 
+		&--sp,
+		&--c,
+		&--lf,
+		&--cf,
+		&--rf {
+			text-align: center;
+		}
+
 		&--bp,
 		&--cl {
-			left: 23px;
+			position: relative;
+			width: auto;
+
+			>div {
+				border-radius: unset;
+				padding: 0;
+			}
+		}
+
+		&--bp {
+			padding-bottom: $p-small;
 		}
 
 		&--lf,
 		&--rf {
-			top: 60px;
+			top: 30%;
 		}
 
-		&--3b,
-		&--sp,
+		&--c,
+		&--dh {
+			top: 87.5%;
+		}
+
+		&--2b,
 		&--ss {
-			top: 188px;
+			top: 50%;
+		}
+
+		&--1b,
+		&--3b,
+		&--sp {
+			top: 65%;
+		}
+
+		&--1b,
+		&--dh {
+			left: 61%;
+		}
+
+		&--c,
+		&--sp {
+			left: 41%;
 		}
 
 		&--lf {
-			left: 25%;
-			top: 32%;
+			left: unquote("calc(30% - ") $player-card--width--half unquote(")");
 		}
 
 		&--cf {
-			left: 45%;
+			left: unquote("calc(50% - ") $player-card--width--half unquote(")");
 			top: 22%;
 		}
 
 		&--rf {
-			left: 65%;
-			top: 32%;
+			left: unquote("calc(70% - ") $player-card--width--half unquote(")");
 		}
 
 		&--3b {
 			right: 61%;
-			top: 65%;
+			text-align: right;
 		}
 
 		&--ss {
 			right: 45.5%;
-			top: 50%;
 		}
 
 		&--2b {
 			left: 54%;
-			top: 50%;
-		}
-
-		&--1b {
-			left: 61%;
-			top: 65%;
-		}
-
-		&--c {
-			// left: 146px;
-			// top: 317px;
-			left: 39%;
-			top: 87.5%;
-		}
-
-		&--dh {
-			left: 61%;
-			top: 87.5%;
-		}
-
-		&--sp {
-			left: 45%;
-			top: 65%;
-		}
-
-		&--bp,
-		&--cl {
-			left: 28.2%;
-			width: 210px;
-		}
-
-		&--bp {
-			top: 82.8%;
-		}
-
-		&--cl {
-			top: calc(100% + 50px);
 		}
 	}
 }

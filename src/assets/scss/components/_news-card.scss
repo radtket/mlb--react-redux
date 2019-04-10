@@ -83,7 +83,7 @@ $footer-height: 60px;
 		background-color: $color-yellow-1;
 		background-position: center center;
 		background-size: 75%;
-		border-radius: 50%;
+		border-radius: $bdr-circle;
 		display: block;
 		height: 50px;
 		overflow: hidden;
@@ -205,7 +205,7 @@ $footer-height: 60px;
 
 		&__avatar {
 			@include size(24px);
-			border-radius: 50%;
+			border-radius: $bdr-circle;
 			display: inline-block;
 			margin: 0 14px 0 0;
 			overflow: hidden;
