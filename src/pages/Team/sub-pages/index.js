@@ -3,6 +3,7 @@ import PageTeamHome from "./home";
 import PageTeamRoster from "./roster";
 import PageTeamSchedule from "./schedule";
 import PageTeamStats from "./stats";
+import PageTeamTickets from "./tickets";
 
 export {
   PageTeamDepth,
@@ -10,4 +11,5 @@ export {
   PageTeamRoster,
   PageTeamSchedule,
   PageTeamStats,
+  PageTeamTickets,
 };

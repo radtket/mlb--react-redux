@@ -83,6 +83,11 @@ const TeamHeader = ({
                   Schedule
                 </NavLink>
               </li>
+              <li>
+                <NavLink exact to={`/teams/${Key}/tickets`}>
+                  Tickets
+                </NavLink>
+              </li>
             </ul>
             <ul className="team__social">
               <li className="team__social--item">

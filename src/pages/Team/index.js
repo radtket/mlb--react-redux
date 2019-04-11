@@ -11,6 +11,7 @@ import {
   PageTeamRoster,
   PageTeamSchedule,
   PageTeamStats,
+  PageTeamTickets,
 } from "./sub-pages";
 
 class Team extends Component {
@@ -132,6 +133,11 @@ class Team extends Component {
               schedule={recentGames}
             />
           )}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/tickets"
+          render={() => <PageTeamTickets {...activeTeamObj} />}
         />
       </>
     );
