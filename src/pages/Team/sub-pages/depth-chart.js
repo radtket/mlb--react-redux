@@ -15,9 +15,6 @@ const PageTeamDepth = ({
   teamRosterError,
   teamRosterLoading,
   currentTeamAbrv,
-  PrimaryColor,
-  QuaternaryColor,
-  SecondaryColor,
 }) => {
   useEffect(() => {
     getTeamDepths(currentTeamAbrv);
@@ -46,9 +43,6 @@ const PageTeamDepth = ({
             TeamAbrv={currentTeamAbrv}
             positions={positions}
             teamRoster={teamRoster}
-            PrimaryColor={PrimaryColor}
-            QuaternaryColor={QuaternaryColor}
-            SecondaryColor={SecondaryColor}
           />
         </div>
       </div>
@@ -68,17 +62,11 @@ PageTeamDepth.propTypes = {
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,
   currentTeamAbrv: PropTypes.string.isRequired,
-  PrimaryColor: PropTypes.string,
-  QuaternaryColor: PropTypes.string,
-  SecondaryColor: PropTypes.string,
 };
 
 PageTeamDepth.defaultProps = {
   teamDepthsFail: null,
   teamRosterError: null,
-  PrimaryColor: null,
-  QuaternaryColor: null,
-  SecondaryColor: null,
 };
 
 const mapStateToProps = ({ teamDepths, teamRoster }) => ({

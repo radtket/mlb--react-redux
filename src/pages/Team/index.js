@@ -13,6 +13,7 @@ import {
   PageTeamStats,
   PageTeamTickets,
 } from "./sub-pages";
+import TeamTheme from "./TeamTheme";
 
 class Team extends Component {
   state = {
@@ -80,64 +81,82 @@ class Team extends Component {
 
     return (
       <>
-        <TeamHeader
-          {...activeTeamObj}
-          teams={teams}
-          changeTeams={this.changeTeams}
-        />
+        <TeamTheme {...activeTeamObj}>
+          <TeamHeader
+            {...activeTeamObj}
+            teams={teams}
+            changeTeams={this.changeTeams}
+          />
+        </TeamTheme>
         <Route
           exact
           path="/teams/:teamAbrv"
           render={() => (
-            <PageTeamHome
-              activeTeamObj={activeTeamObj}
-              currentTeamAbrv={currentTeamAbrv}
-              recentGames={recentGames}
-              standings={standings}
-              match={match}
-            />
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamHome
+                activeTeamObj={activeTeamObj}
+                currentTeamAbrv={currentTeamAbrv}
+                recentGames={recentGames}
+                standings={standings}
+                match={match}
+              />
+            </TeamTheme>
           )}
         />
         <Route
           exact
           path="/teams/:teamAbrv/roster"
           render={() => (
-            <PageTeamRoster
-              {...activeTeamObj}
-              match={match}
-              currentTeamAbrv={currentTeamAbrv}
-            />
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamRoster
+                {...activeTeamObj}
+                match={match}
+                currentTeamAbrv={currentTeamAbrv}
+              />
+            </TeamTheme>
           )}
         />
         <Route
           exact
           path="/teams/:teamAbrv/stats"
-          render={() => <PageTeamStats match={match} />}
+          render={() => (
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamStats match={match} />
+            </TeamTheme>
+          )}
         />
         <Route
           exact
           path="/teams/:teamAbrv/depth"
           render={() => (
-            <PageTeamDepth
-              {...activeTeamObj}
-              currentTeamAbrv={currentTeamAbrv}
-            />
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamDepth
+                {...activeTeamObj}
+                currentTeamAbrv={currentTeamAbrv}
+              />
+            </TeamTheme>
           )}
         />
         <Route
           exact
           path="/teams/:teamAbrv/schedule"
           render={() => (
-            <PageTeamSchedule
-              currentTeamAbrv={currentTeamAbrv}
-              schedule={recentGames}
-            />
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamSchedule
+                currentTeamAbrv={currentTeamAbrv}
+                schedule={recentGames}
+              />
+            </TeamTheme>
           )}
         />
         <Route
           exact
           path="/teams/:teamAbrv/tickets"
-          render={() => <PageTeamTickets {...activeTeamObj} />}
+          render={() => (
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamTickets {...activeTeamObj} />
+            </TeamTheme>
+          )}
         />
       </>
     );

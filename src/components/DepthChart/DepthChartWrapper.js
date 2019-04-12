@@ -1,13 +1,7 @@
 import React from "react";
 import DepthChartPosition from "./DepthChartPosition";
 
-const DepthChartWrapper = ({
-  positions,
-  PrimaryColor,
-  QuaternaryColor,
-  SecondaryColor,
-  teamRoster,
-}) => {
+const DepthChartWrapper = ({ positions, teamRoster }) => {
   // eslint-disable-next-line react/prop-types
   const ThePen = ({ children }) => (
     <div className="depth-chart__bullpen-wrap">{children}</div>
@@ -28,9 +22,6 @@ const DepthChartWrapper = ({
         const [starter] = players;
         ThePenChildren.push(
           <DepthChartPosition
-            PrimaryColor={PrimaryColor}
-            QuaternaryColor={QuaternaryColor}
-            SecondaryColor={SecondaryColor}
             teamRoster={teamRoster}
             key={name}
             starterObj={findStarterObj(starter, teamRoster)}
@@ -44,9 +35,6 @@ const DepthChartWrapper = ({
         ThePenChildren.push(
           <DepthChartPosition
             hasSecondStarter={secondStarter !== undefined}
-            PrimaryColor={PrimaryColor}
-            QuaternaryColor={QuaternaryColor}
-            SecondaryColor={SecondaryColor}
             teamRoster={teamRoster}
             key={name}
             starterObj={findStarterObj(starter, teamRoster)}
@@ -60,9 +48,6 @@ const DepthChartWrapper = ({
         const [starter] = players;
         allPos.push(
           <DepthChartPosition
-            PrimaryColor={PrimaryColor}
-            QuaternaryColor={QuaternaryColor}
-            SecondaryColor={SecondaryColor}
             teamRoster={teamRoster}
             key={name}
             starterObj={findStarterObj(starter, teamRoster)}

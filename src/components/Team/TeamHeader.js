@@ -4,12 +4,12 @@ import Dropdown from "react-dropdown";
 import { NavLink } from "react-router-dom";
 import { espnLogo, socialMedia, propComparator } from "../../utils/helpers";
 import { IconInstagram, IconTwitter } from "../Icons";
+import { TeamHeaderStyles } from "../../pages/Team/TeamStyles";
 
 const TeamHeader = ({
   teams,
   City,
   Name,
-  PrimaryColor,
   WikipediaLogoUrl,
   Key,
   changeTeams,
@@ -31,7 +31,7 @@ const TeamHeader = ({
   const { Twitter, Instagram } = socialMedia[Key];
 
   return (
-    <header className="header-team">
+    <TeamHeaderStyles className="header-team">
       <div className="container">
         <div className="row">
           <figure className="team">
@@ -40,7 +40,7 @@ const TeamHeader = ({
               src={espnLogo(Key, 64) || WikipediaLogoUrl}
               alt={`${City} ${Name} Logo`}
             />
-            <h1 className="team__name" style={{ color: `#${PrimaryColor}` }}>
+            <h1 className="team__name">
               <span className="team__name--city">{City} </span>
               {Name}
             </h1>
@@ -92,7 +92,6 @@ const TeamHeader = ({
             <ul className="team__social">
               <li className="team__social--item">
                 <a
-                  style={{ color: `#${PrimaryColor}` }}
                   href={`https://twitter.com/${Twitter}`}
                   target="_blank"
                   rel="noopener noreferrer">
@@ -101,7 +100,6 @@ const TeamHeader = ({
               </li>
               <li className="team__social--item">
                 <a
-                  style={{ color: `#${PrimaryColor}` }}
                   href={`https://www.instagram.com/${Instagram}`}
                   target="_blank"
                   rel="noopener noreferrer">
@@ -112,7 +110,7 @@ const TeamHeader = ({
           </nav>
         </div>
       </div>
-    </header>
+    </TeamHeaderStyles>
   );
 };
 
@@ -121,7 +119,6 @@ TeamHeader.propTypes = {
   Key: PropTypes.string.isRequired,
   City: PropTypes.string.isRequired,
   Name: PropTypes.string.isRequired,
-  PrimaryColor: PropTypes.string.isRequired,
   WikipediaLogoUrl: PropTypes.string.isRequired,
   changeTeams: PropTypes.func.isRequired,
 };

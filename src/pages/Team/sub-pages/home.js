@@ -61,8 +61,6 @@ class PageTeamHome extends Component {
       return <div>Loading...</div>;
     }
 
-    const { WikipediaWordMarkUrl, PrimaryColor } = activeTeamObj;
-
     return (
       <div className="container">
         <div className="row">
@@ -83,9 +81,9 @@ class PageTeamHome extends Component {
                     key={url}
                     Title={title}
                     Url={url}
-                    WikipediaWordMarkUrl={WikipediaWordMarkUrl}
+                    WikipediaWordMarkUrl={activeTeamObj.WikipediaWordMarkUrl}
                     FeaturedImage={urlToImage !== "" ? urlToImage : null}
-                    PrimaryColor={PrimaryColor}
+                    PrimaryColor={activeTeamObj.PrimaryColor}
                     DatePublished={publishedAt}
                     Author={author}
                     Source={source.name}

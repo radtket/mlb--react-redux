@@ -1,7 +1,7 @@
 import React from "react";
 import DepthChartPlayerListItem from "./DepthChartPlayerListItem";
 
-const DepthChartPlayerList = ({ players, teamRoster, PrimaryColor }) => {
+const DepthChartPlayerList = ({ players, teamRoster }) => {
   return players.map(activeRosterMember => {
     const {
       first_name: FirstName,
@@ -18,7 +18,6 @@ const DepthChartPlayerList = ({ players, teamRoster, PrimaryColor }) => {
         <DepthChartPlayerListItem
           hasPlayerId={playerObj && playerObj.PlayerID !== undefined}
           playerObj={playerObj}
-          PrimaryColor={PrimaryColor}
           FirstName={FirstName}
           LastName={LastName}
           FormatedName={`${FirstName.charAt(0)}. ${LastName}`}
