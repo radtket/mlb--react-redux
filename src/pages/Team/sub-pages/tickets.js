@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchTickets } from "../../../modules/ticket/actions";
+import { fetchTickets } from "../../../modules/actions";
 import TicketedEvent from "../../../components/TicketedEvent";
 
 const PageTeamTickets = ({

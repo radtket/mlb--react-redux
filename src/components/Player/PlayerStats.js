@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchPlayerStats } from "../../modules/playerStats/actions";
+import { fetchPlayerStats } from "../../modules/actions";
 
 import { AdvancedStats, BasicStats } from ".";
 import Card from "../Card";

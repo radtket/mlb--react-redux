@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
-import { fetchTeamRoster } from "../../../modules/teamRoster/actions";
+import { fetchTeamRoster } from "../../../modules/actions";
 
 const PageTeamRoster = ({
   teamRoster,

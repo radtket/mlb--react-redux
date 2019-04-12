@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDays, subDays, format } from "date-fns";
-import { fetchGamesOnDay } from "../modules/games-on-day/actions";
-import { fetchStandings } from "../modules/standings/actions";
+import { fetchGamesOnDay, fetchStandings } from "../modules/actions";
+
 import {
   // TODO: Add When API is Live
   // TodaysDate,

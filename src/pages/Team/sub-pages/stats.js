@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchTeamStats } from "../../../modules/teamStats/actions";
+import { fetchTeamStats } from "../../../modules/actions";
 
 import Tabs from "../../../components/Tabs/Tabs";
 import StatsTableBatting from "../../../components/Team/StatsTables/Batting";

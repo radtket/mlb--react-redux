@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { isSameDay } from "date-fns";
-import { fetchSchedules } from "../modules/schedules/actions";
+import { fetchSchedules } from "../modules/actions";
 import SingleGame from "../components/Standings/SingleGame";
 import { TodaysDate } from "../utils/helpers";
 

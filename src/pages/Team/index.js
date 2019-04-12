@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStandings } from "../../modules/standings/actions";
+import { fetchStandings } from "../../modules/actions";
 import TeamHeader from "../../components/Team/TeamHeader";
 import {
   PageTeamDepth,

@@ -4,9 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TeamRecentGames from "../../../components/Team/TeamRecentGames";
 import TeamStandings from "../../../components/Team/TeamStandings";
-
-import { fetchNewsTeams } from "../../../modules/newsTeam/actions";
-import { fetchTeamRssNews } from "../../../modules/teamRssNews/actions";
+import { fetchNewsTeams, fetchTeamRssNews } from "../../../modules/actions";
 import TeamRssFeed from "../../../components/Team/TeamRssFeed";
 import NewsArticle from "../../../components/NewsArticle";
 

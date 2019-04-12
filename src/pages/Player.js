@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { fetchPlayer } from "../modules/player/actions";
+import { fetchPlayer } from "../modules/actions";
 
 import { PlayerHero, PlayerNews, PlayerStats } from "../components/Player";
 

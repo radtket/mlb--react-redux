@@ -18,9 +18,7 @@ import {
 } from "./pages";
 
 // Actions
-import { fetchTeams } from "./modules/teams/actions";
-import { fetchSchedules } from "./modules/schedules/actions";
-import { fetchStandings } from "./modules/standings/actions";
+import { fetchTeams, fetchSchedules, fetchStandings } from "./modules/actions";
 
 // Components
 import Navbar from "./components/Navbar";

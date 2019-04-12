@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchProducts } from "../modules/product/actions";
+import { fetchProducts } from "../modules/actions";
 
 const ProductList = ({
   productsFail,

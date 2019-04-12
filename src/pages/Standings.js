@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchStandings } from "../modules/standings/actions";
+import { fetchStandings } from "../modules/actions";
 import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
 import { sortTeamsByDivion } from "../utils/helpers";

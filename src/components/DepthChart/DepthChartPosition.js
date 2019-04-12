@@ -55,7 +55,7 @@ DepthChartPosition.propTypes = {
     FirstName: PropTypes.string,
     LastName: PropTypes.string,
     PhotoUrl: PropTypes.string,
-  }).isRequired,
+  }),
   secondStarterObj: PropTypes.shape({
     FirstName: PropTypes.string,
     LastName: PropTypes.string,
@@ -73,6 +73,7 @@ DepthChartPosition.defaultProps = {
   PrimaryColor: "",
   SecondaryColor: "",
   QuaternaryColor: "",
+  starterObj: {},
   secondStarterObj: {},
   hasSecondStarter: false,
 };

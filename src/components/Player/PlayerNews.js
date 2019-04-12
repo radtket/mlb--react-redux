@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchPlayerNews } from "../../modules/playerNews/actions";
+import { fetchPlayerNews } from "../../modules/actions";
 import NewsArticle from "../NewsArticle";
 
 const PlayerNews = ({
