@@ -28,7 +28,11 @@ const PageTeamTickets = ({
     return events.map(event => <TicketedEvent key={event.id} {...event} />);
   };
 
-  return <>{tickets && renderEvents(tickets)}</>;
+  return (
+    <div className="container">
+      <div className="col-sm-7">{tickets && renderEvents(tickets)}</div>
+    </div>
+  );
 };
 
 PageTeamTickets.propTypes = {

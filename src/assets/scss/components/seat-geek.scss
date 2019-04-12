@@ -1,0 +1,87 @@
+$team-color-secondary: #b6922e;
+
+.event-ticket {
+	@include padding($spacing-small null);
+
+	&__date {
+		@include size(75px, 65px);
+		border-right: $bd-medium;
+		display: inline-block;
+		min-width: 75px;
+		text-align: center;
+		vertical-align: middle;
+
+		>span {
+			margin: auto;
+			text-align: center;
+			width: 50%;
+		}
+
+		&--month {
+			color: $team-color-secondary;
+			display: block;
+			font-weight: $fw-bold;
+			letter-spacing: -0.2px;
+
+			>span {
+				display: block;
+			}
+
+			&-name {
+				font-size: 16px;
+			}
+
+			&-day-of {
+				font-size: $fz-big;
+			}
+		}
+
+		&--week {
+			color: $c-gray-light;
+			display: block;
+			font-size: $fz-small;
+			font-weight: $fw-bold;
+			height: auto;
+			letter-spacing: -0.1px;
+			line-height: 14px;
+		}
+	}
+
+	&__info {
+		@include padding(null $spacing-small);
+		display: inline-block;
+	}
+
+	&__title {
+		color: $c-gray-medium;
+		font-size: 16px;
+		font-weight: $fw-medium;
+	}
+
+	&__details {
+		display: block;
+		margin-bottom: 0;
+
+		li {
+			display: inline-block;
+			margin-right: $m-medium;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+
+	&__pricing {
+		color: $c-gray-light;
+		float: right;
+		font-size: $fz-small;
+		text-align: right;
+
+		&--price {
+			color: $c-gray-medium;
+			font-size: 18px;
+			font-weight: $fw-bold;
+		}
+	}
+}

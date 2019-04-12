@@ -19,9 +19,9 @@ export const fetchTicketsFailure = ticketsFail => ({
 });
 
 function getTickets(teamName) {
-  const teamQuery = slugify(teamName).replace(/-/g, "+");
+  const teamQuery = slugify(teamName);
   return fetch(
-    `https://api.seatgeek.com/2/events?q=${teamQuery}&client_id=${
+    `https://api.seatgeek.com/2/events?performers.slug=${teamQuery}&client_id=${
       process.env.REACT_APP_SEATGEEK_API_KEY
     }`
   )
