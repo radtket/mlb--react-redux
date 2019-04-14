@@ -8,7 +8,7 @@ import {
   DefualtAvatar,
 } from "../utils/helpers";
 
-const SplitLogo = (team1, team2) => {
+export const SplitLogo = (team1, team2) => {
   return (
     <figure className="split-logo">
       {team1 && <img src={espnLogo(team1, 50)} alt={`${team1} Logo`} />}
@@ -64,8 +64,15 @@ const NewsArticle = ({
         </figure>
       </a>
       <div className="news-card__inner">
-        <a href={Url} className="news-card__cta">
-          {SplitLogo(Team, Team2)}
+        <a
+          href={Url}
+          className="news-card__cta"
+          style={{
+            backgroundImage: `url("${
+              Team ? espnLogo(Team, 50) : "/images/mlb-logo.png"
+            }")`,
+          }}>
+          <span className="sr-only">{`${Team || "MLB"} Logo`}</span>
         </a>
         <time
           dateTime={

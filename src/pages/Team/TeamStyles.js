@@ -28,7 +28,6 @@ export const TeamHeaderStyles = styled.header`
             return tinycolor
               .mostReadable(`#${theme.PrimaryColor}`, [
                 `#${theme.SecondaryColor}`,
-                `#${theme.PrimaryColor}`,
                 `#${theme.QuaternaryColor}`,
                 `#${theme.TertiaryColor}`,
               ])
@@ -47,7 +46,6 @@ export const TeamHeaderStyles = styled.header`
             fill: ${({ theme }) =>
               tinycolor
                 .mostReadable(`#${theme.SecondaryColor}`, [
-                  `#${theme.SecondaryColor}`,
                   `#${theme.PrimaryColor}`,
                   `#${theme.QuaternaryColor}`,
                   `#${theme.TertiaryColor}`,
@@ -61,6 +59,28 @@ export const TeamHeaderStyles = styled.header`
 `;
 
 export const TeamGlobalStyles = styled.div`
+  .card__headline {
+    background: ${({ theme }) => `#${theme.PrimaryColor}`};
+    color: ${({ theme }) => {
+      if (
+        tinycolor.isReadable(
+          `#${theme.PrimaryColor}`,
+          `#${theme.SecondaryColor}`,
+          {}
+        )
+      ) {
+        return `#${theme.SecondaryColor}`;
+      }
+      return tinycolor
+        .mostReadable(`#${theme.PrimaryColor}`, [
+          `#${theme.SecondaryColor}`,
+          `#${theme.QuaternaryColor}`,
+          `#${theme.TertiaryColor}`,
+        ])
+        .toHexString();
+    }};
+  }
+
   .card__footer a {
     color: ${({ theme }) => `#${theme.PrimaryColor}`};
   }
@@ -69,12 +89,31 @@ export const TeamGlobalStyles = styled.div`
   }
   .news-card__cta,
   .table--roster__avatar > figure,
-  .depth-chart__position--image {
+  .depth-chart__position--image,
+  .news-card__label {
     background-color: ${({ theme }) => `#${theme.SecondaryColor}`};
   }
 
   .news-card__label {
-    background-color: ${({ theme }) => `#${theme.PrimaryColor}`};
+    background-color: ${({ theme }) => `#${theme.Color}`};
+    color: ${({ theme }) => {
+      if (
+        tinycolor.isReadable(
+          `#${theme.SecondaryColor}`,
+          `#${theme.PrimaryColor}`,
+          {}
+        )
+      ) {
+        return `#${theme.PrimaryColor}`;
+      }
+      return tinycolor
+        .mostReadable(`#${theme.SecondaryColor}`, [
+          `#${theme.PrimaryColor}`,
+          `#${theme.QuaternaryColor}`,
+          `#${theme.TertiaryColor}`,
+        ])
+        .toHexString();
+    }};
   }
 
   .calendar__header {
@@ -92,7 +131,6 @@ export const TeamGlobalStyles = styled.div`
       return tinycolor
         .mostReadable(`#${theme.PrimaryColor}`, [
           `#${theme.SecondaryColor}`,
-          `#${theme.PrimaryColor}`,
           `#${theme.QuaternaryColor}`,
           `#${theme.TertiaryColor}`,
         ])
@@ -114,7 +152,6 @@ export const TeamGlobalStyles = styled.div`
           return tinycolor
             .mostReadable(`#${theme.PrimaryColor}`, [
               `#${theme.SecondaryColor}`,
-              `#${theme.PrimaryColor}`,
               `#${theme.QuaternaryColor}`,
               `#${theme.TertiaryColor}`,
             ])

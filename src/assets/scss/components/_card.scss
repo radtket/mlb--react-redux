@@ -20,12 +20,12 @@
 	margin-bottom: $spacing-base;
 
 	&__headline {
+		@include padding($p-big 12px);
 		border-bottom: $bd-medium;
-		font-family: "proxima-nova", Arial, Helvetica, sans-serif;
-		font-size: $fz-base;
+		font-size: 16px;
 		font-weight: $fw-semi-bold;
-		line-height: 1.2;
-		padding: 16px;
+		line-height: 1;
+		text-transform: uppercase;
 	}
 
 	&__footer {

@@ -124,3 +124,13 @@
 .rounded {
 	border-radius: 100%;
 }
+
+.sr-only {
+	@include size(1px);
+	@include margin(-1px);
+	@include padding(0);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	overflow: hidden;
+	position: absolute;
+}

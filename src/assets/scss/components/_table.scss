@@ -330,11 +330,13 @@
 
 			@include media-breakpoint-up(sm) {
 				@include size(40px);
+				background-position: (40px * .1) center;
 				margin-right: $spacing-xsmall;
 			}
 
 			@include media-breakpoint-up(xl) {
-				@include size(60px);
+				@include size(50px);
+				background-position: (50px * .1) center;
 			}
 		}
 	}

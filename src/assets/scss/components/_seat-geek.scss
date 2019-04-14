@@ -1,7 +1,6 @@
 $team-color-secondary: #b6922e;
 
 .event-ticket {
-	@include padding($spacing-small null);
 
 	&__date {
 		@include size(75px, 65px);
@@ -73,6 +72,7 @@ $team-color-secondary: #b6922e;
 	}
 
 	&__pricing {
+		@include padding(null 10px);
 		color: $c-gray-light;
 		float: right;
 		font-size: $fz-small;

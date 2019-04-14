@@ -1,14 +1,37 @@
 /* eslint-disable camelcase */
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import TicketedEventDetails from "./TicketedEventDetails";
 import TicketedEventTime from "./TicketedEventTime";
 import TicketedEventPricing from "./TicketedEventPricing";
+import TicketedEventHeader from "./TicketedEventHeader";
 
-const TicketedEvent = ({ datetime_local, stats, title, url, venue }) => {
+const TicketedEventStyles = styled.article`
+  a {
+    color: ${({ theme }) => `#${theme.PrimaryColor}`};
+  }
+  .event-ticket__date--month {
+    color: ${({ theme }) => `#${theme.SecondaryColor}`};
+  }
+`;
+
+const TicketedEvent = ({
+  datetime_local,
+  stats,
+  title,
+  url,
+  venue,
+  performers,
+}) => {
   return (
-    <article className="event-ticket">
+    <TicketedEventStyles className="card event-ticket">
       <div className="container">
+        <TicketedEventHeader
+          url={url}
+          performers={performers}
+          datetime_local={datetime_local}
+        />
         <TicketedEventTime DateOfEvent={new Date(datetime_local)} />
         <TicketedEventDetails
           {...venue}
@@ -18,7 +41,7 @@ const TicketedEvent = ({ datetime_local, stats, title, url, venue }) => {
         />
         <TicketedEventPricing {...stats} />
       </div>
-    </article>
+    </TicketedEventStyles>
   );
 };
 
@@ -35,6 +58,11 @@ TicketedEvent.propTypes = {
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
+  performers: PropTypes.arrayOf(PropTypes.object),
+};
+
+TicketedEvent.defaultProps = {
+  performers: null,
 };
 
 export default TicketedEvent;
