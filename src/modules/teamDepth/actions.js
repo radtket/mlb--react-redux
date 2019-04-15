@@ -21,12 +21,22 @@ export const fetchTeamDepthsFailure = teamDepthsFail => ({
 
 function getTeamDepths(teamAbrv) {
   const currentTeamAbrv = teamAbrv === "CHW" ? "CWS" : teamAbrv;
-  return fetch("/data/all-teams-depth.json")
-    .then(handleErrors)
-    .then(res => res.json())
-    .then(allTeams =>
-      allTeams.teams.find(team => team.abbr == currentTeamAbrv)
-    );
+  return (
+    // TODO: Add When API is Live
+    // fetch(
+    //   `${
+    //     process.env.REACT_APP_CORS
+    //   }https://api.sportradar.us/mlb-t6/league/depth_charts.json?api_key=${
+    //     process.env.REACT_APP_SPORTSRADAR_MLB_API_KEY
+    //   }`
+    // )
+    fetch("/data/all-teams-depth.json")
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(allTeams =>
+        allTeams.teams.find(team => team.abbr == currentTeamAbrv)
+      )
+  );
 }
 
 export function fetchTeamDepths(teamAbrv) {

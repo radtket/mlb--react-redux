@@ -1,4 +1,6 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, formatApiArgDatedate } from "../../utils/helpers";
+// TODO: Add When API is Live
+// import ApiHeadersMLB from "../../utils/api";
 
 export const FETCH_NEWS_ALL_TEAMS_BEGIN = "FETCH_NEWS_ALL_TEAMS_BEGIN";
 export const FETCH_NEWS_ALL_TEAMS_SUCCESS = "FETCH_NEWS_ALL_TEAMS_SUCCESS";
@@ -18,16 +20,24 @@ export const fetchNewsAllTeamsFailure = error => ({
   payload: { error },
 });
 
-function getNewsAllTeams() {
-  return fetch("/data/news.json")
-    .then(handleErrors)
-    .then(res => res.json());
+function getNewsAllTeams(dateArg) {
+  const date = formatApiArgDatedate(dateArg);
+  return (
+    // TODO: Add When API is Live
+    // fetch(
+    //   `https://api.fantasydata.net/v3/mlb/stats/JSON/NewsByDate/${date}`,
+    //   ApiHeadersMLB
+    // )
+    fetch(`/data/news-${date}.json`)
+      .then(handleErrors)
+      .then(res => res.json())
+  );
 }
 
-export function fetchNewsAllTeams() {
+export function fetchNewsAllTeams(dateArg) {
   return dispatch => {
     dispatch(fetchNewsAllTeamsBegin());
-    return getNewsAllTeams()
+    return getNewsAllTeams(dateArg)
       .then(data => {
         dispatch(fetchNewsAllTeamsSuccess(data));
         return data;

@@ -14,7 +14,9 @@ const NewsAllTeamsList = ({
   fetchNewsAllTeams: getNewsAllTeams,
 }) => {
   useEffect(() => {
-    getNewsAllTeams();
+    // TODO: Add When API is Live
+    // getNewsAllTeams(new Date());
+    getNewsAllTeams(new Date("2018-05-04T00:00:00"));
   }, []);
 
   if (newsAllError) {

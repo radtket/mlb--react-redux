@@ -12,6 +12,7 @@ import {
   NewsAllTeamsList,
   PlayerList,
   ProductList,
+  LeagueLeadersList,
   RedditAsyncApp,
   SchedulesList,
   StandingsList,
@@ -67,6 +68,7 @@ const App = ({
         <Route exact path="/counter" component={Counters} />
         <Route exact path="/news" component={NewsAllTeamsList} />
         <Route exact path="/product" component={ProductList} />
+        <Route exact path="/leaders" component={LeagueLeadersList} />
         <Route exact path="/player/:playerArg" component={PlayerList} />
         <Route exact path="/reddit" component={RedditAsyncApp} />
         <Route exact path="/scores" component={GamesOnDayList} />

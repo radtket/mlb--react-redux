@@ -20,14 +20,16 @@ export const fetchGamesOnDayFailure = gamesOnDayFail => ({
 
 function getGamesOnDay(dateArg) {
   const date = formatApiArgDatedate(dateArg);
-  // TODO: Add When API is Live
-  // return fetch(
-  //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${date}`,
-  //   ApiHeadersMLB
-  // )
-  return fetch(`/data/GamesByDate/${date}.json`)
-    .then(handleErrors)
-    .then(res => res.json());
+  return (
+    // TODO: Add When API is Live
+    // fetch(
+    //   `https://api.fantasydata.net/v3/mlb/stats/JSON/GamesByDate/{date}`,
+    //   ApiHeadersMLB
+    // )
+    fetch(`/data/GamesByDate/${date}.json`)
+      .then(handleErrors)
+      .then(res => res.json())
+  );
 }
 
 export function fetchGamesOnDay(dateArg) {
