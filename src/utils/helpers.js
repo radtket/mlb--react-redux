@@ -52,18 +52,6 @@ export const inchesToFeet = inches => {
   return `${feetFromInches}' ${inchesRemainder}"`;
 };
 
-export const propComparator = propArg => {
-  return (a, b) => {
-    if (a[propArg] > b[propArg]) {
-      return 1;
-    }
-    if (b[propArg] > a[propArg]) {
-      return -1;
-    }
-    return 0;
-  };
-};
-
 export const smallestToLargest = propArg => {
   return (a, b) => {
     if (a[propArg] > b[propArg]) {

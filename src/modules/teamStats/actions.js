@@ -22,7 +22,7 @@ function getTeamStats(teamArg) {
   // TODO: Add When API is Live
   // function getTeamRoster(teamArg) {
   // return fetch(
-  //   `https://api.fantasydata.net/v3/mlb/stats/{format}/PlayerSeasonStatsByTeam/{season}/${teamArg}`,
+  //   `https://api.fantasydata.net/v3/mlb/stats/JSON/PlayerSeasonStatsByTeam/{season}/${teamArg}`,
   //   ApiHeadersMLB
   // )
   return fetch(`/data/teams/${teamArg}/playerstats.${teamArg}.json`)

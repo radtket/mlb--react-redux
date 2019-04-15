@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import counter from "./counter";
+import counter from "./counter/reducers";
 import gamesOnDay from "./games-on-day/reducers";
 import newsAllTeams from "./newsAllTeams/reducers";
 import newsTeams from "./newsTeam/reducers";

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Dropdown from "react-dropdown";
 import { NavLink } from "react-router-dom";
-import { espnLogo, socialMedia, propComparator } from "../../utils/helpers";
+import { espnLogo, socialMedia, smallestToLargest } from "../../utils/helpers";
 import { IconInstagram, IconTwitter } from "../Icons";
 import { TeamHeaderStyles } from "../../pages/Team/TeamStyles";
 
@@ -25,7 +25,7 @@ const TeamHeader = ({
         });
         return allTeams;
       }, [])
-      .sort(propComparator("label"));
+      .sort(smallestToLargest("label"));
   };
 
   const { Twitter, Instagram } = socialMedia[Key];

@@ -14,8 +14,18 @@ import { fetchTeamRssNews } from "./teamRssNews/actions";
 import { fetchTeams } from "./teams/actions";
 import { fetchTeamStats } from "./teamStats/actions";
 import { fetchTickets } from "./ticket/actions";
+import {
+  decrement,
+  decrementAsync,
+  increment,
+  incrementAsync,
+} from "./counter/actions";
 
 export {
+  decrement,
+  decrementAsync,
+  increment,
+  incrementAsync,
   fetchGamesOnDay,
   fetchNewsAllTeams,
   fetchNewsTeams,

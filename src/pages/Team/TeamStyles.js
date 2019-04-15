@@ -59,6 +59,37 @@ export const TeamHeaderStyles = styled.header`
 `;
 
 export const TeamGlobalStyles = styled.div`
+  .loading-spinner__inner {
+    background-color: ${({ theme }) => `#${theme.PrimaryColor}`};
+  }
+
+  .calendar__cell--bg {
+    color: ${({ theme }) => {
+      return tinycolor
+        .mostReadable(`#FFF`, [
+          `#${theme.PrimaryColor}`,
+          `#${theme.SecondaryColor}`,
+        ])
+        .toHexString();
+    }};
+  }
+
+  .calendar__cell.cell-selected,
+  .calendar__cell.cell-selected::before {
+    border-image: linear-gradient(
+      45deg,
+      ${({ theme }) => `#${theme.SecondaryColor}`} 0,
+      ${({ theme }) => {
+          const TinySecondary = tinycolor(`#${theme.SecondaryColor}`);
+          if (TinySecondary.isDark()) {
+            return TinySecondary.lighten().toString();
+          }
+          return TinySecondary.darken().toString();
+        }}
+        40%
+    );
+  }
+
   .card__headline {
     background: ${({ theme }) => `#${theme.PrimaryColor}`};
     color: ${({ theme }) => {

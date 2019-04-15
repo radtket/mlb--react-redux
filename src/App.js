@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 // Pages
 import {
+  Counters,
   GamesOnDayList,
   Home,
   NewsAllTeamsList,
@@ -63,6 +64,7 @@ const App = ({
       <Navbar teams={teams} />
       <main>
         <Route exact path="/" component={Home} />
+        <Route exact path="/counter" component={Counters} />
         <Route exact path="/news" component={NewsAllTeamsList} />
         <Route exact path="/product" component={ProductList} />
         <Route exact path="/player/:playerArg" component={PlayerList} />
