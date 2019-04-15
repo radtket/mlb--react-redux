@@ -9,6 +9,7 @@ import {
 } from "../modules/reddit/reddit-actions";
 import Picker from "../components/Reddit/Picker";
 import Posts from "../components/Reddit/Posts";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 class RedditAsyncApp extends Component {
   componentDidMount() {
@@ -72,7 +73,7 @@ class RedditAsyncApp extends Component {
             </button>
           )}
         </p>
-        {isFetching && posts.length === 0 && <h2>Loading...</h2>}
+        {isFetching && posts.length === 0 && <LoadingSpinner />}
         {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
         {posts.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>

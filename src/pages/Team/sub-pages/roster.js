@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
 import { fetchTeamRoster } from "../../../modules/actions";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PageTeamRoster = ({
   teamRoster,
@@ -22,7 +23,7 @@ const PageTeamRoster = ({
   }
 
   if (teamRosterLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

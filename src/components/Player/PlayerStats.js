@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPlayerStats } from "../../modules/actions";
-
+import LoadingSpinner from "../LoadingSpinner";
 import { AdvancedStats, BasicStats } from ".";
 import Card from "../Card";
 
@@ -25,7 +25,7 @@ const PlayerStats = ({
   }
 
   if (playerStatsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const { playerId, isPitcher, basic, advanced } = playerStats;

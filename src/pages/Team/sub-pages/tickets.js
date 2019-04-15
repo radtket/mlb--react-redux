@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTickets } from "../../../modules/actions";
 import TicketedEvent from "../../../components/TicketedEvent";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PageTeamTickets = ({
   ticketsFail,
@@ -21,7 +22,7 @@ const PageTeamTickets = ({
   }
 
   if (ticketsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const renderEvents = events => {

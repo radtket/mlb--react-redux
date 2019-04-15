@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDays, subDays, format } from "date-fns";
 import { fetchGamesOnDay, fetchStandings } from "../modules/actions";
-
+import LoadingSpinner from "../components/LoadingSpinner";
 import {
   // TODO: Add When API is Live
   // TodaysDate,
@@ -48,7 +48,7 @@ const GamesOnDayList = ({
   }
 
   if (gamesOnDayLoading || standingsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

@@ -6,6 +6,7 @@ import { fetchStandings } from "../modules/actions";
 import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
 import { sortTeamsByDivion } from "../utils/helpers";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const StandingsList = ({ standings, standingsError, standingsLoading }) => {
   const createStandingsComponent = standingsArg => {
@@ -40,7 +41,7 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
   }
 
   if (standingsLoading || standings.length <= 0) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

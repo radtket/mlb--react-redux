@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../modules/actions";
 
+import LoadingSpinner from "../components/LoadingSpinner";
 import { PlayerHero, PlayerNews, PlayerStats } from "../components/Player";
 
 const PlayerList = ({
@@ -27,7 +28,7 @@ const PlayerList = ({
   }
 
   if (playerLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

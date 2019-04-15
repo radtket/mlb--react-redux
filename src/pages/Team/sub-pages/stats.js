@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamStats } from "../../../modules/actions";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 import Tabs from "../../../components/Tabs/Tabs";
 import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
@@ -41,7 +42,7 @@ const PageTeamStats = ({
   }
 
   if (teamStatsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

@@ -14,6 +14,7 @@ import {
   PageTeamTickets,
 } from "./sub-pages";
 import TeamTheme from "./TeamTheme";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 class Team extends Component {
   state = {
@@ -76,7 +77,7 @@ class Team extends Component {
     }
 
     if (standingsLoading || !activeTeamObj) {
-      return <div>Loading...</div>;
+      return <LoadingSpinner />;
     }
 
     return (

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPlayerNews } from "../../modules/actions";
 import NewsArticle from "../NewsArticle";
+import LoadingSpinner from "../LoadingSpinner";
 
 const PlayerNews = ({
   playerNewsFail,
@@ -22,7 +23,7 @@ const PlayerNews = ({
   }
 
   if (playerNewsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
   return (
     <>

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import SortablePlayerTable from "../SortablePlayerTable";
 import Card from "../Card";
+import LoadingSpinner from "../LoadingSpinner";
 
 const TeamRoster = ({ teamRosterError, teamRosterLoading, teamRoster }) => {
   if (teamRosterError) {
@@ -9,7 +10,7 @@ const TeamRoster = ({ teamRosterError, teamRosterLoading, teamRoster }) => {
   }
 
   if (teamRosterLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

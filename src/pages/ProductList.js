@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchProducts } from "../modules/actions";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ProductList = ({
   productsFail,
@@ -18,7 +19,7 @@ const ProductList = ({
   }
 
   if (productsLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

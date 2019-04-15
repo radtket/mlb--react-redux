@@ -6,6 +6,7 @@ import { isSameDay } from "date-fns";
 import { fetchSchedules } from "../modules/actions";
 import SingleGame from "../components/Standings/SingleGame";
 import { TodaysDate } from "../utils/helpers";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
   if (schedulesError) {
@@ -13,7 +14,7 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
   }
 
   if (schedulesLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

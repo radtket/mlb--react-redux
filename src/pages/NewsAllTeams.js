@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchNewsAllTeams } from "../modules/actions";
 import NewsArticle from "../components/NewsArticle";
 import { findMLBID } from "../utils/helpers";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const NewsAllTeamsList = ({
   newsAllError,
@@ -21,7 +22,7 @@ const NewsAllTeamsList = ({
   }
 
   if (newsAllLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

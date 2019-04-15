@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamDepths, fetchTeamRoster } from "../../../modules/actions";
 import DepthChart from "../../../components/DepthChart";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PageTeamDepth = ({
   fetchTeamDepths: getTeamDepths,
@@ -31,7 +32,7 @@ const PageTeamDepth = ({
   }
 
   if (teamDepthsLoading || teamRosterLoading || !positions) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

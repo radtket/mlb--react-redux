@@ -7,6 +7,7 @@ import TeamStandings from "../../../components/Team/TeamStandings";
 import { fetchNewsTeams, fetchTeamRssNews } from "../../../modules/actions";
 import TeamRssFeed from "../../../components/Team/TeamRssFeed";
 import NewsArticle from "../../../components/NewsArticle";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 class PageTeamHome extends Component {
   componentDidMount() {
@@ -58,7 +59,7 @@ class PageTeamHome extends Component {
     }
 
     if (newsTeamsLoading || teamRssNewsLoading) {
-      return <div>Loading...</div>;
+      return <LoadingSpinner />;
     }
 
     return (
