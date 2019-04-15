@@ -11,7 +11,7 @@ const TicketedEventDetails = ({
   DateOfEvent,
 }) => {
   return (
-    <div className="event-ticket__info">
+    <div className="event-ticket__info aligner__grow">
       <h2 className="event-ticket__title">
         <a href={url} target="_blank" rel="noopener noreferrer">
           {title}
