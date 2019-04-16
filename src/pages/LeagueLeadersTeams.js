@@ -3,11 +3,12 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import { fetchLeagueLeaders } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
-import LeagueLeaderStatCat from "../components/LeagueLeaderStatCat";
+import LeagueLeaderTable from "../components/LeagueLeaderTable";
 
-const LeagueLeadersList = ({
+const LeagueLeadersTeams = ({
   leagueLeadersFail,
   leagueLeadersLoading,
   leagueLeaders,
@@ -24,31 +25,31 @@ const LeagueLeadersList = ({
     return <LoadingSpinner />;
   }
 
+  const { pitching, hitting } = leagueLeaders;
+
   return (
     <div className="container">
-      {leagueLeaders &&
-        leagueLeaders.map(item => {
-          const { id, name, hitting, pitching } = item;
-          return (
-            <article key={id} className="col-sm-4">
-              <h1>{name}</h1>
-              <LeagueLeaderStatCat {...hitting} />
-              <LeagueLeaderStatCat {...pitching} />
-            </article>
-          );
-        })}
+      <div className="row">
+        <h1>Batting Stats</h1>
+        {hitting && <LeagueLeaderTable dataObj={hitting} />}
+      </div>
+
+      <div className="row">
+        <h1>Pitching Stats</h1>
+        {pitching && <LeagueLeaderTable dataObj={pitching} />}
+      </div>
     </div>
   );
 };
 
-LeagueLeadersList.propTypes = {
+LeagueLeadersTeams.propTypes = {
   leagueLeadersFail: null || PropTypes.bool,
   leagueLeadersLoading: PropTypes.bool.isRequired,
-  leagueLeaders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  leagueLeaders: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchLeagueLeaders: PropTypes.func.isRequired,
 };
 
-LeagueLeadersList.defaultProps = {
+LeagueLeadersTeams.defaultProps = {
   leagueLeadersFail: null,
 };
 
@@ -71,4 +72,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(LeagueLeadersList);
+)(LeagueLeadersTeams);

@@ -43,6 +43,11 @@ const Navbar = ({ teams }) => {
               </NavLink>
             </li>
             <li>
+              <NavLink exact to="/stats" onClick={() => dispatch("reset")}>
+                Stats
+              </NavLink>
+            </li>
+            <li>
               <DropdownContext.Provider value={{ state, dispatch }}>
                 <MegaMenuDropdown teams={teams} />
               </DropdownContext.Provider>

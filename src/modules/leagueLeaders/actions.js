@@ -34,13 +34,56 @@ function getLeagueLeaders(seasonYear = 2019, mlbSeason = "REG") {
   );
 }
 
+const buildCatObject = (all, one, name, cat) => {
+  return Object.entries(one).forEach(item => {
+    const [statKey, statValues] = item;
+    const { players, teams } = statValues;
+    const allStats = all;
+    allStats[name].teams[`${cat}`][statKey] =
+      allStats[name].teams[`${cat}`][statKey] || {};
+    allStats[name].teams[`${cat}`][statKey] = teams;
+
+    allStats[name].players[`${cat}`][statKey] =
+      allStats[name].players[`${cat}`][statKey] || {};
+    allStats[name].players[`${cat}`][statKey] = players;
+  });
+};
+
 export function fetchLeagueLeaders() {
   return dispatch => {
     dispatch(fetchLeagueLeadersBegin());
     return getLeagueLeaders()
       .then(data => {
-        dispatch(fetchLeagueLeadersSuccess(data.leagues));
-        return data.leagues;
+        return data.leagues.reduce((all, one) => {
+          const {
+            pitching: pitchingData,
+            hitting: hittingData,
+            alias: key,
+          } = one;
+
+          const allStats = all;
+          allStats[key] = allStats[key] || {};
+          allStats[key].teams = allStats[key].teams || {};
+          allStats[key].players = allStats[key].players || {};
+
+          allStats[key].teams.pitching = allStats[key].teams.pitching || {};
+          allStats[key].players.pitching = allStats[key].players.pitching || {};
+
+          allStats[key].teams.hitting = allStats[key].teams.hitting || {};
+          allStats[key].players.hitting = allStats[key].players.hitting || {};
+
+          buildCatObject(allStats, pitchingData, key, "pitching");
+          buildCatObject(allStats, hittingData, key, "hitting");
+
+          // console.log(all);
+
+          return all;
+        }, {});
+      })
+      .then(allData => {
+        const { MLB } = allData;
+        dispatch(fetchLeagueLeadersSuccess(MLB.teams));
+        return MLB.teams;
       })
       .catch(error => dispatch(fetchLeagueLeadersFailure(error)));
   };

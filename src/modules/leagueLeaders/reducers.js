@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  leagueLeadersData: [],
+  leagueLeadersData: {},
   leagueLeadersLoading: false,
   leagueLeadersError: null,
 };
@@ -40,7 +40,7 @@ export default function leagueLeadersReducer(state = initialState, action) {
         ...state,
         leagueLeadersLoading: false,
         leagueLeadersError: action.payload.error,
-        leagueLeadersData: [],
+        leagueLeadersData: {},
       };
 
     default:
