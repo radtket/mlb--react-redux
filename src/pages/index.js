@@ -4,6 +4,7 @@ import Home from "./Home";
 import NewsAllTeamsList from "./NewsAllTeams";
 import PlayerList from "./Player";
 import ProductList from "./ProductList";
+import TeamSplitsList from "./TeamSplitsList";
 import LeagueLeadersList from "./LeagueLeadersList";
 import RedditAsyncApp from "./Reddit";
 import SchedulesList from "./Schedules";
@@ -17,6 +18,7 @@ export {
   NewsAllTeamsList,
   PlayerList,
   ProductList,
+  TeamSplitsList,
   LeagueLeadersList,
   RedditAsyncApp,
   SchedulesList,

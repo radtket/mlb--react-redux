@@ -1,9 +1,11 @@
+/* eslint-disable camelcase */
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchLeagueLeaders } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import LeagueLeaderStatCat from "../components/LeagueLeaderStatCat";
 
 const LeagueLeadersList = ({
   leagueLeadersFail,
@@ -22,14 +24,20 @@ const LeagueLeadersList = ({
     return <LoadingSpinner />;
   }
 
-  console.log(leagueLeaders && leagueLeaders);
-
   return (
-    <ul>
-      <li>Hi</li>
-      {/* {leagueLeaders &&
-        leagueLeaders.map(item => <li key={item.Key}>{item.Name}</li>)} */}
-    </ul>
+    <div className="container">
+      {leagueLeaders &&
+        leagueLeaders.map(item => {
+          const { id, name, hitting, pitching } = item;
+          return (
+            <article key={id} className="col-sm-4">
+              <h1>{name}</h1>
+              <LeagueLeaderStatCat {...hitting} />
+              <LeagueLeaderStatCat {...pitching} />
+            </article>
+          );
+        })}
+    </div>
   );
 };
 

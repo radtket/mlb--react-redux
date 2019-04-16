@@ -6,6 +6,7 @@ import { fetchPlayerNews } from "./playerNews/actions";
 import { fetchPlayerStats } from "./playerStats/actions";
 import { fetchPostsIfNeeded } from "./reddit/reddit-actions";
 import { fetchProducts } from "./product/actions";
+import { fetchTeamSplits } from "./teamSplits/actions";
 import { fetchLeagueLeaders } from "./leagueLeaders/actions";
 import { fetchSchedules } from "./schedules/actions";
 import { fetchStandings } from "./standings/actions";
@@ -35,6 +36,7 @@ export {
   fetchPlayerStats,
   fetchPostsIfNeeded,
   fetchProducts,
+  fetchTeamSplits,
   fetchLeagueLeaders,
   fetchSchedules,
   fetchStandings,

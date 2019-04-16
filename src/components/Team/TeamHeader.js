@@ -88,6 +88,11 @@ const TeamHeader = ({
                   Tickets
                 </NavLink>
               </li>
+              <li>
+                <NavLink exact to={`/teams/${Key}/splits`}>
+                  Splits
+                </NavLink>
+              </li>
             </ul>
             <ul className="team__social">
               <li className="team__social--item">
