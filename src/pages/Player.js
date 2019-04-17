@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../modules/actions";
-
+import PlayerHeroCard from "../components/PlayerHeroCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { PlayerHero, PlayerNews, PlayerStats } from "../components/Player";
+import { teamFinder } from "../utils/helpers";
 
 const PlayerList = ({
   playerFail,
@@ -35,6 +36,7 @@ const PlayerList = ({
     player && (
       <div>
         <PlayerHero {...player} />
+        <PlayerHeroCard {...player} {...teamFinder[Team]} />
         <div className="container">
           <div className="row">
             <div className="col-sm-12">

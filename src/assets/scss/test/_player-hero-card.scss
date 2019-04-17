@@ -1,0 +1,110 @@
+.player-hero-card {
+	padding: 40px 0;
+
+	.container {
+		background: $c-light;
+		border-radius: $bdr-rounded-corners;
+		position: relative;
+		width: 780px;
+	}
+
+	.hero {
+		border-top-left-radius: $bdr-rounded-corners;
+		border-top-right-radius: $bdr-rounded-corners;
+		// height: 340px;
+		height: 780px * .44;
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+
+
+		&:before,
+		&:after {
+			@include size(100%);
+			@include position(absolute, 0 null null 0);
+			content: "";
+			overflow: hidden;
+			transform: skewY(-2.2deg);
+			transform-origin: 0 0;
+		}
+
+		&:before {
+			z-index: -1;
+		}
+
+		&:after {
+			z-index: 0;
+		}
+	}
+
+	.cover {
+		@include size(200px, 250px);
+		@include position(absolute, 160px null null 40px);
+		background: $c-off-white;
+		border-radius: $bdr-base;
+		box-shadow: $box-shadow-card-hover;
+		overflow: hidden;
+		z-index: 2;
+
+		&::after {
+			@include size(125%);
+			@include position(absolute, 0 null null -12%);
+			content: "";
+			opacity: 0.2;
+		}
+
+		img {
+			@include position(absolute, null null 0 null);
+			z-index: 1;
+		}
+	}
+
+	.details {
+		@include position(absolute, 240px null null 280px);
+		z-index: 1;
+
+		.title1,
+		.title2 {
+			margin-bottom: 12px;
+		}
+
+		.title1 {
+			color: $c-white;
+			font-size: 40px;
+			position: relative;
+		}
+
+		.title2 {
+			color: $c-gray-x-light;
+			font-size: 24px;
+			font-weight: 300;
+		}
+	}
+
+	.description {
+		color: $c-gray;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+
+	.column1,
+	.column2 {
+		@include padding(null null 40px 40px);
+		float: left;
+	}
+
+	.column1 {
+		padding-top: 100px;
+		width: 200px;
+	}
+
+	.column2 {
+		@include margin(null 40px);
+		padding-top: 30px;
+		width: 500px;
+	}
+
+	.hero--jersey {
+		font-family: "JerseyM54", Impact, sans-serif;
+	}
+}

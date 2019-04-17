@@ -1,6 +1,11 @@
 $team-color-secondary: #b6922e;
 
 .event-ticket {
+	transition: box-shadow 0.3s ease;
+
+	&:hover {
+		box-shadow: $box-shadow-card-hover;
+	}
 
 	&__date {
 		@include size(75px, 65px);

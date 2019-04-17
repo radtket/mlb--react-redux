@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { stubHubTeamHelper } from "../../utils/helpers";
 
-const TeamLogoWrap = styled.figure`
+const TeamLogoWrap = styled.div`
 position: ${({ isHomeTeam }) => (isHomeTeam ? "absolute" : "relative")};
 left: ${({ isHomeTeam }) => (isHomeTeam ? "initial" : "-5%")};
 right: ${({ isHomeTeam }) => (isHomeTeam ? "-5%" : "initial")};

@@ -68,6 +68,8 @@ $c-map: ("primary": $c-primary,
 
 // Shadows
 $box-shadow-card: 0 8px 16px 0 $c-black-12;
+$box-shadow-card-hover: $box-shadow-card,
+0 12px 24px $c-black-12;
 $box-shadow-subtle: 0 1px 0 $c-dark-08;
 $box-shadow-big: 0 2px 4px -1px $c-black-20,
 0 4px 5px 0 $c-black-14,

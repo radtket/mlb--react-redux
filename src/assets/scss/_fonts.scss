@@ -1,3 +1,9 @@
+@include font-face("JerseyM54", "../fonts/JerseyM54/JerseyM54", ("woff", "woff2", "ttf")) {
+	font-style: normal;
+	font-weight: normal;
+}
+
+
 @include font-face("rsuite-icon-font", "../fonts/RSuiteIcons/rsuite-icon-font", ("woff", "otf", "ttf", "svg")) {
 	font-style: normal;
 	font-weight: 400;

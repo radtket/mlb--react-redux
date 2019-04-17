@@ -65,6 +65,7 @@ const StatTable = styled.div`
     background-size: 85%;
     background-position: center center;
     background-repeat: no-repeat;
+    transition: background-color 1s ease-out;
   }
 
   table {
