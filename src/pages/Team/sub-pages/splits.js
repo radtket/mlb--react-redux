@@ -121,8 +121,6 @@ const PageTeamSplits = ({
 
   const { hitting, pitching } = teamSplits;
 
-  // console.log(pitching);
-
   return (
     <div className="container">
       {hitting && (
@@ -146,6 +144,7 @@ PageTeamSplits.propTypes = {
   teamSplitsLoading: PropTypes.bool.isRequired,
   teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchTeamSplits: PropTypes.func.isRequired,
+  Key: PropTypes.string.isRequired,
 };
 
 PageTeamSplits.defaultProps = {

@@ -5,8 +5,14 @@ const Posts = ({ posts }) => {
   return (
     <ul>
       {posts.map(post => {
-        const { name, title } = post;
-        return <li key={name}>{title}</li>;
+        const { name, title, url } = post;
+        return (
+          <li key={name}>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {title}
+            </a>
+          </li>
+        );
       })}
     </ul>
   );

@@ -75,8 +75,6 @@ export function fetchLeagueLeaders() {
           buildCatObject(allStats, pitchingData, key, "pitching");
           buildCatObject(allStats, hittingData, key, "hitting");
 
-          // console.log(all);
-
           return all;
         }, {});
       })

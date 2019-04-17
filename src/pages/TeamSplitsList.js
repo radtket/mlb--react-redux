@@ -13,9 +13,10 @@ const TeamSplitsList = ({
   teamSplitsLoading,
   teamSplits,
   fetchTeamSplits: getTeamSplits,
+  TeamArg,
 }) => {
   useEffect(() => {
-    getTeamSplits("MIL");
+    getTeamSplits(TeamArg || "MIL");
   }, []);
   if (teamSplitsFail) {
     return <div>Error! {teamSplitsFail.message}</div>;
@@ -116,8 +117,6 @@ const TeamSplitsList = ({
 
   const { hitting, pitching } = teamSplits;
 
-  // console.log(pitching);
-
   return (
     <div className="container">
       {hitting && <TeamBattingSplits dataList={organizeSplits(hitting)} />}
@@ -131,10 +130,12 @@ TeamSplitsList.propTypes = {
   teamSplitsLoading: PropTypes.bool.isRequired,
   teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchTeamSplits: PropTypes.func.isRequired,
+  TeamArg: PropTypes.string,
 };
 
 TeamSplitsList.defaultProps = {
   teamSplitsFail: null,
+  TeamArg: "MIL",
 };
 
 const mapStateToProps = ({ teamSplits }) => ({

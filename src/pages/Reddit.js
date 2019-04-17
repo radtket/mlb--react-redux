@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -7,83 +7,71 @@ import {
   invalidateSubreddit,
   selectSubreddit,
 } from "../modules/reddit/reddit-actions";
-import Picker from "../components/Reddit/Picker";
-import Posts from "../components/Reddit/Posts";
+import { Picker, Posts } from "../components/Reddit";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { isArrayEmpty } from "../utils/helpers";
 
-class RedditAsyncApp extends Component {
-  componentDidMount() {
-    const {
-      selectedSubreddit,
-      fetchPostsIfNeeded: getPostsIfNeeded,
-    } = this.props;
-    getPostsIfNeeded(selectedSubreddit);
-  }
+const RedditAsyncApp = props => {
+  useEffect(() => {
+    const { selectedSubreddit, fetchPostsIfNeeded: getPostsIfNeeded } = props;
 
-  componentDidUpdate(prevProps) {
-    const { selectedSubreddit: thisSelectedSubredditt } = this.props;
-    if (thisSelectedSubredditt !== prevProps.selectedSubreddit) {
-      const {
-        selectedSubreddit,
-        fetchPostsIfNeeded: getPostsIfNeeded,
-      } = this.props;
+    return () => {
       getPostsIfNeeded(selectedSubreddit);
-    }
-  }
+    };
+  }, []);
 
-  handleChange = nextSubreddit => {
+  const handleChange = nextSubreddit => {
     const {
       selectSubreddit: activeSelectSubreddit,
       fetchPostsIfNeeded: getPostsIfNeeded,
-    } = this.props;
+    } = props;
+
     activeSelectSubreddit(nextSubreddit);
     getPostsIfNeeded(nextSubreddit);
   };
 
-  handleRefreshClick = e => {
+  const handleRefreshClick = e => {
     e.preventDefault();
 
     const {
       selectedSubreddit,
       fetchPostsIfNeeded: getPostsIfNeeded,
       invalidateSubreddit: invalidSubreddit,
-    } = this.props;
+    } = props;
     invalidSubreddit(selectedSubreddit);
     getPostsIfNeeded(selectedSubreddit);
   };
+  const { selectedSubreddit, posts, isFetching, lastUpdated } = props;
 
-  render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props;
-    return (
-      <div>
-        <Picker
-          value={selectedSubreddit}
-          onChange={this.handleChange}
-          options={["reactjs", "frontend"]}
-        />
-        <p>
-          {lastUpdated && (
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{" "}
-            </span>
-          )}
-          {!isFetching && (
-            <button onClick={this.handleRefreshClick} type="button">
-              Refresh
-            </button>
-          )}
-        </p>
-        {isFetching && posts.length === 0 && <LoadingSpinner />}
-        {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
-        {posts.length > 0 && (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
-          </div>
+  return (
+    <div>
+      <Picker
+        value={selectedSubreddit}
+        onChange={handleChange}
+        options={["reactjs", "frontend"]}
+      />
+      <p>
+        {lastUpdated && (
+          <span>
+            Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+          </span>
         )}
-      </div>
-    );
-  }
-}
+        {!isFetching && (
+          <button onClick={handleRefreshClick} type="button">
+            Refresh
+          </button>
+        )}
+      </p>
+      {isFetching && isArrayEmpty(posts) && <LoadingSpinner />}
+      {!isFetching && isArrayEmpty(posts) && <h2>Empty.</h2>}
+      {posts.length > 0 && (
+        <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <Posts posts={posts} />
+        </div>
+      )}
+    </div>
+  );
+};
 
 RedditAsyncApp.propTypes = {
   selectedSubreddit: PropTypes.string.isRequired,
