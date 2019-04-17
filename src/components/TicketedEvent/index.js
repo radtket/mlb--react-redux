@@ -9,10 +9,10 @@ import TicketedEventHeader from "./TicketedEventHeader";
 
 const TicketedEventStyles = styled.article`
   a {
-    color: ${({ theme }) => `#${theme.PrimaryColor}`};
+    color: ${({ theme }) => `${theme.PrimaryColor}`};
   }
   .event-ticket__date--month {
-    color: ${({ theme }) => `#${theme.SecondaryColor}`};
+    color: ${({ theme }) => `${theme.SecondaryColor}`};
   }
 `;
 

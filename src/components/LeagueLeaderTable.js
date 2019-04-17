@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 import { Link } from "react-router-dom";
-import { espnLogo, teamFinder } from "../utils/helpers";
+import { espnLogo, teamFinder, LightenOrDarkenColor } from "../utils/helpers";
 
 const StatTable = styled.div`
   margin-bottom: 24px;

@@ -56,7 +56,8 @@
 			transition: background-color 150ms cubic-bezier(.4, 0, .2, 1) 0ms;
 
 			&:hover {
-				background-color: $c-dark-08;
+				background: $c-white;
+				background-image: linear-gradient($c-light-30, $c-light-30);
 			}
 		}
 	}

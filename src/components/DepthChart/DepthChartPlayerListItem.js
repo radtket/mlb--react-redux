@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const DepthPlayerLink = styled(Link)`
-  color: ${({ theme }) => `#${theme.PrimaryColor}`};
+  color: ${({ theme }) => `${theme.PrimaryColor}`};
+
+  &:hover {
+    color: ${({ theme }) => `${theme.PrimaryColorHover}`};
+  }
 `;
 
 const DepthChartPlayerListItem = ({ playerObj, FormatedName, hasPlayerId }) => {

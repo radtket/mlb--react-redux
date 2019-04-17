@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { differenceInYears, format } from "date-fns";
+import tinycolor from "tinycolor2";
 import MLBAMIDs from "./MLBAMIDs";
 
 export function handleErrors(response) {
@@ -797,3 +798,11 @@ export const monthList = [
   "November",
   "December",
 ];
+
+export const LightenOrDarkenColor = colorArg => {
+  const tinyColorArg = tinycolor(colorArg);
+  if (tinyColorArg.isDark()) {
+    return tinyColorArg.lighten().toString();
+  }
+  return tinyColorArg.darken().toString();
+};
