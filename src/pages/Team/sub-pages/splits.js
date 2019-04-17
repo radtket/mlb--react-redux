@@ -2,20 +2,25 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchTeamSplits } from "../modules/actions";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { monthList } from "../utils/helpers";
+import { fetchTeamSplits } from "../../../modules/actions";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import { monthList } from "../../../utils/helpers";
 
-import { TeamBattingSplits, TeamPitchingSplits } from "../components/Splits";
+import {
+  TeamBattingSplits,
+  TeamPitchingSplits,
+} from "../../../components/Splits";
+import Card from "../../../components/Card";
 
-const TeamSplitsList = ({
+const PageTeamSplits = ({
   teamSplitsFail,
   teamSplitsLoading,
   teamSplits,
   fetchTeamSplits: getTeamSplits,
+  Key,
 }) => {
   useEffect(() => {
-    getTeamSplits("MIL");
+    getTeamSplits(Key);
   }, []);
   if (teamSplitsFail) {
     return <div>Error! {teamSplitsFail.message}</div>;
@@ -120,20 +125,30 @@ const TeamSplitsList = ({
 
   return (
     <div className="container">
-      {hitting && <TeamBattingSplits dataList={organizeSplits(hitting)} />}
-      {pitching && <TeamPitchingSplits dataList={organizeSplits(pitching)} />}
+      {hitting && (
+        <Card
+          title="Hitting Splits"
+          body={<TeamBattingSplits dataList={organizeSplits(hitting)} />}
+        />
+      )}
+      {pitching && (
+        <Card
+          title="Pitching Splits"
+          body={<TeamPitchingSplits dataList={organizeSplits(pitching)} />}
+        />
+      )}
     </div>
   );
 };
 
-TeamSplitsList.propTypes = {
+PageTeamSplits.propTypes = {
   teamSplitsFail: null || PropTypes.bool,
   teamSplitsLoading: PropTypes.bool.isRequired,
   teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchTeamSplits: PropTypes.func.isRequired,
 };
 
-TeamSplitsList.defaultProps = {
+PageTeamSplits.defaultProps = {
   teamSplitsFail: null,
 };
 
@@ -156,4 +171,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(TeamSplitsList);
+)(PageTeamSplits);

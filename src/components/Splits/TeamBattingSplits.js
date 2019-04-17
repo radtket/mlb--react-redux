@@ -1,14 +1,13 @@
 import React from "react";
 import { Table } from "rsuite";
-import LoadingSpinner from "../components/LoadingSpinner";
+import PropTypes from "prop-types";
+import LoadingSpinner from "../LoadingSpinner";
 
 const { Column, HeaderCell, Cell } = Table;
 const TeamBattingSplits = ({ dataList }) => {
   if (!dataList) {
     return <LoadingSpinner />;
   }
-
-  console.log(dataList);
 
   return (
     <Table autoHeight data={dataList}>
@@ -108,6 +107,10 @@ const TeamBattingSplits = ({ dataList }) => {
       </Column>
     </Table>
   );
+};
+
+TeamBattingSplits.propTypes = {
+  dataList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TeamBattingSplits;

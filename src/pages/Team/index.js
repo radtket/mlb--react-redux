@@ -10,6 +10,7 @@ import {
   PageTeamHome,
   PageTeamRoster,
   PageTeamSchedule,
+  PageTeamSplits,
   PageTeamStats,
   PageTeamTickets,
 } from "./sub-pages";
@@ -156,6 +157,15 @@ class Team extends Component {
           render={() => (
             <TeamTheme {...activeTeamObj}>
               <PageTeamTickets {...activeTeamObj} />
+            </TeamTheme>
+          )}
+        />
+        <Route
+          exact
+          path="/teams/:teamAbrv/splits"
+          render={() => (
+            <TeamTheme {...activeTeamObj}>
+              <PageTeamSplits {...activeTeamObj} />
             </TeamTheme>
           )}
         />
