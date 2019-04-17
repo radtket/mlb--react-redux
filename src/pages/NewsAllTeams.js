@@ -6,6 +6,7 @@ import { fetchNewsAllTeams } from "../modules/actions";
 import NewsArticle from "../components/NewsArticle";
 import { findMLBID } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Marquee from "../components/Marquee";
 
 const NewsAllTeamsList = ({
   newsAllError,
@@ -28,20 +29,23 @@ const NewsAllTeamsList = ({
   }
 
   return (
-    <div className="container-fluid posts-wrap">
-      {newsAllTeams &&
-        newsAllTeams.map(article => {
-          const { NewsID, MLBAMID, PlayerID } = article;
-          return (
-            <NewsArticle
-              cardSize="qrt"
-              key={NewsID}
-              MLBAMID={MLBAMID || findMLBID(PlayerID)}
-              {...article}
-            />
-          );
-        })}
-    </div>
+    <>
+      <Marquee MarqueeData={newsAllTeams} MarqueeItems="2" />
+      <div className="container-fluid posts-wrap">
+        {newsAllTeams &&
+          newsAllTeams.map(article => {
+            const { NewsID, MLBAMID, PlayerID } = article;
+            return (
+              <NewsArticle
+                cardSize="qrt"
+                key={NewsID}
+                MLBAMID={MLBAMID || findMLBID(PlayerID)}
+                {...article}
+              />
+            );
+          })}
+      </div>
+    </>
   );
 };
 

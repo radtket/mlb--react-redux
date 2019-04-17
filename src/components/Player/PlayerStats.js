@@ -70,9 +70,6 @@ PlayerStats.propTypes = {
   // playerStats: PropTypes.arrayOf(
   //   PropTypes.oneOfType(PropTypes.array, PropTypes.object)
   // ).isRequired,
-  // playerStats: PropTypes.objectOf(
-  //   PropTypes.oneOf([PropTypes.array, PropTypes.object,])
-  // ).isRequired,
   playerStats: PropTypes.shape({
     isPitcher: PropTypes.bool,
     advanced: PropTypes.shape({

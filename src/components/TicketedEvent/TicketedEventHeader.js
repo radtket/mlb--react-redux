@@ -8,6 +8,10 @@ const TeamLogoWrap = styled.div`
 position: ${({ isHomeTeam }) => (isHomeTeam ? "absolute" : "relative")};
 left: ${({ isHomeTeam }) => (isHomeTeam ? "initial" : "-5%")};
 right: ${({ isHomeTeam }) => (isHomeTeam ? "-5%" : "initial")};
+border-right: ${({ isHomeTeam }) =>
+  isHomeTeam ? "initial" : `3px solid #fff`};
+  border-left: ${({ isHomeTeam }) =>
+    isHomeTeam ? `3px solid #fff` : "initial"};
 height: 100%;
 overflow: hidden;
 top: 0;
