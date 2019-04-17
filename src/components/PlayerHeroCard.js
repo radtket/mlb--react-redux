@@ -42,21 +42,10 @@ const PlayerHeroCardWrap = styled.div`
   .hero--jersey {
     background: ${({ PrimaryColor }) => `${PrimaryColor}`};
     border: 3px solid ${({ SecondaryColor }) => `${SecondaryColor}`};
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    line-height: 55px;
-    font-size: 30px;
-    border-radius: 50%;
-    position: absolute;
-    right: 20px;
-    top: 280px;
-    z-index: 3;
     color: ${({ PrimaryColor, SecondaryColor }) =>
       `${tinycolor
         .mostReadable(`${PrimaryColor}`, [`${SecondaryColor}`, "#fff", "#000"])
         .toHexString()}`};
-    letter-spacing: .1em;
   }
 
   .details .title2 {

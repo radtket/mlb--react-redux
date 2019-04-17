@@ -11,17 +11,17 @@
 	.hero {
 		border-top-left-radius: $bdr-rounded-corners;
 		border-top-right-radius: $bdr-rounded-corners;
-		// height: 340px;
-		height: 780px * .44;
+		height: 350px;
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
 
 
+
 		&:before,
 		&:after {
 			@include size(100%);
-			@include position(absolute, 0 null null 0);
+			@include position(absolute, -15px null null 0);
 			content: "";
 			overflow: hidden;
 			transform: skewY(-2.2deg);
@@ -100,11 +100,21 @@
 
 	.column2 {
 		@include margin(null 40px);
-		padding-top: 30px;
+		padding-top: 20px;
 		width: 500px;
 	}
 
 	.hero--jersey {
+		@include size(60px);
+		@include position(absolute, 275px 20px null null);
+		border-radius: 50%;
+		box-shadow: $box-shadow-avatar;
 		font-family: "JerseyM54", Impact, sans-serif;
+		font-size: 30px;
+		letter-spacing: .1em;
+		line-height: 55px;
+		position: absolute;
+		text-align: center;
+		z-index: 3;
 	}
 }

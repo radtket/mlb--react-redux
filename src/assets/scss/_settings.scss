@@ -35,6 +35,7 @@ $c-gray-light: #969da6 !default;
 $c-gray-x-light: #d5d9db !default;
 
 $c-black-85: rgba($c-black, .85);
+$c-black-40: rgba($c-black, .4);
 $c-black-30: rgba($c-black, .3);
 $c-black-20: rgba($c-black, .2);
 $c-black-14: rgba($c-black, .14);
@@ -67,6 +68,7 @@ $c-map: ("primary": $c-primary,
 "gray-light": $c-light) !default;
 
 // Shadows
+$box-shadow-avatar: 1px 2px 12px $c-black-40;
 $box-shadow-card: 0 8px 16px 0 $c-black-12;
 $box-shadow-card-hover: $box-shadow-card,
 0 12px 24px $c-black-12;
