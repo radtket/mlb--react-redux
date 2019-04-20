@@ -98,7 +98,7 @@ export const TeamGlobalStyles = styled.div`
       }
       &:hover {
         svg {
-          fill: ${({ theme }) => `${theme.SecondaryColor}`};
+          fill: ${({ theme }) => `${theme.SecondaryTextOnPrimaryBgHover}`};
         }
       }
     }

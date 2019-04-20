@@ -52,10 +52,6 @@ const TeamTheme = ({
     .mostReadable(`#FFF`, [PrimaryColorHash, SecondaryColorHash])
     .toHexString();
 
-  const PrimaryColorAccent = tinycolor
-    .mostReadable(PrimaryColorHash, [SecondaryColorHash, "#fff", "#000"])
-    .toHexString();
-
   const PrimaryTextOnSecondaryBg = () => {
     if (tinycolor.isReadable(SecondaryColorHash, PrimaryColorHash, {})) {
       return PrimaryColorHash;
@@ -72,61 +68,43 @@ const TeamTheme = ({
     return MostReadableOnPrimary;
   };
 
+  const theme = {
+    PrimaryColor: PrimaryColorHash,
+    SecondaryColor: SecondaryColorHash,
+    QuaternaryColor: QuaternaryColorHash,
+    TertiaryColor: TertiaryColorHash,
+    PrimaryColorHover,
+    SecondaryColorHover,
+    QuaternaryColorHover,
+    TertiaryColorHover,
+    WikipediaLogoUrl,
+    WikipediaWordMarkUrl,
+    PrimaryColorAccent: tinycolor
+      .mostReadable(PrimaryColorHash, [SecondaryColorHash, "#fff", "#000"])
+      .toHexString(),
+    PrimaryTextOnSecondaryBg: PrimaryTextOnSecondaryBg(),
+    SecondaryTextOnPrimaryBg: SecondaryTextOnPrimaryBg(),
+    PrimaryTextOnSecondaryBgHover: LightenOrDarkenColor(
+      PrimaryTextOnSecondaryBg()
+    ),
+    SecondaryTextOnPrimaryBgHover: LightenOrDarkenColor(
+      SecondaryTextOnPrimaryBg()
+    ),
+    MostReadableOnPrimary,
+    MostReadableOnSecondary,
+    PrimaryOrSecondaryOnWhite,
+    PrimaryOrSecondaryOnWhiteHover: LightenOrDarkenColor(
+      PrimaryOrSecondaryOnWhite
+    ),
+    TableRosterPlayerLinkColor,
+    TableRosterPlayerLinkColorHover: LightenOrDarkenColor(
+      TableRosterPlayerLinkColor
+    ),
+  };
+
   return (
-    <ThemeProvider
-      theme={{
-        PrimaryColor: PrimaryColorHash,
-        SecondaryColor: SecondaryColorHash,
-        QuaternaryColor: QuaternaryColorHash,
-        TertiaryColor: TertiaryColorHash,
-        PrimaryColorHover,
-        SecondaryColorHover,
-        QuaternaryColorHover,
-        TertiaryColorHover,
-        WikipediaLogoUrl,
-        WikipediaWordMarkUrl,
-        PrimaryColorAccent,
-        PrimaryTextOnSecondaryBg: PrimaryTextOnSecondaryBg(),
-        SecondaryTextOnPrimaryBg: SecondaryTextOnPrimaryBg(),
-        MostReadableOnPrimary,
-        MostReadableOnSecondary,
-        PrimaryOrSecondaryOnWhite,
-        PrimaryOrSecondaryOnWhiteHover: LightenOrDarkenColor(
-          PrimaryOrSecondaryOnWhite
-        ),
-        TableRosterPlayerLinkColor,
-        TableRosterPlayerLinkColorHover: LightenOrDarkenColor(
-          TableRosterPlayerLinkColor
-        ),
-      }}>
-      <TeamGlobalStyles
-        theme={{
-          PrimaryColor: PrimaryColorHash,
-          SecondaryColor: SecondaryColorHash,
-          QuaternaryColor: QuaternaryColorHash,
-          TertiaryColor: TertiaryColorHash,
-          PrimaryColorHover,
-          SecondaryColorHover,
-          QuaternaryColorHover,
-          TertiaryColorHover,
-          WikipediaLogoUrl,
-          WikipediaWordMarkUrl,
-          PrimaryColorAccent,
-          PrimaryTextOnSecondaryBg: PrimaryTextOnSecondaryBg(),
-          SecondaryTextOnPrimaryBg: SecondaryTextOnPrimaryBg(),
-          MostReadableOnPrimary,
-          MostReadableOnSecondary,
-          PrimaryOrSecondaryOnWhite,
-          PrimaryOrSecondaryOnWhiteHover: LightenOrDarkenColor(
-            PrimaryOrSecondaryOnWhite
-          ),
-          TableRosterPlayerLinkColor,
-          TableRosterPlayerLinkColorHover: LightenOrDarkenColor(
-            TableRosterPlayerLinkColor
-          ),
-        }}>
-        {children}
-      </TeamGlobalStyles>
+    <ThemeProvider theme={theme}>
+      <TeamGlobalStyles theme={theme}>{children}</TeamGlobalStyles>
     </ThemeProvider>
   );
 };

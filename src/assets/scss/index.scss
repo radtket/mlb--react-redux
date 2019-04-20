@@ -31,22 +31,23 @@
 @import "components/tag";
 
 
+@import "components/calendar";
+@import "components/depth-chart";
 @import "components/dropdown";
 @import "components/field";
 @import "components/header-team";
 @import "components/header";
+@import "components/lists";
+@import "components/marquee";
 @import "components/mega-menu";
 @import "components/news-card";
+@import "components/page-title";
 @import "components/player-hero";
 @import "components/recent-games";
 @import "components/scoreboard";
-@import "components/team-logo";
-@import "components/depth-chart";
-@import "components/lists";
-@import "components/calendar";
-@import "components/table-rs";
 @import "components/seat-geek";
-@import "components/marquee";
+@import "components/table-rs";
+@import "components/team-logo";
 
 @import "test/espn-player-card";
 @import "test/fox-sports";

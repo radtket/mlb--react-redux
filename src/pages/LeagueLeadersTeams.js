@@ -7,6 +7,7 @@ import { bindActionCreators } from "redux";
 import { fetchLeagueLeaders } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LeagueLeaderTable from "../components/LeagueLeaderTable";
+import PageTitle from "../components/PageTitle";
 
 const LeagueLeadersTeams = ({
   leagueLeadersFail,
@@ -30,12 +31,22 @@ const LeagueLeadersTeams = ({
   return (
     <div className="container">
       <div className="row">
-        <h1>Batting Stats</h1>
+        <div className="col-sm-12">
+          <PageTitle title="Batting Stats" />
+        </div>
+      </div>
+
+      <div className="row">
         {hitting && <LeagueLeaderTable dataObj={hitting} />}
       </div>
 
       <div className="row">
-        <h1>Pitching Stats</h1>
+        <div className="col-sm-12">
+          <PageTitle title="Pitching Stats" />
+        </div>
+      </div>
+
+      <div className="row">
         {pitching && <LeagueLeaderTable dataObj={pitching} />}
       </div>
     </div>

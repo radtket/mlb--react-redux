@@ -7,6 +7,7 @@ import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
 import { sortTeamsByDivion } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
+import PageTitle from "../components/PageTitle";
 
 const StandingsList = ({ standings, standingsError, standingsLoading }) => {
   const createStandingsComponent = standingsArg => {
@@ -45,9 +46,12 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
   }
 
   return (
-    <div className="container">
-      {standings && createStandingsComponent(standings)}
-    </div>
+    <>
+      <div className="container">
+        <PageTitle title="Standings" />
+        {standings && createStandingsComponent(standings)}
+      </div>
+    </>
   );
 };
 

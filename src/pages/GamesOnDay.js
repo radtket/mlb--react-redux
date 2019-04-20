@@ -12,6 +12,7 @@ import {
   DEV_PLACEHOLDER_DATE,
 } from "../utils/helpers";
 import SingleGame from "../components/SingleGame";
+import PageTitle from "../components/PageTitle";
 
 const GamesOnDayList = ({
   gamesOnDayFail,
@@ -52,23 +53,26 @@ const GamesOnDayList = ({
   }
 
   return (
-    <div>
-      <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
-      <nav>
-        <button onClick={() => previousDaysGame(dateOfGame)} type="button">
-          Previous
-        </button>
-        <button onClick={() => nextDaysGame(dateOfGame)} type="button">
-          Next
-        </button>
-      </nav>
-      <ul>
-        {gamesOnDay &&
-          gamesOnDay.map(game => (
-            <SingleGame key={game.GameID} standings={standings} {...game} />
-          ))}
-      </ul>
-    </div>
+    <>
+      <div className="container">
+        <PageTitle title="Scores" />
+        <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
+        <nav>
+          <button onClick={() => previousDaysGame(dateOfGame)} type="button">
+            Previous
+          </button>
+          <button onClick={() => nextDaysGame(dateOfGame)} type="button">
+            Next
+          </button>
+        </nav>
+        <ul>
+          {gamesOnDay &&
+            gamesOnDay.map(game => (
+              <SingleGame key={game.GameID} standings={standings} {...game} />
+            ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

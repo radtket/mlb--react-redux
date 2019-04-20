@@ -1,0 +1,22 @@
+.page-title {
+	@include margin(30px null);
+	border-bottom: $bd-medium;
+	z-index: 1;
+
+	h3 {
+		color: $c-text;
+		display: inline-block;
+		font-size: 24px;
+		line-height: 30px;
+		padding-bottom: 10px;
+		position: relative;
+		text-transform: uppercase;
+
+		&::after {
+			@include position(absolute, null 0 -1px 0);
+			@include size(100%, 2px);
+			background: $c-text;
+			content: "";
+		}
+	}
+}
