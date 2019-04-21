@@ -1,79 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import tinycolor from "tinycolor2";
 import { Link } from "react-router-dom";
 import { espnLogo, teamFinder } from "../utils/helpers";
 
 const StatTable = styled.div`
-  margin-bottom: 24px;
-  display: inline-block;
-	position: relative;
-  width: 412px;
-
-
   &::before {
     background-color: ${props => `${props.PrimaryColor}`};
-    content: "";
-    height: 26px;
-    left: 90px;
-    position: absolute;
-    top: 40px;
-    width: 20px;
-    z-index: 10;
   }
 
-  .wisbb_leaders__list {
-    display: inline-block;
-    margin-right: 30px;
-    vertical-align: top;
-    width: 275px;
-
-    &:after {
-			border-left: 10px solid transparent;
-			border-top: 10px solid #767573;
-			content: "";
-			height: 1px;
-			left: 90px;
-			position: absolute;
-			top: 66px;
-			width: 1px;
-    }
-
-    &--title {
-			display: block;
-			font-size: 16px;
-			padding: 5px 0 14px 10px;
-			text-transform: capitalize;
-		}
-
-}
-
-    .wisbb_leaders__team-logo--wrap {
-      &:hover {
-        .wisbb_leaders__team-logo {
-          background-color: ${props => `${props.SecondaryColor}`};
-        }
-      }
-    }
-
-  .wisbb_leaders__team-logo {
-    height: 100px;
-    width: 100px;
-    border: 1px solid #c1c1c1;
-    display: inline-block;
+  .wisbb--leaders__team-logo {
     background: #f2f2f2 url("${props => `${props.leaderLogo}`}");
     background-size: 85%;
     background-position: center center;
     background-repeat: no-repeat;
     transition: background-color 1s ease-out;
+
+    &--wrap {
+      &:hover {
+        .wisbb--leaders__team-logo {
+          background-color: ${props => `${props.SecondaryColor}`};
+        }
+      }
+    }
   }
 
   table {
-    border-collapse: separate;
-    border-spacing: 0;
-    max-width: none;
-    width: 275px;
-
     tr {
       &:first-of-type {
         background-color: ${props => `${props.PrimaryColor}`};
@@ -81,31 +33,6 @@ const StatTable = styled.div`
           `${tinycolor
             .mostReadable(`#${props.PrimaryColor}`, [`#fff`, `#000`])
             .toHexString()}`};
-        height: 26px;
-        width: 307px;
-      }
-
-      td {
-        vertical-align: middle;
-        &:first-child {
-          padding-left: 5px;
-        }
-      }
-      span {
-        font-size: 12px;
-      }
-    }
-    .wisbb_leaderRank {
-      display: inline-block;
-      font-size: 10px;
-      min-width: 14px;
-      padding-left: 5px;
-    }
-
-    .wisbb_teamName {
-      a {
-        font-weight: 500;
-        color: inherit;
       }
     }
   }
@@ -159,24 +86,27 @@ const LeagueLeaderTable = ({ dataObj }) => {
     const { abbr } = data[0];
     const { PrimaryColor, SecondaryColor } = teamFinder[abbr];
     const stateAbrv = statDecoders(acronym(name));
+    const [toggle, setToggle] = useState(true);
 
     return (
-      <article key={name} className="col-sm-4">
+      <article key={name} className="wisbb--leaders__wrap">
         <StatTable
           PrimaryColor={`${PrimaryColor}`}
           SecondaryColor={`${SecondaryColor}`}
           leaderLogo={espnLogo(abbr, 100)}
-          className="wisbb_leaders">
-          <Link to={`teams/${abbr}`} className="wisbb_leaders__team-logo--wrap">
-            <figure className="wisbb_leaders__team-logo" />
+          className="wisbb--leaders">
+          <Link
+            to={`teams/${abbr}`}
+            className="wisbb--leaders__team-logo--wrap">
+            <figure className="wisbb--leaders__team-logo" />
           </Link>
-          <div className="wisbb_leaders__list">
-            <span className="wisbb_leaders__list--title">
+          <div className="wisbb--leaders__list">
+            <span className="wisbb--leaders__list--title">
               {name.replace(/_/g, " ")}
             </span>
             <table>
               <tbody>
-                {data.map(stat => {
+                {data.map((stat, i) => {
                   const {
                     name: TeamName,
                     // market: TeamCity,
@@ -187,12 +117,18 @@ const LeagueLeaderTable = ({ dataObj }) => {
                   const statValue = stat[stateAbrv];
 
                   return (
-                    <tr key={id}>
+                    <tr
+                      key={id}
+                      style={
+                        i > 9 && toggle
+                          ? { display: "none" }
+                          : { display: "table-row" }
+                      }>
                       <td>
-                        <span className="wisbb_leaderRank">{rank}</span>
+                        <span className="wisbb--leaders__rank">{rank}</span>
                       </td>
                       <td>
-                        <span className="wisbb_teamName">
+                        <span className="wisbb--leaders__team-name">
                           <Link to={`teams/${TeamKey}`}>{TeamName}</Link>
                         </span>
                       </td>
@@ -204,6 +140,16 @@ const LeagueLeaderTable = ({ dataObj }) => {
                 })}
               </tbody>
             </table>
+            <div className="text-center">
+              {data.length > 9 && (
+                <button
+                  className="button"
+                  type="button"
+                  onClick={() => setToggle(!toggle)}>
+                  View {toggle ? "More" : "Less"}
+                </button>
+              )}
+            </div>
           </div>
         </StatTable>
       </article>

@@ -1,0 +1,108 @@
+.wisbb {
+	&--leaders {
+		display: inline-block;
+		position: relative;
+
+		&::before {
+			@include size(20px, 25px);
+			@include position(absolute, 40px null null 90px);
+			content: "";
+			z-index: 10;
+		}
+
+		&__rank {
+			display: inline-block;
+			font-size: 10px;
+			min-width: 14px;
+			padding-left: 5px;
+		}
+
+		&__team {
+			&-name {
+				a {
+					color: inherit;
+					font-weight: 500;
+				}
+			}
+
+			&-logo {
+				@include size(100px);
+				border: $bd-medium;
+				display: inline-block;
+			}
+		}
+
+		&__wrap {
+			@include margin(null 10px 25px);
+			display: flex;
+			justify-content: center;
+			width: calc(100% - 20px);
+
+			@media (min-width: 800px) {
+				width: calc(50% - 20px);
+			}
+
+			@media (min-width: 1200px) {
+				width: calc(33% - 20px);
+			}
+		}
+
+		&__list {
+			display: inline-block;
+			vertical-align: top;
+			width: 275px;
+
+			&:after {
+				@include position(absolute, 65px null null 90px);
+				@include size(1px);
+				border-left: 10px solid transparent;
+				border-top: 10px solid $c-gray;
+				content: "";
+			}
+
+			&--title {
+				@include padding(5px null 15px 10px);
+				display: block;
+				font-size: 16px;
+				line-height: 1.3;
+				text-transform: capitalize;
+			}
+
+		}
+
+		&__row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+
+		table {
+			border-collapse: separate;
+			border-spacing: 0;
+			margin-bottom: 10px;
+			width: 275px;
+
+			tr {
+				&:first-of-type {
+					height: 25px;
+					width: 307px;
+				}
+			}
+
+			td {
+				vertical-align: middle;
+
+				&:first-child {
+					padding-left: 5px;
+					width: 45px;
+				}
+			}
+		}
+
+	}
+
+	&__hidden {
+		display: none;
+	}
+
+}

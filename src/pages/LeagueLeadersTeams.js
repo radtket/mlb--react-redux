@@ -36,7 +36,7 @@ const LeagueLeadersTeams = ({
         </div>
       </div>
 
-      <div className="row">
+      <div className="wisbb--leaders__row">
         {hitting && <LeagueLeaderTable dataObj={hitting} />}
       </div>
 
@@ -46,7 +46,7 @@ const LeagueLeadersTeams = ({
         </div>
       </div>
 
-      <div className="row">
+      <div className="wisbb--leaders__row">
         {pitching && <LeagueLeaderTable dataObj={pitching} />}
       </div>
     </div>

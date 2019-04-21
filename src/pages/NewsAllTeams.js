@@ -7,6 +7,7 @@ import NewsArticle from "../components/NewsArticle";
 import { findMLBID } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Marquee from "../components/Marquee";
+import PageTitle from "../components/PageTitle";
 
 const NewsAllTeamsList = ({
   newsAllError,
@@ -31,6 +32,13 @@ const NewsAllTeamsList = ({
   return (
     <>
       <Marquee MarqueeData={newsAllTeams} MarqueeItems="2" />
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <PageTitle title="News" />
+          </div>
+        </div>
+      </div>
       <div className="container-fluid posts-wrap">
         {newsAllTeams &&
           newsAllTeams.map(article => {
