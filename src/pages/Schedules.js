@@ -9,8 +9,6 @@ import SingleGame from "../components/Standings/SingleGame";
 import { TodaysDate, isArrayEmpty } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-import "../assets/scss/components/slick-theme.scss";
-
 const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
   const slider = useRef();
   const [activeTab, setActiveTab] = useState(TodaysDate);
@@ -65,25 +63,9 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
   return (
     <div>
       <h1>Todays Games</h1>
-      <Slider ref={slider} {...settings}>
-        {organizedGames.map(child => {
-          const { label } = child.props;
-          return (
-            <button
-              key={label}
-              className={`tabs-item ${
-                activeTab === label ? "is-selected" : ""
-              }`}
-              onClick={() => setActiveTab(label)}
-              type="button">
-              <h1 className="day-name">{dateFns.format(label, "ddd")}</h1>
-              <h1 className="day-number">{dateFns.format(label, "MMM do")}</h1>
-            </button>
-          );
-        })}
-      </Slider>
+
       <div className="tabs">
-        {/* <nav>
+        <nav>
           {organizedGames.map(child => {
             const { label } = child.props;
             return (
@@ -98,7 +80,7 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
               </button>
             );
           })}
-        </nav> */}
+        </nav>
         <div className="tab-content">
           {organizedGames.map(child => {
             const { children: kids, label } = child.props;
