@@ -6,13 +6,14 @@ import dateFns from "date-fns";
 import Slider from "react-slick";
 import { fetchSchedules } from "../modules/actions";
 import SingleGame from "../components/Standings/SingleGame";
-import { TodaysDate, isArrayEmpty } from "../utils/helpers";
+import { TodaysDate, isArrayEmpty, isObjectEmpty } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
   const slider = useRef();
   const [activeTab, setActiveTab] = useState(TodaysDate);
   const [organizedGames, setOrganizedGames] = useState([]);
+  const [startAndEndDay, setStartAndEndDay] = useState({});
 
   if (schedulesError) {
     return <div>Error! {schedulesError.message}</div>;
@@ -22,16 +23,50 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
     return <LoadingSpinner />;
   }
 
-  const buildIt = () => {
+  const getStartAndEndDays = () => {
+    console.log("ran getStartAndEndDays");
+    const firstDay = schedules[0] && schedules[0].Day;
+    const lastDay =
+      schedules[schedules.length - 1] && schedules[schedules.length - 1].Day;
+    return {
+      firstDay: dateFns.startOfWeek(firstDay),
+      lastDay: dateFns.endOfWeek(lastDay),
+    };
+  };
+
+  const buildEmptyCalender = startAndEndDayArg => {
+    const { firstDay, lastDay } = startAndEndDayArg;
+    let day = firstDay;
+    const allDays = {};
+    while (day <= lastDay) {
+      for (let i = 0; i < 7; i += 1) {
+        const formatedDate = dateFns.format(day, "YYYY-MM-DD");
+        allDays[formatedDate] = allDays[formatedDate] || [];
+        day = dateFns.addDays(day, 1);
+      }
+    }
+    return allDays;
+  };
+
+  const buildSomethingElse = emptyCalender => {
     return Object.entries(
       schedules.reduce((allGames, game) => {
         const Day = dateFns.format(new Date(game.Day), "YYYY-MM-DD");
         allGames[Day] = allGames[Day] || [];
         allGames[Day].push(game);
         return allGames;
-      }, {})
+      }, emptyCalender)
     ).map(day => {
       const [GameDate, Games] = day;
+
+      if (isArrayEmpty(Games)) {
+        return (
+          <div key={GameDate} label={GameDate}>
+            <h1>No Games</h1>
+          </div>
+        );
+      }
+
       return (
         <div key={GameDate} label={GameDate}>
           {Games.map(game => (
@@ -42,14 +77,38 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
     });
   };
 
+  // const buildIt = () => {
+  //   return Object.entries(
+  //     schedules.reduce((allGames, game) => {
+  //       const Day = dateFns.format(new Date(game.Day), "YYYY-MM-DD");
+  //       allGames[Day] = allGames[Day] || [];
+  //       allGames[Day].push(game);
+  //       return allGames;
+  //     }, {})
+  //   ).map(day => {
+  //     const [GameDate, Games] = day;
+  //     return (
+  //       <div key={GameDate} label={GameDate}>
+  //         {Games.map(game => (
+  //           <SingleGame key={game.GameID} {...game} />
+  //         ))}
+  //       </div>
+  //     );
+  //   });
+  // };
+
   useEffect(() => {
-    console.log("ran");
-    setOrganizedGames(buildIt());
+    console.log("ran useEffect");
+    setStartAndEndDay(getStartAndEndDays());
+    // setOrganizedGames(buildIt());
+    setOrganizedGames(buildSomethingElse(buildEmptyCalender(startAndEndDay)));
   }, []);
 
-  if (isArrayEmpty(organizedGames)) {
+  if (isArrayEmpty(organizedGames) || isObjectEmpty(startAndEndDay)) {
     return <h1>Loading</h1>;
   }
+
+  console.log(buildSomethingElse(buildEmptyCalender(startAndEndDay)));
 
   const settings = {
     dots: true,
@@ -66,7 +125,7 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
 
       <div className="tabs">
         <nav>
-          {organizedGames.map(child => {
+          {buildSomethingElse(buildEmptyCalender(startAndEndDay)).map(child => {
             const { label } = child.props;
             return (
               <button
@@ -82,7 +141,7 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
           })}
         </nav>
         <div className="tab-content">
-          {organizedGames.map(child => {
+          {buildSomethingElse(buildEmptyCalender(startAndEndDay)).map(child => {
             const { children: kids, label } = child.props;
             if (label !== activeTab) return undefined;
             return kids;
