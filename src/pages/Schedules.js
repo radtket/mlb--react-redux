@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { isSameDay } from "date-fns";
+import dateFns from "date-fns";
+import Slider from "react-slick";
 import { fetchSchedules } from "../modules/actions";
 import SingleGame from "../components/Standings/SingleGame";
-import { TodaysDate } from "../utils/helpers";
+import { TodaysDate, isArrayEmpty } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 
+import "../assets/scss/components/slick-theme.scss";
+
 const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
+  const slider = useRef();
+  const [activeTab, setActiveTab] = useState(TodaysDate);
+  const [organizedGames, setOrganizedGames] = useState([]);
+
   if (schedulesError) {
     return <div>Error! {schedulesError.message}</div>;
   }
@@ -17,19 +24,89 @@ const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
     return <LoadingSpinner />;
   }
 
+  const buildIt = () => {
+    return Object.entries(
+      schedules.reduce((allGames, game) => {
+        const Day = dateFns.format(new Date(game.Day), "YYYY-MM-DD");
+        allGames[Day] = allGames[Day] || [];
+        allGames[Day].push(game);
+        return allGames;
+      }, {})
+    ).map(day => {
+      const [GameDate, Games] = day;
+      return (
+        <div key={GameDate} label={GameDate}>
+          {Games.map(game => (
+            <SingleGame key={game.GameID} {...game} />
+          ))}
+        </div>
+      );
+    });
+  };
+
+  useEffect(() => {
+    console.log("ran");
+    setOrganizedGames(buildIt());
+  }, []);
+
+  if (isArrayEmpty(organizedGames)) {
+    return <h1>Loading</h1>;
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 7,
+    arrows: false,
+  };
+
   return (
     <div>
       <h1>Todays Games</h1>
-      <ul>
-        {schedules &&
-          schedules.reduce((acc, game) => {
-            const { Day, GameID } = game;
-
-            isSameDay(Day, TodaysDate) &&
-              acc.push(<SingleGame key={GameID} {...game} />);
-            return acc;
-          }, [])}
-      </ul>
+      <Slider ref={slider} {...settings}>
+        {organizedGames.map(child => {
+          const { label } = child.props;
+          return (
+            <button
+              key={label}
+              className={`tabs-item ${
+                activeTab === label ? "is-selected" : ""
+              }`}
+              onClick={() => setActiveTab(label)}
+              type="button">
+              <h1 className="day-name">{dateFns.format(label, "ddd")}</h1>
+              <h1 className="day-number">{dateFns.format(label, "MMM do")}</h1>
+            </button>
+          );
+        })}
+      </Slider>
+      <div className="tabs">
+        {/* <nav>
+          {organizedGames.map(child => {
+            const { label } = child.props;
+            return (
+              <button
+                key={label}
+                className={`tabs-item ${
+                  activeTab === label ? "is-selected" : ""
+                }`}
+                onClick={() => setActiveTab(label)}
+                type="button">
+                {label}
+              </button>
+            );
+          })}
+        </nav> */}
+        <div className="tab-content">
+          {organizedGames.map(child => {
+            const { children: kids, label } = child.props;
+            if (label !== activeTab) return undefined;
+            return kids;
+          })}
+        </div>
+      </div>
     </div>
   );
 };
