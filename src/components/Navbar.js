@@ -43,6 +43,11 @@ const Navbar = ({ teams }) => {
               </NavLink>
             </li>
             <li>
+              <NavLink exact to="/schedule" onClick={() => dispatch("reset")}>
+                Schedule
+              </NavLink>
+            </li>
+            <li>
               <NavLink exact to="/stats" onClick={() => dispatch("reset")}>
                 Stats
               </NavLink>

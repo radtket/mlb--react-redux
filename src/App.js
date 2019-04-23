@@ -71,7 +71,7 @@ const App = ({
         <Route exact path="/player/:playerArg" component={PlayerList} />
         <Route exact path="/product" component={ProductList} />
         <Route exact path="/reddit" component={RedditAsyncApp} />
-        <Route exact path="/schedules" component={SchedulesList} />
+        <Route exact path="/schedule" component={SchedulesList} />
         <Route exact path="/scores" component={GamesOnDayList} />
         <Route exact path="/splits" component={TeamSplitsList} />
         <Route exact path="/standings" component={StandingsList} />
