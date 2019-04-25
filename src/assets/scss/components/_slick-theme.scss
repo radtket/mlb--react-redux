@@ -8,7 +8,7 @@
 // "\2192" outputs ascii character "→"
 // "\2022" outputs ascii character "•"
 
-$c-white: #fff;
+$c-white: $c-white;
 $c-black: #000;
 $slick-font-path: "./fonts/" !default;
 // $slick-font-family: "slick" !default;
@@ -27,7 +27,9 @@ $slick-opacity-not-active: 0.25 !default;
 @function slick-image-url($url) {
 	@if function-exists(image-url) {
 		@return image-url($url);
-	} @else {
+	}
+
+	@else {
 		@return url($slick-loader-path+$url);
 	}
 }
@@ -35,7 +37,9 @@ $slick-opacity-not-active: 0.25 !default;
 @function slick-font-url($url) {
 	@if function-exists(font-url) {
 		@return font-url($url);
-	} @else {
+	}
+
+	@else {
 		@return url($slick-font-path+$url);
 	}
 }
@@ -70,8 +74,8 @@ $slick-opacity-not-active: 0.25 !default;
 .slick-next {
 	@include size(28px);
 	// background: transparent;
-	background-color: #f9f9fb;
-	border: 1px solid #cbccce;
+	background-color: $c-off-white;
+	border: $bd-medium;
 	border-radius: 50%;
 	color: transparent;
 	cursor: pointer;
@@ -88,7 +92,7 @@ $slick-opacity-not-active: 0.25 !default;
 	&:focus {
 		// background: transparent;
 		// color: transparent;
-		background-color: #fff;
+		background-color: $c-white;
 		outline: none;
 
 		svg {
@@ -98,7 +102,7 @@ $slick-opacity-not-active: 0.25 !default;
 	}
 
 	svg {
-		fill: #06c;
+		fill: $c-primary;
 		height: 50%;
 	}
 
@@ -108,7 +112,7 @@ $slick-opacity-not-active: 0.25 !default;
 		}
 	}
 
-	// &:before {
+	// &::before {
 	// 	-moz-osx-font-smoothing: grayscale;
 	// 	-webkit-font-smoothing: antialiased;
 	// 	color: $slick-arrow-color;
@@ -127,7 +131,7 @@ $slick-opacity-not-active: 0.25 !default;
 		right: -25px;
 	}
 
-	&:before {
+	&::before {
 		// content: $slick-prev-character;
 
 		// [dir="rtl"] & {
@@ -144,7 +148,7 @@ $slick-opacity-not-active: 0.25 !default;
 		right: auto;
 	}
 
-	&:before {
+	&::before {
 		// content: $slick-next-character;
 
 		// [dir="rtl"] & {
@@ -197,12 +201,12 @@ $slick-opacity-not-active: 0.25 !default;
 			&:focus {
 				outline: none;
 
-				&:before {
+				&::before {
 					opacity: $slick-opacity-on-hover;
 				}
 			}
 
-			&:before {
+			&::before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
 				color: $slick-dot-color;

@@ -358,6 +358,7 @@
 		z-index: 1;
 	}
 
+	// sass-lint:disable-block class-name-format
 	&.isScrolling {
 		&::after {
 			opacity: 1;

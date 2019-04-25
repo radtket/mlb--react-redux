@@ -1,8 +1,6 @@
-$white: #fff;
-$color-concrete: #f2f2f5;
 $color-oslo-gray: #8e8e93;
 $color-solitude: #ebf9ff;
-$white-90: hsla(0, 0%, 100%, .9);
+$c-white-90: hsla(0, 0%, 100%, .9);
 $color-whisper-80: rgba(247, 247, 250, .8);
 $color-shady-lady: #a6a6a6;
 $color-picton-blue: #34c3ff;
@@ -22,7 +20,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 }
 
 .rs-table {
-	background: $white;
+	background: $c-white;
 	overflow: hidden;
 	position: relative;
 
@@ -32,11 +30,11 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 				&:hover~.rs-table-column-resize-spanner {
 					background-color: $color-picton-blue;
 
-					&:after {
+					&::after {
 						display: block;
 					}
 
-					&:before {
+					&::before {
 						display: block;
 					}
 				}
@@ -47,11 +45,11 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			&:hover {
 				background-color: $color-picton-blue;
 
-				&:after {
+				&::after {
 					display: block;
 				}
 
-				&:before {
+				&::before {
 					display: block;
 				}
 			}
@@ -62,7 +60,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 
 
 .rs-table-row {
-	border-bottom: 1px solid $color-concrete;
+	border-bottom: 1px solid $c-light;
 	height: 36px;
 	overflow: hidden;
 	position: absolute;
@@ -80,8 +78,8 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	}
 
 	&-expanded {
-		background: $white;
-		border-top: 1px solid $color-concrete;
+		background: $c-white;
+		border-top: 1px solid $c-light;
 		bottom: 0;
 		height: 46px;
 		padding: 10px;
@@ -91,11 +89,11 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	}
 
 	&-header {
-		background: $white;
+		background: $c-white;
 		color: $color-oslo-gray;
 
 		.rs-table-cell {
-			background: $white;
+			background: $c-white;
 
 			&-group-shadow {
 				box-shadow: none;
@@ -132,7 +130,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 
 			.rs-table-cell,
 			.rs-table-cell-group {
-				background: $white;
+				background: $c-white;
 			}
 		}
 	}
@@ -141,8 +139,8 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 
 
 .rs-table-cell {
-	background: $white;
-	border: 0 solid $color-concrete;
+	background: $c-white;
+	border: 0 solid $c-light;
 	display: block;
 	height: 36px;
 	overflow: hidden;
@@ -158,13 +156,13 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		transition: background-color .3s linear;
 
 		&-fixed-left {
-			background: $white;
+			background: $c-white;
 			position: absolute;
 			z-index: 4;
 		}
 
 		&-fixed-right {
-			background: $white;
+			background: $c-white;
 			margin-left: 10px;
 			position: absolute;
 			z-index: 4;
@@ -217,7 +215,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		font-size: 12px;
 		line-height: 1.66666667;
 
-		&:after {
+		&::after {
 			content: "\F0DC";
 			font-family: rsuite-icon-font;
 			font-style: normal;
@@ -231,7 +229,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			display: inline-block;
 			margin-right: 10px;
 
-			&:after {
+			&::after {
 				bottom: -10px;
 				content: "";
 				left: -10px;
@@ -247,7 +245,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			outline: none;
 			width: 10px;
 
-			&:before {
+			&::before {
 				content: "\F0DA";
 				font-family: rsuite-icon-font;
 				font-style: normal;
@@ -304,7 +302,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	width: 100%;
 
 	&-wrapper {
-		background-color: $white-90;
+		background-color: $c-white-90;
 		height: 100%;
 		opacity: 0;
 		pointer-events: none;
@@ -321,7 +319,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		padding-top: 3px;
 		position: relative;
 
-		&:after {
+		&::after {
 			@include size(18px);
 			animation: t .6s infinite linear;
 			border-color: $color-shady-lady transparent transparent;
@@ -335,7 +333,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			right: 0;
 		}
 
-		&:before {
+		&::before {
 			@include size(18px);
 			border: 3px solid $color-whisper-80;
 			border-radius: $bdr-circle;
@@ -354,7 +352,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 }
 
 .rs-table-column-resize-spanner {
-	border-left: 3px solid $white;
+	border-left: 3px solid $c-white;
 	box-sizing: content-box;
 	cursor: ew-resize !important;
 	height: 36px;
@@ -364,7 +362,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	width: 3px;
 	z-index: 3;
 
-	&:after {
+	&::after {
 		border-color: transparent transparent transparent $color-picton-blue;
 		border-style: dashed dashed dashed solid;
 		border-width: 3px;
@@ -379,7 +377,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		width: 0;
 	}
 
-	&:before {
+	&::before {
 		border-color: transparent $color-picton-blue transparent transparent;
 		border-style: dashed solid dashed dashed;
 		border-width: 3px;
@@ -419,7 +417,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 }
 
 .rs-table-bordered {
-	border: 1px solid $color-concrete;
+	border: 1px solid $c-light;
 }
 
 
@@ -509,13 +507,13 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 		line-height: 1.66666667;
 		padding: 20px;
 
-		&:after {
+		&::after {
 			clear: both;
 			content: " ";
 			display: table;
 		}
 
-		&:before {
+		&::before {
 			content: " ";
 			display: table;
 		}
@@ -536,7 +534,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 			right: 8px;
 			top: 0;
 
-			&:before {
+			&::before {
 				vertical-align: middle;
 			}
 		}
@@ -586,14 +584,14 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	}
 
 	&-icon-sort-asc {
-		&:after {
+		&::after {
 			color: $color-picton-blue;
 			content: "\F0DE";
 		}
 	}
 
 	&-icon-sort-desc {
-		&:after {
+		&::after {
 			color: $color-picton-blue;
 			content: "\F0DD";
 		}
@@ -622,7 +620,7 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 
 .rs-table-cell-expanded {
 	.rs-table-cell-expand-icon {
-		&:before {
+		&::before {
 			content: "\F0D7";
 			font-family: rsuite-icon-font;
 		}

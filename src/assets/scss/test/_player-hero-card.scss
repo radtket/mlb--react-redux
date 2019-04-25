@@ -18,8 +18,8 @@
 
 
 
-		&:before,
-		&:after {
+		&::before,
+		&::after {
 			@include size(100%);
 			@include position(absolute, -15px null null 0);
 			content: "";
@@ -28,11 +28,11 @@
 			transform-origin: 0 0;
 		}
 
-		&:before {
+		&::before {
 			z-index: -1;
 		}
 
-		&:after {
+		&::after {
 			z-index: 0;
 		}
 	}

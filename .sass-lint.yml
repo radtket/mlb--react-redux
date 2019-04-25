@@ -2,6 +2,12 @@ options:
   formatter: stylish
   merge-default-rules: false
 rules:
+  indentation:
+    - 1
+    - size: tab
+  quotes:
+    - 1
+    - style: double
   bem-depth:
     - 0
     - max-depth: 1
@@ -42,9 +48,6 @@ rules:
   id-name-format:
     - 1
     - convention: hyphenatedlowercase
-  indentation:
-    - 1
-    - size: "tab"
   leading-zero:
     - 0
     - include: false
@@ -120,9 +123,6 @@ rules:
         - dppx
         - "%"
       per-property: {}
-  quotes:
-    - 1
-    - style: double
   shorthand-values:
     - 1
     - allowed-shorthands:

@@ -52,7 +52,7 @@
 			vertical-align: top;
 			width: 275px;
 
-			&:after {
+			&::after {
 				@include position(absolute, 65px null null 90px);
 				@include size(1px);
 				border-left: 10px solid transparent;
