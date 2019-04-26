@@ -1,51 +1,62 @@
-/* eslint-disable no-console */
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchSchedules } from "../modules/actions";
+import { fetchSportsRadarGames } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { GameSlider } from "../components/GameDatesSlider";
+import PageTitle from "../components/PageTitle";
 
-const SchedulesList = ({ schedulesError, schedulesLoading, schedules }) => {
-  if (schedulesError) {
-    return <div>Error! {schedulesError.message}</div>;
+const SchedulesList = ({
+  sportsRadarGamesFail,
+  sportsRadarGamesLoading,
+  sportsRadarGames,
+  fetchSportsRadarGames: getSportsRadarGames,
+}) => {
+  useEffect(() => {
+    getSportsRadarGames();
+  }, []);
+  if (sportsRadarGamesFail) {
+    return <div>Error! {sportsRadarGamesFail.message}</div>;
   }
 
-  if (schedulesLoading) {
+  if (sportsRadarGamesLoading) {
     return <LoadingSpinner />;
   }
 
   return (
-    <div>
-      <h1>Todays Games</h1>
-      <div className="col-sm-7">
-        <GameSlider schedules={schedules} />
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-12">
+          <PageTitle title="Todays Games" />
+          <GameSlider schedules={sportsRadarGames} />
+        </div>
       </div>
     </div>
   );
 };
 
 SchedulesList.propTypes = {
-  schedulesError: null || PropTypes.bool,
-  schedulesLoading: PropTypes.bool.isRequired,
-  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sportsRadarGamesFail: null || PropTypes.bool,
+  sportsRadarGamesLoading: PropTypes.bool.isRequired,
+  sportsRadarGames: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchSportsRadarGames: PropTypes.func.isRequired,
 };
 
 SchedulesList.defaultProps = {
-  schedulesError: null,
+  sportsRadarGamesFail: null,
 };
 
-const mapStateToProps = ({ schedules }) => ({
-  schedules: schedules.schedulesData,
-  schedulesLoading: schedules.schedulesLoading,
-  schedulesError: schedules.schedulesError,
+const mapStateToProps = ({ sportsRadarGames }) => ({
+  sportsRadarGames: sportsRadarGames.sportsRadarGamesData,
+  sportsRadarGamesLoading: sportsRadarGames.sportsRadarGamesLoading,
+  sportsRadarGamesFail: sportsRadarGames.sportsRadarGamesError,
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchSchedules,
+      fetchSportsRadarGames,
     },
     dispatch
   );
