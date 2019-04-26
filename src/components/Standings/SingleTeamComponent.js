@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { espnLogo } from "../../utils/helpers";
+import { TableTeamCell, TableWinsLossesCell } from "../TableParts";
 
 const StandingsSingleTeam = ({ team }) => {
   const {
@@ -19,14 +18,7 @@ const StandingsSingleTeam = ({ team }) => {
   } = team;
   return (
     <tr key={TeamID}>
-      <td className="standings__team">
-        <Link to={`/teams/${Key}`}>
-          <img src={espnLogo(`${Key}`, 36)} alt={`${City} ${Name} Logo`} />
-          <figcaption className="standings__team--arbv">{Key}</figcaption>
-          <figcaption className="standings__team--city">{City} </figcaption>
-          <figcaption className="standings__team--full">{Name}</figcaption>
-        </Link>
-      </td>
+      <TableTeamCell Key={Key} City={City} Name={Name} />
       <td>{Wins}</td>
       <td>{Losses}</td>
       <td>
@@ -35,8 +27,8 @@ const StandingsSingleTeam = ({ team }) => {
           .replace(/^0+/, "")}
       </td>
       <td>{GamesBehind || "-"}</td>
-      <td className="standings__sec-stat">{`${HomeWins} - ${HomeLosses}`}</td>
-      <td className="standings__sec-stat">{`${AwayWins} - ${AwayLosses}`}</td>
+      <TableWinsLossesCell Wins={HomeWins} Losses={HomeLosses} />
+      <TableWinsLossesCell Wins={AwayWins} Losses={AwayLosses} />
     </tr>
   );
 };

@@ -27,7 +27,7 @@ const RefScoreboard = () => {
                 <div className="team__meta">
                   <Link to="/" className="team__name">
                     <span className="team__name--full">Orioles</span>
-                    <span className="team__name--abrv">BAL</span>
+                    <abbr className="team__name--abrv">BAL</abbr>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
@@ -54,7 +54,7 @@ const RefScoreboard = () => {
                 <div className="team__meta">
                   <Link to="/" className="team__name">
                     <span className="team__name--full">Twins</span>
-                    <span className="team__name--abrv">MIN</span>
+                    <abbr className="team__name--abrv">MIN</abbr>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">

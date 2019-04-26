@@ -1,14 +1,27 @@
 /* eslint-disable no-console */
 import React from "react";
 import { format } from "date-fns";
-import SingleGame from "../Standings/SingleGame";
+import styled from "styled-components";
 import { isArrayEmpty } from "../../utils/helpers";
+import SingleTableRowGame from "./SingleTableRowGame";
+
+const ScheduleTable = styled.table`
+  &.table--standings {
+    td,
+    th {
+      text-align: left;
+    }
+  }
+`;
 
 const buildGamesCalander = (schedules, emptyCalender) => {
   console.log("buildGamesCalander");
   return Object.entries(
     schedules.reduce((allDates, game) => {
-      const Day = format(new Date(game.Day), "YYYY-MM-DD");
+      // ! FantanySportsAPI = game.Day
+      // ! SportsRadar = game.scheduled
+      // const Day = format(new Date(game.Day), "YYYY-MM-DD");
+      const Day = format(new Date(game.scheduled), "YYYY-MM-DD");
       const allGames = allDates;
       allGames[Day] = allGames[Day] || [];
       allGames[Day].push(game);
@@ -16,6 +29,7 @@ const buildGamesCalander = (schedules, emptyCalender) => {
     }, emptyCalender)
   ).map(day => {
     const [GameDate, Games] = day;
+    console.log(day);
 
     if (isArrayEmpty(Games)) {
       return (
@@ -26,10 +40,28 @@ const buildGamesCalander = (schedules, emptyCalender) => {
     }
 
     return (
+      // ! FantanySportsAPI
+      // {Games.map(game => (
+      //   <SingleGame key={game.GameID} {...game} />
+      // ))}
+
       <div key={GameDate} label={GameDate}>
-        {Games.map(game => (
-          <SingleGame key={game.GameID} {...game} />
-        ))}
+        <ScheduleTable className="table table--striped table--standings">
+          <thead>
+            <tr>
+              <th colSpan="3">Matchup</th>
+              <th>Time (ET)</th>
+              <th className="text-center">Network</th>
+              <th>Venue</th>
+              <th>Tickets</th>
+            </tr>
+          </thead>
+          <tbody label={GameDate}>
+            {Games.map(game => {
+              return <SingleTableRowGame key={game.id} {...game} />;
+            })}
+          </tbody>
+        </ScheduleTable>
       </div>
     );
   });

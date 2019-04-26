@@ -86,7 +86,7 @@ const SingleGame = ({
                 <div className="team__meta">
                   <Link to={`/teams/${AwayTeam}`} className="team__name">
                     <span className="team__name--full">{AwayTeamName}</span>
-                    <span className="team__name--abrv">{AwayTeam}</span>
+                    <abbr className="team__name--abrv">{AwayTeam}</abbr>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">
@@ -116,7 +116,7 @@ const SingleGame = ({
                 <div className="team__meta">
                   <Link to={`/teams/${HomeTeam}`} className="team__name">
                     <span className="team__name--full">{HomeTeamName}</span>
-                    <span className="team__name--abrv">{HomeTeam}</span>
+                    <abbr className="team__name--abrv">{HomeTeam}</abbr>
                   </Link>
                   <ul className="team__record--wrap">
                     <li className="team__record">

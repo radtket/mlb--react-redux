@@ -59,6 +59,37 @@
 }
 
 /**
+ *  TABLE STRIPED
+ *
+ *  Markup:
+ *  -------
+ *
+ *  <table class="table table--striped">
+ *    <tr>
+ *      <th>First column</th>
+ *      <th>Second column</th>
+ *      <th>Third column</th>
+ *    </tr>
+ *    <tr>
+ *      <td="First column">Blue</td>
+ *      <td="Second column">One</td>
+ *      <td="Third column">My life fades</td>
+ *    </tr>
+ *  </table>
+ *
+ */
+
+.table--striped {
+	tbody {
+		tr {
+			&:nth-child(even) {
+				background-color: $c-dark-04;
+			}
+		}
+	}
+}
+
+/**
  *  TABLE RESPONSIVE
  *
  *  Markup:
@@ -208,49 +239,6 @@
 				display: none;
 			}
 		}
-
-		&__team {
-			a {
-				color: inherit;
-
-				&:hover {
-					text-decoration: underline;
-				}
-
-				>* {
-					vertical-align: middle;
-				}
-			}
-
-			img {
-				@include size($spacing-base);
-				margin-right: $spacing-xsmall;
-			}
-
-			&--arbv,
-			&--city,
-			&--full {
-				display: inline;
-			}
-
-			&--arbv {
-				@media (min-width: 400px) {
-					display: none;
-				}
-			}
-
-			&--full {
-				@media (max-width: 399px) {
-					display: none;
-				}
-			}
-
-			&--city {
-				@include media-breakpoint-down(sm) {
-					display: none;
-				}
-			}
-		}
 	}
 }
 
@@ -307,7 +295,7 @@
 				content: "";
 				opacity: 0;
 				pointer-events: none;
-				transition: opacity .2s ease-out;
+				transition: opacity 0.2s ease-out;
 				width: 6px;
 				z-index: 1;
 			}
@@ -330,13 +318,13 @@
 
 			@include media-breakpoint-up(sm) {
 				@include size(40px);
-				background-position: (40px * .1) center;
+				background-position: (40px * 0.1) center;
 				margin-right: $spacing-xsmall;
 			}
 
 			@include media-breakpoint-up(xl) {
 				@include size(50px);
-				background-position: (50px * .1) center;
+				background-position: (50px * 0.1) center;
 			}
 		}
 	}
@@ -353,7 +341,7 @@
 		opacity: 0;
 		pointer-events: none;
 		position: absolute;
-		transition: opacity .2s ease-out;
+		transition: opacity 0.2s ease-out;
 		width: 6px;
 		z-index: 1;
 	}

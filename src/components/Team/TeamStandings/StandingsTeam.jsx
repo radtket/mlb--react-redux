@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { espnLogo } from "../../../utils/helpers";
+import { TableTeamCell } from "../../TableParts";
 
 const StandingsTeam = ({
   activeTeam,
@@ -15,18 +14,7 @@ const StandingsTeam = ({
 }) => {
   return (
     <tr className={activeTeam ? "active-team" : ""}>
-      <td className="standings__team">
-        <Link to={`/teams/${TeamKey}`}>
-          <img
-            src={espnLogo(`${TeamKey}`, 36)}
-            alt={`${City} ${TeamName} Logo`}
-          />
-          <figcaption className="standings__team--arbv">{TeamKey}</figcaption>
-          {/* <figcaption className="standings__team--city">{City} </figcaption> */}
-          <figcaption className="standings__team--full">{TeamName}</figcaption>
-        </Link>
-      </td>
-
+      <TableTeamCell Key={TeamKey} City={City} Name={TeamName} hideCity />
       <td>{Wins}</td>
       <td>{Losses}</td>
       {Percentage && <td>{Percentage}</td>}
