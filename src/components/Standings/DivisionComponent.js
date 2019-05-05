@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import StandingsTableHead from "./StandingsTableHead";
 
 const StandingsDivision = ({ division, divisionTeams }) => (
   <table
@@ -7,17 +8,7 @@ const StandingsDivision = ({ division, divisionTeams }) => (
     style={{
       margin: "24px auto",
     }}>
-    <thead>
-      <tr>
-        <th>{division}</th>
-        <th>W</th>
-        <th>L</th>
-        <th>PCT</th>
-        <th>GB</th>
-        <th className="standings__sec-stat">Home</th>
-        <th className="standings__sec-stat">Road</th>
-      </tr>
-    </thead>
+    <StandingsTableHead division={division} />
     <tbody>{divisionTeams}</tbody>
   </table>
 );

@@ -80,7 +80,7 @@ const NewsArticle = ({
             format(new Date(DatePublished), "YYYY-MM-DD HH:mm")
           }
           className="news-card__date">
-          {TimeAgo || format(new Date(DatePublished), "YYYY-MM-DD")}
+          {TimeAgo || format(new Date(DatePublished), "MMMM Do, YYYY")}
         </time>
         <h1 className="news-card__headline">{Title}</h1>
         <div className="news-card__body">

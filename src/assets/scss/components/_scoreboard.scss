@@ -38,9 +38,8 @@
 				}
 
 				&.away {
-
-					>td,
-					>td {
+					> td,
+					> td {
 						a {
 							color: $c-gray-light;
 						}
@@ -70,9 +69,8 @@
 				}
 
 				&.home {
-
-					>td,
-					>td {
+					> td,
+					> td {
 						a {
 							color: $c-gray-light;
 						}
@@ -407,7 +405,7 @@
 			padding: 10px 8px 0;
 			text-transform: uppercase;
 
-			>h1 {
+			> h1 {
 				line-height: 1;
 			}
 		}
@@ -424,7 +422,7 @@
 					width: 100%;
 				}
 
-				>li {
+				> li {
 					display: table;
 					margin-top: 10px;
 					overflow: hidden;
@@ -455,7 +453,7 @@
 			// width: 100%;
 			width: auto;
 
-			>* {
+			> * {
 				margin: 0;
 			}
 
@@ -464,7 +462,7 @@
 				font-weight: $fw-semi-bold;
 				line-height: 1.2;
 
-				>a {
+				> a {
 					color: $c-gray-medium;
 					display: inline-block;
 					max-width: 110px;

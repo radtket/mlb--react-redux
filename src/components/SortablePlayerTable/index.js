@@ -57,7 +57,7 @@ const SortablePlayerTable = props => {
   };
 
   return (
-    <div className={`table--wrap  ${isScrolling && "isScrolling"}`}>
+    <div className={`table--wrap ${isScrolling && "isScrolling"}`}>
       <table className="table table--roster">
         <Sort
           direction={direction}

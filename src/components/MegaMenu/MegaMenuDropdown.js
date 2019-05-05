@@ -1,9 +1,9 @@
 import React, { useContext, createContext } from "react";
 import PropTypes from "prop-types";
-import { IconCaret } from "./Icons";
+import { IconCaret } from "../Icons";
 // import { DropdownContext } from "./Navbar";
-import MegaMenuDivision from "./MegaMenuDivision";
-import { sortTeamsByDivion } from "../utils/helpers";
+import { MegaMenuDivision } from ".";
+import { sortTeamsByDivion } from "../../utils/helpers";
 
 export const DropdownContext = createContext();
 
@@ -47,7 +47,7 @@ const createMegaMenu = teamsArg => {
   }, []);
 };
 
-const MegaMenuDropdown = ({ teams }) => {
+export const MegaMenuDropdown = ({ teams }) => {
   const { state, dispatch } = useContext(DropdownContext);
   const { isOpen } = state;
 
@@ -70,5 +70,3 @@ const MegaMenuDropdown = ({ teams }) => {
 MegaMenuDropdown.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-
-export default MegaMenuDropdown;

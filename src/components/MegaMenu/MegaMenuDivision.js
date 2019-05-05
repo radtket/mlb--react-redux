@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MegaMenuTeam from "./MegaMenuTeam";
-import { smallestToLargest } from "../utils/helpers";
+import { MegaMenuTeam } from ".";
+import { smallestToLargest } from "../../utils/helpers";
 
 const MegaMenuDivision = ({ DivisionName, TeamsInDivision }) => {
   return (

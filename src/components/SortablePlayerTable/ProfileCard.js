@@ -5,19 +5,19 @@ import { birthday, inchesToFeet } from "../../utils/helpers";
 
 const ProfileCard = ({ player }) => {
   const {
-    PhotoUrl,
-    FirstName,
-    LastName,
-    Position,
     BatHand,
-    Jersey,
-    PlayerID,
-    ThrowHand,
-    Height,
-    Weight,
-    BirthDate,
     BirthCity,
+    BirthDate,
     BirthState,
+    FirstName,
+    Height,
+    Jersey,
+    LastName,
+    PhotoUrl,
+    PlayerID,
+    Position,
+    ThrowHand,
+    Weight,
   } = player;
   return (
     <tr>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import dateFns from "date-fns";
 import PropTypes from "prop-types";
-import { ChevronLeft, ChevronRight } from "./Icons";
+import { ChevronLeft, ChevronRight } from "../Icons";
 import CalendarGame from "./CalendarGame";
-import { isObjectEmpty } from "../utils/helpers";
+import { isObjectEmpty } from "../../utils/helpers";
 
 const Calendar = ({ currentTeamAbrv, schedule }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());

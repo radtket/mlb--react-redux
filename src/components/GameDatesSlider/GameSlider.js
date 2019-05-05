@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect, useRef } from "react";
-import { format } from "date-fns";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import { TodaysDate, isArrayEmpty, isObjectEmpty } from "../../utils/helpers";
@@ -14,6 +13,7 @@ import {
   renderVisibleStartAndStopDays,
   SlickNextArrow,
   SlickPrevArrow,
+  GameSliderButton,
 } from ".";
 
 const GameSlider = ({ schedules }) => {
@@ -53,16 +53,13 @@ const GameSlider = ({ schedules }) => {
     console.log("GamesNav");
     return activeGames.map(child => {
       const { label } = child.props;
-
       return (
-        <button
+        <GameSliderButton
+          activeTab={activeTab}
           key={label}
-          className={`tabs-item ${activeTab === label ? "is-selected" : ""}`}
-          onClick={() => setActiveTab(label)}
-          type="button">
-          <h3>{format(label, "MMM")}</h3>
-          <h1>{format(label, "D")}</h1>
-        </button>
+          label={label}
+          setActiveTab={setActiveTab}
+        />
       );
     });
   };

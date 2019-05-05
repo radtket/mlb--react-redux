@@ -28,33 +28,21 @@ const PlayerStats = ({
     return <LoadingSpinner />;
   }
 
-  const { playerId, isPitcher, basic, advanced } = playerStats;
+  const { isPitcher, basic, advanced } = playerStats;
 
   return (
     <div>
       {basic && (
         <Card
           title={`${isPitcher ? "Pitching" : "Batting"} Stats`}
-          body={
-            <BasicStats
-              data={basic.body}
-              isPitcher={isPitcher}
-              playerId={playerId}
-            />
-          }
+          body={<BasicStats data={basic.body} isPitcher={isPitcher} />}
         />
       )}
 
       {advanced && (
         <Card
           title={`Advanced ${isPitcher ? "Pitching" : "Batting"} Stats`}
-          body={
-            <AdvancedStats
-              data={advanced.body}
-              isPitcher={isPitcher}
-              playerId={playerId}
-            />
-          }
+          body={<AdvancedStats data={advanced.body} isPitcher={isPitcher} />}
         />
       )}
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
-import { espnLogo } from "../utils/helpers";
+import { espnLogo } from "../../utils/helpers";
 
 const CalendarGame = ({
   HomeTeam,
@@ -21,7 +21,7 @@ const CalendarGame = ({
   const GameTime = format(DateOfGame, "h:mm A");
   return (
     <>
-      <img src={espnLogo(opponent, 40)} alt={opponent} />
+      <img src={espnLogo(opponent, 40)} alt={`${opponent} Logo`} />
       <h6>
         {isHomeGame ? "vs" : "@"} {opponent}
       </h6>

@@ -3,6 +3,7 @@ import SlickNextArrow from "./SlickNextArrow";
 import GamesBody from "./GamesBody";
 import GameSlider from "./GameSlider";
 import buildGamesCalander from "./buildGamesCalander";
+import GameSliderButton from "./GameSliderButton";
 import {
   buildEmptyCalender,
   getInitalActiveIndex,
@@ -15,6 +16,7 @@ export {
   buildGamesCalander,
   GamesBody,
   GameSlider,
+  GameSliderButton,
   getInitalActiveIndex,
   getStartAndEndDays,
   renderVisibleStartAndStopDays,

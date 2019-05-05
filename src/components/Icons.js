@@ -14,10 +14,7 @@ export const IconTwitter = () => {
 
 export const IconInstagram = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      data-name="Layer 1"
-      viewBox="0 0 64 64">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
       <path className="fill--bg" d="M32 0A32 32 0 1 1 0 32 32 32 0 0 1 32 0z" />
       <path
         className="fill--text"

@@ -5,7 +5,7 @@ import ImageCell from "./ImageCell";
 
 const { Column, HeaderCell, Cell } = Table;
 
-const BasicStats = ({ isPitcher, data: PropsData, playerId }) => {
+const BasicStats = ({ isPitcher, data: PropsData }) => {
   const mounted = useRef();
   const [data, setData] = useState(PropsData);
   const [loading, setloading] = useState(false);
@@ -302,7 +302,6 @@ const BasicStats = ({ isPitcher, data: PropsData, playerId }) => {
 
 BasicStats.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  playerId: PropTypes.number.isRequired,
   isPitcher: PropTypes.bool.isRequired,
 };
 
