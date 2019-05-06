@@ -149,8 +149,8 @@ const SingleGame = ({
 
         <article className="scoreboard-detail">
           {GameStatusPregame && StadiumObj && (
-            <div className="location location-and-weather">
-              <ul className="scoreboard-detail__location">
+            <div className="scoreboard-detail__location scoreboard-detail__location-and-weather">
+              <ul>
                 <li>
                   <strong>{StadiumObj.Name}</strong>
                 </li>

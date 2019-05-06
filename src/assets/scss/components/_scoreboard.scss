@@ -1,3 +1,10 @@
+%winner-triangle {
+	@include position(absolute, null 0 null null);
+	@include triangle("left", 6px, 12px, $c-gray-medium);
+	content: "";
+	margin-top: 6px * .5;
+}
+
 .scoreboard {
 	display: flex;
 	// border: 1px solid red;
@@ -5,7 +12,7 @@
 	&-wrapper {
 		@include grid-container;
 		background-color: $c-white;
-		border: 1px solid $c-gray-x-light;
+		border: $bd-medium;
 		clear: both;
 		margin-bottom: 18px;
 		// max-width: 400px;
@@ -23,23 +30,16 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-medium transparent transparent;
-								border-style: solid;
-								border-width: 6px 6px 6px 0;
-								content: "";
-								height: 0;
-								margin-top: 3px;
-								position: absolute;
-								right: 0 !important;
-								width: 0;
+								@extend %winner-triangle;
 							}
 						}
 					}
 				}
 
 				&.away {
-					> td,
-					> td {
+
+					>td,
+					>td {
 						a {
 							color: $c-gray-light;
 						}
@@ -54,23 +54,16 @@
 					td {
 						&:last-child {
 							&::after {
-								border-color: transparent $c-gray-medium transparent transparent;
-								border-style: solid;
-								border-width: 6px 6px 6px 0;
-								content: "";
-								height: 0;
-								margin-top: 3px;
-								position: absolute;
-								right: 0 !important;
-								width: 0;
+								@extend %winner-triangle;
 							}
 						}
 					}
 				}
 
 				&.home {
-					> td,
-					> td {
+
+					>td,
+					>td {
 						a {
 							color: $c-gray-light;
 						}
@@ -85,6 +78,13 @@
 
 				th {
 					font-weight: $fw-normal;
+
+					&.network {
+						color: $c-gray-light;
+						font-size: 10px;
+						font-weight: 400;
+						text-align: right;
+					}
 
 					&.date-time {
 						color: $c-gray;
@@ -184,13 +184,77 @@
 // Detail
 
 .scoreboard-detail {
-	border-left: 1px solid $c-gray-x-light;
-	border-right: 1px solid $c-gray-x-light;
+	border-left: $bd-medium;
+	border-right: $bd-medium;
 	overflow: hidden;
-	padding: 9px 9px 0;
+	padding: 8px 8px 0;
 	width: 225px;
 	// float: left;
 	// height: 159px;
+
+	&__location,
+	&__tickets,
+	&__odds {
+		font-size: 11px;
+		padding-bottom: 8px;
+	}
+
+	&__tickets,
+	&__odds {
+		padding-top: 8px;
+	}
+
+
+	&__location {
+		color: $c-gray;
+		position: relative;
+
+
+		&-and-weather {
+			ul {
+				overflow: visible;
+			}
+		}
+
+		.weather {
+			@include position(absolute, 0 0 null null);
+			font-size: 12px;
+			text-align: right;
+			// width: 63px;
+
+			.accu-weather-icons {
+				float: left;
+			}
+		}
+	}
+
+	&__tickets {
+		border-bottom: $bd-medium;
+		border-top: $bd-medium;
+		// color: #06c;
+		color: $c-info;
+
+
+		svg {
+			display: inline-block;
+			height: 20px;
+			margin-right: 5px;
+		}
+
+		a {
+			color: inherit;
+			outline: 0;
+		}
+	}
+
+	ul {
+		line-height: 1.5;
+		margin-bottom: 0;
+
+		li {
+			margin-bottom: 0;
+		}
+	}
 
 	.play-by-play {
 		color: $c-gray;
@@ -242,6 +306,7 @@
 
 		&-1-1-0 {
 			.base {
+
 				&__first,
 				&__second {
 					border-bottom-color: $c-primary;
@@ -255,6 +320,7 @@
 
 		&-1-0-1 {
 			.base {
+
 				&__first,
 				&__third {
 					border-bottom-color: $c-primary;
@@ -268,6 +334,7 @@
 
 		&-1-1-1 {
 			.base {
+
 				&__first,
 				&__second,
 				&__third {
@@ -282,6 +349,7 @@
 
 		&-0-1-1 {
 			.base {
+
 				&__second,
 				&__third {
 					border-bottom-color: $c-primary;
@@ -336,7 +404,7 @@
 		&__second {
 			clear: both;
 			margin: 0 auto;
-			top: -2px !important;
+			top: -2px;
 		}
 
 		&__third {
@@ -405,7 +473,7 @@
 			padding: 10px 8px 0;
 			text-transform: uppercase;
 
-			> h1 {
+			>h1 {
 				line-height: 1;
 			}
 		}
@@ -422,7 +490,7 @@
 					width: 100%;
 				}
 
-				> li {
+				>li {
 					display: table;
 					margin-top: 10px;
 					overflow: hidden;
@@ -448,12 +516,28 @@
 			display: table-cell;
 			font-size: 11px;
 			line-height: 1.2;
-			padding-left: 9px;
+			padding-left: 8px;
 			vertical-align: middle;
 			// width: 100%;
 			width: auto;
 
-			> * {
+			&__player {
+
+				&--result {
+					text-transform: uppercase;
+				}
+
+				&--team {
+					font-weight: 400;
+					padding-left: 4px;
+				}
+
+				&--stat {
+					font-size: 11px;
+				}
+			}
+
+			>* {
 				margin: 0;
 			}
 
@@ -462,7 +546,7 @@
 				font-weight: $fw-semi-bold;
 				line-height: 1.2;
 
-				> a {
+				>a {
 					color: $c-gray-medium;
 					display: inline-block;
 					max-width: 110px;
@@ -477,8 +561,8 @@
 }
 
 .circle-graphs {
-	border-bottom: 1px solid $c-gray-x-light;
-	border-top: 1px solid $c-gray-x-light;
+	border-bottom: $bd-medium;
+	border-top: $bd-medium;
 	overflow: hidden;
 	padding: 5px 0;
 	width: 100%;
@@ -527,6 +611,22 @@
 			height: 10px;
 			margin-right: 3px;
 			width: 10px;
+
+			&.active {
+
+
+				&.balls {
+					background-color: $c-success;
+				}
+
+				&.strikes {
+					background-color: $c-error;
+				}
+
+				&.outs {
+					background-color: $c-info;
+				}
+			}
 		}
 
 		&.description {

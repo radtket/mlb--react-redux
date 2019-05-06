@@ -50,7 +50,6 @@ const SingleGamePlayer = ({
               <p
                 style={{
                   display: "table-cell",
-                  width: "74px",
                   verticalAlign: "middle",
                 }}
                 className="sb-meta__player--stat text-right">
