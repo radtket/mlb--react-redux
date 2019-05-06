@@ -204,6 +204,11 @@
 		padding-top: 8px;
 	}
 
+	&__location,
+	&__tickets {
+		border-bottom: $bd-medium;
+	}
+
 
 	&__location {
 		color: $c-gray;
@@ -229,8 +234,6 @@
 	}
 
 	&__tickets {
-		border-bottom: $bd-medium;
-		border-top: $bd-medium;
 		// color: #06c;
 		color: $c-info;
 

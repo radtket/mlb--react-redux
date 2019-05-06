@@ -59,6 +59,7 @@ const SingleGame = ({
   OverUnder,
 
   stadiums,
+  gameTicket,
 }) => {
   const GameStatusFinal = IsClosed && Status === "Final";
   const GameStatusScheduled = Status === "Scheduled";
@@ -172,15 +173,14 @@ const SingleGame = ({
             </div>
           )}
 
-          {GameStatusPregame && (
+          {GameStatusPregame && gameTicket && (
             <div className="scoreboard-detail__tickets">
               <TicketStubs />
               <a
-                name="&amp;lpos=mlb:scoreboard:tickets"
-                href="https://www.vividseats.com/mlb-baseball/cincinnati-reds-tickets/reds-5-6-2821094.html?wsUser=717&amp;wsVar=us~mlb~scoreboard,mlb,desktop,en"
+                href={gameTicket.url}
                 target="_blank"
                 rel="noopener noreferrer">
-                Tickets as low as $13
+                {`Tickets as low as $${gameTicket.stats.lowest_price}`}
               </a>
             </div>
           )}
@@ -217,22 +217,27 @@ const SingleGame = ({
         <article className="scoreboard-detail__xtra">
           {GameStatusPregame && (
             <>
-              <SingleGamePlayer
-                isPitcher
-                PlayerHeaderText="Probable Pitchers"
-                stats={`(${AwayPitcher.Wins}-${AwayPitcher.Losses}, ${
-                  AwayPitcher.EarnedRunAverage
-                })`}
-                PlayerTeam
-                PlayerData={AwayPitcher}
-              />
-              <SingleGamePlayer
-                stats={`(${HomePitcher.Wins}-${HomePitcher.Losses}, ${
-                  HomePitcher.EarnedRunAverage
-                })`}
-                PlayerTeam
-                PlayerData={HomePitcher}
-              />
+              {AwayPitcher && (
+                <SingleGamePlayer
+                  isPitcher
+                  PlayerHeaderText="Probable Pitchers"
+                  stats={`(${AwayPitcher.Wins}-${AwayPitcher.Losses}, ${
+                    AwayPitcher.EarnedRunAverage
+                  })`}
+                  PlayerTeam
+                  PlayerData={AwayPitcher}
+                />
+              )}
+
+              {HomePitcher && (
+                <SingleGamePlayer
+                  stats={`(${HomePitcher.Wins}-${HomePitcher.Losses}, ${
+                    HomePitcher.EarnedRunAverage
+                  })`}
+                  PlayerTeam
+                  PlayerData={HomePitcher}
+                />
+              )}
             </>
           )}
 
@@ -257,6 +262,7 @@ const SingleGame = ({
               )}
             </>
           )}
+
           {GameStatusFinal &&
             (WinningPitcher && (
               <SingleGamePlayer
@@ -339,11 +345,13 @@ SingleGame.propTypes = {
   HomeTeamMoneyLine: PropTypes.number,
   OverUnder: PropTypes.number,
 
-  stadiums: PropTypes.shape({
-    Name: PropTypes.string,
-    City: PropTypes.string,
-    State: PropTypes.string,
-  }).isRequired,
+  stadiums: PropTypes.arrayOf(PropTypes.object).isRequired,
+  gameTicket: PropTypes.shape({
+    url: PropTypes.string,
+    stats: PropTypes.shape({
+      lowest_price: PropTypes.number,
+    }),
+  }),
 };
 
 SingleGame.defaultProps = {
@@ -379,6 +387,7 @@ SingleGame.defaultProps = {
 
   HomeTeamMoneyLine: null,
   OverUnder: null,
+  gameTicket: null,
 };
 
 export default SingleGame;

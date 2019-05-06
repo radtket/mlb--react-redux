@@ -9,12 +9,14 @@ import {
   fetchStandings,
   fetchAllPlayers,
   fetchStadiums,
+  fetchTicketsOnDate,
 } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {
   // TODO: Add When API is Live
   // TodaysDate,
   DEV_PLACEHOLDER_DATE,
+  teamFinder,
 } from "../utils/helpers";
 import SingleGame from "../components/SingleGame";
 import PageTitle from "../components/PageTitle";
@@ -35,6 +37,10 @@ const GamesOnDayList = ({
   stadiumsLoading,
   stadiums,
   fetchStadiums: getStadiums,
+  ticketsFail,
+  ticketsLoading,
+  tickets,
+  fetchTicketsOnDate: getTicketsOnDate,
 }) => {
   const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 
@@ -42,18 +48,21 @@ const GamesOnDayList = ({
     getGamesOnDay(dateOfGame);
     getAllPlayers();
     getStadiums();
+    getTicketsOnDate(format(dateOfGame, "YYYY-MM-DD"));
   }, []);
 
   const previousDaysGame = date => {
     const newDay = subDays(new Date(date), 1);
     setdateOfGame(newDay);
     getGamesOnDay(newDay);
+    getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
   };
 
   const nextDaysGame = date => {
     const newDay = addDays(new Date(date), 1);
     setdateOfGame(newDay);
     getGamesOnDay(newDay);
+    getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
   };
 
   if (stadiumsFail) {
@@ -71,11 +80,16 @@ const GamesOnDayList = ({
     return <div>Error! {allPlayersFail.message}</div>;
   }
 
+  if (ticketsFail) {
+    return <div>Error! {ticketsFail.message}</div>;
+  }
+
   if (
     gamesOnDayLoading ||
     standingsLoading ||
     allPlayersLoading ||
-    stadiumsLoading
+    stadiumsLoading ||
+    ticketsLoading
   ) {
     return <LoadingSpinner />;
   }
@@ -96,15 +110,23 @@ const GamesOnDayList = ({
         <ul>
           {gamesOnDay &&
             allPlayers &&
-            gamesOnDay.map(game => (
-              <SingleGame
-                allPlayers={allPlayers}
-                key={game.GameID}
-                stadiums={stadiums}
-                standings={standings}
-                {...game}
-              />
-            ))}
+            gamesOnDay.map(game => {
+              return (
+                <SingleGame
+                  allPlayers={allPlayers}
+                  key={game.GameID}
+                  stadiums={stadiums}
+                  standings={standings}
+                  gameTicket={tickets.find(ticket =>
+                    ticket.short_title.includes(
+                      teamFinder[game.HomeTeam].Name ||
+                        teamFinder[game.AwayTeam].Name
+                    )
+                  )}
+                  {...game}
+                />
+              );
+            })}
         </ul>
       </div>
     </>
@@ -127,6 +149,10 @@ GamesOnDayList.propTypes = {
   stadiumsLoading: PropTypes.bool.isRequired,
   stadiums: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchStadiums: PropTypes.func.isRequired,
+  ticketsFail: null || PropTypes.bool,
+  ticketsLoading: PropTypes.bool.isRequired,
+  tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchTicketsOnDate: PropTypes.func.isRequired,
 };
 
 GamesOnDayList.defaultProps = {
@@ -134,9 +160,16 @@ GamesOnDayList.defaultProps = {
   gamesOnDayFail: null,
   standingsError: null,
   stadiumsFail: null,
+  ticketsFail: null,
 };
 
-const mapStateToProps = ({ allPlayers, gamesOnDay, standings, stadiums }) => ({
+const mapStateToProps = ({
+  allPlayers,
+  gamesOnDay,
+  standings,
+  stadiums,
+  tickets,
+}) => ({
   allPlayers: allPlayers.allPlayersData,
   allPlayersLoading: allPlayers.allPlayersLoading,
   allPlayersFail: allPlayers.allPlayersError,
@@ -149,6 +182,9 @@ const mapStateToProps = ({ allPlayers, gamesOnDay, standings, stadiums }) => ({
   stadiums: stadiums.stadiumsData,
   stadiumsLoading: stadiums.stadiumsLoading,
   stadiumsFail: stadiums.stadiumsError,
+  tickets: tickets.ticketsData,
+  ticketsLoading: tickets.ticketsLoading,
+  ticketsFail: tickets.ticketsError,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -158,6 +194,7 @@ const mapDispatchToProps = dispatch =>
       fetchGamesOnDay,
       fetchStandings,
       fetchStadiums,
+      fetchTicketsOnDate,
     },
     dispatch
   );

@@ -18,7 +18,7 @@ import { fetchTeamRssNews } from "./teamRssNews/actions";
 import { fetchTeams } from "./teams/actions";
 import { fetchTeamSplits } from "./teamSplits/actions";
 import { fetchTeamStats } from "./teamStats/actions";
-import { fetchTickets } from "./ticket/actions";
+import { fetchTickets, fetchTicketsOnDate } from "./ticket/actions";
 import {
   decrement,
   decrementAsync,
@@ -52,4 +52,5 @@ export {
   fetchTeams,
   fetchTeamStats,
   fetchTickets,
+  fetchTicketsOnDate,
 };
