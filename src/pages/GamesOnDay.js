@@ -8,6 +8,7 @@ import {
   fetchGamesOnDay,
   fetchStandings,
   fetchAllPlayers,
+  fetchStadiums,
 } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {
@@ -30,12 +31,17 @@ const GamesOnDayList = ({
   allPlayersLoading,
   allPlayers,
   fetchAllPlayers: getAllPlayers,
+  stadiumsFail,
+  stadiumsLoading,
+  stadiums,
+  fetchStadiums: getStadiums,
 }) => {
   const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 
   useEffect(() => {
     getGamesOnDay(dateOfGame);
     getAllPlayers();
+    getStadiums();
   }, []);
 
   const previousDaysGame = date => {
@@ -50,6 +56,10 @@ const GamesOnDayList = ({
     getGamesOnDay(newDay);
   };
 
+  if (stadiumsFail) {
+    return <div>Error! {stadiumsFail.message}</div>;
+  }
+
   if (gamesOnDayFail) {
     return <div>Error! {gamesOnDayFail.message}</div>;
   }
@@ -61,7 +71,12 @@ const GamesOnDayList = ({
     return <div>Error! {allPlayersFail.message}</div>;
   }
 
-  if (gamesOnDayLoading || standingsLoading || allPlayersLoading) {
+  if (
+    gamesOnDayLoading ||
+    standingsLoading ||
+    allPlayersLoading ||
+    stadiumsLoading
+  ) {
     return <LoadingSpinner />;
   }
 
@@ -83,9 +98,10 @@ const GamesOnDayList = ({
             allPlayers &&
             gamesOnDay.map(game => (
               <SingleGame
-                key={game.GameID}
-                standings={standings}
                 allPlayers={allPlayers}
+                key={game.GameID}
+                stadiums={stadiums}
+                standings={standings}
                 {...game}
               />
             ))}
@@ -107,15 +123,20 @@ GamesOnDayList.propTypes = {
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  stadiumsFail: null || PropTypes.bool,
+  stadiumsLoading: PropTypes.bool.isRequired,
+  stadiums: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchStadiums: PropTypes.func.isRequired,
 };
 
 GamesOnDayList.defaultProps = {
   allPlayersFail: null,
   gamesOnDayFail: null,
   standingsError: null,
+  stadiumsFail: null,
 };
 
-const mapStateToProps = ({ allPlayers, gamesOnDay, standings }) => ({
+const mapStateToProps = ({ allPlayers, gamesOnDay, standings, stadiums }) => ({
   allPlayers: allPlayers.allPlayersData,
   allPlayersLoading: allPlayers.allPlayersLoading,
   allPlayersFail: allPlayers.allPlayersError,
@@ -125,6 +146,9 @@ const mapStateToProps = ({ allPlayers, gamesOnDay, standings }) => ({
   standings: standings.standingsData,
   standingsLoading: standings.standingsLoading,
   standingsError: standings.standingsError,
+  stadiums: stadiums.stadiumsData,
+  stadiumsLoading: stadiums.stadiumsLoading,
+  stadiumsFail: stadiums.stadiumsError,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -133,6 +157,7 @@ const mapDispatchToProps = dispatch =>
       fetchAllPlayers,
       fetchGamesOnDay,
       fetchStandings,
+      fetchStadiums,
     },
     dispatch
   );

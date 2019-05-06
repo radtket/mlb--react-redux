@@ -7,7 +7,7 @@ import SingleGameBaseballDiamond from "./SingleGameBaseballDiamond";
 import SingleGameCount from "./SingleGameCount";
 import SingleGameLastGame from "./SingleGameLastGame";
 import SingleGameHead from "./SingleGameHead";
-import { stadiumDecoder, roundHalf } from "../../utils/helpers";
+import { roundHalf } from "../../utils/helpers";
 import { TicketStubs } from "../Icons";
 
 const SingleGame = ({
@@ -57,6 +57,8 @@ const SingleGame = ({
 
   HomeTeamMoneyLine,
   OverUnder,
+
+  stadiums,
 }) => {
   const GameStatusFinal = IsClosed && Status === "Final";
   const GameStatusScheduled = Status === "Scheduled";
@@ -94,7 +96,7 @@ const SingleGame = ({
     SavingPitcherID &&
     allPlayers.find(player => player.PlayerID === SavingPitcherID);
 
-  const StadiumObj = stadiumDecoder(StadiumID);
+  const StadiumObj = stadiums.find(stadium => stadium.StadiumID === StadiumID);
 
   return (
     <div
@@ -336,6 +338,12 @@ SingleGame.propTypes = {
 
   HomeTeamMoneyLine: PropTypes.number,
   OverUnder: PropTypes.number,
+
+  stadiums: PropTypes.shape({
+    Name: PropTypes.string,
+    City: PropTypes.string,
+    State: PropTypes.string,
+  }).isRequired,
 };
 
 SingleGame.defaultProps = {
