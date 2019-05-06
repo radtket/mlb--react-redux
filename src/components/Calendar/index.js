@@ -1,5 +1,17 @@
 import React, { useState, useEffect } from "react";
-import dateFns from "date-fns";
+import {
+  addDays,
+  addMonths,
+  endOfMonth,
+  endOfWeek,
+  format,
+  isSameDay,
+  isSameMonth,
+  parse,
+  startOfMonth,
+  startOfWeek,
+  subMonths,
+} from "date-fns";
 import PropTypes from "prop-types";
 import { ChevronLeft, ChevronRight } from "../Icons";
 import CalendarGame from "./CalendarGame";
@@ -15,17 +27,17 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
   };
 
   const nextMonth = () => {
-    setCurrentMonth(dateFns.addMonths(currentMonth, 1));
+    setCurrentMonth(addMonths(currentMonth, 1));
   };
 
   const prevMonth = () => {
-    setCurrentMonth(dateFns.subMonths(currentMonth, 1));
+    setCurrentMonth(subMonths(currentMonth, 1));
   };
 
   const getTeamGames = (scheduleArg, teamAbrvArg) => {
     return scheduleArg.reduce((games, game) => {
       const { Day, AwayTeam, HomeTeam } = game;
-      const formatedDay = dateFns.format(new Date(Day), "YYYY-MM-DD");
+      const formatedDay = format(new Date(Day), "YYYY-MM-DD");
 
       const teamGamesObj = games;
       teamGamesObj[formatedDay] = {
@@ -43,10 +55,10 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
   });
 
   const renderCells = () => {
-    const monthStart = dateFns.startOfMonth(currentMonth);
-    const monthEnd = dateFns.endOfMonth(monthStart);
-    const startDate = dateFns.startOfWeek(monthStart);
-    const endDate = dateFns.endOfWeek(monthEnd);
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(monthStart);
+    const startDate = startOfWeek(monthStart);
+    const endDate = endOfWeek(monthEnd);
 
     const dateFormat = "D";
     const rows = [];
@@ -57,26 +69,26 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
 
     while (day <= endDate) {
       for (let i = 0; i < 7; i += 1) {
-        formattedDate = dateFns.format(day, dateFormat);
+        formattedDate = format(day, dateFormat);
         const cloneDay = day;
-        const formatedDay = dateFns.format(new Date(cloneDay), "YYYY-MM-DD");
+        const formatedDay = format(new Date(cloneDay), "YYYY-MM-DD");
 
         const gameOnDate = teamGames[formatedDay];
 
         days.push(
           <button
             className={`calendar__col calendar__cell ${
-              !dateFns.isSameMonth(day, monthStart) ? "cell-disabled" : ""
-            } ${dateFns.isSameDay(day, selectedDate) ? "cell-selected" : ""}`}
+              !isSameMonth(day, monthStart) ? "cell-disabled" : ""
+            } ${isSameDay(day, selectedDate) ? "cell-selected" : ""}`}
             key={day}
-            onClick={() => onDateClick(dateFns.parse(cloneDay))}
+            onClick={() => onDateClick(parse(cloneDay))}
             type="button">
             {gameOnDate && CalendarGame(gameOnDate)}
             <span className="calendar__cell--number">{formattedDate}</span>
             <span className="calendar__cell--bg">{formattedDate}</span>
           </button>
         );
-        day = dateFns.addDays(day, 1);
+        day = addDays(day, 1);
       }
       rows.push(
         <div className="calendar__row" key={day}>
@@ -92,14 +104,14 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
     const dateFormat = "dddd";
     const days = [];
 
-    const startDate = dateFns.startOfWeek(currentMonth);
+    const startDate = startOfWeek(currentMonth);
 
     for (let i = 0; i < 7; i += 1) {
       days.push(
         <div
           className="calendar__col aligner__center--horitzontal text-center"
           key={i}>
-          {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+          {format(addDays(startDate, i), dateFormat)}
         </div>
       );
     }
@@ -123,7 +135,7 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
         </div>
         <div className="calendar__col aligner__center--horitzontal text-center">
           <h5 className="text-uppercase text-bold">
-            {dateFns.format(currentMonth, dateFormat)}
+            {format(currentMonth, dateFormat)}
           </h5>
         </div>
         <div className="calendar__col aligner__center--end text-right">

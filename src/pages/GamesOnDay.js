@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addDays, subDays, format } from "date-fns";
-import { fetchGamesOnDay, fetchStandings } from "../modules/actions";
+import {
+  fetchGamesOnDay,
+  fetchStandings,
+  fetchAllPlayers,
+} from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import {
   // TODO: Add When API is Live
@@ -22,11 +26,16 @@ const GamesOnDayList = ({
   standings,
   standingsLoading,
   fetchGamesOnDay: getGamesOnDay,
+  allPlayersFail,
+  allPlayersLoading,
+  allPlayers,
+  fetchAllPlayers: getAllPlayers,
 }) => {
   const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 
   useEffect(() => {
     getGamesOnDay(dateOfGame);
+    getAllPlayers();
   }, []);
 
   const previousDaysGame = date => {
@@ -48,7 +57,11 @@ const GamesOnDayList = ({
     return <div>Error! {standingsError.message}</div>;
   }
 
-  if (gamesOnDayLoading || standingsLoading) {
+  if (allPlayersFail) {
+    return <div>Error! {allPlayersFail.message}</div>;
+  }
+
+  if (gamesOnDayLoading || standingsLoading || allPlayersLoading) {
     return <LoadingSpinner />;
   }
 
@@ -67,8 +80,14 @@ const GamesOnDayList = ({
         </nav>
         <ul>
           {gamesOnDay &&
+            allPlayers &&
             gamesOnDay.map(game => (
-              <SingleGame key={game.GameID} standings={standings} {...game} />
+              <SingleGame
+                key={game.GameID}
+                standings={standings}
+                allPlayers={allPlayers}
+                {...game}
+              />
             ))}
         </ul>
       </div>
@@ -77,6 +96,10 @@ const GamesOnDayList = ({
 };
 
 GamesOnDayList.propTypes = {
+  allPlayersFail: null || PropTypes.bool,
+  allPlayersLoading: PropTypes.bool.isRequired,
+  allPlayers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchAllPlayers: PropTypes.func.isRequired,
   gamesOnDayFail: null || PropTypes.bool,
   gamesOnDayLoading: PropTypes.bool.isRequired,
   gamesOnDay: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -87,11 +110,15 @@ GamesOnDayList.propTypes = {
 };
 
 GamesOnDayList.defaultProps = {
+  allPlayersFail: null,
   gamesOnDayFail: null,
   standingsError: null,
 };
 
-const mapStateToProps = ({ gamesOnDay, standings }) => ({
+const mapStateToProps = ({ allPlayers, gamesOnDay, standings }) => ({
+  allPlayers: allPlayers.allPlayersData,
+  allPlayersLoading: allPlayers.allPlayersLoading,
+  allPlayersFail: allPlayers.allPlayersError,
   gamesOnDay: gamesOnDay.gamesOnDayData,
   gamesOnDayLoading: gamesOnDay.gamesOnDayLoading,
   gamesOnDayFail: gamesOnDay.gamesOnDayError,
@@ -103,6 +130,7 @@ const mapStateToProps = ({ gamesOnDay, standings }) => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchAllPlayers,
       fetchGamesOnDay,
       fetchStandings,
     },

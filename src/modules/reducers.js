@@ -9,6 +9,7 @@ import playerStats from "./playerStats/reducers";
 import leagueLeaders from "./leagueLeaders/reducers";
 import { postsBySubreddit, selectedSubreddit } from "./reddit/reddit-reducers";
 import products from "./product/reducers";
+import allPlayers from "./allPlayers/reducers";
 import schedules from "./schedules/reducers";
 import sportsRadarGames from "./sportsRadarGame/reducers";
 import standings from "./standings/reducers";
@@ -30,6 +31,7 @@ export default combineReducers({
   playerStats,
   postsBySubreddit,
   products,
+  allPlayers,
   sportsRadarGames,
   teamSplits,
   leagueLeaders,

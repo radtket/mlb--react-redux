@@ -7,6 +7,7 @@ const SingleGameTeam = ({
   AwayLosses,
   AwayWins,
   Errors,
+  GameStatusPostponed,
   Hits,
   HomeLosses,
   HomeWins,
@@ -43,41 +44,45 @@ const SingleGameTeam = ({
           </ul>
         </div>
       </td>
-      <td className="score score__total">{Runs}</td>
-      <td className="score">{Hits}</td>
-      <td className="score">{Errors}</td>
+      {!GameStatusPostponed && (
+        <>
+          <td className="score score__total">{Runs}</td>
+          <td className="score">{Hits}</td>
+          <td className="score">{Errors}</td>
+        </>
+      )}
     </tr>
   );
 };
 
 SingleGameTeam.propTypes = {
-  isHome: PropTypes.bool,
   AwayLosses: PropTypes.number,
   AwayWins: PropTypes.number,
+  Errors: PropTypes.number,
+  GameStatusPostponed: PropTypes.bool,
+  Hits: PropTypes.number,
   HomeLosses: PropTypes.number,
   HomeWins: PropTypes.number,
+  isHome: PropTypes.bool,
   Key: PropTypes.string.isRequired,
-  Name: PropTypes.string.isRequired,
-
-  Runs: PropTypes.number,
-  Errors: PropTypes.number,
-  Hits: PropTypes.number,
-
-  Wins: PropTypes.number,
   Losses: PropTypes.number,
+  Name: PropTypes.string.isRequired,
+  Runs: PropTypes.number,
+  Wins: PropTypes.number,
 };
 
 SingleGameTeam.defaultProps = {
-  isHome: false,
   AwayLosses: null,
   AwayWins: null,
+  Errors: 0,
+  GameStatusPostponed: false,
+  Hits: 0,
   HomeLosses: null,
   HomeWins: null,
-  Hits: 0,
-  Errors: 0,
+  isHome: false,
+  Losses: 0,
   Runs: 0,
   Wins: 0,
-  Losses: 0,
 };
 
 export default SingleGameTeam;

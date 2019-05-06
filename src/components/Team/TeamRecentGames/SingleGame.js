@@ -23,10 +23,10 @@ const SingleGame = ({
 
   const { City: OpponentCity, Name: OpponentName } = teamFinder[OpponentKey];
 
-  const GameIsFinal = IsClosed && Status === "Final";
-  const GameIsScheduled = Status === "Scheduled";
+  const GameStatusFinal = IsClosed && Status === "Final";
+  const GameStatusScheduled = Status === "Scheduled";
   const GameIsInProgress = Status === "In Progress";
-  const GameIsPostponed = Status === "Postponed";
+  const GameStatusPostponed = Status === "Postponed";
 
   const DidWin = MyTeamScore > OpponentScore && true;
   const WinOrLoss = DidWin ? "W" : "L";
@@ -53,7 +53,7 @@ const SingleGame = ({
         </figcaption>
 
         <ul className="game-meta">
-          {GameIsScheduled && (
+          {GameStatusScheduled && (
             <>
               <li className="game-meta__date">
                 {format(new Date(DateTime), "M[/]D")}
@@ -65,15 +65,15 @@ const SingleGame = ({
             </>
           )}
 
-          {GameIsFinal && (
+          {GameStatusFinal && (
             <li className={`game-meta__result ${DidWin ? "win" : "loss"}`}>
               {WinOrLoss}
             </li>
           )}
-          {(GameIsFinal || GameIsInProgress) && (
+          {(GameStatusFinal || GameIsInProgress) && (
             <li className="game-meta__score">{GameScore}</li>
           )}
-          {GameIsPostponed && (
+          {GameStatusPostponed && (
             <li className="game-meta__postponed">{Status}</li>
           )}
         </ul>

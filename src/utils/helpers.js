@@ -806,3 +806,14 @@ export const LightenOrDarkenColor = colorArg => {
   }
   return tinyColorArg.darken().toString();
 };
+
+export const splitPlayerName = name => {
+  const splitName = name.split(" ");
+  splitName[0] = `${splitName[0].charAt(0)}.`;
+  return splitName.join(" ");
+};
+
+export const roundHalf = num => {
+  return Math.round(num * 2) / 2;
+};
+
