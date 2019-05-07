@@ -76,6 +76,7 @@ const GameSlider = ({ schedules }) => {
     <>
       <h1>{renderVisibleStartAndStopDays(activeGames, activeDisplayDate)}</h1>
       <Slider
+        className="text-center"
         ref={slider}
         {...{
           infinite: false,

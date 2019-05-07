@@ -36,15 +36,9 @@
 
 	// triangle arrow
 	&::before {
-		border-bottom: ($lh-tag / 2) + $p-tag solid transparent;
-		border-left: $p-tag solid $bg-tag;
-		border-top: ($lh-tag / 2) + $p-tag solid transparent;
+		@include position(absolute, 0 (-$p-tag) null null);
+		@include triangle("right", $p-tag, ($lh-tag * 2), $bg-tag);
 		content: "";
-		height: 0;
-		position: absolute;
-		right: -$p-tag;
-		top: 0;
-		width: 0;
 	}
 
 	// dot
