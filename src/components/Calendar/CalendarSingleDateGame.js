@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { format } from "date-fns";
 import { espnLogo } from "../../utils/helpers";
 
-const CalendarGame = ({
+const CalendarSingleDateGame = ({
   HomeTeam,
   opponent,
   Status,
@@ -39,7 +39,7 @@ const CalendarGame = ({
   );
 };
 
-CalendarGame.propTypes = {
+CalendarSingleDateGame.propTypes = {
   HomeTeam: PropTypes.string.isRequired,
   opponent: PropTypes.string.isRequired,
   Status: PropTypes.string.isRequired,
@@ -48,9 +48,9 @@ CalendarGame.propTypes = {
   AwayTeamRuns: PropTypes.number,
 };
 
-CalendarGame.defaultProps = {
+CalendarSingleDateGame.defaultProps = {
   HomeTeamRuns: null,
   AwayTeamRuns: null,
 };
 
-export default CalendarGame;
+export default CalendarSingleDateGame;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Calendar from "../../../components/Calendar";
+import { Calendar } from "../../../components/Calendar";
 
 const PageTeamSchedule = ({ schedule, currentTeamAbrv }) => {
   return (
