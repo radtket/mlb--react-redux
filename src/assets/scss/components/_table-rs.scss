@@ -19,6 +19,21 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 	}
 }
 
+.rs-table-row-header {
+	&.capitalize-first-cell {
+		text-transform: uppercase;
+	}
+}
+
+.rs-table-body-wheel-area {
+	.capitalize-first-cell {
+		.rs-table-cell-first {
+			text-transform: capitalize;
+		}
+	}
+}
+
+
 .rs-table {
 	background: $c-white;
 	overflow: hidden;
@@ -109,10 +124,8 @@ $color-mercury-40: rgba(229, 229, 234, .4);
 .rs-table-hover {
 	.rs-table-row {
 		&:hover {
-			.rs-table-cell {
-				background: $color-solitude;
-			}
 
+			.rs-table-cell,
 			.rs-table-cell-group {
 				background: $color-solitude;
 			}

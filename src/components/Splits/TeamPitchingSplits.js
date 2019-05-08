@@ -1,17 +1,76 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Table } from "rsuite";
 import PropTypes from "prop-types";
 import LoadingSpinner from "../LoadingSpinner";
 
 const { Column, HeaderCell, Cell } = Table;
-const TeamPitchingSplits = ({ dataList }) => {
-  if (!dataList) {
+
+const TeamPitchingSplits = ({ dataList: PropsData }) => {
+  const mounted = useRef();
+  const [data, setData] = useState(PropsData);
+  const [loading, setloading] = useState(false);
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortType, setSortType] = useState("asc");
+
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      // do componentDidUpate logic
+      setData(PropsData);
+    }
+  });
+
+  const handleSortColumn = (sortColumnArg, sortTypeArg) => {
+    setloading(true);
+
+    setTimeout(() => {
+      setSortType(sortTypeArg);
+      setSortColumn(sortColumnArg);
+      setloading(false);
+    }, 500);
+  };
+
+  const getData = dataArg => {
+    if (sortColumn && sortType) {
+      return dataArg.sort((a, b) => {
+        const x = a[sortColumn];
+        const y = b[sortColumn];
+        if (x === null) {
+          return 1;
+        }
+        if (y === null) {
+          return -1;
+        }
+        if (x === y) {
+          return 0;
+        }
+        if (sortType === "asc") {
+          return x - y;
+        }
+        if (sortType !== "asc") {
+          return y - x;
+        }
+        return 0;
+      });
+    }
+    return dataArg;
+  };
+
+  if (!PropsData) {
     return <LoadingSpinner />;
   }
 
   return (
-    <Table autoHeight data={dataList}>
-      <Column flexGrow={1} align="center" sortable fixed>
+    <Table
+      autoHeight
+      data={getData(data)}
+      loading={loading}
+      sortColumn={sortColumn}
+      sortType={sortType}
+      onSortColumn={handleSortColumn}
+      rowClassName="capitalize-first-cell">
+      <Column align="left" width={200} sortable fixed>
         <HeaderCell>name</HeaderCell>
         <Cell dataKey="name" />
       </Column>
