@@ -12,6 +12,45 @@
 	&__tray {
 		@include clearfix;
 		border-top: $bd-medium;
+		height: 0;
+		overflow: hidden;
+		position: relative;
+		top: 1px;
+		transition: height .4s ease;
+
+		&--button {
+			@include position(absolute, null null -12px 0);
+			border: 0;
+			display: block;
+			margin: auto;
+			padding: 0;
+			text-align: center;
+			width: 225px;
+			z-index: 1;
+
+			&:hover {
+				figure {
+					background: darken($c-primary, 4%);
+				}
+			}
+
+			figure {
+				@include size(24px);
+				@include margin(null auto);
+				background: $c-primary;
+				border-radius: 50%;
+				line-height: 26px;
+
+				svg {
+					@include size(10px, 24px);
+				}
+			}
+		}
+
+
+		&--show {
+			height: 140px;
+		}
 
 		.inning-scoreboard {
 			float: left;
@@ -239,8 +278,8 @@
 .scoreboard-detail {
 	border-left: $bd-medium;
 	border-right: $bd-medium;
-	overflow: hidden;
 	padding: 8px 8px 0;
+	position: relative;
 	width: 225px;
 	// float: left;
 	// height: 159px;

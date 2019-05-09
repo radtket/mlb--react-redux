@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import SingleGameTeam from "./SingleGameTeam";
@@ -10,6 +10,8 @@ import SingleGameHead from "./SingleGameHead";
 import { roundHalf } from "../../utils/helpers";
 import { TicketStubs } from "../Icons";
 import SingleGameInningScoreboard from "./Scoreboard/SingleGameInningScoreboard";
+
+import { IconCaret } from "../Icons";
 
 const SingleGame = ({
   AwayTeam,
@@ -101,6 +103,14 @@ const SingleGame = ({
     allPlayers.find(player => player.PlayerID === SavingPitcherID);
 
   const StadiumObj = stadiums.find(stadium => stadium.StadiumID === StadiumID);
+
+  const [ScoreboardTreyVisible, setScoreboardTreyVisible] = useState("hide");
+
+  function toggleScoreboardTrey() {
+    setScoreboardTreyVisible(
+      ScoreboardTreyVisible === "hide" ? "show" : "hide"
+    );
+  }
 
   return (
     <div
@@ -210,10 +220,24 @@ const SingleGame = ({
                   <SingleGameLastGame LastPlay={LastPlay} />
                 )}
               </div>
-              <Link to="/" className="play-by-play-link">
+              {/* <Link to="/" className="play-by-play-link">
                 Play-by-Play
-              </Link>
+              </Link> */}
             </div>
+          )}
+
+          {!GameStatusPregame && !GameStatusPostponed && (
+            <button
+              className="scoreboard__tray--button"
+              onClick={toggleScoreboardTrey}
+              type="button">
+              {ScoreboardTreyVisible === "hide"
+                ? "Show Box Score"
+                : "Hide  Box Score"}
+              <figure>
+                <IconCaret />
+              </figure>
+            </button>
           )}
         </article>
 
@@ -302,7 +326,8 @@ const SingleGame = ({
         </article>
       </section>
 
-      <section className="scoreboard__tray">
+      <section
+        className={`scoreboard__tray scoreboard__tray--${ScoreboardTreyVisible}`}>
         <SingleGameInningScoreboard
           AwayTeam={AwayTeam}
           AwayTeamErrors={AwayTeamErrors}
