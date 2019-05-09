@@ -9,6 +9,7 @@ import SingleGameLastGame from "./SingleGameLastGame";
 import SingleGameHead from "./SingleGameHead";
 import { roundHalf } from "../../utils/helpers";
 import { TicketStubs } from "../Icons";
+import SingleGameInningScoreboard from "./Scoreboard/SingleGameInningScoreboard";
 
 const SingleGame = ({
   AwayTeam,
@@ -23,6 +24,7 @@ const SingleGame = ({
 
   Inning,
   InningHalf,
+  Innings,
 
   Status,
   standings,
@@ -60,6 +62,7 @@ const SingleGame = ({
 
   stadiums,
   gameTicket,
+  GameID,
 }) => {
   const GameStatusFinal = IsClosed && Status === "Final";
   const GameStatusScheduled = Status === "Scheduled";
@@ -298,6 +301,22 @@ const SingleGame = ({
             ))}
         </article>
       </section>
+
+      <section className="scoreboard__tray">
+        <SingleGameInningScoreboard
+          AwayTeam={AwayTeam}
+          AwayTeamErrors={AwayTeamErrors}
+          AwayTeamHits={AwayTeamHits}
+          AwayTeamRuns={AwayTeamRuns}
+          HomeTeam={HomeTeam}
+          HomeTeamErrors={HomeTeamErrors}
+          HomeTeamHits={HomeTeamHits}
+          HomeTeamRuns={HomeTeamRuns}
+          Innings={Innings}
+          InningsInRegulation={9}
+          GameID={GameID}
+        />
+      </section>
     </div>
   );
 };
@@ -352,6 +371,8 @@ SingleGame.propTypes = {
       lowest_price: PropTypes.number,
     }),
   }),
+  Innings: PropTypes.arrayOf(PropTypes.object).isRequired,
+  GameID: PropTypes.number.isRequired,
 };
 
 SingleGame.defaultProps = {
