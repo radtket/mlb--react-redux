@@ -57,7 +57,6 @@ function getPlayerStats(playerId, PositionCategory) {
           if (statCategory === "gamesByPos" || statCategory === "defensive") {
             AllStats[statCategory] = stats;
           }
-          console.log(statCategory, all);
           return all;
         },
         { isPitcher, playerId }

@@ -16,13 +16,11 @@ const PlayerList = ({
   match,
   fetchPlayer: getPlayer,
 }) => {
+  const { playerArg } = match.params;
+
   useEffect(() => {
-    const { playerArg } = match.params;
     getPlayer(playerArg);
   }, []);
-
-  const { playerArg } = match.params;
-  const { Team, MLBAMID, PositionCategory, RotoWirePlayerID } = player;
 
   if (playerFail) {
     return <div>Error! {playerFail.message}</div>;
@@ -31,6 +29,8 @@ const PlayerList = ({
   if (playerLoading) {
     return <LoadingSpinner />;
   }
+
+  const { Team } = player;
 
   return (
     player && (
@@ -43,11 +43,8 @@ const PlayerList = ({
               <h3>
                 <Link to={`/teams/${Team}`}>{Team}</Link>
               </h3>
-              <PlayerNews MLBAMID={MLBAMID} playerArg={playerArg} />
-              <PlayerStats
-                RotoWirePlayerID={RotoWirePlayerID}
-                PositionCategory={PositionCategory}
-              />
+              <PlayerNews {...player} />
+              <PlayerStats {...player} />
             </div>
           </div>
         </div>

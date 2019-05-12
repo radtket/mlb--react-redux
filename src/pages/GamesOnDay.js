@@ -72,6 +72,7 @@ const GamesOnDayList = ({
   if (gamesOnDayFail) {
     return <div>Error! {gamesOnDayFail.message}</div>;
   }
+
   if (standingsError) {
     return <div>Error! {standingsError.message}</div>;
   }

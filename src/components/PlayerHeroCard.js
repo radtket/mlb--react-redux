@@ -10,6 +10,7 @@ import {
   PositionsBaseball,
   UsaTodayHeadshotNoBackgroundImage,
 } from "../utils/helpers";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PlayerHeroCardWrap = styled.div`
 &.player-hero-card {
@@ -81,7 +82,7 @@ const PlayerHeroCard = ({
   // PhotoUrl,
 }) => {
   if (!MLBAMID) {
-    return <h1>loading</h1>;
+    return <LoadingSpinner />;
   }
   return (
     <PlayerHeroCardWrap

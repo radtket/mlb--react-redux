@@ -11,11 +11,11 @@ const PlayerNews = ({
   playerNewsLoading,
   playerNews,
   MLBAMID,
-  playerArg,
+  PlayerID,
   fetchPlayerNews: getPlayerNews,
 }) => {
   useEffect(() => {
-    getPlayerNews(playerArg);
+    getPlayerNews(PlayerID);
   }, []);
 
   if (playerNewsFail) {
@@ -40,7 +40,7 @@ const PlayerNews = ({
 };
 
 PlayerNews.propTypes = {
-  playerArg: PropTypes.string,
+  PlayerID: PropTypes.string,
   MLBAMID: PropTypes.number,
   playerNewsFail: null || PropTypes.bool,
   playerNewsLoading: PropTypes.bool.isRequired,
@@ -50,7 +50,7 @@ PlayerNews.propTypes = {
 
 PlayerNews.defaultProps = {
   playerNewsFail: null,
-  playerArg: null,
+  PlayerID: null,
   MLBAMID: null,
 };
 

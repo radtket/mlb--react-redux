@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import LoadingSpinner from "../LoadingSpinner";
 import {
   espnLogo,
   birthday,
@@ -27,7 +27,7 @@ const PlayerHero = ({
   Weight,
 }) => {
   if (!MLBAMID) {
-    return <h1>loading</h1>;
+    return <LoadingSpinner />;
   }
   return (
     <section
