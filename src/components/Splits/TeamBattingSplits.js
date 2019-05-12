@@ -69,6 +69,8 @@ const TeamBattingSplits = ({ dataList: PropsData }) => {
       sortColumn={sortColumn}
       sortType={sortType}
       onSortColumn={handleSortColumn}
+      isTree
+      rowKey="id"
       rowClassName="capitalize-first-cell">
       <Column align="left" width={200} sortable fixed>
         <HeaderCell>name</HeaderCell>

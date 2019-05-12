@@ -817,3 +817,6 @@ export const roundHalf = num => {
   return Math.round(num * 2) / 2;
 };
 
+export const capitalizeFirstLetter = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};

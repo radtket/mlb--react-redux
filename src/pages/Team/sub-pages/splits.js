@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamSplits } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import { monthList } from "../../../utils/helpers";
+import { monthList, capitalizeFirstLetter } from "../../../utils/helpers";
 
 import {
   TeamBattingSplits,
@@ -22,6 +22,7 @@ const PageTeamSplits = ({
   useEffect(() => {
     getTeamSplits(Key);
   }, []);
+
   if (teamSplitsFail) {
     return <div>Error! {teamSplitsFail.message}</div>;
   }
@@ -85,34 +86,38 @@ const PageTeamSplits = ({
     bf: o.bf || 0,
   });
 
-  const tableReduce = (a, o) => {
-    a.push({
-      name: o.value || o.name,
-      ...defaultHittingCategories(o),
-      ...defaultPitchingCategories(o),
-    });
-    return a;
+  const capitalizeKeyName = name => {
+    if (!name.includes("_")) {
+      return capitalizeFirstLetter(name);
+    }
+    const splitName = name.split("_").map(word => capitalizeFirstLetter(word));
+    splitName[0] = `${splitName[0]} vs`;
+    return splitName.join(" ");
   };
 
   const organizeSplits = data => {
-    return Object.entries(data).reduce((all, one) => {
+    return Object.entries(data).reduce((all, one, index) => {
       const [ParentKey, ParentData] = one;
 
-      if (ParentKey !== "month" && ParentKey !== "total") {
-        all.push(...ParentData.reduce(tableReduce, []));
-      }
-
-      if (ParentKey === "month") {
-        all.push(
-          ...ParentData.reduce((a, o) => {
-            a.push({
-              name: monthList[o.value],
-              ...defaultHittingCategories(o),
-              ...defaultPitchingCategories(o),
-            });
-            return a;
-          }, [])
-        );
+      if (ParentKey !== "total") {
+        all.push({
+          id: index,
+          name:
+            ParentKey === "pitcher_hand"
+              ? "Pitcher Hand"
+              : capitalizeKeyName(ParentKey),
+          children: ParentData.map((child, i) => {
+            return {
+              id: `${index}-${i}`,
+              name:
+                ParentKey === "month"
+                  ? monthList[child.value]
+                  : child.value || child.name,
+              ...defaultHittingCategories(child),
+              ...defaultPitchingCategories(child),
+            };
+          }),
+        });
       }
 
       return all;

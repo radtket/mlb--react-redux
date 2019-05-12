@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import SingleGameTeam from "./SingleGameTeam";
 import SingleGamePlayer from "./SingleGamePlayer";
 import SingleGameBaseballDiamond from "./SingleGameBaseballDiamond";
@@ -8,10 +7,8 @@ import SingleGameCount from "./SingleGameCount";
 import SingleGameLastGame from "./SingleGameLastGame";
 import SingleGameHead from "./SingleGameHead";
 import { roundHalf } from "../../utils/helpers";
-import { TicketStubs } from "../Icons";
+import { TicketStubs, IconCaret } from "../Icons";
 import SingleGameInningScoreboard from "./Scoreboard/SingleGameInningScoreboard";
-
-import { IconCaret } from "../Icons";
 
 const SingleGame = ({
   AwayTeam,
