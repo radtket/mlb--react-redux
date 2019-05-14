@@ -1,22 +1,95 @@
+$custom-grid--thirds: (columns: 3,
+	gutter: 10px,
+);
+
+
 @media screen and (min-width: 1024px) {
+
 	.dropdown {
+
+		&__wrap {
+			@include position(absolute, 100% null null);
+			@include padding(10px);
+			background: $c-white;
+			box-shadow: $box-shadow-card;
+			font-size: 14px;
+			overflow: hidden;
+			white-space: nowrap;
+			z-index: 99;
+		}
+
 		&__button {
+			opacity: 1 !important;
 			position: relative;
+
+			span {
+				opacity: .75;
+			}
+
+			&:hover {
+				span {
+					opacity: 1;
+				}
+			}
+
+
+			&::after {
+				@include position(absolute, null null -1px 50%);
+				@include triangle("up", 24px, 12px, $c-white);
+				content: "";
+				margin-left: 24px * -.5;
+				opacity: 0;
+			}
+
+			&__is-open {
+
+				span,
+				&::after {
+					opacity: 1 !important;
+				}
+			}
+		}
+
+		&__primary,
+		&__content {
+			display: block;
+			float: left;
+			// padding: 0 10px;
+		}
+
+		&__primary {
+			margin-right: 10px;
+
+			li {
+				margin-bottom: 0;
+			}
+
+			a {
+				border-radius: 3px;
+				color: $c-gray;
+				display: block;
+				line-height: 1.2;
+				min-width: 200px;
+				padding: 12px 10px;
+				position: relative;
+
+				&:hover {
+					background-color: $bada55;
+					color: $c-black;
+				}
+			}
+
 		}
 
 		&__content {
-			background: $c-white;
-			box-shadow: $box-shadow-card;
 			color: $c-black;
-			min-width: 650px;
-			position: absolute;
-			top: 100%;
-			z-index: 99;
+			min-width: 660px;
 
-			.col-sm-4 {
-				font-size: 14px;
-				margin-bottom: 6px;
-				margin-top: 6px;
+
+			@media screen and (min-width: 1024px) {
+				background: $c-off-white;
+				border-radius: 8px;
+				overflow: hidden;
 			}
 
 			h6 {
@@ -26,17 +99,21 @@
 			}
 
 			nav {
-				padding-bottom: 3px;
-				padding-top: 3px;
+				@include padding(3px null);
 
 				>a {
+					@include padding(3px null);
 					color: $c-gray;
-					padding-bottom: 3px;
-					padding-top: 3px;
+
+					&:hover {
+						background-color: #fff;
+						border-radius: 4px;
+					}
 
 					>img {
 						@include size(24px);
-						margin-right: 6px;
+						margin-left: 3px;
+						margin-right: 8px;
 					}
 
 					>* {
@@ -44,6 +121,11 @@
 					}
 				}
 			}
+		}
+
+		&__division {
+			@include grid-column(1, $custom-grid--thirds);
+			@include margin(10px null);
 		}
 	}
 }

@@ -1,7 +1,6 @@
 import React, { useContext, createContext } from "react";
 import PropTypes from "prop-types";
-import { IconCaret } from "../Icons";
-// import { DropdownContext } from "./Navbar";
+import { NavLink } from "react-router-dom";
 import { MegaMenuDivision } from ".";
 import { sortTeamsByDivion } from "../../utils/helpers";
 
@@ -47,21 +46,62 @@ const createMegaMenu = teamsArg => {
   }, []);
 };
 
-export const MegaMenuDropdown = ({ teams }) => {
+export const MegaMenuDropdown = ({ teams, LinkLabel = "MLB" }) => {
   const { state, dispatch } = useContext(DropdownContext);
   const { isOpen } = state;
 
   return (
     <>
       <button
-        className="dropdown__button"
+        className={`dropdown__button ${
+          isOpen ? "dropdown__button__is-open" : ""
+        }`}
         type="button"
         onClick={() => dispatch("toggle")}>
-        Teams
-        <IconCaret />
+        <span>{LinkLabel}</span>
       </button>
       {isOpen && (
-        <div className="dropdown__content">{createMegaMenu(teams)}</div>
+        <article className="row dropdown__wrap">
+          <ul className="dropdown__primary">
+            <li>
+              <NavLink exact to="/" onClick={() => dispatch("reset")}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/scores" onClick={() => dispatch("reset")}>
+                Scores
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/schedule" onClick={() => dispatch("reset")}>
+                Schedule
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/standings" onClick={() => dispatch("reset")}>
+                Standings
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/stats" onClick={() => dispatch("reset")}>
+                Stats
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/news" onClick={() => dispatch("reset")}>
+                News
+              </NavLink>
+            </li>
+            <li>
+              <NavLink exact to="/teams" onClick={() => dispatch("reset")}>
+                Teams
+              </NavLink>
+            </li>
+          </ul>
+
+          <div className="dropdown__content">{createMegaMenu(teams)}</div>
+        </article>
       )}
     </>
   );
@@ -69,4 +109,9 @@ export const MegaMenuDropdown = ({ teams }) => {
 
 MegaMenuDropdown.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
+  LinkLabel: PropTypes.string,
+};
+
+MegaMenuDropdown.defaultProps = {
+  LinkLabel: "MLB",
 };
