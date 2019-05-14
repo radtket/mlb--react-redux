@@ -19,7 +19,7 @@ export const fetchProductsFailure = productsFail => ({
 });
 
 function getProducts() {
-  return fetch("/data/teams-with-stadiums.json")
+  return fetch("/data/mlb/teams-with-stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
 }

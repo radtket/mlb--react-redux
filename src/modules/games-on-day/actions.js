@@ -26,7 +26,7 @@ function getGamesOnDay(dateArg) {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/GamesByDate/{date}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/GamesByDate/${date}.json`)
+    fetch(`/data/mlb/GamesByDate/${date}.json`)
       .then(handleErrors)
       .then(res => res.json())
   );

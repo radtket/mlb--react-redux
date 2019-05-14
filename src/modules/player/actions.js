@@ -37,10 +37,10 @@ function getPlayer(playerArg, season = 2018) {
   // ]);
 
   return Promise.all([
-    fetch(`/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
+    fetch(`/data/mlb/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
       .then(handleErrors)
       .then(value => value.json()),
-    fetch(`/data/players/PlayerDetailsByPlayer.${playerArg}.json`)
+    fetch(`/data/mlb/players/PlayerDetailsByPlayer.${playerArg}.json`)
       .then(handleErrors)
       .then(value => value.json()),
   ]);

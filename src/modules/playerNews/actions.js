@@ -27,7 +27,7 @@ function getPlayerNews(playerId) {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/NewsByPlayerID/${playerId}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/PlayerNewsByID-${playerId}.json`)
+    fetch(`/data/mlb/PlayerNewsByID-${playerId}.json`)
       .then(handleErrors)
       .then(res => res.json())
   );

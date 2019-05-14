@@ -27,7 +27,7 @@ function getTeamRoster(teamArg) {
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${teamArg}`,
   //   ApiHeadersMLB
   // )
-  return fetch(`/data/teams/${teamArg}/roster.${teamArg}.json`)
+  return fetch(`/data/mlb/teams/${teamArg}/roster.${teamArg}.json`)
     .then(handleErrors)
     .then(res => res.json());
 }

@@ -19,7 +19,7 @@ export const fetchStadiumsFailure = stadiumsFail => ({
 });
 
 function getStadiums() {
-  return fetch("/data/stadiums.json")
+  return fetch("/data/mlb/stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
 }

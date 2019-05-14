@@ -27,7 +27,7 @@ function getSchedules(year = 2019) {
   //     `https://api.fantasydata.net/v3/mlb/stats/JSON/Games/${year}`,
   //     ApiHeadersMLB
   //   )
-  return fetch(`/data/schedules-${year}.json`)
+  return fetch(`/data/mlb/schedules-${year}.json`)
     .then(handleErrors)
     .then(res => res.json());
 }

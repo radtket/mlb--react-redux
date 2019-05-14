@@ -19,7 +19,7 @@ export const fetchAllPlayersFailure = allPlayersFail => ({
 });
 
 function getAllPlayers() {
-  return fetch("/data/all-players.json")
+  return fetch("/data/mlb/all-players.json")
     .then(handleErrors)
     .then(res => res.json());
 }

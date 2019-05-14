@@ -28,7 +28,7 @@ function getNewsAllTeams(dateArg) {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/NewsByDate/${date}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/news-${date}.json`)
+    fetch(`/data/mlb/news-${date}.json`)
       .then(handleErrors)
       .then(res => res.json())
   );

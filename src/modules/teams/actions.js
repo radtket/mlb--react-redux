@@ -27,7 +27,7 @@ function getTeams() {
   //     `https://api.fantasydata.net/v3/mlb/stats/JSON/teams`,
   //     ApiHeadersMLB
   //   )
-  return fetch("/data/teams-with-stadiums.json")
+  return fetch("/data/mlb/teams-with-stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
 }

@@ -32,7 +32,7 @@ function getTeamSplits(teamArg) {
     //     process.env.REACT_APP_SPORTSRADAR_MLB_API_KEY
     //   }`
     // )
-    fetch(`/data/teams/${teamArg}/splits.json`)
+    fetch(`/data/mlb/teams/${teamArg}/splits.json`)
       .then(handleErrors)
       .then(res => res.json())
       .then(data => {

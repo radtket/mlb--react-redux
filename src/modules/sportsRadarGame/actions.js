@@ -21,7 +21,7 @@ export const fetchSportsRadarGamesFailure = sportsRadarGamesFail => ({
 });
 
 function getSportsRadarGames() {
-  return fetch("/data/games-sports-radar.json")
+  return fetch("/data/mlb/games-sports-radar.json")
     .then(handleErrors)
     .then(res => res.json())
     .then(data => {
