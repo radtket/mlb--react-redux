@@ -22,8 +22,16 @@ export const isArrayEmpty = arrayArg => {
 };
 
 export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
-  const teamName = teamAbrv === "CWS" ? "CHW" : teamAbrv;
-  return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamName.toLowerCase()}.png&h=${size}&w=${size}`;
+  let teamName = teamAbrv;
+
+  if (teamAbrv === "UTA") {
+    teamName = "UTAH";
+  }
+
+  if (teamAbrv === "CWS") {
+    teamName = "CHW";
+  }
+  return `https://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport.toLowerCase()}/500/${teamName.toLowerCase()}.png&h=${size}&w=${size}`;
 }
 
 export const UsaTodayHeadshotNoBackgroundImage = (urlArg, imgSize) => {
@@ -80,11 +88,11 @@ export const largestToSmallest = propArg => {
 export const sortTeamsByDivion = allTeams => {
   return Object.entries(
     allTeams.reduce((teams, team) => {
-      const { League, Division } = team;
+      const { Conference, League, Division } = team;
       const teamsSortedByDivision = teams;
-      teamsSortedByDivision[`${League} ${Division}`] =
-        teamsSortedByDivision[`${League} ${Division}`] || [];
-      teamsSortedByDivision[`${League} ${Division}`].push(team);
+      teamsSortedByDivision[`${League || ""} ${Division}`] =
+        teamsSortedByDivision[`${League || ""} ${Division}`] || [];
+      teamsSortedByDivision[`${League || ""} ${Division}`].push(team);
       return teamsSortedByDivision;
     }, {})
   ).sort();

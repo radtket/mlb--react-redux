@@ -1,0 +1,96 @@
+.playerheader {
+
+	&__image,
+	&__overlay {
+		height: 160px;
+		position: absolute;
+		top: 0;
+		z-index: 400;
+	}
+
+	&__image {
+		bottom: 0;
+		right: 0;
+		width: 220px;
+
+		&--container {
+			background-color: #f1f2f3;
+			height: 160px;
+			overflow: hidden;
+			position: relative;
+			width: 280px;
+		}
+	}
+
+	&__logo {
+		display: block;
+		height: auto;
+		left: 0;
+
+		overflow: hidden;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transform: translateY(-25px);
+		width: 100%;
+		z-index: 400;
+	}
+
+	&__overlay {
+		background-color: #fff;
+		transform: skew(-25deg);
+		width: 76px;
+
+		&--detail {
+			backface-visibility: hidden;
+			border-right: 2px solid #fff;
+			box-shadow: -5px 0 10px 0 rgba(0, 0, 0, 0.3);
+			height: 160px;
+			left: 38px;
+			opacity: 0.7;
+			position: absolute;
+			top: 0;
+			transform: skew(-25deg) translateZ(0);
+			width: 108px;
+			z-index: 400;
+		}
+
+		&--right {
+			right: -40px;
+		}
+
+		&--left {
+			left: -40px;
+		}
+
+		&--opaque {
+			opacity: 0.9;
+		}
+	}
+}
+
+.espn-image {
+	height: auto;
+	margin: 0;
+	max-width: 100%;
+	overflow: hidden;
+	position: relative;
+	position: relative;
+
+	&__wrapper {
+		padding-bottom: 100%;
+		position: relative;
+		z-index: 1;
+
+		img {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			vertical-align: top;
+			width: 100%;
+			z-index: 2;
+		}
+	}
+}

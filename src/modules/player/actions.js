@@ -1,5 +1,5 @@
 import { handleErrors } from "../../utils/helpers";
-// import ApiHeadersMLB from "../../utils/api";
+// import { ApiHeadersMLB } from "../../utils/api";
 
 export const FETCH_PLAYER_BEGIN = "FETCH_PLAYER_BEGIN";
 export const FETCH_PLAYER_SUCCESS = "FETCH_PLAYER_SUCCESS";

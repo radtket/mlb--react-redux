@@ -1,6 +1,6 @@
 import { handleErrors } from "../../utils/helpers";
 // TODO: Add When API is Live
-// import ApiHeadersMLB from "../../utils/api";
+// import { ApiHeadersMLB } from "../../utils/api";
 
 export const FETCH_SCHEDULES_BEGIN = "FETCH_SCHEDULES_BEGIN";
 export const FETCH_SCHEDULES_SUCCESS = "FETCH_SCHEDULES_SUCCESS";

@@ -1,6 +1,6 @@
 import { handleErrors, formatApiArgDatedate } from "../../utils/helpers";
 // TODO: Add When API is Live
-// import ApiHeadersMLB from "../../utils/api";
+// import { ApiHeadersMLB } from "../../utils/api";
 
 export const FETCH_NEWS_ALL_TEAMS_BEGIN = "FETCH_NEWS_ALL_TEAMS_BEGIN";
 export const FETCH_NEWS_ALL_TEAMS_SUCCESS = "FETCH_NEWS_ALL_TEAMS_SUCCESS";

@@ -1,6 +1,6 @@
 import { handleErrors } from "../../utils/helpers";
 // TODO: Add When API is Live
-// import ApiHeadersMLB from "../../utils/api";
+// import { ApiHeadersMLB } from "../../utils/api";
 
 export const FETCH_PLAYER_NEWS_BEGIN = "FETCH_PLAYER_NEWS_BEGIN";
 export const FETCH_PLAYER_NEWS_SUCCESS = "FETCH_PLAYER_NEWS_SUCCESS";

@@ -1,6 +1,6 @@
 import { handleErrors } from "../../utils/helpers";
 // TODO: Add When API is Live
-// import ApiHeadersMLB from "../../utils/api";
+// import { ApiHeadersMLB } from "../../utils/api";
 
 export const FETCH_STANDINGS_BEGIN = "FETCH_STANDINGS_BEGIN";
 export const FETCH_STANDINGS_SUCCESS = "FETCH_STANDINGS_SUCCESS";

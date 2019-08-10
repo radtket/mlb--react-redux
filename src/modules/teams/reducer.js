@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  teamsData: [],
+  teamsData: {},
   teamsLoading: false,
   teamsError: null,
 };
@@ -40,7 +40,7 @@ export default function teamsReducer(state = initialState, action) {
         ...state,
         teamsLoading: false,
         teamsError: action.payload.error,
-        teamsData: [],
+        teamsData: {},
       };
 
     default:
