@@ -16,6 +16,7 @@ import {
 } from "./sub-pages";
 import TeamTheme from "./TeamTheme";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import ErrorMessage from "../../components/ErrorMessage";
 
 class Team extends Component {
   state = {
@@ -74,7 +75,7 @@ class Team extends Component {
     const activeTeamObj = this.getActiveTeamObj(teams, currentTeamAbrv);
 
     if (standingsError) {
-      return <div>Error! {standingsError.message}</div>;
+      return <ErrorMessage error={standingsError} />;
     }
 
     if (standingsLoading || !activeTeamObj) {
@@ -86,7 +87,7 @@ class Team extends Component {
         <TeamTheme {...activeTeamObj}>
           <TeamHeader
             {...activeTeamObj}
-            teams={teams}
+            {...{ teams }}
             changeTeams={this.changeTeams}
           />
         </TeamTheme>

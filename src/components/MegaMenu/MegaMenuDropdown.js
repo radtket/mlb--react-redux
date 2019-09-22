@@ -23,9 +23,9 @@ export const DropdownReducer = (state, action) => {
   }
 };
 
-const createMegaMenu = teamsArg => {
+const CreateMegaMenu = ({ teams }) => {
   let cols = [];
-  return sortTeamsByDivion(teamsArg).reduce((rows, element, index) => {
+  return sortTeamsByDivion(teams).reduce((rows, element, index) => {
     const [DivisionName, TeamsInComponents] = element;
     const { League: LeaugeName } = TeamsInComponents[0];
     cols.push(
@@ -61,7 +61,9 @@ export const MegaMenuDropdown = ({ teams }) => {
         <IconCaret />
       </button>
       {isOpen && (
-        <div className="dropdown__content">{createMegaMenu(teams)}</div>
+        <div className="dropdown__content">
+          <CreateMegaMenu {...{ teams }} />
+        </div>
       )}
     </>
   );

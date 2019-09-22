@@ -25,6 +25,7 @@ import { fetchTeams, fetchSchedules, fetchStandings } from "./modules/actions";
 
 // Components
 import Navbar from "./components/Navbar";
+import ErrorMessage from "./components/ErrorMessage";
 
 const App = ({
   standingsError,
@@ -46,15 +47,15 @@ const App = ({
   }, []);
 
   if (teamsFail) {
-    return <div>Error! {teamsFail.message}</div>;
+    return <ErrorMessage error={teamsFail} />;
   }
 
   if (schedulesError) {
-    return <div>Error! {schedulesError.message}</div>;
+    return <ErrorMessage error={schedulesError} />;
   }
 
   if (standingsError) {
-    return <div>Error! {standingsError.message}</div>;
+    return <ErrorMessage error={standingsError} />;
   }
 
   if (teamsLoading || schedulesLoading || standingsLoading) {
@@ -63,7 +64,7 @@ const App = ({
 
   return (
     <div>
-      <Navbar teams={teams} />
+      <Navbar {...{ teams }} />
       <main>
         <Route exact path="/" component={Home} />
         <Route exact path="/counter" component={Counters} />
@@ -78,9 +79,7 @@ const App = ({
         <Route exact path="/stats" component={LeagueLeadersTeams} />
         <Route
           path="/teams/:teamAbrv"
-          render={props => (
-            <Team {...props} teams={teams} schedules={schedules} />
-          )}
+          render={props => <Team {...props} {...{ teams, schedules }} />}
         />
       </main>
     </div>

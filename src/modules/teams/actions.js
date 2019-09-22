@@ -10,17 +10,19 @@ export const fetchTeamsBegin = () => ({
   type: FETCH_TEAMS_BEGIN,
 });
 
-export const fetchTeamsSuccess = teams => ({
-  type: FETCH_TEAMS_SUCCESS,
-  payload: { teams },
-});
+export const fetchTeamsSuccess = teams => {
+  return {
+    type: FETCH_TEAMS_SUCCESS,
+    payload: { teams },
+  };
+};
 
 export const fetchTeamsFailure = teamsFail => ({
   type: FETCH_TEAMS_FAILURE,
   payload: { teamsFail },
 });
 
-function getTeams() {
+const getTeams = () => {
   // TODO: Add When API is Live
   // return (
   //   fetch(
@@ -30,10 +32,11 @@ function getTeams() {
   return fetch("/data/teams-with-stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchTeams() {
+export const fetchTeams = () => {
   return dispatch => {
+    console.log({ dispatch });
     dispatch(fetchTeamsBegin());
     return getTeams()
       .then(data => {
@@ -42,4 +45,4 @@ export function fetchTeams() {
       })
       .catch(error => dispatch(fetchTeamsFailure(error)));
   };
-}
+};

@@ -55,7 +55,7 @@ const Navbar = ({ teams }) => {
             </li>
             <li>
               <DropdownContext.Provider value={{ state, dispatch }}>
-                <MegaMenuDropdown teams={teams} />
+                <MegaMenuDropdown {...{ teams }} />
               </DropdownContext.Provider>
             </li>
           </ul>

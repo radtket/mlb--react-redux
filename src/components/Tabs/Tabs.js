@@ -9,8 +9,7 @@ const Tabs = ({ children, itemWidth }) => {
   return (
     <div className="tabs">
       <nav>
-        {children.map(child => {
-          const { label } = child.props;
+        {children.map(({ props: { label } }) => {
           return (
             <Tab
               activeTab={activeTab}
@@ -23,9 +22,11 @@ const Tabs = ({ children, itemWidth }) => {
         })}
       </nav>
       <div className="tab-content">
-        {children.map(child => {
-          const { children: kids, label } = child.props;
-          if (label !== activeTab) return undefined;
+        {children.map(({ props }) => {
+          const { children: kids, label } = props;
+          if (label !== activeTab) {
+            return undefined;
+          }
           return kids;
         })}
       </div>
