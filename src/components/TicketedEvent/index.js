@@ -27,17 +27,17 @@ const TicketedEvent = ({
   return (
     <TicketedEventStyles className="card event-ticket">
       <TicketedEventHeader
-        url={url}
-        performers={performers}
         datetime_local={datetime_local}
+        performers={performers}
+        url={url}
       />
       <div className="container aligner aligner__center--vertical">
         <TicketedEventTime DateOfEvent={new Date(datetime_local)} />
         <TicketedEventDetails
           {...venue}
-          url={url}
-          title={title}
           DateOfEvent={new Date(datetime_local)}
+          title={title}
+          url={url}
         />
         <TicketedEventPricing {...stats} />
       </div>

@@ -9,9 +9,9 @@ const MegaMenuTeam = ({ Name, City, Key }) => {
   return (
     <Link
       onClick={() => dispatch("toggle")}
-      to={`/teams/${Key}`}
-      style={{ display: "block" }}>
-      <img src={espnLogo(Key, 24)} alt={`${Name} ${City} Logo`} />
+      style={{ display: "block" }}
+      to={`/teams/${Key}`}>
+      <img alt={`${Name} ${City} Logo`} src={espnLogo(Key, 24)} />
       <span>
         <span className="team-city">{City} </span>
         {Name}

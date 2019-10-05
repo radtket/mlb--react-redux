@@ -35,8 +35,8 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
           TeamDivision === ActiveDivision &&
           divisionTeams.push(
             <StandingsTeam
-              activeTeam={TeamKey === ActiveKey}
               key={TeamKey}
+              activeTeam={TeamKey === ActiveKey}
               City={City}
               GamesBehind={GamesBehind}
               Losses={Losses}
@@ -49,10 +49,10 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
         TeamLeague === ActiveLeague &&
           divisionTeams.push(
             <StandingsTeam
-              activeTeam={TeamKey === ActiveKey}
               key={TeamKey}
-              Losses={Losses}
+              activeTeam={TeamKey === ActiveKey}
               City={City}
+              Losses={Losses}
               Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
               TeamKey={TeamKey}
               TeamName={Name}
@@ -67,7 +67,6 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
   const { Division, League } = activeTeamObj;
   return (
     <Card
-      title="Standings"
       body={
         <>
           <Tabs itemWidth="50%">
@@ -122,6 +121,7 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
           </footer>
         </>
       }
+      title="Standings"
     />
   );
 };

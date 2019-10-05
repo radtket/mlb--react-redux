@@ -37,7 +37,7 @@ const CreateMegaMenu = ({ teams }) => {
     );
     if ((index + 1) % 3 === 0) {
       rows.push(
-        <div className="row" key={LeaugeName}>
+        <div key={LeaugeName} className="row">
           {cols}
         </div>
       );
@@ -55,8 +55,8 @@ export const MegaMenuDropdown = ({ teams }) => {
     <>
       <button
         className="dropdown__button"
-        type="button"
-        onClick={() => dispatch("toggle")}>
+        onClick={() => dispatch("toggle")}
+        type="button">
         Teams
         <IconCaret />
       </button>

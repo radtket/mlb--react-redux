@@ -10,62 +10,62 @@ const Sort = ({ sortRosterStateBy, players, direction }) => {
     <thead>
       <tr>
         <th onClick={() => sortRoster("Name")}>Name</th>
-        <th title="Games played" onClick={() => sortRoster("Games")}>
+        <th onClick={() => sortRoster("Games")} title="Games played">
           GP
         </th>
-        <th title="Games started" onClick={() => sortRoster("Started")}>
+        <th onClick={() => sortRoster("Started")} title="Games started">
           GS
         </th>
-        <th title="Quality Starts" onClick={() => sortRoster("")}>
+        <th onClick={() => sortRoster("")} title="Quality Starts">
           QS
         </th>
-        <th title="Wins" onClick={() => sortRoster("Wins")}>
+        <th onClick={() => sortRoster("Wins")} title="Wins">
           W
         </th>
-        <th title="Losses" onClick={() => sortRoster("Losses")}>
+        <th onClick={() => sortRoster("Losses")} title="Losses">
           L
         </th>
-        <th title="Saves" onClick={() => sortRoster("Saves")}>
+        <th onClick={() => sortRoster("Saves")} title="Saves">
           SV
         </th>
-        <th title="Holds" onClick={() => sortRoster("PitchingHolds")}>
+        <th onClick={() => sortRoster("PitchingHolds")} title="Holds">
           HLD
         </th>
         <th
-          title="Innings pitched"
-          onClick={() => sortRoster("InningsPitchedFull")}>
+          onClick={() => sortRoster("InningsPitchedFull")}
+          title="Innings pitched">
           IP
         </th>
-        <th title="Hits" onClick={() => sortRoster("PitchingHits")}>
+        <th onClick={() => sortRoster("PitchingHits")} title="Hits">
           H
         </th>
         <th
-          title="Earned runs"
-          onClick={() => sortRoster("PitchingEarnedRuns")}>
+          onClick={() => sortRoster("PitchingEarnedRuns")}
+          title="Earned runs">
           ER
         </th>
-        <th title="Home runs" onClick={() => sortRoster("PitchingHomeRuns")}>
+        <th onClick={() => sortRoster("PitchingHomeRuns")} title="Home runs">
           HR
         </th>
-        <th title="Walks" onClick={() => sortRoster("PitchingWalks")}>
+        <th onClick={() => sortRoster("PitchingWalks")} title="Walks">
           BB
         </th>
-        <th title="Strikeouts" onClick={() => sortRoster("PitchingStrikeouts")}>
+        <th onClick={() => sortRoster("PitchingStrikeouts")} title="Strikeouts">
           SO
         </th>
         <th
-          title="Strikeouts per 9 innings"
-          onClick={() => sortRoster("PitchingStrikeoutsPerNineInnings")}>
+          onClick={() => sortRoster("PitchingStrikeoutsPerNineInnings")}
+          title="Strikeouts per 9 innings">
           K/9
         </th>
         <th
-          title="Walks + Hits per Inning pitched"
-          onClick={() => sortRoster("")}>
+          onClick={() => sortRoster("")}
+          title="Walks + Hits per Inning pitched">
           WHIP
         </th>
         <th
-          title="Earned run average"
-          onClick={() => sortRoster("EarnedRunAverage")}>
+          onClick={() => sortRoster("EarnedRunAverage")}
+          title="Earned run average">
           ERA
         </th>
       </tr>

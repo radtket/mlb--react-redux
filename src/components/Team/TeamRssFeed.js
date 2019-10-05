@@ -10,7 +10,7 @@ const TeamRssFeed = ({ teamRssNews }) => {
 
       return (
         <li key={`${teamcode} ${link} ${id}`}>
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a href={link} rel="noopener noreferrer" target="_blank">
             {title}
           </a>
         </li>
@@ -20,12 +20,12 @@ const TeamRssFeed = ({ teamRssNews }) => {
 
   return (
     <Card
-      title="RSS Feed"
       body={
         <ul className="list--nav" style={{ marginBottom: 0 }}>
           {teamRssNews && renderRssHeadlines(teamRssNews)}
         </ul>
       }
+      title="RSS Feed"
     />
   );
 };

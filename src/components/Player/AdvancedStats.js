@@ -62,134 +62,134 @@ const AdvancedStats = ({ isPitcher, data: PropsData }) => {
       autoHeight
       data={getData(data)}
       loading={loading}
+      onSortColumn={handleSortColumn}
       sortColumn={sortColumn}
-      sortType={sortType}
-      onSortColumn={handleSortColumn}>
-      <Column flexGrow={1} align="center" sortable fixed>
+      sortType={sortType}>
+      <Column align="center" fixed flexGrow={1} sortable>
         <HeaderCell>Season</HeaderCell>
         <Cell dataKey="season" />
       </Column>
-      <Column flexGrow={1} align="center" sortable fixed>
+      <Column align="center" fixed flexGrow={1} sortable>
         <HeaderCell>Team</HeaderCell>
         <ImageCell dataKey="team" />
       </Column>
-      <Column flexGrow={1} align="center" sortable fixed>
+      <Column align="center" fixed flexGrow={1} sortable>
         <HeaderCell>Lg</HeaderCell>
         <Cell dataKey="league_level" />
       </Column>
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>Age</HeaderCell>
         <Cell dataKey="age" />
       </Column>
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>G</HeaderCell>
         <Cell dataKey="games" />
       </Column>
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>PA</HeaderCell>
           <Cell dataKey="pa" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>AB</HeaderCell>
           <Cell dataKey="ab" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Walk Rate</HeaderCell>
           <Cell dataKey="walkrate" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Strikeout Rate</HeaderCell>
           <Cell dataKey="krate" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>BB/K Ratio</HeaderCell>
           <Cell dataKey="bbkratio" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Contact Rate</HeaderCell>
           <Cell dataKey="contactrate" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>BABIP</HeaderCell>
           <Cell dataKey="babip" />
         </Column>
       )}
       {!isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Isolated Power</HeaderCell>
           <Cell dataKey="isopower" />
         </Column>
       )}
 
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>GS</HeaderCell>
           <Cell dataKey="gs" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>IP</HeaderCell>
           <Cell dataKey="ip" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>K/9</HeaderCell>
           <Cell dataKey="kper9" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>BB/9</HeaderCell>
           <Cell dataKey="bbper9" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>K/BB</HeaderCell>
           <Cell dataKey="kbb" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>HR/9</HeaderCell>
           <Cell dataKey="hrper9" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>GB/FB</HeaderCell>
           <Cell dataKey="gbfbratio" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Strand %</HeaderCell>
           <Cell dataKey="strandperc" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>Fastball</HeaderCell>
           <Cell dataKey="fastball" />
         </Column>
       )}
       {isPitcher && (
-        <Column flexGrow={1} align="center" sortable>
+        <Column align="center" flexGrow={1} sortable>
           <HeaderCell>ERA</HeaderCell>
           <Cell dataKey="era" />
         </Column>

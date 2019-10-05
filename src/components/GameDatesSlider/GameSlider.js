@@ -55,8 +55,8 @@ const GameSlider = ({ schedules }) => {
       const { label } = child.props;
       return (
         <GameSliderButton
-          activeTab={activeTab}
           key={label}
+          activeTab={activeTab}
           label={label}
           setActiveTab={setActiveTab}
         />
@@ -76,8 +76,8 @@ const GameSlider = ({ schedules }) => {
     <>
       <h1>{renderVisibleStartAndStopDays(activeGames, activeDisplayDate)}</h1>
       <Slider
-        className="text-center"
         ref={slider}
+        className="text-center"
         {...{
           infinite: false,
           speed: 500,

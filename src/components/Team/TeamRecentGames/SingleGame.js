@@ -40,8 +40,8 @@ const SingleGame = ({
       <Link to={`/game/${GameID}`}>
         <figure className="opponent-logo">
           <img
-            src={espnLogo(OpponentKey, 40)}
             alt={`${OpponentCity} ${OpponentName} Logo`}
+            src={espnLogo(OpponentKey, 40)}
           />
         </figure>
 

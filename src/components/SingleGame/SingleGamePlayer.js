@@ -24,8 +24,8 @@ const SingleGamePlayer = ({
         <ul className="team">
           <li>
             <figure
-              className="rounded"
               alt={PlayerName}
+              className="rounded"
               style={{
                 backgroundImage: `url("https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/${PlayerID}.png")`,
               }}
@@ -48,11 +48,11 @@ const SingleGamePlayer = ({
             </figcaption>
             {FinalStatPitchers && (
               <p
+                className="sb-meta__player--stat text-right"
                 style={{
                   display: "table-cell",
                   verticalAlign: "middle",
-                }}
-                className="sb-meta__player--stat text-right">
+                }}>
                 {stats}
               </p>
             )}

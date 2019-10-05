@@ -14,7 +14,7 @@ const StandingsTeam = ({
 }) => {
   return (
     <tr className={activeTeam ? "active-team" : ""}>
-      <TableTeamCell Key={TeamKey} City={City} Name={TeamName} hideCity />
+      <TableTeamCell Key={TeamKey} City={City} hideCity Name={TeamName} />
       <td>{Wins}</td>
       <td>{Losses}</td>
       {Percentage && <td>{Percentage}</td>}

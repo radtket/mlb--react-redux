@@ -38,7 +38,7 @@ const PlayerHero = ({
     >
       <div className="container">
         <div className="player-info__team-logo">
-          <img src={espnLogo(Team, 400)} alt="" />
+          <img alt="" src={espnLogo(Team, 400)} />
         </div>
 
         <div className="player-info__title player-info__title--mobile">
@@ -53,15 +53,15 @@ const PlayerHero = ({
           <div className="player-info__item player-info__item--photo">
             <figure className="player-info__photo">
               <img
-                src={UsaTodayHeadshotNoBackgroundImage(
-                  UsaTodayHeadshotNoBackgroundUrl,
-                  250
-                )}
                 alt={`${FirstName} ${LastName}`}
                 onError={e => {
                   e.target.src = `${PhotoUrl}`; // some replacement image
                   e.target.style = "padding: 8px; margin: 16px"; // inline styles in html format
                 }}
+                src={UsaTodayHeadshotNoBackgroundImage(
+                  UsaTodayHeadshotNoBackgroundUrl,
+                  250
+                )}
               />
               {/* <img
               src={`https://content.mlb.com/images/headshots/current/60x60/${MLBAMID}@3x.png`}

@@ -44,13 +44,13 @@ const FoxSports = ({
           <div className="bio__branding--team">
             <div className="bio__branding--stripe" />
             <div className="bio__branding--stripe-offset" />
-            <img src={TeamLogo} alt={TeamName} />
+            <img alt={TeamName} src={TeamLogo} />
             <div className="bio__branding--stripe-offset__top" />
           </div>
         </div>
       </div>
       <figure className="bio__headshot">
-        <img src={PlayerHeadshot} alt={FullName} />
+        <img alt={FullName} src={PlayerHeadshot} />
       </figure>
 
       <article className="bio__info">

@@ -8,9 +8,7 @@ const Roster = ({ players }) => {
       {players &&
         players.map((player, i) => {
           const { PlayerID, LastName } = player;
-          return (
-            <ProfileCard key={PlayerID || LastName || i} player={player} />
-          );
+          return <ProfileCard key={PlayerID || LastName || i} {...player} />;
         })}
     </tbody>
   );

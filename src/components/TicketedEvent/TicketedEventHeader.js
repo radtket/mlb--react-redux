@@ -5,25 +5,28 @@ import styled from "styled-components";
 import { stubHubTeamHelper } from "../../utils/helpers";
 
 const TeamLogoWrap = styled.div`
-position: ${({ isHomeTeam }) => (isHomeTeam ? "absolute" : "relative")};
-left: ${({ isHomeTeam }) => (isHomeTeam ? "initial" : "-5%")};
-right: ${({ isHomeTeam }) => (isHomeTeam ? "-5%" : "initial")};
-border-right: ${({ isHomeTeam }) =>
-  isHomeTeam ? "initial" : `3px solid #fff`};
+  position: ${({ isHomeTeam }) => (isHomeTeam ? "absolute" : "relative")};
+  left: ${({ isHomeTeam }) => (isHomeTeam ? "initial" : "-5%")};
+  right: ${({ isHomeTeam }) => (isHomeTeam ? "-5%" : "initial")};
+  border-right: ${({ isHomeTeam }) =>
+    isHomeTeam ? "initial" : `3px solid #fff`};
   border-left: ${({ isHomeTeam }) =>
     isHomeTeam ? `3px solid #fff` : "initial"};
-height: 100%;
-overflow: hidden;
-top: 0;
-transform: skewX(-8deg);
-width: 55%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  transform: skewX(-8deg);
+  width: 55%;
 
   > figure {
-    background: ${({ ColorPrimary, ColorSecondary }) =>
-      ColorPrimary || ColorSecondary} url("${({
-  WikipediaWordMarkUrl,
-  WikipediaLogoUrl,
-}) => WikipediaWordMarkUrl || WikipediaLogoUrl}");
+    background: ${({
+      ColorPrimary,
+      ColorSecondary,
+      WikipediaWordMarkUrl,
+      WikipediaLogoUrl,
+    }) =>
+      `${ColorPrimary || ColorSecondary} url(${WikipediaWordMarkUrl ||
+        WikipediaLogoUrl})`};
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -46,12 +49,12 @@ const SplitLogo = (teams, datetime_local) => {
 
     return (
       <TeamLogoWrap
-        isHomeTeam={isHomeTeam}
+        key={`${Key} ${datetime_local}`}
         ColorPrimary={ColorPrimary}
         ColorSecondary={ColorSecondary}
-        WikipediaWordMarkUrl={WikipediaWordMarkUrl}
+        isHomeTeam={isHomeTeam}
         WikipediaLogoUrl={WikipediaLogoUrl}
-        key={`${Key} ${datetime_local}`}>
+        WikipediaWordMarkUrl={WikipediaWordMarkUrl}>
         <figure />
       </TeamLogoWrap>
     );
@@ -70,8 +73,8 @@ const TicketedEventHeader = ({ performers, datetime_local, url }) => {
     <TicketedEventHeaderWrap
       className="event-ticket-header"
       href={url}
-      target="_blank"
-      rel="noopener noreferrer">
+      rel="noopener noreferrer"
+      target="_blank">
       {SplitLogo(performers, datetime_local)}
     </TicketedEventHeaderWrap>
   );

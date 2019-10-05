@@ -34,10 +34,10 @@ const CalendarCells = ({
       const formatedDay = format(new Date(day), "YYYY-MM-DD");
       days.push(
         <CalendarSingleDate
+          key={day}
           day={day}
           formattedDate={formattedDate}
           gameOnDate={teamGames[formatedDay]}
-          key={day}
           monthStart={monthStart}
           onDateClick={onDateClick}
           selectedDate={selectedDate}
@@ -46,7 +46,7 @@ const CalendarCells = ({
       day = addDays(day, 1);
     }
     rows.push(
-      <div className="calendar__row" key={day}>
+      <div key={day} className="calendar__row">
         {days}
       </div>
     );

@@ -7,6 +7,7 @@ const Picker = ({ value, onChange, options }) => {
     <span>
       <h1>{value}</h1>
       <Dropdown
+        onChange={e => onChange(e.value)}
         options={options.reduce((all, one) => {
           all.push({
             value: one,
@@ -14,7 +15,6 @@ const Picker = ({ value, onChange, options }) => {
           });
           return all;
         }, [])}
-        onChange={e => onChange(e.value)}
         placeholder={value}
       />
     </span>

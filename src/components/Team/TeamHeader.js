@@ -36,9 +36,9 @@ const TeamHeader = ({
         <div className="row">
           <figure className="team">
             <img
+              alt={`${City} ${Name} Logo`}
               className="team__logo"
               src={espnLogo(Key, 64) || WikipediaLogoUrl}
-              alt={`${City} ${Name} Logo`}
             />
             <h1 className="team__name">
               <span className="team__name--city">{City} </span>
@@ -48,10 +48,10 @@ const TeamHeader = ({
 
           <Dropdown
             className="team__teams-dropdown"
-            style={{ position: "absolute", right: 0, top: 24 }}
-            options={createTeamsDropdown(teams, Key)}
             onChange={changeTeams}
+            options={createTeamsDropdown(teams, Key)}
             placeholder="More MLB teams"
+            style={{ position: "absolute", right: 0, top: 24 }}
           />
         </div>
 
@@ -98,16 +98,16 @@ const TeamHeader = ({
               <li className="team__social--item">
                 <a
                   href={`https://twitter.com/${Twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                  target="_blank">
                   <IconTwitter />
                 </a>
               </li>
               <li className="team__social--item">
                 <a
                   href={`https://www.instagram.com/${Instagram}`}
-                  target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                  target="_blank">
                   <IconInstagram />
                 </a>
               </li>

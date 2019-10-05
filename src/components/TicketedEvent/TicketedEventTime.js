@@ -6,8 +6,8 @@ import { format } from "date-fns";
 const TicketedEventTime = ({ DateOfEvent }) => {
   return (
     <time
-      dateTime={format(DateOfEvent, "YYYY-MM-DD HH:mm")}
-      className="event-ticket__date">
+      className="event-ticket__date"
+      dateTime={format(DateOfEvent, "YYYY-MM-DD HH:mm")}>
       <span className="event-ticket__date--month">
         <span className="event-ticket__date--month-name">
           {format(DateOfEvent, "MMM")}

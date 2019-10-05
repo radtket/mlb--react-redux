@@ -3,35 +3,33 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { PlayerPhotoByID } from "../../../../utils/helpers";
 
-const ProfileCard = ({ player }) => {
-  const {
-    PlayerID,
-    Name,
-    Games,
-    Started,
-    PitchingQualityStarts,
-    Wins,
-    Losses,
-    Saves,
-    EarnedRunAverage,
-    PitchingHolds,
-    InningsPitchedFull,
-    PitchingHits,
-    PitchingEarnedRuns,
-    PitchingHomeRuns,
-    PitchingWalks,
-    PitchingStrikeouts,
-    PitchingStrikeoutsPerNineInnings,
-  } = player;
-
+const ProfileCard = ({
+  EarnedRunAverage,
+  Games,
+  InningsPitchedFull,
+  Losses,
+  Name,
+  PitchingEarnedRuns,
+  PitchingHits,
+  PitchingHolds,
+  PitchingHomeRuns,
+  PitchingQualityStarts,
+  PitchingStrikeouts,
+  PitchingStrikeoutsPerNineInnings,
+  PitchingWalks,
+  PlayerID,
+  Saves,
+  Started,
+  Wins,
+}) => {
   return (
     <tr>
       <td data-th="Name">
-        <Link to={`/player/${PlayerID}`} className="table--roster__avatar">
+        <Link className="table--roster__avatar" to={`/player/${PlayerID}`}>
           <figure
+            alt={Name}
             className="rounded"
             style={{ backgroundImage: `url(${PlayerPhotoByID(PlayerID)})` }}
-            alt={Name}
           />
           <span>{Name}</span>
         </Link>
@@ -59,47 +57,43 @@ const ProfileCard = ({ player }) => {
 };
 
 ProfileCard.propTypes = {
-  player: PropTypes.shape({
-    PlayerID: PropTypes.number,
-    Name: PropTypes.string,
-    Games: PropTypes.number,
-    Started: PropTypes.number,
-    PitchingQualityStarts: PropTypes.number,
-    Wins: PropTypes.number,
-    Losses: PropTypes.number,
-    Saves: PropTypes.number,
-    EarnedRunAverage: PropTypes.number,
-    PitchingHolds: PropTypes.number,
-    InningsPitchedFull: PropTypes.number,
-    PitchingHits: PropTypes.number,
-    PitchingEarnedRuns: PropTypes.number,
-    PitchingHomeRuns: PropTypes.number,
-    PitchingWalks: PropTypes.number,
-    PitchingStrikeouts: PropTypes.number,
-    PitchingStrikeoutsPerNineInnings: PropTypes.number,
-  }),
+  PlayerID: PropTypes.number,
+  Name: PropTypes.string,
+  Games: PropTypes.number,
+  Started: PropTypes.number,
+  PitchingQualityStarts: PropTypes.number,
+  Wins: PropTypes.number,
+  Losses: PropTypes.number,
+  Saves: PropTypes.number,
+  EarnedRunAverage: PropTypes.number,
+  PitchingHolds: PropTypes.number,
+  InningsPitchedFull: PropTypes.number,
+  PitchingHits: PropTypes.number,
+  PitchingEarnedRuns: PropTypes.number,
+  PitchingHomeRuns: PropTypes.number,
+  PitchingWalks: PropTypes.number,
+  PitchingStrikeouts: PropTypes.number,
+  PitchingStrikeoutsPerNineInnings: PropTypes.number,
 };
 
 ProfileCard.defaultProps = {
-  player: PropTypes.shape({
-    PlayerID: "-",
-    Name: "-",
-    Games: "-",
-    Started: "-",
-    PitchingQualityStarts: "-",
-    Wins: "-",
-    Losses: "-",
-    Saves: "-",
-    EarnedRunAverage: "-",
-    PitchingHolds: "-",
-    InningsPitchedFull: "-",
-    PitchingHits: "-",
-    PitchingEarnedRuns: "-",
-    PitchingHomeRuns: "-",
-    PitchingWalks: "-",
-    PitchingStrikeouts: "-",
-    PitchingStrikeoutsPerNineInnings: "-",
-  }),
+  PlayerID: "-",
+  Name: "-",
+  Games: "-",
+  Started: "-",
+  PitchingQualityStarts: "-",
+  Wins: "-",
+  Losses: "-",
+  Saves: "-",
+  EarnedRunAverage: "-",
+  PitchingHolds: "-",
+  InningsPitchedFull: "-",
+  PitchingHits: "-",
+  PitchingEarnedRuns: "-",
+  PitchingHomeRuns: "-",
+  PitchingWalks: "-",
+  PitchingStrikeouts: "-",
+  PitchingStrikeoutsPerNineInnings: "-",
 };
 
 export default ProfileCard;

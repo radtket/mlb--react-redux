@@ -7,8 +7,8 @@ const SlickPrevArrow = ({ className, style, onClick }) => {
   return (
     <button
       className={className}
-      style={{ ...style }}
       onClick={onClick}
+      style={{ ...style }}
       type="button">
       <ChevronLeft />
     </button>

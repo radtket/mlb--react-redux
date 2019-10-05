@@ -54,7 +54,7 @@ const TableTeamCell = ({ Key: TeamAbrv, City, Name, hideCity }) => {
   return (
     <TableTeamCellWrap className="standings__team">
       <Link to={`/teams/${TeamAbrv}`}>
-        <img src={espnLogo(`${TeamAbrv}`, 36)} alt={`${City} ${Name} Logo`} />
+        <img alt={`${City} ${Name} Logo`} src={espnLogo(`${TeamAbrv}`, 36)} />
         {TeamAbrv && <abbr className="standings__team--arbv">{TeamAbrv}</abbr>}
         {City && !hideCity && (
           <figcaption className="standings__team--city">{City} </figcaption>

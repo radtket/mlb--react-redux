@@ -17,15 +17,15 @@ const RefScoreboard = () => {
           <tbody>
             <tr className="away">
               <td className="team team__away">
-                <Link to="/" className="team__logo--wrap">
+                <Link className="team__logo--wrap" to="/">
                   <img
+                    alt=""
                     className="team__logo"
                     src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/bal.png&h=70&w=70"
-                    alt=""
                   />
                 </Link>
                 <div className="team__meta">
-                  <Link to="/" className="team__name">
+                  <Link className="team__name" to="/">
                     <span className="team__name--full">Orioles</span>
                     <abbr className="team__name--abrv">BAL</abbr>
                   </Link>
@@ -44,15 +44,15 @@ const RefScoreboard = () => {
 
             <tr className="home">
               <td className="team team__home">
-                <Link to="/" className="team__logo--wrap">
+                <Link className="team__logo--wrap" to="/">
                   <img
+                    alt=""
                     className="team__logo"
                     src="https://a1.espncdn.com/combiner/i?img=/i/teamlogos/mlb/500/scoreboard/min.png&h=70&w=70"
-                    alt=""
                   />
                 </Link>
                 <div className="team__meta">
-                  <Link to="/" className="team__name">
+                  <Link className="team__name" to="/">
                     <span className="team__name--full">Twins</span>
                     <abbr className="team__name--abrv">MIN</abbr>
                   </Link>
@@ -113,7 +113,7 @@ const RefScoreboard = () => {
                 </span>
               </p>
             </div>
-            <Link to="/" className="play-by-play-link">
+            <Link className="play-by-play-link" to="/">
               Play-by-Play
             </Link>
           </div>
@@ -127,8 +127,8 @@ const RefScoreboard = () => {
             <ul className="team">
               <li>
                 <figure
-                  className="rounded"
                   alt="Chris Owings"
+                  className="rounded"
                   style={{
                     backgroundImage:
                       'url("https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/10000034.png")',
@@ -151,8 +151,8 @@ const RefScoreboard = () => {
             <ul className="team">
               <li>
                 <figure
-                  className="rounded"
                   alt="Chris Owings"
+                  className="rounded"
                   style={{
                     backgroundImage:
                       'url("https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/10000034.png")',

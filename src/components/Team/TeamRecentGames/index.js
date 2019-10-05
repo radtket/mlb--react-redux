@@ -14,18 +14,18 @@ const TeamRecentGames = ({ activeTeam, recentGames }) => {
       })
       .map(game => {
         const { GameID } = game;
-        return <SingleGame activeTeam={activeTeamArg} key={GameID} {...game} />;
+        return <SingleGame key={GameID} activeTeam={activeTeamArg} {...game} />;
       });
   };
 
   return (
     <Card
-      title="Recent Games"
       body={
         <ul style={{ marginBottom: 0 }}>
           {recentGames && renderLast15Games(recentGames, activeTeam)}
         </ul>
       }
+      title="Recent Games"
     />
   );
 };

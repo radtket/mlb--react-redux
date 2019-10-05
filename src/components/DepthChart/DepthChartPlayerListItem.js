@@ -13,7 +13,7 @@ export const DepthPlayerLink = styled(Link)`
 
 const DepthChartPlayerListItem = ({ playerObj, FormatedName, hasPlayerId }) => {
   if (!hasPlayerId) {
-    return <>{FormatedName}</>;
+    return FormatedName;
   }
 
   return (

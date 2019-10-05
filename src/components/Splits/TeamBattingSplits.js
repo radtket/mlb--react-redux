@@ -65,104 +65,104 @@ const TeamBattingSplits = ({ dataList: PropsData }) => {
     <Table
       autoHeight
       data={getData(data)}
-      loading={loading}
-      sortColumn={sortColumn}
-      sortType={sortType}
-      onSortColumn={handleSortColumn}
       isTree
+      loading={loading}
+      onSortColumn={handleSortColumn}
+      rowClassName="capitalize-first-cell"
       rowKey="id"
-      rowClassName="capitalize-first-cell">
-      <Column align="left" width={200} sortable fixed>
+      sortColumn={sortColumn}
+      sortType={sortType}>
+      <Column align="left" fixed sortable width={200}>
         <HeaderCell>name</HeaderCell>
         <Cell dataKey="name" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>ab</HeaderCell>
         <Cell dataKey="ab" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>runs</HeaderCell>
         <Cell dataKey="runs" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>s</HeaderCell>
         <Cell dataKey="s" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>d</HeaderCell>
         <Cell dataKey="d" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>t</HeaderCell>
         <Cell dataKey="t" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>hr</HeaderCell>
         <Cell dataKey="hr" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>rbi</HeaderCell>
         <Cell dataKey="rbi" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>bb</HeaderCell>
         <Cell dataKey="bb" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>ibb</HeaderCell>
         <Cell dataKey="ibb" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>hbp</HeaderCell>
         <Cell dataKey="hbp" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>sb</HeaderCell>
         <Cell dataKey="sb" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>cs</HeaderCell>
         <Cell dataKey="cs" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>obp</HeaderCell>
         <Cell dataKey="obp" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>slg</HeaderCell>
         <Cell dataKey="slg" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>ops</HeaderCell>
         <Cell dataKey="ops" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>h</HeaderCell>
         <Cell dataKey="h" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>ktotal</HeaderCell>
         <Cell dataKey="ktotal" />
       </Column>
 
-      <Column flexGrow={1} align="center" sortable>
+      <Column align="center" flexGrow={1} sortable>
         <HeaderCell>avg</HeaderCell>
         <Cell dataKey="avg" />
       </Column>

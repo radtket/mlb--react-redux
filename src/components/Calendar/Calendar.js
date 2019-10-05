@@ -50,9 +50,9 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
   return (
     <div className="calendar">
       <CalendarHeader
-        prevMonth={prevMonth}
-        nextMonth={nextMonth}
         currentMonthHeadline={format(currentMonth, "MMMM YYYY")}
+        nextMonth={nextMonth}
+        prevMonth={prevMonth}
       />
       <CalendarDaysOfWeek currentMonth={currentMonth} />
       <CalendarCells

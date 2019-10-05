@@ -34,15 +34,15 @@ const PlayerStats = ({
     <div>
       {basic && (
         <Card
-          title={`${isPitcher ? "Pitching" : "Batting"} Stats`}
           body={<BasicStats data={basic.body} isPitcher={isPitcher} />}
+          title={`${isPitcher ? "Pitching" : "Batting"} Stats`}
         />
       )}
 
       {advanced && (
         <Card
-          title={`Advanced ${isPitcher ? "Pitching" : "Batting"} Stats`}
           body={<AdvancedStats data={advanced.body} isPitcher={isPitcher} />}
+          title={`Advanced ${isPitcher ? "Pitching" : "Batting"} Stats`}
         />
       )}
     </div>

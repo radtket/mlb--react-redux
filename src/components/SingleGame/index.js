@@ -130,29 +130,29 @@ const SingleGame = ({
             DateTime={DateTime}
             GameStatusFinal={GameStatusFinal}
             GameStatusInProgress={GameStatusInProgress}
+            GameStatusPregame={GameStatusPregame}
             GameStatusScheduled={GameStatusScheduled}
             Inning={Inning}
             InningHalf={InningHalf}
             IsClosed={IsClosed}
-            GameStatusPregame={GameStatusPregame}
             Status={Status}
           />
           <tbody>
             <SingleGameTeam
               AwayTeam={AwayTeam}
               Errors={AwayTeamErrors}
+              GameStatusPostponed={GameStatusPostponed}
               Hits={AwayTeamHits}
               Runs={AwayTeamRuns}
-              GameStatusPostponed={GameStatusPostponed}
               {...standings.find(team => team.Key === AwayTeam)}
             />
             <SingleGameTeam
-              isHome
-              HomeTeam={HomeTeam}
               Errors={HomeTeamErrors}
-              Hits={HomeTeamHits}
-              Runs={HomeTeamRuns}
               GameStatusPostponed={GameStatusPostponed}
+              Hits={HomeTeamHits}
+              HomeTeam={HomeTeam}
+              isHome
+              Runs={HomeTeamRuns}
               {...standings.find(team => team.Key === HomeTeam)}
             />
           </tbody>
@@ -171,8 +171,8 @@ const SingleGame = ({
               <div className="weather">
                 <a
                   href="http://www.accuweather.com/"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                  rel="noopener noreferrer"
+                  target="_blank">
                   <div className="accuweather" />
                 </a>
                 <div className="accu-weather-icons sm icon-2" />
@@ -188,8 +188,8 @@ const SingleGame = ({
               <TicketStubs />
               <a
                 href={gameTicket.url}
-                target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                target="_blank">
                 {`Tickets as low as $${gameTicket.stats.lowest_price}`}
               </a>
             </div>
@@ -212,7 +212,7 @@ const SingleGame = ({
                 RunnerOnThird={RunnerOnThird}
               />
               <div className="baseball-details">
-                <SingleGameCount Balls={Balls} Strikes={Strikes} Outs={Outs} />
+                <SingleGameCount Balls={Balls} Outs={Outs} Strikes={Strikes} />
                 {LastPlay && LastPlay !== "Scrambled" && (
                   <SingleGameLastGame LastPlay={LastPlay} />
                 )}
@@ -244,22 +244,22 @@ const SingleGame = ({
               {AwayPitcher && (
                 <SingleGamePlayer
                   isPitcher
+                  PlayerData={AwayPitcher}
                   PlayerHeaderText="Probable Pitchers"
+                  PlayerTeam
                   stats={`(${AwayPitcher.Wins}-${AwayPitcher.Losses}, ${
                     AwayPitcher.EarnedRunAverage
                   })`}
-                  PlayerTeam
-                  PlayerData={AwayPitcher}
                 />
               )}
 
               {HomePitcher && (
                 <SingleGamePlayer
+                  PlayerData={HomePitcher}
+                  PlayerTeam
                   stats={`(${HomePitcher.Wins}-${HomePitcher.Losses}, ${
                     HomePitcher.EarnedRunAverage
                   })`}
-                  PlayerTeam
-                  PlayerData={HomePitcher}
                 />
               )}
             </>
@@ -270,18 +270,18 @@ const SingleGame = ({
               {CurrentPitcher && (
                 <SingleGamePlayer
                   isPitcher
-                  PlayerHeaderText="Pitching"
-                  stats="4.2 IP, ER, 5 H, 4 K, 0 BB"
-                  PlayerTeam
                   PlayerData={CurrentPitcher}
+                  PlayerHeaderText="Pitching"
+                  PlayerTeam
+                  stats="4.2 IP, ER, 5 H, 4 K, 0 BB"
                 />
               )}
               {CurrentBatter && (
                 <SingleGamePlayer
-                  PlayerHeaderText="Batting"
-                  stats="0-0, BB"
-                  PlayerTeam
                   PlayerData={CurrentBatter}
+                  PlayerHeaderText="Batting"
+                  PlayerTeam
+                  stats="0-0, BB"
                 />
               )}
             </>
@@ -290,34 +290,34 @@ const SingleGame = ({
           {GameStatusFinal &&
             (WinningPitcher && (
               <SingleGamePlayer
-                isPitcher
                 FinalStatPitchers="Win"
+                isPitcher
+                PlayerData={WinningPitcher}
                 stats={`(${WinningPitcher.Wins}-${WinningPitcher.Losses}, ${
                   WinningPitcher.EarnedRunAverage
                 })`}
-                PlayerData={WinningPitcher}
               />
             ))}
 
           {GameStatusFinal &&
             (LosingPitcher && (
               <SingleGamePlayer
-                isPitcher
                 FinalStatPitchers="Loss"
+                isPitcher
+                PlayerData={LosingPitcher}
                 stats={`(${LosingPitcher.Wins}-${LosingPitcher.Losses}, ${
                   LosingPitcher.EarnedRunAverage
                 })`}
-                PlayerData={LosingPitcher}
               />
             ))}
 
           {GameStatusFinal &&
             (SavingPitcher && (
               <SingleGamePlayer
-                isPitcher
                 FinalStatPitchers="Save"
-                stats={`(${SavingPitcher.Saves})`}
+                isPitcher
                 PlayerData={SavingPitcher}
+                stats={`(${SavingPitcher.Saves})`}
               />
             ))}
         </article>
@@ -330,13 +330,13 @@ const SingleGame = ({
           AwayTeamErrors={AwayTeamErrors}
           AwayTeamHits={AwayTeamHits}
           AwayTeamRuns={AwayTeamRuns}
+          GameID={GameID}
           HomeTeam={HomeTeam}
           HomeTeamErrors={HomeTeamErrors}
           HomeTeamHits={HomeTeamHits}
           HomeTeamRuns={HomeTeamRuns}
           Innings={Innings}
           InningsInRegulation={9}
-          GameID={GameID}
         />
       </section>
     </div>

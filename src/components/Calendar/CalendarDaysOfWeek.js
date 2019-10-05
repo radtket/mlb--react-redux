@@ -11,8 +11,8 @@ const CalendarDaysOfWeek = ({ currentMonth }) => {
   for (let i = 0; i < 7; i += 1) {
     days.push(
       <div
-        className="calendar__col aligner__center--horitzontal text-center"
-        key={i}>
+        key={i}
+        className="calendar__col aligner__center--horitzontal text-center">
         {format(addDays(startDate, i), dateFormat)}
       </div>
     );

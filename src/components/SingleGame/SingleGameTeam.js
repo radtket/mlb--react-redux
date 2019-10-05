@@ -21,11 +21,11 @@ const SingleGameTeam = ({
   return (
     <tr className={`${isHome ? "home" : "away"}`}>
       <td className={`team team__${isHome ? "home" : "away"}`}>
-        <Link to={`/teams/${Key}`} className="team__logo--wrap">
-          <img className="team__logo" src={espnLogo(`${Key}`, 70)} alt="" />
+        <Link className="team__logo--wrap" to={`/teams/${Key}`}>
+          <img alt="" className="team__logo" src={espnLogo(`${Key}`, 70)} />
         </Link>
         <div className="team__meta">
-          <Link to={`/teams/${Key}`} className="team__name">
+          <Link className="team__name" to={`/teams/${Key}`}>
             <span className="team__name--full">{Name}</span>
             <abbr className="team__name--abrv">{Key}</abbr>
           </Link>

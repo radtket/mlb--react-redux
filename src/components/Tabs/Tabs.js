@@ -12,11 +12,11 @@ const Tabs = ({ children, itemWidth }) => {
         {children.map(({ props: { label } }) => {
           return (
             <Tab
-              activeTab={activeTab}
               key={label}
+              activeTab={activeTab}
+              itemWidth={itemWidth}
               label={label}
               onClick={e => setActiveTab(e)}
-              itemWidth={itemWidth}
             />
           );
         })}

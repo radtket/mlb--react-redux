@@ -8,7 +8,7 @@ const Posts = ({ posts }) => {
         const { name, title, url } = post;
         return (
           <li key={name}>
-            <a href={url} target="_blank" rel="noopener noreferrer">
+            <a href={url} rel="noopener noreferrer" target="_blank">
               {title}
             </a>
           </li>

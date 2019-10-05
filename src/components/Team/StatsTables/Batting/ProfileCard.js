@@ -8,27 +8,25 @@ import {
   calcBattingSlug,
 } from "../../../../utils/helpers";
 
-const ProfileCard = ({ player }) => {
-  const {
-    PlayerID,
-    Name,
-    Games,
-    AtBats,
-    Runs,
-    Hits,
-    Doubles,
-    Triples,
-    HomeRuns,
-    RunsBattedIn,
-    TotalBases,
-    Walks,
-    Strikeouts,
-    StolenBases,
-    SacrificeFlies,
-    HitByPitch,
-    Singles,
-  } = player;
-
+const ProfileCard = ({
+  AtBats,
+  Doubles,
+  Games,
+  HitByPitch,
+  Hits,
+  HomeRuns,
+  Name,
+  PlayerID,
+  Runs,
+  RunsBattedIn,
+  SacrificeFlies,
+  Singles,
+  StolenBases,
+  Strikeouts,
+  TotalBases,
+  Triples,
+  Walks,
+}) => {
   const BattingAverage = calcBattingAverage(Hits, AtBats);
   const OnBasePercentage = calcBattingOBP(
     AtBats,
@@ -53,11 +51,11 @@ const ProfileCard = ({ player }) => {
   return (
     <tr>
       <td data-th="Name">
-        <Link to={`/player/${PlayerID}`} className="table--roster__avatar">
+        <Link className="table--roster__avatar" to={`/player/${PlayerID}`}>
           <figure
+            alt={Name}
             className="rounded"
             style={{ backgroundImage: `url(${PlayerPhotoByID(PlayerID)})` }}
-            alt={Name}
           />
           <span>{Name}</span>
         </Link>
@@ -83,33 +81,43 @@ const ProfileCard = ({ player }) => {
 };
 
 ProfileCard.propTypes = {
-  player: PropTypes.shape({
-    Position: PropTypes.string,
-    FirstName: PropTypes.string,
-    LastName: PropTypes.string,
-    Jersey: PropTypes.number,
-    BatHand: PropTypes.string,
-    ThrowHand: PropTypes.string,
-    BirthDate: PropTypes.string,
-    Height: PropTypes.number,
-    Weight: PropTypes.number,
-    BirthCity: PropTypes.string,
-  }),
+  AtBats: PropTypes.number,
+  Doubles: PropTypes.number,
+  Games: PropTypes.number,
+  HitByPitch: PropTypes.number,
+  Hits: PropTypes.number,
+  HomeRuns: PropTypes.number,
+  Name: PropTypes.string,
+  PlayerID: PropTypes.number,
+  Runs: PropTypes.number,
+  RunsBattedIn: PropTypes.number,
+  SacrificeFlies: PropTypes.number,
+  Singles: PropTypes.number,
+  StolenBases: PropTypes.number,
+  Strikeouts: PropTypes.number,
+  TotalBases: PropTypes.number,
+  Triples: PropTypes.number,
+  Walks: PropTypes.number,
 };
 
 ProfileCard.defaultProps = {
-  player: PropTypes.shape({
-    Position: "-",
-    FirstName: "-",
-    LastName: "-",
-    Jersey: "-",
-    BatHand: "-",
-    ThrowHand: "-",
-    BirthDate: "-",
-    Height: "-",
-    Weight: "-",
-    BirthCity: "-",
-  }),
+  AtBats: 0,
+  Doubles: 0,
+  Games: 0,
+  HitByPitch: 0,
+  Hits: 0,
+  HomeRuns: 0,
+  Name: null,
+  PlayerID: 0,
+  Runs: 0,
+  RunsBattedIn: 0,
+  SacrificeFlies: 0,
+  Singles: 0,
+  StolenBases: 0,
+  Strikeouts: 0,
+  TotalBases: 0,
+  Triples: 0,
+  Walks: 0,
 };
 
 export default ProfileCard;

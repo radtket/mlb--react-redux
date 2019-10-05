@@ -12,8 +12,8 @@ const DepthChartPlayerImage = ({ FirstName, LastName, PhotoUrl, style }) => {
 
   return (
     <DepthChartImage
-      className="depth-chart__position--image"
       alt={`${FirstName} ${LastName}`}
+      className="depth-chart__position--image"
       style={{
         ...style,
       }}

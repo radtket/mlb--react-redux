@@ -1,29 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { espnLogo } from "../../../utils/helpers";
+import { espnLogo, teamFinder } from "../../../utils/helpers";
 
-const TeamLogo = ({ Team, Key }) => {
-  const { Name, City, PrimaryColor } = Team;
+const TeamLogo = ({ teamKey }) => {
+  const { Name, City, PrimaryColor } = teamFinder[teamKey];
 
   return (
     <div
       className="team__banner rendered"
       style={{ background: `${PrimaryColor}` }}>
       <figure className="team__banner__wrapper">
-        <img src={espnLogo(Key, 208)} alt={`${Name} ${City} Logo`} />
+        <img alt={`${Name} ${City} Logo`} src={espnLogo(teamKey, 208)} />
       </figure>
     </div>
   );
 };
 
 TeamLogo.propTypes = {
-  Team: PropTypes.shape({
-    Name: PropTypes.string,
-    City: PropTypes.string,
+  teamKey: PropTypes.string,
+};
 
-    PrimaryColor: PropTypes.string,
-  }).isRequired,
-  Key: PropTypes.string.isRequired,
+TeamLogo.defaultProps = {
+  teamKey: "MIL",
 };
 
 export default TeamLogo;

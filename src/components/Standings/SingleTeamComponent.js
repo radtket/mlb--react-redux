@@ -27,8 +27,8 @@ const StandingsSingleTeam = ({ team }) => {
           .replace(/^0+/, "")}
       </td>
       <td>{GamesBehind || "-"}</td>
-      <TableWinsLossesCell Wins={HomeWins} Losses={HomeLosses} />
-      <TableWinsLossesCell Wins={AwayWins} Losses={AwayLosses} />
+      <TableWinsLossesCell Losses={HomeLosses} Wins={HomeWins} />
+      <TableWinsLossesCell Losses={AwayLosses} Wins={AwayWins} />
     </tr>
   );
 };

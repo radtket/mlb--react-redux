@@ -7,8 +7,8 @@ const SlickNextArrow = ({ className, style, onClick }) => {
   return (
     <button
       className={className}
-      style={{ ...style }}
       onClick={onClick}
+      style={{ ...style }}
       type="button">
       <ChevronRight />
     </button>

@@ -2,13 +2,7 @@ import React from "react";
 import DepthChartPlayerListItem from "./DepthChartPlayerListItem";
 
 const DepthChartPlayerList = ({ players, teamRoster }) => {
-  return players.map(activeRosterMember => {
-    const {
-      first_name: FirstName,
-      last_name: LastName,
-      id,
-    } = activeRosterMember;
-
+  return players.map(({ first_name: FirstName, last_name: LastName, id }) => {
     const playerObj = teamRoster.find(
       player => player.SportRadarPlayerID === id
     );
@@ -16,11 +10,11 @@ const DepthChartPlayerList = ({ players, teamRoster }) => {
     return (
       <li key={id}>
         <DepthChartPlayerListItem
-          hasPlayerId={playerObj && playerObj.PlayerID !== undefined}
-          playerObj={playerObj}
           FirstName={FirstName}
-          LastName={LastName}
           FormatedName={`${FirstName.charAt(0)}. ${LastName}`}
+          hasPlayerId={playerObj && playerObj.PlayerID !== undefined}
+          LastName={LastName}
+          playerObj={playerObj}
         />
       </li>
     );

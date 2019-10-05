@@ -13,7 +13,7 @@ const TicketedEventDetails = ({
   return (
     <div className="event-ticket__info aligner__grow">
       <h2 className="event-ticket__title">
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a href={url} rel="noopener noreferrer" target="_blank">
           {title}
         </a>
       </h2>
@@ -22,7 +22,7 @@ const TicketedEventDetails = ({
           <time>{format(DateOfEvent, "h:mm A")}</time>
         </li>
         <li>
-          <a href={VenueUrl} target="_blank" rel="noopener noreferrer">
+          <a href={VenueUrl} rel="noopener noreferrer" target="_blank">
             {VenueName}
           </a>
         </li>

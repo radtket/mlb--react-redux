@@ -3,30 +3,29 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { birthday, inchesToFeet } from "../../utils/helpers";
 
-const ProfileCard = ({ player }) => {
-  const {
-    BatHand,
-    BirthCity,
-    BirthDate,
-    BirthState,
-    FirstName,
-    Height,
-    Jersey,
-    LastName,
-    PhotoUrl,
-    PlayerID,
-    Position,
-    ThrowHand,
-    Weight,
-  } = player;
+const ProfileCard = ({
+  BatHand,
+  BirthCity,
+  BirthDate,
+  BirthState,
+  FirstName,
+  Height,
+  Jersey,
+  LastName,
+  PhotoUrl,
+  PlayerID,
+  Position,
+  ThrowHand,
+  Weight,
+}) => {
   return (
     <tr>
       <td data-th="Name">
-        <Link to={`/player/${PlayerID}`} className="table--roster__avatar">
+        <Link className="table--roster__avatar" to={`/player/${PlayerID}`}>
           <figure
+            alt={`${FirstName} ${LastName}`}
             className="rounded"
             style={{ backgroundImage: `url(${PhotoUrl})` }}
-            alt={`${FirstName} ${LastName}`}
           />
           <span style={{ display: "none" }}>
             {typeof Jersey === "number" ? Jersey : ""}
@@ -50,42 +49,44 @@ const ProfileCard = ({ player }) => {
       </td>
       <td data-th="Weight">{typeof Weight === "number" ? Weight : "-"}</td>
       <td data-th="Birthplace">
-        {{ BirthCity } && { BirthState }
-          ? `${BirthCity}${BirthState !== null ? `, ${BirthState}` : ""}`
-          : { BirthCity }}
+        {`${BirthCity && BirthCity} ${
+          BirthState !== null ? `, ${BirthState}` : ""
+        }`}
       </td>
     </tr>
   );
 };
 
 ProfileCard.propTypes = {
-  player: PropTypes.shape({
-    Position: PropTypes.string,
-    FirstName: PropTypes.string,
-    LastName: PropTypes.string,
-    Jersey: PropTypes.number,
-    BatHand: PropTypes.string,
-    ThrowHand: PropTypes.string,
-    BirthDate: PropTypes.string,
-    Height: PropTypes.number,
-    Weight: PropTypes.number,
-    BirthCity: PropTypes.string,
-  }),
+  Position: PropTypes.string,
+  FirstName: PropTypes.string,
+  LastName: PropTypes.string,
+  Jersey: PropTypes.number,
+  BatHand: PropTypes.string,
+  ThrowHand: PropTypes.string,
+  BirthDate: PropTypes.string,
+  Height: PropTypes.number,
+  Weight: PropTypes.number,
+  BirthCity: PropTypes.string,
+  BirthState: PropTypes.string,
+  PhotoUrl: PropTypes.string,
+  PlayerID: PropTypes.number,
 };
 
 ProfileCard.defaultProps = {
-  player: PropTypes.shape({
-    Position: "-",
-    FirstName: "-",
-    LastName: "-",
-    Jersey: "-",
-    BatHand: "-",
-    ThrowHand: "-",
-    BirthDate: "-",
-    Height: "-",
-    Weight: "-",
-    BirthCity: "-",
-  }),
+  Position: "-",
+  FirstName: "-",
+  LastName: "-",
+  Jersey: "-",
+  BatHand: "-",
+  ThrowHand: "-",
+  BirthDate: "-",
+  Height: "-",
+  Weight: "-",
+  BirthCity: "-",
+  BirthState: null,
+  PhotoUrl: null,
+  PlayerID: null,
 };
 
 export default ProfileCard;

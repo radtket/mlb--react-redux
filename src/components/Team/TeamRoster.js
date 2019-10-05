@@ -15,7 +15,6 @@ const TeamRoster = ({ teamRosterError, teamRosterLoading, teamRoster }) => {
 
   return (
     <Card
-      title="Roster"
       body={
         teamRoster && (
           <SortablePlayerTable
@@ -24,6 +23,7 @@ const TeamRoster = ({ teamRosterError, teamRosterLoading, teamRoster }) => {
         )
       }
       style={{ position: "relative" }}
+      title="Roster"
     />
   );
 };

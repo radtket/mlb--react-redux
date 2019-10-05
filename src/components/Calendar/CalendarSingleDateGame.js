@@ -21,7 +21,7 @@ const CalendarSingleDateGame = ({
   const GameTime = format(DateOfGame, "h:mm A");
   return (
     <>
-      <img src={espnLogo(opponent, 40)} alt={`${opponent} Logo`} />
+      <img alt={`${opponent} Logo`} src={espnLogo(opponent, 40)} />
       <h6>
         {isHomeGame ? "vs" : "@"} {opponent}
       </h6>
