@@ -202,7 +202,7 @@ Team.defaultProps = {
 };
 
 const mapStateToProps = ({ standings }) => ({
-  standings: standings.standingsData,
+  standings: standings.standings,
   standingsLoading: standings.standingsLoading,
   standingsError: standings.standingsError,
 });

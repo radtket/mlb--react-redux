@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  teamsData: [],
+  teams: [],
   teamsLoading: false,
   teamsError: null,
 };
@@ -27,7 +27,7 @@ export default function teamsReducer(state = initialState, action) {
       return {
         ...state,
         teamsLoading: false,
-        teamsData: action.payload.teams,
+        teams: action.payload.teams,
       };
 
     case FETCH_TEAMS_FAILURE:
@@ -40,7 +40,7 @@ export default function teamsReducer(state = initialState, action) {
         ...state,
         teamsLoading: false,
         teamsError: action.payload.error,
-        teamsData: [],
+        teams: [],
       };
 
     default:

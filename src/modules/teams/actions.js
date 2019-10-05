@@ -34,15 +34,12 @@ const getTeams = () => {
     .then(res => res.json());
 };
 
-export const fetchTeams = () => {
-  return dispatch => {
-    console.log({ dispatch });
-    dispatch(fetchTeamsBegin());
-    return getTeams()
-      .then(data => {
-        dispatch(fetchTeamsSuccess(data));
-        return data;
-      })
-      .catch(error => dispatch(fetchTeamsFailure(error)));
-  };
+export const fetchTeams = () => dispatch => {
+  dispatch(fetchTeamsBegin());
+  return getTeams()
+    .then(data => {
+      dispatch(fetchTeamsSuccess(data));
+      return data;
+    })
+    .catch(error => dispatch(fetchTeamsFailure(error)));
 };

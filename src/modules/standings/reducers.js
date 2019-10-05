@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  standingsData: [],
+  standings: [],
   standingsLoading: false,
   standingsError: null,
 };
@@ -23,24 +23,24 @@ export default function reducers(state = initialState, action) {
 
     case FETCH_STANDINGS_SUCCESS:
       // All done: set standingsLoading "false".
-      // Also, replace the standingsData with the ones from the server
+      // Also, replace the standings with the ones from the server
       return {
         ...state,
         standingsLoading: false,
-        standingsData: action.payload.standings,
+        standings: action.payload.standings,
       };
 
     case FETCH_STANDINGS_FAILURE:
       // The request failed, but it did stop, so set standingsLoading to "false".
       // Save the standingsError, and we can display it somewhere
-      // Since it failed, we don't have standingsData to display anymore, so set it empty.
-      // This is up to you and your app though: maybe you want to keep the standingsData
+      // Since it failed, we don't have standings to display anymore, so set it empty.
+      // This is up to you and your app though: maybe you want to keep the standings
       // around! Do whatever seems right.
       return {
         ...state,
         standingsLoading: false,
         standingsError: action.payload.error,
-        standingsData: [],
+        standings: [],
       };
 
     default:

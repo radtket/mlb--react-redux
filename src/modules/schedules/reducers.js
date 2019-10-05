@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  schedulesData: [],
+  schedules: [],
   schedulesLoading: false,
   schedulesError: null,
 };
@@ -23,24 +23,24 @@ export default function schedulesReducer(state = initialState, action) {
 
     case FETCH_SCHEDULES_SUCCESS:
       // All done: set loading "false".
-      // Also, replace the schedulesData with the ones from the server
+      // Also, replace the schedules with the ones from the server
       return {
         ...state,
         schedulesLoading: false,
-        schedulesData: action.payload.schedules,
+        schedules: action.payload.schedules,
       };
 
     case FETCH_SCHEDULES_FAILURE:
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
-      // Since it failed, we don't have schedulesData to display anymore, so set it empty.
-      // This is up to you and your app though: maybe you want to keep the schedulesData
+      // Since it failed, we don't have schedules to display anymore, so set it empty.
+      // This is up to you and your app though: maybe you want to keep the schedules
       // around! Do whatever seems right.
       return {
         ...state,
         schedulesLoading: false,
         schedulesError: action.payload.error,
-        schedulesData: [],
+        schedules: [],
       };
 
     default:

@@ -177,7 +177,7 @@ const mapStateToProps = ({
   gamesOnDay: gamesOnDay.gamesOnDayData,
   gamesOnDayLoading: gamesOnDay.gamesOnDayLoading,
   gamesOnDayFail: gamesOnDay.gamesOnDayError,
-  standings: standings.standingsData,
+  standings: standings.standings,
   standingsLoading: standings.standingsLoading,
   standingsError: standings.standingsError,
   stadiums: stadiums.stadiumsData,

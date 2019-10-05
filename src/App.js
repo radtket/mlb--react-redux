@@ -9,15 +9,15 @@ import {
   Counters,
   GamesOnDayList,
   Home,
+  LeagueLeadersTeams,
   NewsAllTeamsList,
   PlayerList,
   ProductList,
-  TeamSplitsList,
-  LeagueLeadersTeams,
   RedditAsyncApp,
   SchedulesList,
   StandingsList,
   Team,
+  TeamSplitsList,
 } from "./pages";
 
 // Actions
@@ -28,17 +28,17 @@ import Navbar from "./components/Navbar";
 import ErrorMessage from "./components/ErrorMessage";
 
 const App = ({
-  standingsError,
-  standingsLoading,
-  schedulesError,
-  schedulesLoading,
-  schedules,
-  teamsFail,
-  teamsLoading,
-  teams,
-  fetchTeams: getTeams,
   fetchSchedules: getSchedules,
   fetchStandings: getStandings,
+  fetchTeams: getTeams,
+  schedules,
+  schedulesError,
+  schedulesLoading,
+  standingsError,
+  standingsLoading,
+  teams,
+  teamsFail,
+  teamsLoading,
 }) => {
   useEffect(() => {
     getTeams();
@@ -87,18 +87,18 @@ const App = ({
 };
 
 App.propTypes = {
-  teamsFail: null || PropTypes.bool,
-  teamsLoading: PropTypes.bool.isRequired,
-  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchSchedules: PropTypes.func.isRequired,
+  fetchStandings: PropTypes.func.isRequired,
   fetchTeams: PropTypes.func.isRequired,
+  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
   schedulesError: null || PropTypes.bool,
   schedulesLoading: PropTypes.bool.isRequired,
-  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchSchedules: PropTypes.func.isRequired,
+  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
   standingsError: null || PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
-  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchStandings: PropTypes.func.isRequired,
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
+  teamsFail: null || PropTypes.bool,
+  teamsLoading: PropTypes.bool.isRequired,
 };
 
 App.defaultProps = {
@@ -107,17 +107,13 @@ App.defaultProps = {
   standingsError: null,
 };
 
-const mapStateToProps = ({ teams, schedules, standings }) => ({
-  teams: teams.teamsData,
-  teamsLoading: teams.teamsLoading,
-  teamsFail: teams.teamsFail,
-  schedules: schedules.schedulesData,
-  schedulesLoading: schedules.schedulesLoading,
-  schedulesError: schedules.schedulesError,
-  standings: standings.standingsData,
-  standingsLoading: standings.standingsLoading,
-  standingsError: standings.standingsError,
-});
+const mapStateToProps = ({ teams, schedules, standings }) => {
+  return {
+    ...teams,
+    ...schedules,
+    ...standings,
+  };
+};
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
