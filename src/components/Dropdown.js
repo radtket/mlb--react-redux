@@ -8,8 +8,8 @@ const Dropdown = ({ MenuItems, Title }) => {
     <>
       <button
         className="dropdown__button"
-        type="button"
-        onClick={() => setMenuVisible(!menuVisible)}>
+        onClick={() => setMenuVisible(!menuVisible)}
+        type="button">
         {Title}
         <IconCaret />
       </button>

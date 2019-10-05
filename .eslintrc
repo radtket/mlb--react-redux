@@ -23,9 +23,9 @@
 	"plugins": ["prettier"],
 	"rules": {
 		"comma-dangle": 0,
-		"react/jsx-filename-extension": false,
-		"react/jsx-sort-props": true,
-		"react/prefer-stateless-function": false,
+		"react/jsx-filename-extension": 0,
+		"react/jsx-sort-props": 1,
+		"react/prefer-stateless-function": 0,
 		"no-unused-expressions": ["error", {
 			"allowShortCircuit": true,
 			"allowTernary": true,

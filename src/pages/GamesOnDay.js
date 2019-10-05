@@ -114,16 +114,16 @@ const GamesOnDayList = ({
             gamesOnDay.map(game => {
               return (
                 <SingleGame
-                  allPlayers={allPlayers}
                   key={game.GameID}
-                  stadiums={stadiums}
-                  standings={standings}
+                  allPlayers={allPlayers}
                   gameTicket={tickets.find(ticket =>
                     ticket.short_title.includes(
                       teamFinder[game.HomeTeam].Name ||
                         teamFinder[game.AwayTeam].Name
                     )
                   )}
+                  stadiums={stadiums}
+                  standings={standings}
                   {...game}
                 />
               );

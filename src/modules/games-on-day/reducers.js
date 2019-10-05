@@ -10,8 +10,8 @@ const initialState = {
   gamesOnDayError: null,
 };
 
-export default function gamesOnDayReducer(state = initialState, action) {
-  switch (action.type) {
+const gamesOnDayReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_GAMES_ON_DAY_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function gamesOnDayReducer(state = initialState, action) {
       return {
         ...state,
         gamesOnDayLoading: false,
-        gamesOnDayData: action.payload.gamesOnDay,
+        gamesOnDayData: payload.gamesOnDay,
       };
 
     case FETCH_GAMES_ON_DAY_FAILURE:
@@ -39,7 +39,7 @@ export default function gamesOnDayReducer(state = initialState, action) {
       return {
         ...state,
         gamesOnDayLoading: false,
-        gamesOnDayError: action.payload.error,
+        gamesOnDayError: payload.error,
         gamesOnDayData: [],
       };
 
@@ -47,4 +47,6 @@ export default function gamesOnDayReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default gamesOnDayReducer;

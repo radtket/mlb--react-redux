@@ -11,9 +11,9 @@ import {
 export const SplitLogo = (team1, team2) => {
   return (
     <figure className="split-logo">
-      {team1 && <img src={espnLogo(team1, 50)} alt={`${team1} Logo`} />}
-      {team2 && <img src={espnLogo(team2, 50)} alt={`${team2} Logo`} />}
-      {!team1 && !team2 && <img src="/images/mlb-logo.png" alt="MLB Logo" />}
+      {team1 && <img alt={`${team1} Logo`} src={espnLogo(team1, 50)} />}
+      {team2 && <img alt={`${team2} Logo`} src={espnLogo(team2, 50)} />}
+      {!team1 && !team2 && <img alt="MLB Logo" src="/images/mlb-logo.png" />}
     </figure>
   );
 };
@@ -41,7 +41,7 @@ const NewsArticle = ({
   return (
     <article
       className={`news-card ${cardSize ? `news-card--${cardSize}` : ""}`}>
-      <a href={Url} target="_blank" rel="noopener noreferrer">
+      <a href={Url} rel="noopener noreferrer" target="_blank">
         <figure
           className="news-card__image"
           style={
@@ -65,8 +65,8 @@ const NewsArticle = ({
       </a>
       <div className="news-card__inner">
         <a
-          href={Url}
           className="news-card__cta"
+          href={Url}
           style={{
             backgroundImage: `url("${
               Team ? espnLogo(Team, 50) : "/images/mlb-logo.png"
@@ -75,11 +75,11 @@ const NewsArticle = ({
           <span className="sr-only">{`${Team || "MLB"} Logo`}</span>
         </a>
         <time
+          className="news-card__date"
           dateTime={
             format(new Date(Updated), "YYYY-MM-DD HH:mm") ||
             format(new Date(DatePublished), "YYYY-MM-DD HH:mm")
-          }
-          className="news-card__date">
+          }>
           {TimeAgo || format(new Date(DatePublished), "MMMM Do, YYYY")}
         </time>
         <h1 className="news-card__headline">{Title}</h1>
@@ -91,12 +91,12 @@ const NewsArticle = ({
         <div className="post-author">
           <figure className="post-author__avatar">
             <img
+              alt={Author}
               src={
                 RotoBallerReporters[Author]
                   ? RotoBallerReporters[Author].Avatar
                   : DefualtAvatar
               }
-              alt={Author}
             />
           </figure>
           <div className="post-author__info">

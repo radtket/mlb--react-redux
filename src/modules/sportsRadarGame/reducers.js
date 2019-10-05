@@ -10,8 +10,8 @@ const initialState = {
   sportsRadarGamesError: null,
 };
 
-export default function sportsRadarGamesReducer(state = initialState, action) {
-  switch (action.type) {
+const sportsRadarGamesReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_SPORTS_RADAR_GAMES_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function sportsRadarGamesReducer(state = initialState, action) {
       return {
         ...state,
         sportsRadarGamesLoading: false,
-        sportsRadarGamesData: action.payload.sportsRadarGames,
+        sportsRadarGamesData: payload.sportsRadarGames,
       };
 
     case FETCH_SPORTS_RADAR_GAMES_FAILURE:
@@ -39,7 +39,7 @@ export default function sportsRadarGamesReducer(state = initialState, action) {
       return {
         ...state,
         sportsRadarGamesLoading: false,
-        sportsRadarGamesError: action.payload.error,
+        sportsRadarGamesError: payload.error,
         sportsRadarGamesData: [],
       };
 
@@ -47,4 +47,6 @@ export default function sportsRadarGamesReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default sportsRadarGamesReducer;

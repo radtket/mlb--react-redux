@@ -10,8 +10,8 @@ const initialState = {
   teamSplitsError: null,
 };
 
-export default function teamSplitsReducer(state = initialState, action) {
-  switch (action.type) {
+const teamSplitsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TEAM_SPLITS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function teamSplitsReducer(state = initialState, action) {
       return {
         ...state,
         teamSplitsLoading: false,
-        teamSplitsData: action.payload.teamSplits,
+        teamSplitsData: payload.teamSplits,
       };
 
     case FETCH_TEAM_SPLITS_FAILURE:
@@ -39,7 +39,7 @@ export default function teamSplitsReducer(state = initialState, action) {
       return {
         ...state,
         teamSplitsLoading: false,
-        teamSplitsError: action.payload.error,
+        teamSplitsError: payload.error,
         teamSplitsData: {},
       };
 
@@ -47,4 +47,6 @@ export default function teamSplitsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default teamSplitsReducer;

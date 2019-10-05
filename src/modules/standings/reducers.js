@@ -10,8 +10,8 @@ const initialState = {
   standingsError: null,
 };
 
-export default function reducers(state = initialState, action) {
-  switch (action.type) {
+const reducers = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_STANDINGS_BEGIN:
       // Mark the state as "standingsLoading" so we can show a spinner or something
       // Also, reset any standingsErrors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         standingsLoading: false,
-        standings: action.payload.standings,
+        standings: payload.standings,
       };
 
     case FETCH_STANDINGS_FAILURE:
@@ -39,7 +39,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         standingsLoading: false,
-        standingsError: action.payload.error,
+        standingsError: payload.error,
         standings: [],
       };
 
@@ -47,4 +47,6 @@ export default function reducers(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default reducers;

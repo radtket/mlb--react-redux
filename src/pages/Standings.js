@@ -16,8 +16,8 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
         const [divisionName, divisionTeamsComponents] = divisionComponent;
         standingsComponent.push(
           <StandingsDivision
-            className="table"
             key={divisionName}
+            className="table"
             division={divisionName}
             divisionTeams={divisionTeamsComponents.map(team => {
               const { Key, League, Division } = team;

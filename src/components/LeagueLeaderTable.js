@@ -91,13 +91,13 @@ const LeagueLeaderTable = ({ dataObj }) => {
     return (
       <article key={name} className="wisbb--leaders__wrap">
         <StatTable
-          PrimaryColor={`${PrimaryColor}`}
-          SecondaryColor={`${SecondaryColor}`}
+          className="wisbb--leaders"
           leaderLogo={espnLogo(abbr, 100)}
-          className="wisbb--leaders">
+          PrimaryColor={`${PrimaryColor}`}
+          SecondaryColor={`${SecondaryColor}`}>
           <Link
-            to={`teams/${abbr}`}
-            className="wisbb--leaders__team-logo--wrap">
+            className="wisbb--leaders__team-logo--wrap"
+            to={`teams/${abbr}`}>
             <figure className="wisbb--leaders__team-logo" />
           </Link>
           <div className="wisbb--leaders__list">
@@ -144,8 +144,8 @@ const LeagueLeaderTable = ({ dataObj }) => {
               {data.length > 9 && (
                 <button
                   className="button"
-                  type="button"
-                  onClick={() => setToggle(!toggle)}>
+                  onClick={() => setToggle(!toggle)}
+                  type="button">
                   View {toggle ? "More" : "Less"}
                 </button>
               )}

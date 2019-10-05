@@ -46,9 +46,9 @@ const RedditAsyncApp = props => {
   return (
     <div>
       <Picker
-        value={selectedSubreddit}
         onChange={handleChange}
         options={["reactjs", "frontend"]}
+        value={selectedSubreddit}
       />
       <p>
         {lastUpdated && (

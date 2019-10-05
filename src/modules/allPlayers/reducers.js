@@ -10,8 +10,8 @@ const initialState = {
   allPlayersError: null,
 };
 
-export default function allPlayerReducer(state = initialState, action) {
-  switch (action.type) {
+const allPlayerReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_ALL_PLAYERS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function allPlayerReducer(state = initialState, action) {
       return {
         ...state,
         allPlayersLoading: false,
-        allPlayersData: action.payload.allPlayers,
+        allPlayersData: payload.allPlayers,
       };
 
     case FETCH_ALL_PLAYERS_FAILURE:
@@ -39,7 +39,7 @@ export default function allPlayerReducer(state = initialState, action) {
       return {
         ...state,
         allPlayersLoading: false,
-        allPlayersError: action.payload.error,
+        allPlayersError: payload.error,
         allPlayersData: [],
       };
 
@@ -47,4 +47,6 @@ export default function allPlayerReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default allPlayerReducer;

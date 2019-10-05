@@ -10,8 +10,8 @@ const initialState = {
   playerStatsError: null,
 };
 
-export default function playerStatsReducer(state = initialState, action) {
-  switch (action.type) {
+const playerStatsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_PLAYER_STATS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function playerStatsReducer(state = initialState, action) {
       return {
         ...state,
         playerStatsLoading: false,
-        playerStatsData: action.payload.playerStats,
+        playerStatsData: payload.playerStats,
       };
 
     case FETCH_PLAYER_STATS_FAILURE:
@@ -39,7 +39,7 @@ export default function playerStatsReducer(state = initialState, action) {
       return {
         ...state,
         playerStatsLoading: false,
-        playerStatsError: action.payload.error,
+        playerStatsError: payload.error,
         playerStatsData: {},
       };
 
@@ -47,4 +47,6 @@ export default function playerStatsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default playerStatsReducer;

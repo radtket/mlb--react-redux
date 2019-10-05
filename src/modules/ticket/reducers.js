@@ -10,8 +10,8 @@ const initialState = {
   ticketsError: null,
 };
 
-export default function ticketReducer(state = initialState, action) {
-  switch (action.type) {
+const ticketReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TICKETS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function ticketReducer(state = initialState, action) {
       return {
         ...state,
         ticketsLoading: false,
-        ticketsData: action.payload.tickets,
+        ticketsData: payload.tickets,
       };
 
     case FETCH_TICKETS_FAILURE:
@@ -39,7 +39,7 @@ export default function ticketReducer(state = initialState, action) {
       return {
         ...state,
         ticketsLoading: false,
-        ticketsError: action.payload.error,
+        ticketsError: payload.error,
         ticketsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function ticketReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default ticketReducer;

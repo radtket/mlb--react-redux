@@ -10,8 +10,8 @@ const initialState = {
   teamRssNewsError: null,
 };
 
-export default function teamRssNewsReducer(state = initialState, action) {
-  switch (action.type) {
+const teamRssNewsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TEAM_RSS_NEWS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function teamRssNewsReducer(state = initialState, action) {
       return {
         ...state,
         teamRssNewsLoading: false,
-        teamRssNewsData: action.payload.teamRssNews,
+        teamRssNewsData: payload.teamRssNews,
       };
 
     case FETCH_TEAM_RSS_NEWS_FAILURE:
@@ -39,7 +39,7 @@ export default function teamRssNewsReducer(state = initialState, action) {
       return {
         ...state,
         teamRssNewsLoading: false,
-        teamRssNewsError: action.payload.error,
+        teamRssNewsError: payload.error,
         teamRssNewsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function teamRssNewsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default teamRssNewsReducer;

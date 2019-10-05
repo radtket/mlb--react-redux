@@ -18,14 +18,14 @@ const EspnPlayerProfile = ({
         <figure className="espn-player-team-logo">
           <div className="aspect-ratio--1x1">
             <img
+              alt=""
               className="aspect-ratio--object"
               src={Team && espnLogo(Team, 150)}
-              alt=""
             />
           </div>
         </figure>
         <figure className="espn-player-headshot">
-          <img src={PhotoUrl} alt="" />
+          <img alt="" src={PhotoUrl} />
         </figure>
       </div>
       <div className="espn-player-header-gradient" />

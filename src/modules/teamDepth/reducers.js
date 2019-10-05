@@ -10,8 +10,8 @@ const initialState = {
   teamDepthsError: null,
 };
 
-export default function teamDepthReducer(state = initialState, action) {
-  switch (action.type) {
+const teamDepthReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TEAM_DEPTHS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function teamDepthReducer(state = initialState, action) {
       return {
         ...state,
         teamDepthsLoading: false,
-        teamDepthsData: action.payload.teamDepths,
+        teamDepthsData: payload.teamDepths,
       };
 
     case FETCH_TEAM_DEPTHS_FAILURE:
@@ -39,7 +39,7 @@ export default function teamDepthReducer(state = initialState, action) {
       return {
         ...state,
         teamDepthsLoading: false,
-        teamDepthsError: action.payload.error,
+        teamDepthsError: payload.error,
         teamDepthsData: {},
       };
 
@@ -47,4 +47,6 @@ export default function teamDepthReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default teamDepthReducer;

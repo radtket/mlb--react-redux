@@ -31,8 +31,8 @@ const Counters = ({
           Increment
         </button>
         <button
-          onClick={incrementAsync}
           disabled={isIncrementing}
+          onClick={incrementAsync}
           type="button">
           Increment Async
         </button>
@@ -43,8 +43,8 @@ const Counters = ({
           Decrement
         </button>
         <button
-          onClick={decrementAsync}
           disabled={isDecrementing}
+          onClick={decrementAsync}
           type="button">
           Decrement Async
         </button>

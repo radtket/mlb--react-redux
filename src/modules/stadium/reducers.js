@@ -10,8 +10,8 @@ const initialState = {
   stadiumsError: null,
 };
 
-export default function stadiumReducer(state = initialState, action) {
-  switch (action.type) {
+const stadiumReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_STADIUMS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function stadiumReducer(state = initialState, action) {
       return {
         ...state,
         stadiumsLoading: false,
-        stadiumsData: action.payload.stadiums,
+        stadiumsData: payload.stadiums,
       };
 
     case FETCH_STADIUMS_FAILURE:
@@ -39,7 +39,7 @@ export default function stadiumReducer(state = initialState, action) {
       return {
         ...state,
         stadiumsLoading: false,
-        stadiumsError: action.payload.error,
+        stadiumsError: payload.error,
         stadiumsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function stadiumReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default stadiumReducer;

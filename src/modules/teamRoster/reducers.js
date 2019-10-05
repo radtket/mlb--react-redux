@@ -10,8 +10,8 @@ const initialState = {
   teamRosterError: null,
 };
 
-export default function reducers(state = initialState, action) {
-  switch (action.type) {
+const reducers = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TEAM_ROSTER_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         teamRosterLoading: false,
-        teamRosterData: action.payload.teamRoster,
+        teamRosterData: payload.teamRoster,
       };
 
     case FETCH_TEAM_ROSTER_FAILURE:
@@ -39,7 +39,7 @@ export default function reducers(state = initialState, action) {
       return {
         ...state,
         teamRosterLoading: false,
-        teamRosterError: action.payload.error,
+        teamRosterError: payload.error,
         teamRosterData: [],
       };
 
@@ -47,4 +47,6 @@ export default function reducers(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default reducers;

@@ -45,8 +45,8 @@ const NewsAllTeamsList = ({
             const { NewsID, MLBAMID, PlayerID } = article;
             return (
               <NewsArticle
-                cardSize="qrt"
                 key={NewsID}
+                cardSize="qrt"
                 MLBAMID={MLBAMID || findMLBID(PlayerID)}
                 {...article}
               />

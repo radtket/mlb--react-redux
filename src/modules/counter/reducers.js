@@ -11,8 +11,8 @@ const initialState = {
   isDecrementing: false,
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case INCREMENT_REQUESTED:
       return {
         ...state,

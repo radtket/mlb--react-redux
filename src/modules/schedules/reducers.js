@@ -10,8 +10,8 @@ const initialState = {
   schedulesError: null,
 };
 
-export default function schedulesReducer(state = initialState, action) {
-  switch (action.type) {
+const schedulesReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_SCHEDULES_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function schedulesReducer(state = initialState, action) {
       return {
         ...state,
         schedulesLoading: false,
-        schedules: action.payload.schedules,
+        schedules: payload.schedules,
       };
 
     case FETCH_SCHEDULES_FAILURE:
@@ -39,7 +39,7 @@ export default function schedulesReducer(state = initialState, action) {
       return {
         ...state,
         schedulesLoading: false,
-        schedulesError: action.payload.error,
+        schedulesError: payload.error,
         schedules: [],
       };
 
@@ -47,4 +47,6 @@ export default function schedulesReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default schedulesReducer;

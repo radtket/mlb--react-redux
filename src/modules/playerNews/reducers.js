@@ -10,8 +10,8 @@ const initialState = {
   playerNewsError: null,
 };
 
-export default function playerNewsReducer(state = initialState, action) {
-  switch (action.type) {
+const playerNewsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_PLAYER_NEWS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function playerNewsReducer(state = initialState, action) {
       return {
         ...state,
         playerNewsLoading: false,
-        playerNewsData: action.payload.playerNews,
+        playerNewsData: payload.playerNews,
       };
 
     case FETCH_PLAYER_NEWS_FAILURE:
@@ -39,7 +39,7 @@ export default function playerNewsReducer(state = initialState, action) {
       return {
         ...state,
         playerNewsLoading: false,
-        playerNewsError: action.payload.error,
+        playerNewsError: payload.error,
         playerNewsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function playerNewsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default playerNewsReducer;

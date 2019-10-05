@@ -10,8 +10,8 @@ const initialState = {
   productsError: null,
 };
 
-export default function productReducer(state = initialState, action) {
-  switch (action.type) {
+const productReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_PRODUCTS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productsLoading: false,
-        productsData: action.payload.products,
+        productsData: payload.products,
       };
 
     case FETCH_PRODUCTS_FAILURE:
@@ -39,7 +39,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productsLoading: false,
-        productsError: action.payload.error,
+        productsError: payload.error,
         productsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function productReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default productReducer;

@@ -10,8 +10,8 @@ const initialState = {
   leagueLeadersError: null,
 };
 
-export default function leagueLeadersReducer(state = initialState, action) {
-  switch (action.type) {
+const leagueLeadersReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_LEAGUE_LEADERS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function leagueLeadersReducer(state = initialState, action) {
       return {
         ...state,
         leagueLeadersLoading: false,
-        leagueLeadersData: action.payload.leagueLeaders,
+        leagueLeadersData: payload.leagueLeaders,
       };
 
     case FETCH_LEAGUE_LEADERS_FAILURE:
@@ -39,7 +39,7 @@ export default function leagueLeadersReducer(state = initialState, action) {
       return {
         ...state,
         leagueLeadersLoading: false,
-        leagueLeadersError: action.payload.error,
+        leagueLeadersError: payload.error,
         leagueLeadersData: {},
       };
 
@@ -47,4 +47,6 @@ export default function leagueLeadersReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default leagueLeadersReducer;

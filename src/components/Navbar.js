@@ -16,7 +16,7 @@ const Navbar = ({ teams }) => {
     <header className="header">
       <div className="container header__inner">
         <figure className="header__logo">
-          <Link to="/" onClick={() => dispatch("reset")}>
+          <Link onClick={() => dispatch("reset")} to="/">
             <SiteLogo />
           </Link>
         </figure>
@@ -24,32 +24,32 @@ const Navbar = ({ teams }) => {
         <div className="header__nav">
           <ul>
             <li>
-              <NavLink exact to="/" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/scores" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/scores">
                 Scores
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/standings" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/standings">
                 Standings
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/news" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/news">
                 News
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/schedule" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/schedule">
                 Schedule
               </NavLink>
             </li>
             <li>
-              <NavLink exact to="/stats" onClick={() => dispatch("reset")}>
+              <NavLink exact onClick={() => dispatch("reset")} to="/stats">
                 Stats
               </NavLink>
             </li>

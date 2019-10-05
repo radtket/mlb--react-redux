@@ -10,8 +10,8 @@ const initialState = {
   teamsError: null,
 };
 
-export default function teamsReducer(state = initialState, action) {
-  switch (action.type) {
+const teamsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_TEAMS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function teamsReducer(state = initialState, action) {
       return {
         ...state,
         teamsLoading: false,
-        teams: action.payload.teams,
+        teams: payload.teams,
       };
 
     case FETCH_TEAMS_FAILURE:
@@ -39,7 +39,7 @@ export default function teamsReducer(state = initialState, action) {
       return {
         ...state,
         teamsLoading: false,
-        teamsError: action.payload.error,
+        teamsError: payload.error,
         teams: [],
       };
 
@@ -47,4 +47,6 @@ export default function teamsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default teamsReducer;

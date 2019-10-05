@@ -10,8 +10,8 @@ const initialState = {
   newsAllError: null,
 };
 
-export default function newsAllTeamsReducer(state = initialState, action) {
-  switch (action.type) {
+const newsAllTeamsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_NEWS_ALL_TEAMS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
@@ -27,7 +27,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       return {
         ...state,
         newsAllLoading: false,
-        newsAllTeamsData: action.payload.newsAllTeams,
+        newsAllTeamsData: payload.newsAllTeams,
       };
 
     case FETCH_NEWS_ALL_TEAMS_FAILURE:
@@ -39,7 +39,7 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       return {
         ...state,
         newsAllLoading: false,
-        newsAllError: action.payload.error,
+        newsAllError: payload.error,
         newsAllTeamsData: [],
       };
 
@@ -47,4 +47,6 @@ export default function newsAllTeamsReducer(state = initialState, action) {
       // ALWAYS have a default case in a reducer
       return state;
   }
-}
+};
+
+export default newsAllTeamsReducer;
