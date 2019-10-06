@@ -5,7 +5,7 @@ import { Calendar } from "../../../components/Calendar";
 const PageTeamSchedule = ({ schedule, currentTeamAbrv }) => {
   return (
     <div className="container">
-      <Calendar schedule={schedule} currentTeamAbrv={currentTeamAbrv} />
+      <Calendar {...{ schedule, currentTeamAbrv }} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-  teamRosterData: [],
+  teamRoster: [],
   teamRosterLoading: false,
   teamRosterError: null,
 };
@@ -27,7 +27,7 @@ const reducers = (state = initialState, { type, payload }) => {
       return {
         ...state,
         teamRosterLoading: false,
-        teamRosterData: payload.teamRoster,
+        teamRoster: payload.teamRoster,
       };
 
     case FETCH_TEAM_ROSTER_FAILURE:
@@ -40,7 +40,7 @@ const reducers = (state = initialState, { type, payload }) => {
         ...state,
         teamRosterLoading: false,
         teamRosterError: payload.error,
-        teamRosterData: [],
+        teamRoster: [],
       };
 
     default:

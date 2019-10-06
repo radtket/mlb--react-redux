@@ -9,59 +9,58 @@ import Card from "../../Card";
 const TeamStandings = ({ standings, activeTeamObj }) => {
   const createStandingsTable = (
     standingsArg,
-    activeTeamObjArg,
+    { League: ActiveLeague, Division: ActiveDivision, Key: ActiveKey },
     division = false
   ) => {
-    return standingsArg.reduce((divisionTeams, team) => {
-      const {
-        League: ActiveLeague,
-        Division: ActiveDivision,
-        Key: ActiveKey,
-      } = activeTeamObjArg;
-      const {
-        League: TeamLeague,
-        Division: TeamDivision,
-        Key: TeamKey,
-        City,
-        Name,
-        Wins,
-        Losses,
-        Percentage,
-        GamesBehind,
-      } = team;
-
-      if (division) {
-        TeamLeague === ActiveLeague &&
-          TeamDivision === ActiveDivision &&
-          divisionTeams.push(
-            <StandingsTeam
-              key={TeamKey}
-              activeTeam={TeamKey === ActiveKey}
-              City={City}
-              GamesBehind={GamesBehind}
-              Losses={Losses}
-              TeamKey={TeamKey}
-              TeamName={Name}
-              Wins={Wins}
-            />
-          );
-      } else {
-        TeamLeague === ActiveLeague &&
-          divisionTeams.push(
-            <StandingsTeam
-              key={TeamKey}
-              activeTeam={TeamKey === ActiveKey}
-              City={City}
-              Losses={Losses}
-              Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
-              TeamKey={TeamKey}
-              TeamName={Name}
-              Wins={Wins}
-            />
-          );
-      }
-      return divisionTeams;
-    }, []);
+    return standingsArg.reduce(
+      (
+        divisionTeams,
+        {
+          League: TeamLeague,
+          Division: TeamDivision,
+          Key: TeamKey,
+          City,
+          Name,
+          Wins,
+          Losses,
+          Percentage,
+          GamesBehind,
+        }
+      ) => {
+        if (division) {
+          TeamLeague === ActiveLeague &&
+            TeamDivision === ActiveDivision &&
+            divisionTeams.push(
+              <StandingsTeam
+                key={TeamKey}
+                activeTeam={TeamKey === ActiveKey}
+                City={City}
+                GamesBehind={GamesBehind}
+                Losses={Losses}
+                TeamKey={TeamKey}
+                TeamName={Name}
+                Wins={Wins}
+              />
+            );
+        } else {
+          TeamLeague === ActiveLeague &&
+            divisionTeams.push(
+              <StandingsTeam
+                key={TeamKey}
+                activeTeam={TeamKey === ActiveKey}
+                City={City}
+                Losses={Losses}
+                Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
+                TeamKey={TeamKey}
+                TeamName={Name}
+                Wins={Wins}
+              />
+            );
+        }
+        return divisionTeams;
+      },
+      []
+    );
   };
 
   const { Division, League } = activeTeamObj;

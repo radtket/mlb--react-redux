@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
@@ -7,15 +8,16 @@ import { fetchTeamRoster } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PageTeamRoster = ({
+  fetchTeamRoster: getTeamRoster,
   teamRoster,
   teamRosterError,
   teamRosterLoading,
-  match,
-  fetchTeamRoster: getTeamRoster,
+  match: {
+    params: { teamAbrv },
+  },
 }) => {
   useEffect(() => {
-    const { teamAbrv: currentTeamAbrv } = match.params;
-    getTeamRoster(currentTeamAbrv);
+    getTeamRoster(teamAbrv);
   }, []);
 
   if (teamRosterError) {
@@ -30,11 +32,7 @@ const PageTeamRoster = ({
     <div className="container">
       <div className="row">
         <div className="col-sm-12">
-          <TeamRoster
-            teamRoster={teamRoster}
-            teamRosterError={teamRosterError}
-            teamRosterLoading={teamRosterLoading}
-          />
+          <TeamRoster {...{ teamRoster, teamRosterError, teamRosterLoading }} />
         </div>
       </div>
     </div>
@@ -46,11 +44,6 @@ PageTeamRoster.propTypes = {
   teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
 };
 
 PageTeamRoster.defaultProps = {
@@ -58,9 +51,7 @@ PageTeamRoster.defaultProps = {
 };
 
 const mapStateToProps = ({ teamRoster }) => ({
-  teamRoster: teamRoster.teamRosterData,
-  teamRosterLoading: teamRoster.teamRosterLoading,
-  teamRosterError: teamRoster.teamRosterError,
+  ...teamRoster,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -76,4 +67,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(PageTeamRoster);
+)(withRouter(PageTeamRoster));

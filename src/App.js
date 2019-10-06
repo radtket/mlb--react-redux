@@ -66,17 +66,17 @@ const App = ({
     <div>
       <Navbar {...{ teams }} />
       <main>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/counter" component={Counters} />
-        <Route exact path="/news" component={NewsAllTeamsList} />
-        <Route exact path="/player/:playerArg" component={PlayerList} />
-        <Route exact path="/product" component={ProductList} />
-        <Route exact path="/reddit" component={RedditAsyncApp} />
-        <Route exact path="/schedule" component={SchedulesList} />
-        <Route exact path="/scores" component={GamesOnDayList} />
-        <Route exact path="/splits" component={TeamSplitsList} />
-        <Route exact path="/standings" component={StandingsList} />
-        <Route exact path="/stats" component={LeagueLeadersTeams} />
+        <Route component={Home} exact path="/" />
+        <Route component={Counters} exact path="/counter" />
+        <Route component={NewsAllTeamsList} exact path="/news" />
+        <Route component={PlayerList} exact path="/player/:playerArg" />
+        <Route component={ProductList} exact path="/product" />
+        <Route component={RedditAsyncApp} exact path="/reddit" />
+        <Route component={SchedulesList} exact path="/schedule" />
+        <Route component={GamesOnDayList} exact path="/scores" />
+        <Route component={TeamSplitsList} exact path="/splits" />
+        <Route component={StandingsList} exact path="/standings" />
+        <Route component={LeagueLeadersTeams} exact path="/stats" />
         <Route
           path="/teams/:teamAbrv"
           render={props => <Team {...props} {...{ teams, schedules }} />}

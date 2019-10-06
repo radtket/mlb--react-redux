@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -18,162 +18,76 @@ import TeamTheme from "./TeamTheme";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorMessage from "../../components/ErrorMessage";
 
-class Team extends Component {
-  state = {
-    recentGames: [],
-  };
-
-  componentDidMount() {
-    const { schedules, match } = this.props;
-    const { teamAbrv: currentTeamAbrv } = match.params;
-    this.findTeamSchedule(schedules, currentTeamAbrv);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { match, schedules } = this.props;
-    const { teamAbrv: currentTeamAbrv } = match.params;
-    const { teamAbrv: prevTeamAbrv } = prevProps.match.params;
-
-    if (currentTeamAbrv !== prevTeamAbrv) {
-      this.findTeamSchedule(schedules, currentTeamAbrv);
-    }
-  }
-
-  findTeamSchedule = (schedules, teamAbrv) => {
-    return this.setState({
-      recentGames: schedules
-        .filter(team => {
-          const { HomeTeam, AwayTeam } = team;
-          return (
-            HomeTeam === teamAbrv || AwayTeam === teamAbrv
-            // && team.Status !== "Scheduled"
-          );
+const Team = ({
+  match,
+  standings,
+  standingsError,
+  standingsLoading,
+  teams,
+  history,
+  schedules,
+}) => {
+  const [recentGames, setRecentGames] = useState([]);
+  const { teamAbrv } = match.params;
+  useEffect(() => {
+    const findTeamSchedule = () => {
+      return schedules
+        .filter(({ HomeTeam, AwayTeam }) => {
+          return HomeTeam === teamAbrv || AwayTeam === teamAbrv;
         })
-        .reverse(),
-    });
-  };
+        .reverse();
+    };
+    setRecentGames(findTeamSchedule());
+  }, [schedules, teamAbrv]);
 
-  getActiveTeamObj = (teams, activeTeam) => {
-    return teams.find(team => team.Key === activeTeam);
-  };
+  const activeTeamObj = teams.find(team => team.Key === teamAbrv);
 
-  changeTeams = e => {
-    const { history } = this.props;
-    history.push(`/teams/${e.value}`);
-  };
-
-  render() {
-    const {
-      match,
-      standings,
-      standingsError,
-      standingsLoading,
-      teams,
-    } = this.props;
-    const { recentGames } = this.state;
-    const { teamAbrv: currentTeamAbrv } = match.params;
-    const activeTeamObj = this.getActiveTeamObj(teams, currentTeamAbrv);
-
-    if (standingsError) {
-      return <ErrorMessage error={standingsError} />;
-    }
-
-    if (standingsLoading || !activeTeamObj) {
-      return <LoadingSpinner />;
-    }
-
-    return (
-      <>
-        <TeamTheme {...activeTeamObj}>
-          <TeamHeader
-            {...activeTeamObj}
-            {...{ teams }}
-            changeTeams={this.changeTeams}
-          />
-        </TeamTheme>
-        <Route
-          exact
-          path="/teams/:teamAbrv"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamHome
-                activeTeamObj={activeTeamObj}
-                currentTeamAbrv={currentTeamAbrv}
-                recentGames={recentGames}
-                standings={standings}
-                match={match}
-              />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/roster"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamRoster
-                {...activeTeamObj}
-                match={match}
-                currentTeamAbrv={currentTeamAbrv}
-              />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/stats"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamStats match={match} />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/depth"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamDepth
-                {...activeTeamObj}
-                currentTeamAbrv={currentTeamAbrv}
-              />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/schedule"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamSchedule
-                currentTeamAbrv={currentTeamAbrv}
-                schedule={recentGames}
-              />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/tickets"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamTickets {...activeTeamObj} />
-            </TeamTheme>
-          )}
-        />
-        <Route
-          exact
-          path="/teams/:teamAbrv/splits"
-          render={() => (
-            <TeamTheme {...activeTeamObj}>
-              <PageTeamSplits {...activeTeamObj} />
-            </TeamTheme>
-          )}
-        />
-      </>
-    );
+  if (standingsError) {
+    return <ErrorMessage error={standingsError} />;
   }
-}
+
+  if (standingsLoading || !activeTeamObj) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <TeamTheme {...activeTeamObj}>
+      <TeamHeader
+        {...{ ...activeTeamObj, teams }}
+        changeTeams={e => {
+          history.push(`/teams/${e.value}`);
+        }}
+      />
+      <Route
+        exact
+        path="/teams/:teamAbrv"
+        render={() => (
+          <PageTeamHome {...{ activeTeamObj, recentGames, standings }} />
+        )}
+      />
+      <Route component={PageTeamRoster} exact path="/teams/:teamAbrv/roster" />
+      <Route component={PageTeamStats} exact path="/teams/:teamAbrv/stats" />
+      <Route component={PageTeamDepth} exact path="/teams/:teamAbrv/depth" />
+      <Route
+        exact
+        path="/teams/:teamAbrv/schedule"
+        render={() => (
+          <PageTeamSchedule currentTeamAbrv={teamAbrv} schedule={recentGames} />
+        )}
+      />
+      <Route
+        exact
+        path="/teams/:teamAbrv/tickets"
+        render={() => <PageTeamTickets {...activeTeamObj} />}
+      />
+      <Route
+        exact
+        path="/teams/:teamAbrv/splits"
+        render={() => <PageTeamSplits {...activeTeamObj} />}
+      />
+    </TeamTheme>
+  );
+};
 
 Team.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,

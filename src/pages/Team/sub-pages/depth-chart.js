@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamDepths, fetchTeamRoster } from "../../../modules/actions";
@@ -9,19 +10,20 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 const PageTeamDepth = ({
   fetchTeamDepths: getTeamDepths,
   fetchTeamRoster: getTeamRoster,
+  teamDepths: { positions },
   teamDepthsFail,
   teamDepthsLoading,
-  teamDepths,
   teamRoster,
   teamRosterError,
   teamRosterLoading,
-  currentTeamAbrv,
+  match: {
+    params: { teamAbrv },
+  },
 }) => {
   useEffect(() => {
-    getTeamDepths(currentTeamAbrv);
-    getTeamRoster(currentTeamAbrv);
+    getTeamDepths(teamAbrv);
+    getTeamRoster(teamAbrv);
   }, []);
-  const { positions } = teamDepths;
 
   if (teamDepthsFail) {
     return <div>Error! {teamDepthsFail.message}</div>;
@@ -41,8 +43,8 @@ const PageTeamDepth = ({
         <div className="col-sm-12">
           <h1>PageTeamDepth</h1>
           <DepthChart
-            TeamAbrv={currentTeamAbrv}
             positions={positions}
+            TeamAbrv={teamAbrv}
             teamRoster={teamRoster}
           />
         </div>
@@ -62,7 +64,6 @@ PageTeamDepth.propTypes = {
   teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,
-  currentTeamAbrv: PropTypes.string.isRequired,
 };
 
 PageTeamDepth.defaultProps = {
@@ -74,7 +75,7 @@ const mapStateToProps = ({ teamDepths, teamRoster }) => ({
   teamDepths: teamDepths.teamDepthsData,
   teamDepthsLoading: teamDepths.teamDepthsLoading,
   teamDepthsFail: teamDepths.teamDepthsError,
-  teamRoster: teamRoster.teamRosterData,
+  teamRoster: teamRoster.teamRoster,
   teamRosterLoading: teamRoster.teamRosterLoading,
   teamRosterError: teamRoster.teamRosterError,
 });
@@ -93,4 +94,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(PageTeamDepth);
+)(withRouter(PageTeamDepth));

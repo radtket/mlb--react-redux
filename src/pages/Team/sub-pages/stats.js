@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamStats } from "../../../modules/actions";
@@ -10,15 +11,16 @@ import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
 import StatsTablePitching from "../../../components/Team/StatsTables/Pitching";
 
 const PageTeamStats = ({
+  fetchTeamStats: getTeamStats,
+  teamStats,
   teamStatsFail,
   teamStatsLoading,
-  teamStats,
-  match,
-  fetchTeamStats: getTeamStats,
+  match: {
+    params: { teamAbrv },
+  },
 }) => {
   useEffect(() => {
-    const { teamAbrv: currentTeamAbrv } = match.params;
-    getTeamStats(currentTeamAbrv);
+    getTeamStats(teamAbrv);
   }, []);
 
   const splitStatsByPosition = stats => {
@@ -68,11 +70,7 @@ PageTeamStats.propTypes = {
   teamStatsLoading: PropTypes.bool.isRequired,
   teamStats: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamStats: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+  currentTeamAbrv: PropTypes.string.isRequired,
 };
 
 PageTeamStats.defaultProps = {
@@ -98,4 +96,4 @@ export default connect(
   mapDispatchToProps,
   null,
   { pure: false }
-)(PageTeamStats);
+)(withRouter(PageTeamStats));
