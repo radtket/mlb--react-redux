@@ -53,7 +53,7 @@ PlayerStats.propTypes = {
   // data: PropTypes.arrayOf(PropTypes.object).isRequired,
   RotoWirePlayerID: PropTypes.number,
   PositionCategory: PropTypes.string,
-  playerStatsFail: null || PropTypes.bool,
+  playerStatsFail: PropTypes.bool,
   playerStatsLoading: PropTypes.bool.isRequired,
   // playerStats: PropTypes.arrayOf(
   //   PropTypes.oneOfType(PropTypes.array, PropTypes.object)

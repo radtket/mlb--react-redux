@@ -58,7 +58,7 @@ const NewsAllTeamsList = ({
 };
 
 NewsAllTeamsList.propTypes = {
-  newsAllError: null || PropTypes.bool,
+  newsAllError: PropTypes.bool,
   newsAllLoading: PropTypes.bool.isRequired,
   newsAllTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchNewsAllTeams: PropTypes.func.isRequired,

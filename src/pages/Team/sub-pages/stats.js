@@ -66,7 +66,7 @@ const PageTeamStats = ({
 };
 
 PageTeamStats.propTypes = {
-  teamStatsFail: null || PropTypes.bool,
+  teamStatsFail: PropTypes.bool,
   teamStatsLoading: PropTypes.bool.isRequired,
   teamStats: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamStats: PropTypes.func.isRequired,

@@ -42,7 +42,7 @@ const PlayerNews = ({
 PlayerNews.propTypes = {
   PlayerID: PropTypes.string,
   MLBAMID: PropTypes.number,
-  playerNewsFail: null || PropTypes.bool,
+  playerNewsFail: PropTypes.bool,
   playerNewsLoading: PropTypes.bool.isRequired,
   playerNews: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchPlayerNews: PropTypes.func.isRequired,

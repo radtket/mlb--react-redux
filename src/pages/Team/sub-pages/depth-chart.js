@@ -54,13 +54,13 @@ const PageTeamDepth = ({
 };
 
 PageTeamDepth.propTypes = {
-  teamDepthsFail: null || PropTypes.bool,
+  teamDepthsFail: PropTypes.bool,
   teamDepthsLoading: PropTypes.bool.isRequired,
   teamDepths: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.array])
   ).isRequired,
   fetchTeamDepths: PropTypes.func.isRequired,
-  teamRosterError: null || PropTypes.bool,
+  teamRosterError: PropTypes.bool,
   teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,

@@ -54,7 +54,7 @@ const LeagueLeadersTeams = ({
 };
 
 LeagueLeadersTeams.propTypes = {
-  leagueLeadersFail: null || PropTypes.bool,
+  leagueLeadersFail: PropTypes.bool,
   leagueLeadersLoading: PropTypes.bool.isRequired,
   leagueLeaders: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchLeagueLeaders: PropTypes.func.isRequired,

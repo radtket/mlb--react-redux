@@ -59,7 +59,7 @@ PlayerList.propTypes = {
       playerArg: PropTypes.string.isRequired,
     }),
   }).isRequired,
-  playerFail: null || PropTypes.bool,
+  playerFail: PropTypes.bool,
   playerLoading: PropTypes.bool.isRequired,
   player: PropTypes.shape({
     Team: PropTypes.string,

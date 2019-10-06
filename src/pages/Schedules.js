@@ -37,7 +37,7 @@ const SchedulesList = ({
 };
 
 SchedulesList.propTypes = {
-  sportsRadarGamesFail: null || PropTypes.bool,
+  sportsRadarGamesFail: PropTypes.bool,
   sportsRadarGamesLoading: PropTypes.bool.isRequired,
   sportsRadarGames: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchSportsRadarGames: PropTypes.func.isRequired,

@@ -103,7 +103,7 @@ Team.propTypes = {
       HomeTeam: PropTypes.string,
     })
   ).isRequired,
-  standingsError: null || PropTypes.bool,
+  standingsError: PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.shape({

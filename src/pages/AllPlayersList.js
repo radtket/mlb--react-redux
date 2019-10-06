@@ -31,7 +31,7 @@ const AllPlayerList = ({
 };
 
 AllPlayerList.propTypes = {
-  allPlayersFail: null || PropTypes.bool,
+  allPlayersFail: PropTypes.bool,
   allPlayersLoading: PropTypes.bool.isRequired,
   allPlayers: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchAllPlayers: PropTypes.func.isRequired,

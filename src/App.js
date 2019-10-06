@@ -91,13 +91,13 @@ App.propTypes = {
   fetchStandings: PropTypes.func.isRequired,
   fetchTeams: PropTypes.func.isRequired,
   schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
-  schedulesError: null || PropTypes.bool,
+  schedulesError: PropTypes.bool,
   schedulesLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-  standingsError: null || PropTypes.bool,
+  standingsError: PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  teamsFail: null || PropTypes.bool,
+  teamsFail: PropTypes.bool,
   teamsLoading: PropTypes.bool.isRequired,
 };
 

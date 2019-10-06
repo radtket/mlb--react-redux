@@ -30,7 +30,7 @@ const ProductList = ({
 };
 
 ProductList.propTypes = {
-  productsFail: null || PropTypes.bool,
+  productsFail: PropTypes.bool,
   productsLoading: PropTypes.bool.isRequired,
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchProducts: PropTypes.func.isRequired,

@@ -40,7 +40,7 @@ const PageTeamRoster = ({
 };
 
 PageTeamRoster.propTypes = {
-  teamRosterError: null || PropTypes.bool,
+  teamRosterError: PropTypes.bool,
   teamRosterLoading: PropTypes.bool.isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTeamRoster: PropTypes.func.isRequired,

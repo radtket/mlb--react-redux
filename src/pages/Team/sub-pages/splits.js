@@ -145,7 +145,7 @@ const PageTeamSplits = ({
 };
 
 PageTeamSplits.propTypes = {
-  teamSplitsFail: null || PropTypes.bool,
+  teamSplitsFail: PropTypes.bool,
   teamSplitsLoading: PropTypes.bool.isRequired,
   teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
   fetchTeamSplits: PropTypes.func.isRequired,

@@ -115,10 +115,10 @@ PageTeamHome.propTypes = {
   fetchNewsTeams: PropTypes.func.isRequired,
   fetchTeamRssNews: PropTypes.func.isRequired,
   newsTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  newsTeamsFail: null || PropTypes.bool,
+  newsTeamsFail: PropTypes.bool,
   newsTeamsLoading: PropTypes.bool.isRequired,
   teamRssNews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  teamRssNewsFail: null || PropTypes.bool,
+  teamRssNewsFail: PropTypes.bool,
   teamRssNewsLoading: PropTypes.bool.isRequired,
 };
 

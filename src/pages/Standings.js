@@ -56,7 +56,7 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
 };
 
 StandingsList.propTypes = {
-  standingsError: null || PropTypes.bool,
+  standingsError: PropTypes.bool,
   standingsLoading: PropTypes.bool.isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

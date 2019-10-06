@@ -31,7 +31,7 @@ const StadiumList = ({
 };
 
 StadiumList.propTypes = {
-  stadiumsFail: null || PropTypes.bool,
+  stadiumsFail: PropTypes.bool,
   stadiumsLoading: PropTypes.bool.isRequired,
   stadiums: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchStadiums: PropTypes.func.isRequired,

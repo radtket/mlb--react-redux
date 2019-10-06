@@ -37,7 +37,7 @@ const PageTeamTickets = ({
 };
 
 PageTeamTickets.propTypes = {
-  ticketsFail: null || PropTypes.bool,
+  ticketsFail: PropTypes.bool,
   ticketsLoading: PropTypes.bool.isRequired,
   tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchTickets: PropTypes.func.isRequired,
