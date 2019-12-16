@@ -41,9 +41,13 @@ const App = ({
   teamsLoading,
 }) => {
   useEffect(() => {
-    getTeams();
-    getSchedules(2019);
-    getStandings();
+    const componentDidMount = () => {
+      getTeams();
+      getSchedules(2019);
+      getStandings();
+    };
+    componentDidMount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (teamsFail) {
@@ -125,9 +129,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(App);

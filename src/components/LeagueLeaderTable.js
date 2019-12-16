@@ -81,12 +81,12 @@ const acronym = words => {
 };
 
 const LeagueLeaderTable = ({ dataObj }) => {
+  const [toggle, setToggle] = useState(true);
   return Object.entries(dataObj).map(item => {
     const [name, data] = item;
     const { abbr } = data[0];
     const { PrimaryColor, SecondaryColor } = teamFinder[abbr];
     const stateAbrv = statDecoders(acronym(name));
-    const [toggle, setToggle] = useState(true);
 
     return (
       <article key={name} className="wisbb--leaders__wrap">

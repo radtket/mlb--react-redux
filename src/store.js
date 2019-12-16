@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from "history";
 import rootReducer from "./modules/reducers";
 
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 const initialState = {};
 const enhancers = [];
@@ -20,10 +20,7 @@ if (process.env.NODE_ENV === "development") {
   }
 }
 
-const composedEnhancers = compose(
-  applyMiddleware(...middleware),
-  ...enhancers
-);
+const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 export default createStore(
   connectRouter(history)(rootReducer),
