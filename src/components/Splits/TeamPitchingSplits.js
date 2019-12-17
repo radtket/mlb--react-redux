@@ -1,33 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Table } from "rsuite";
 import PropTypes from "prop-types";
 import LoadingSpinner from "../LoadingSpinner";
 
 const { Column, HeaderCell, Cell } = Table;
 
-const TeamPitchingSplits = ({ dataList: PropsData }) => {
-  const mounted = useRef();
-  const [data, setData] = useState(PropsData);
-  const [loading, setloading] = useState(false);
+const TeamPitchingSplits = ({ dataList }) => {
+  const [loading, setLoading] = useState(false);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortType, setSortType] = useState("asc");
 
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
-      // do componentDidUpate logic
-      setData(PropsData);
-    }
-  });
-
   const handleSortColumn = (sortColumnArg, sortTypeArg) => {
-    setloading(true);
+    setLoading(true);
 
     setTimeout(() => {
       setSortType(sortTypeArg);
       setSortColumn(sortColumnArg);
-      setloading(false);
+      setLoading(false);
     }, 500);
   };
 
@@ -57,21 +46,20 @@ const TeamPitchingSplits = ({ dataList: PropsData }) => {
     return dataArg;
   };
 
-  if (!PropsData) {
+  const data = getData(dataList);
+
+  if (!data) {
     return <LoadingSpinner />;
   }
 
   return (
     <Table
       autoHeight
-      data={getData(data)}
+      {...{ data, loading, sortType, sortColumn }}
       isTree
-      loading={loading}
       onSortColumn={handleSortColumn}
       rowClassName="capitalize-first-cell"
-      rowKey="id"
-      sortColumn={sortColumn}
-      sortType={sortType}>
+      rowKey="id">
       <Column align="left" fixed sortable width={200}>
         <HeaderCell>name</HeaderCell>
         <Cell dataKey="name" />

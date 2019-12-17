@@ -16,8 +16,7 @@ const TeamHeader = ({
 }) => {
   const createTeamsDropdown = (teamsArg, currentTeamAbrv) => {
     return teamsArg
-      .reduce((allTeams, team) => {
-        const { Key: TeamKey, Name: TeamName } = team;
+      .reduce((allTeams, { Key: TeamKey, Name: TeamName }) => {
         allTeams.push({
           value: TeamKey,
           label: TeamName,

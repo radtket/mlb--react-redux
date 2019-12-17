@@ -18,10 +18,6 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
     return <LoadingSpinner />;
   }
 
-  if (isArrayEmpty(standings)) {
-    return <h1>No Standing</h1>;
-  }
-
   return (
     <div className="container">
       <PageTitle title="Standings" />

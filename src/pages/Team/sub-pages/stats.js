@@ -37,8 +37,6 @@ const PageTeamStats = ({
     );
   };
 
-  const { pitcher, batter } = splitStatsByPosition(teamStats);
-
   if (teamStatsFail) {
     return <div>Error! {teamStatsFail.message}</div>;
   }
@@ -46,6 +44,8 @@ const PageTeamStats = ({
   if (teamStatsLoading) {
     return <LoadingSpinner />;
   }
+
+  const { pitcher, batter } = splitStatsByPosition(teamStats);
 
   return (
     <div className="container">

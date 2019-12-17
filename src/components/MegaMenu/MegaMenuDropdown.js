@@ -1,11 +1,11 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { IconCaret } from "../Icons";
 // import { DropdownContext } from "./Navbar";
-import { MegaMenuDivision } from ".";
-import { sortTeamsByDivion } from "../../utils/helpers";
+import MegaMenuDivision from "./MegaMenuDivision";
 
-export const DropdownContext = createContext();
+import { sortTeamsByDivion } from "../../utils/helpers";
+import DropdownContext from "./DropdownContext";
 
 export const initialState = {
   count: 0,
@@ -25,31 +25,31 @@ export const DropdownReducer = (state, action) => {
 
 const CreateMegaMenu = ({ teams }) => {
   let cols = [];
-  return sortTeamsByDivion(teams).reduce((rows, element, index) => {
-    const [DivisionName, TeamsInComponents] = element;
-    const { League: LeaugeName } = TeamsInComponents[0];
-    cols.push(
-      <MegaMenuDivision
-        key={DivisionName}
-        DivisionName={DivisionName}
-        TeamsInDivision={TeamsInComponents}
-      />
-    );
-    if ((index + 1) % 3 === 0) {
-      rows.push(
-        <div key={LeaugeName} className="row">
-          {cols}
-        </div>
+  return sortTeamsByDivion(teams).reduce(
+    (rows, [DivisionName, TeamsInDivision], index) => {
+      const { League } = TeamsInDivision[0];
+      cols.push(
+        <MegaMenuDivision
+          key={DivisionName}
+          {...{ TeamsInDivision, DivisionName }}
+        />
       );
-      cols = [];
-    }
-    return rows;
-  }, []);
+      if ((index + 1) % 3 === 0) {
+        rows.push(
+          <div key={League} className="row">
+            {cols}
+          </div>
+        );
+        cols = [];
+      }
+      return rows;
+    },
+    []
+  );
 };
 
 export const MegaMenuDropdown = ({ teams }) => {
   const { state, dispatch } = useContext(DropdownContext);
-  const { isOpen } = state;
 
   return (
     <>
@@ -60,7 +60,7 @@ export const MegaMenuDropdown = ({ teams }) => {
         Teams
         <IconCaret />
       </button>
-      {isOpen && (
+      {state.isOpen && (
         <div className="dropdown__content">
           <CreateMegaMenu {...{ teams }} />
         </div>

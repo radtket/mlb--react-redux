@@ -4,17 +4,17 @@ import Slider from "react-slick";
 import PropTypes from "prop-types";
 import { TodaysDate, isArrayEmpty, isObjectEmpty } from "../../utils/helpers";
 import LoadingSpinner from "../LoadingSpinner";
+import SlickPrevArrow from "./SlickPrevArrow";
+import SlickNextArrow from "./SlickNextArrow";
+import GamesBody from "./GamesBody";
+import buildGamesCalander from "./buildGamesCalander";
+import GameSliderButton from "./GameSliderButton";
 import {
   buildEmptyCalender,
-  buildGamesCalander,
-  GamesBody,
   getInitalActiveIndex,
   getStartAndEndDays,
   renderVisibleStartAndStopDays,
-  SlickNextArrow,
-  SlickPrevArrow,
-  GameSliderButton,
-} from ".";
+} from "./helpers";
 
 const GameSlider = ({ schedules }) => {
   const slider = useRef();

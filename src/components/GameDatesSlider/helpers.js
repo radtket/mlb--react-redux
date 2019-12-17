@@ -3,16 +3,16 @@ import { format, startOfWeek, addDays, endOfWeek } from "date-fns";
 
 export const getInitalActiveIndex = (activeGames, activeTab) => {
   console.log("getInitalActiveIndex");
-  return activeGames.findIndex(child => {
-    const { label } = child.props;
+  return activeGames.findIndex(({ props }) => {
+    const { label } = props;
     const activeDayStartOfWeek = format(startOfWeek(activeTab), "YYYY-MM-DD");
     return activeDayStartOfWeek === label;
   });
 };
 
-export const buildEmptyCalender = startAndEndDayArg => {
+export const buildEmptyCalender = ({ firstDay, lastDay }) => {
   console.log("buildEmptyCalender");
-  const { firstDay, lastDay } = startAndEndDayArg;
+
   let day = firstDay;
   const allDays = {};
   while (day <= lastDay) {

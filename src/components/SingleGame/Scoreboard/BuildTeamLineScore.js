@@ -14,12 +14,7 @@ const BuildTeamLineScore = ({
   return (
     <tr>
       <td>{Team}</td>
-      <TeamRunsInInning
-        Innings={Innings}
-        InningsInRegulation={InningsInRegulation}
-        isHome={isHome}
-        Team={Team}
-      />
+      <TeamRunsInInning {...{ Innings, InningsInRegulation, isHome, Team }} />
       <td>{TeamRuns || 0}</td>
       <td>{TeamHits || 0}</td>
       <td>{TeamErrors || 0}</td>

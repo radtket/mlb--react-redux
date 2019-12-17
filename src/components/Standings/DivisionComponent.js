@@ -8,7 +8,7 @@ const StandingsDivision = ({ division, divisionTeams }) => (
     style={{
       margin: "24px auto",
     }}>
-    <StandingsTableHead division={division} />
+    <StandingsTableHead {...{ division }} />
     <tbody>{divisionTeams}</tbody>
   </table>
 );

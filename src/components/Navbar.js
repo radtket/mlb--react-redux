@@ -1,13 +1,14 @@
 import React, { useReducer } from "react";
 import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import {
-  DropdownContext,
-  DropdownReducer,
-  initialState,
-  MegaMenuDropdown,
-} from "./MegaMenu";
+
 import { SiteLogo } from "./Icons";
+import DropdownContext from "./MegaMenu/DropdownContext";
+import {
+  DropdownReducer,
+  MegaMenuDropdown,
+  initialState,
+} from "./MegaMenu/MegaMenuDropdown";
 
 const Navbar = ({ teams }) => {
   const [state, dispatch] = useReducer(DropdownReducer, initialState);

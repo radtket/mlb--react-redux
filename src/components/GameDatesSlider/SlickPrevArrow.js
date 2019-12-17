@@ -5,11 +5,7 @@ import { ChevronLeft } from "../Icons";
 
 const SlickPrevArrow = ({ className, style, onClick }) => {
   return (
-    <button
-      className={className}
-      onClick={onClick}
-      style={{ ...style }}
-      type="button">
+    <button {...{ className, onClick }} style={{ ...style }} type="button">
       <ChevronLeft />
     </button>
   );

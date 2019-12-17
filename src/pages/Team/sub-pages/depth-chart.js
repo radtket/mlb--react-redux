@@ -21,9 +21,12 @@ const PageTeamDepth = ({
   },
 }) => {
   useEffect(() => {
-    getTeamDepths(teamAbrv);
-    getTeamRoster(teamAbrv);
-  }, []);
+    const mount = teamKey => {
+      getTeamDepths(teamKey);
+      getTeamRoster(teamKey);
+    };
+    mount(teamAbrv);
+  }, [teamAbrv]);
 
   if (teamDepthsFail) {
     return <div>Error! {teamDepthsFail.message}</div>;

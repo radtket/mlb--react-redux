@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { espnLogo } from "../../utils/helpers";
-import { DropdownContext } from "./MegaMenuDropdown";
+import DropdownContext from "./DropdownContext";
 
 const MegaMenuTeam = ({ Name, City, Key }) => {
   const { dispatch } = useContext(DropdownContext);

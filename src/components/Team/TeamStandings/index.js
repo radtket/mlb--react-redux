@@ -7,6 +7,7 @@ import Tabs from "../../Tabs/Tabs";
 import Card from "../../Card";
 
 const TeamStandings = ({ standings, activeTeamObj }) => {
+  const { Division, League } = activeTeamObj;
   const createStandingsTable = (
     standingsArg,
     { League: ActiveLeague, Division: ActiveDivision, Key: ActiveKey },
@@ -32,28 +33,21 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
             TeamDivision === ActiveDivision &&
             divisionTeams.push(
               <StandingsTeam
+                {...{ City, GamesBehind, Losses, TeamKey, Wins }}
                 key={TeamKey}
                 activeTeam={TeamKey === ActiveKey}
-                City={City}
-                GamesBehind={GamesBehind}
-                Losses={Losses}
-                TeamKey={TeamKey}
                 TeamName={Name}
-                Wins={Wins}
               />
             );
         } else {
           TeamLeague === ActiveLeague &&
             divisionTeams.push(
               <StandingsTeam
+                {...{ City, GamesBehind, Losses, TeamKey, Wins }}
                 key={TeamKey}
                 activeTeam={TeamKey === ActiveKey}
-                City={City}
-                Losses={Losses}
                 Percentage={Percentage.toFixed(3).replace(/^0+/, "")}
-                TeamKey={TeamKey}
                 TeamName={Name}
-                Wins={Wins}
               />
             );
         }
@@ -63,7 +57,6 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
     );
   };
 
-  const { Division, League } = activeTeamObj;
   return (
     <Card
       body={

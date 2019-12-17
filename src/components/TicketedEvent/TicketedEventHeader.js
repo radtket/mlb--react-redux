@@ -45,16 +45,17 @@ const SplitLogo = (teams, datetime_local) => {
     ];
 
     const [ColorPrimary, ColorSecondary] = colors.primary;
-    const isHomeTeam = team.home_team || !team.away_team;
 
     return (
       <TeamLogoWrap
         key={`${Key} ${datetime_local}`}
-        ColorPrimary={ColorPrimary}
-        ColorSecondary={ColorSecondary}
-        isHomeTeam={isHomeTeam}
-        WikipediaLogoUrl={WikipediaLogoUrl}
-        WikipediaWordMarkUrl={WikipediaWordMarkUrl}>
+        isHomeTeam={team.home_team || !team.away_team}
+        {...{
+          ColorPrimary,
+          ColorSecondary,
+          WikipediaWordMarkUrl,
+          WikipediaLogoUrl,
+        }}>
         <figure />
       </TeamLogoWrap>
     );

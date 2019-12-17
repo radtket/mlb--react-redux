@@ -17,6 +17,7 @@ const PageTeamTickets = ({
   useEffect(() => {
     getTickets(`${City} ${Name}`);
   }, []);
+
   if (ticketsFail) {
     return <div>Error! {ticketsFail.message}</div>;
   }
@@ -25,13 +26,12 @@ const PageTeamTickets = ({
     return <LoadingSpinner />;
   }
 
-  const renderEvents = events => {
-    return events.map(event => <TicketedEvent key={event.id} {...event} />);
-  };
-
   return (
     <div className="container">
-      <div className="col-sm-7">{tickets && renderEvents(tickets)}</div>
+      <div className="col-sm-7">
+        {tickets &&
+          tickets.map(event => <TicketedEvent key={event.id} {...event} />)}
+      </div>
     </div>
   );
 };

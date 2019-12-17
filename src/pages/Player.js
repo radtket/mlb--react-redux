@@ -6,18 +6,20 @@ import { bindActionCreators } from "redux";
 import { fetchPlayer } from "../modules/actions";
 import PlayerHeroCard from "../components/PlayerHeroCard";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { PlayerHero, PlayerNews, PlayerStats } from "../components/Player";
+import PlayerHero from "../components/Player/PlayerHero";
+import PlayerNews from "../components/Player/PlayerNews";
+import PlayerStats from "../components/Player/PlayerStats";
 import { teamFinder } from "../utils/helpers";
 
 const PlayerList = ({
   playerFail,
   playerLoading,
   player,
-  match,
+  match: {
+    params: { playerArg },
+  },
   fetchPlayer: getPlayer,
 }) => {
-  const { playerArg } = match.params;
-
   useEffect(() => {
     getPlayer(playerArg);
   }, []);

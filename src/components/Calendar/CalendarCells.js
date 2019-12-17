@@ -8,7 +8,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
-import { CalendarSingleDate } from ".";
+import CalendarSingleDate from "./CalendarSingleDate";
 
 const CalendarCells = ({
   currentMonth,

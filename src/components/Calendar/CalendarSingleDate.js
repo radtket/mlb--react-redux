@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { isSameDay, isSameMonth, parse } from "date-fns";
-import { CalendarSingleDateGame } from ".";
+import CalendarSingleDateGame from "./CalendarSingleDateGame";
 
 const CalendarSingleDate = ({
   day,

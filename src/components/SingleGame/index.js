@@ -6,8 +6,8 @@ import SingleGameBaseballDiamond from "./SingleGameBaseballDiamond";
 import SingleGameCount from "./SingleGameCount";
 import SingleGameLastGame from "./SingleGameLastGame";
 import SingleGameHead from "./SingleGameHead";
-import { roundHalf } from "../../utils/helpers";
-import { TicketStubs, IconCaret } from "../Icons";
+
+import { IconCaret } from "../Icons";
 import SingleGameInningScoreboard from "./Scoreboard/SingleGameInningScoreboard";
 
 import LocationAndWeather from "./LocationAndWeather";

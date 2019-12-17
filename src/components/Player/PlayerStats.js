@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPlayerStats } from "../../modules/actions";
 import LoadingSpinner from "../LoadingSpinner";
-import { AdvancedStats, BasicStats } from ".";
+import AdvancedStats from "./AdvancedStats";
+import BasicStats from "./BasicStats";
 import Card from "../Card";
 
 const PlayerStats = ({

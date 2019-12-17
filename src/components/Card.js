@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Card = ({ title, body, style }) => {
+const Card = ({ title, body, ...props }) => {
   return (
-    <div className="card" style={{ ...style }}>
+    <div className="card" {...props}>
       <h5 className="card__headline">{title}</h5>
       {body}
     </div>

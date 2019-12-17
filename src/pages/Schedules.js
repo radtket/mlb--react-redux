@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchSportsRadarGames } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { GameSlider } from "../components/GameDatesSlider";
+import GameSlider from "../components/GameDatesSlider/GameSlider";
 import PageTitle from "../components/PageTitle";
 
 const SchedulesList = ({

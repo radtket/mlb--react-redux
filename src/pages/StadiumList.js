@@ -15,6 +15,7 @@ const StadiumList = ({
   useEffect(() => {
     getStadiums();
   }, []);
+
   if (stadiumsFail) {
     return <div>Error! {stadiumsFail.message}</div>;
   }

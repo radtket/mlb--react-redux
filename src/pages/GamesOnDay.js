@@ -50,20 +50,6 @@ const GamesOnDay = ({
     getTicketsOnDate(format(dateOfGame, "YYYY-MM-DD"));
   }, []);
 
-  const previousDaysGame = date => {
-    const newDay = subDays(new Date(date), 1);
-    setdateOfGame(newDay);
-    getGamesOnDay(newDay);
-    getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
-  };
-
-  const nextDaysGame = date => {
-    const newDay = addDays(new Date(date), 1);
-    setdateOfGame(newDay);
-    getGamesOnDay(newDay);
-    getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
-  };
-
   if (stadiumsFail) {
     return <div>Error! {stadiumsFail.message}</div>;
   }
@@ -100,10 +86,24 @@ const GamesOnDay = ({
         <PageTitle title="Scores" />
         <h1>Games For {format(new Date(dateOfGame), "dddd, MMMM Do YYYY")}</h1>
         <nav>
-          <button onClick={() => previousDaysGame(dateOfGame)} type="button">
+          <button
+            onClick={() => {
+              const newDay = subDays(new Date(dateOfGame), 1);
+              setdateOfGame(newDay);
+              getGamesOnDay(newDay);
+              getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
+            }}
+            type="button">
             Previous
           </button>
-          <button onClick={() => nextDaysGame(dateOfGame)} type="button">
+          <button
+            onClick={() => {
+              const newDay = addDays(new Date(dateOfGame), 1);
+              setdateOfGame(newDay);
+              getGamesOnDay(newDay);
+              getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
+            }}
+            type="button">
             Next
           </button>
         </nav>

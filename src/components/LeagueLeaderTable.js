@@ -82,8 +82,7 @@ const acronym = words => {
 
 const LeagueLeaderTable = ({ dataObj }) => {
   const [toggle, setToggle] = useState(true);
-  return Object.entries(dataObj).map(item => {
-    const [name, data] = item;
+  return Object.entries(dataObj).map(([name, data]) => {
     const { abbr } = data[0];
     const { PrimaryColor, SecondaryColor } = teamFinder[abbr];
     const stateAbrv = statDecoders(acronym(name));

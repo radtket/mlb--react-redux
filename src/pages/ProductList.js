@@ -14,6 +14,7 @@ const ProductList = ({
   useEffect(() => {
     getProducts();
   }, []);
+
   if (productsFail) {
     return <div>Error! {productsFail.message}</div>;
   }

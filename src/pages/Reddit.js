@@ -7,7 +7,9 @@ import {
   invalidateSubreddit,
   selectSubreddit,
 } from "../modules/reddit/reddit-actions";
-import { Picker, Posts } from "../components/Reddit";
+
+import Picker from "../components/Reddit/Picker";
+import Posts from "../components/Reddit/Posts";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { isArrayEmpty } from "../utils/helpers";
 
