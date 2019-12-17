@@ -22,9 +22,7 @@ function getPlayerStats(playerId, PositionCategory) {
   const isPitcher = PositionCategory === "P";
   const PosCat = isPitcher ? "pitching" : "batting";
   return fetch(
-    `${
-      process.env.REACT_APP_CORS
-    }https://www.rotowire.com/baseball/ajax/player-page-data.php?id=${playerId}&stats=${PosCat}`,
+    `${process.env.REACT_APP_CORS}https://www.rotowire.com/baseball/ajax/player-page-data.php?id=${playerId}&stats=${PosCat}`,
     {
       credentials: "omit",
       headers: {
@@ -32,9 +30,7 @@ function getPlayerStats(playerId, PositionCategory) {
         "accept-language": "en-US,en;q=0.9",
         "x-requested-with": "XMLHttpRequest",
       },
-      referrer: `${
-        process.env.REACT_APP_CORS
-      }https://www.rotowire.com/baseball/player.php?id=${playerId}`,
+      referrer: `${process.env.REACT_APP_CORS}https://www.rotowire.com/baseball/player.php?id=${playerId}`,
       referrerPolicy: "no-referrer-when-downgrade",
       body: null,
       method: "GET",

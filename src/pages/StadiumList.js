@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStadiums } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { isArrayEmpty } from "../utils/helpers";
 
 const StadiumList = ({
   stadiumsFail,
@@ -22,10 +23,15 @@ const StadiumList = ({
     return <LoadingSpinner />;
   }
 
+  if (isArrayEmpty(stadiums)) {
+    return <h1>No Stadiums Found</h1>;
+  }
+
   return (
     <ul>
-      {stadiums &&
-        stadiums.map(item => <li key={item.StadiumID}>{item.Name}</li>)}
+      {stadiums.map(item => (
+        <li key={item.StadiumID}>{item.Name}</li>
+      ))}
     </ul>
   );
 };
@@ -55,9 +61,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(StadiumList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(StadiumList);

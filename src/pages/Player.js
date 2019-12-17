@@ -30,26 +30,26 @@ const PlayerList = ({
     return <LoadingSpinner />;
   }
 
-  const { Team } = player;
+  if (!player) {
+    return <h1>Player Not Found</h1>;
+  }
 
   return (
-    player && (
-      <div>
-        <PlayerHero {...player} />
-        <PlayerHeroCard {...player} {...teamFinder[Team]} />
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12">
-              <h3>
-                <Link to={`/teams/${Team}`}>{Team}</Link>
-              </h3>
-              <PlayerNews {...player} />
-              <PlayerStats {...player} />
-            </div>
+    <div>
+      <PlayerHero {...player} />
+      <PlayerHeroCard {...{ ...player, ...teamFinder[player.Team] }} />
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <h3>
+              <Link to={`/teams/${player.Team}`}>{player.Team}</Link>
+            </h3>
+            <PlayerNews {...player} />
+            <PlayerStats {...player} />
           </div>
         </div>
       </div>
-    )
+    </div>
   );
 };
 
@@ -89,9 +89,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(PlayerList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(PlayerList);

@@ -11,37 +11,31 @@ import { Picker, Posts } from "../components/Reddit";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { isArrayEmpty } from "../utils/helpers";
 
-const RedditAsyncApp = props => {
+const RedditAsyncApp = ({
+  selectedSubreddit,
+  posts,
+  isFetching,
+  lastUpdated,
+  fetchPostsIfNeeded: getPostsIfNeeded,
+  selectSubreddit: activeSelectSubreddit,
+  invalidateSubreddit: invalidSubreddit,
+}) => {
   useEffect(() => {
-    const { selectedSubreddit, fetchPostsIfNeeded: getPostsIfNeeded } = props;
-
     return () => {
       getPostsIfNeeded(selectedSubreddit);
     };
   }, []);
 
   const handleChange = nextSubreddit => {
-    const {
-      selectSubreddit: activeSelectSubreddit,
-      fetchPostsIfNeeded: getPostsIfNeeded,
-    } = props;
-
     activeSelectSubreddit(nextSubreddit);
     getPostsIfNeeded(nextSubreddit);
   };
 
   const handleRefreshClick = e => {
     e.preventDefault();
-
-    const {
-      selectedSubreddit,
-      fetchPostsIfNeeded: getPostsIfNeeded,
-      invalidateSubreddit: invalidSubreddit,
-    } = props;
     invalidSubreddit(selectedSubreddit);
     getPostsIfNeeded(selectedSubreddit);
   };
-  const { selectedSubreddit, posts, isFetching, lastUpdated } = props;
 
   return (
     <div>
@@ -62,8 +56,9 @@ const RedditAsyncApp = props => {
           </button>
         )}
       </p>
-      {isFetching && isArrayEmpty(posts) && <LoadingSpinner />}
-      {!isFetching && isArrayEmpty(posts) && <h2>Empty.</h2>}
+      {isArrayEmpty(posts) &&
+        (isFetching ? <LoadingSpinner /> : <h2>Empty.</h2>)}
+
       {posts.length > 0 && (
         <div style={{ opacity: isFetching ? 0.5 : 1 }}>
           <Posts posts={posts} />
@@ -115,9 +110,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(RedditAsyncApp);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(RedditAsyncApp);

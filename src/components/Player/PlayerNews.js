@@ -68,9 +68,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(PlayerNews);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(PlayerNews);

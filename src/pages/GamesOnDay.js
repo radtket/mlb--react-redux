@@ -16,12 +16,11 @@ import {
   // TODO: Add When API is Live
   // TodaysDate,
   DEV_PLACEHOLDER_DATE,
-  teamFinder,
 } from "../utils/helpers";
-import SingleGame from "../components/SingleGame";
 import PageTitle from "../components/PageTitle";
+import GamesOnDayList from "../components/GamesOnDayList";
 
-const GamesOnDayList = ({
+const GamesOnDay = ({
   gamesOnDayFail,
   gamesOnDayLoading,
   standingsError,
@@ -108,33 +107,21 @@ const GamesOnDayList = ({
             Next
           </button>
         </nav>
-        <ul>
-          {gamesOnDay &&
-            allPlayers &&
-            gamesOnDay.map(game => {
-              return (
-                <SingleGame
-                  key={game.GameID}
-                  allPlayers={allPlayers}
-                  gameTicket={tickets.find(ticket =>
-                    ticket.short_title.includes(
-                      teamFinder[game.HomeTeam].Name ||
-                        teamFinder[game.AwayTeam].Name
-                    )
-                  )}
-                  stadiums={stadiums}
-                  standings={standings}
-                  {...game}
-                />
-              );
-            })}
-        </ul>
+        <GamesOnDayList
+          {...{
+            gamesOnDay,
+            allPlayers,
+            tickets,
+            stadiums,
+            standings,
+          }}
+        />
       </div>
     </>
   );
 };
 
-GamesOnDayList.propTypes = {
+GamesOnDay.propTypes = {
   allPlayersFail: PropTypes.bool,
   allPlayersLoading: PropTypes.bool.isRequired,
   allPlayers: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -156,7 +143,7 @@ GamesOnDayList.propTypes = {
   fetchTicketsOnDate: PropTypes.func.isRequired,
 };
 
-GamesOnDayList.defaultProps = {
+GamesOnDay.defaultProps = {
   allPlayersFail: null,
   gamesOnDayFail: null,
   standingsError: null,
@@ -200,9 +187,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(GamesOnDayList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(GamesOnDay);

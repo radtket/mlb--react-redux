@@ -10,6 +10,10 @@ import { roundHalf } from "../../utils/helpers";
 import { TicketStubs, IconCaret } from "../Icons";
 import SingleGameInningScoreboard from "./Scoreboard/SingleGameInningScoreboard";
 
+import LocationAndWeather from "./LocationAndWeather";
+import Tickets from "./Tickets";
+import Odds from "./Odds";
+
 const SingleGame = ({
   AwayTeam,
   AwayTeamErrors,
@@ -159,82 +163,52 @@ const SingleGame = ({
         </table>
 
         <article className="scoreboard-detail">
-          {GameStatusPregame && StadiumObj && (
-            <div className="scoreboard-detail__location scoreboard-detail__location-and-weather">
-              <ul>
-                <li>
-                  <strong>{StadiumObj.Name}</strong>
-                </li>
-                <li>{`${StadiumObj.City}, ${StadiumObj.State}`}</li>
-              </ul>
-
-              <div className="weather">
-                <a
-                  href="http://www.accuweather.com/"
-                  rel="noopener noreferrer"
-                  target="_blank">
-                  <div className="accuweather" />
-                </a>
-                <div className="accu-weather-icons sm icon-2" />
-                <div className="temperature">
-                  {ForecastWindChill && `${ForecastWindChill}° F`}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {GameStatusPregame && gameTicket && (
-            <div className="scoreboard-detail__tickets">
-              <TicketStubs />
-              <a
-                href={gameTicket.url}
-                rel="noopener noreferrer"
-                target="_blank">
-                {`Tickets as low as $${gameTicket.stats.lowest_price}`}
-              </a>
-            </div>
-          )}
-
-          {GameStatusPregame && (
-            <ul className="scoreboard-detail__odds">
-              {HomeTeamMoneyLine && (
-                <li>Line: {`${HomeTeam} ${HomeTeamMoneyLine}`}</li>
+          {GameStatusPregame ? (
+            <>
+              {StadiumObj && (
+                <LocationAndWeather {...{ StadiumObj, ForecastWindChill }} />
               )}
-              {OverUnder && <li>O/U: {roundHalf(OverUnder)}</li>}
-            </ul>
-          )}
-
-          {!GameStatusPregame && GameStatusInProgress && (
-            <div className="play-by-play">
-              <SingleGameBaseballDiamond
-                RunnerOnFirst={RunnerOnFirst}
-                RunnerOnSecond={RunnerOnSecond}
-                RunnerOnThird={RunnerOnThird}
-              />
-              <div className="baseball-details">
-                <SingleGameCount Balls={Balls} Outs={Outs} Strikes={Strikes} />
-                {LastPlay && LastPlay !== "Scrambled" && (
-                  <SingleGameLastGame LastPlay={LastPlay} />
-                )}
-              </div>
-              {/* <Link to="/" className="play-by-play-link">
+              {gameTicket && <Tickets {...{ gameTicket }} />}
+              <Odds {...{ HomeTeamMoneyLine, HomeTeam, OverUnder }} />
+            </>
+          ) : (
+            <>
+              {GameStatusInProgress && (
+                <div className="play-by-play">
+                  <SingleGameBaseballDiamond
+                    RunnerOnFirst={RunnerOnFirst}
+                    RunnerOnSecond={RunnerOnSecond}
+                    RunnerOnThird={RunnerOnThird}
+                  />
+                  <div className="baseball-details">
+                    <SingleGameCount
+                      Balls={Balls}
+                      Outs={Outs}
+                      Strikes={Strikes}
+                    />
+                    {LastPlay && LastPlay !== "Scrambled" && (
+                      <SingleGameLastGame LastPlay={LastPlay} />
+                    )}
+                  </div>
+                  {/* <Link to="/" className="play-by-play-link">
                 Play-by-Play
               </Link> */}
-            </div>
-          )}
-
-          {!GameStatusPregame && !GameStatusPostponed && (
-            <button
-              className="scoreboard__tray--button"
-              onClick={toggleScoreboardTrey}
-              type="button">
-              {ScoreboardTreyVisible === "hide"
-                ? "Show Box Score"
-                : "Hide  Box Score"}
-              <figure>
-                <IconCaret />
-              </figure>
-            </button>
+                </div>
+              )}
+              {!GameStatusPostponed && (
+                <button
+                  className="scoreboard__tray--button"
+                  onClick={toggleScoreboardTrey}
+                  type="button">
+                  {ScoreboardTreyVisible === "hide"
+                    ? "Show Box Score"
+                    : "Hide  Box Score"}
+                  <figure>
+                    <IconCaret />
+                  </figure>
+                </button>
+              )}
+            </>
           )}
         </article>
 
@@ -247,9 +221,7 @@ const SingleGame = ({
                   PlayerData={AwayPitcher}
                   PlayerHeaderText="Probable Pitchers"
                   PlayerTeam
-                  stats={`(${AwayPitcher.Wins}-${AwayPitcher.Losses}, ${
-                    AwayPitcher.EarnedRunAverage
-                  })`}
+                  stats={`(${AwayPitcher.Wins}-${AwayPitcher.Losses}, ${AwayPitcher.EarnedRunAverage})`}
                 />
               )}
 
@@ -257,9 +229,7 @@ const SingleGame = ({
                 <SingleGamePlayer
                   PlayerData={HomePitcher}
                   PlayerTeam
-                  stats={`(${HomePitcher.Wins}-${HomePitcher.Losses}, ${
-                    HomePitcher.EarnedRunAverage
-                  })`}
+                  stats={`(${HomePitcher.Wins}-${HomePitcher.Losses}, ${HomePitcher.EarnedRunAverage})`}
                 />
               )}
             </>
@@ -287,39 +257,36 @@ const SingleGame = ({
             </>
           )}
 
-          {GameStatusFinal &&
-            (WinningPitcher && (
-              <SingleGamePlayer
-                FinalStatPitchers="Win"
-                isPitcher
-                PlayerData={WinningPitcher}
-                stats={`(${WinningPitcher.Wins}-${WinningPitcher.Losses}, ${
-                  WinningPitcher.EarnedRunAverage
-                })`}
-              />
-            ))}
+          {GameStatusFinal && (
+            <>
+              {WinningPitcher && (
+                <SingleGamePlayer
+                  FinalStatPitchers="Win"
+                  isPitcher
+                  PlayerData={WinningPitcher}
+                  stats={`(${WinningPitcher.Wins}-${WinningPitcher.Losses}, ${WinningPitcher.EarnedRunAverage})`}
+                />
+              )}
 
-          {GameStatusFinal &&
-            (LosingPitcher && (
-              <SingleGamePlayer
-                FinalStatPitchers="Loss"
-                isPitcher
-                PlayerData={LosingPitcher}
-                stats={`(${LosingPitcher.Wins}-${LosingPitcher.Losses}, ${
-                  LosingPitcher.EarnedRunAverage
-                })`}
-              />
-            ))}
+              {LosingPitcher && (
+                <SingleGamePlayer
+                  FinalStatPitchers="Loss"
+                  isPitcher
+                  PlayerData={LosingPitcher}
+                  stats={`(${LosingPitcher.Wins}-${LosingPitcher.Losses}, ${LosingPitcher.EarnedRunAverage})`}
+                />
+              )}
 
-          {GameStatusFinal &&
-            (SavingPitcher && (
-              <SingleGamePlayer
-                FinalStatPitchers="Save"
-                isPitcher
-                PlayerData={SavingPitcher}
-                stats={`(${SavingPitcher.Saves})`}
-              />
-            ))}
+              {SavingPitcher && (
+                <SingleGamePlayer
+                  FinalStatPitchers="Save"
+                  isPitcher
+                  PlayerData={SavingPitcher}
+                  stats={`(${SavingPitcher.Saves})`}
+                />
+              )}
+            </>
+          )}
         </article>
       </section>
 

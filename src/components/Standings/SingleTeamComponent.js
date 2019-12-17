@@ -2,20 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TableTeamCell, TableWinsLossesCell } from "../TableParts";
 
-const StandingsSingleTeam = ({ team }) => {
-  const {
-    City,
-    Wins,
-    Losses,
-    GamesBehind,
-    HomeWins,
-    HomeLosses,
-    AwayWins,
-    AwayLosses,
-    TeamID,
-    Name,
-    Key,
-  } = team;
+const StandingsSingleTeam = ({
+  City,
+  Wins,
+  Losses,
+  GamesBehind,
+  HomeWins,
+  HomeLosses,
+  AwayWins,
+  AwayLosses,
+  TeamID,
+  Name,
+  Key,
+}) => {
   return (
     <tr key={TeamID}>
       <TableTeamCell Key={Key} City={City} Name={Name} />
@@ -34,24 +33,21 @@ const StandingsSingleTeam = ({ team }) => {
 };
 
 StandingsSingleTeam.propTypes = {
-  team: PropTypes.shape({
-    City: PropTypes.string.isRequired,
-    Wins: PropTypes.number.isRequired,
-    Losses: PropTypes.number.isRequired,
-    GamesBehind: PropTypes.number,
-    HomeWins: PropTypes.number.isRequired,
-    HomeLosses: PropTypes.number.isRequired,
-    AwayWins: PropTypes.number.isRequired,
-    AwayLosses: PropTypes.number.isRequired,
-    TeamID: PropTypes.number.isRequired,
-    Name: PropTypes.string.isRequired,
-  }),
+  City: PropTypes.string.isRequired,
+  Wins: PropTypes.number.isRequired,
+  Losses: PropTypes.number.isRequired,
+  GamesBehind: PropTypes.number,
+  HomeWins: PropTypes.number.isRequired,
+  HomeLosses: PropTypes.number.isRequired,
+  AwayWins: PropTypes.number.isRequired,
+  AwayLosses: PropTypes.number.isRequired,
+  TeamID: PropTypes.number.isRequired,
+  Name: PropTypes.string.isRequired,
+  Key: PropTypes.string.isRequired,
 };
 
 StandingsSingleTeam.defaultProps = {
-  team: PropTypes.shape({
-    GamesBehind: "-",
-  }).isRequired,
+  GamesBehind: "-",
 };
 
 export default StandingsSingleTeam;

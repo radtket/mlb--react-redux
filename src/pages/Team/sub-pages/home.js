@@ -145,9 +145,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(PageTeamHome);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(PageTeamHome);

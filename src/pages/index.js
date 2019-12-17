@@ -1,5 +1,5 @@
 import Counters from "./Counters";
-import GamesOnDayList from "./GamesOnDay";
+import GamesOnDay from "./GamesOnDay";
 import Home from "./Home";
 import NewsAllTeamsList from "./NewsAllTeams";
 import PlayerList from "./Player";
@@ -14,7 +14,7 @@ import Team from "./Team";
 
 export {
   Counters,
-  GamesOnDayList,
+  GamesOnDay,
   Home,
   NewsAllTeamsList,
   PlayerList,

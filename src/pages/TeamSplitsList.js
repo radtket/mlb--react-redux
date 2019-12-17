@@ -16,7 +16,7 @@ const TeamSplitsList = ({
   TeamArg,
 }) => {
   useEffect(() => {
-    getTeamSplits(TeamArg || "MIL");
+    getTeamSplits(TeamArg);
   }, []);
   if (teamSplitsFail) {
     return <div>Error! {teamSplitsFail.message}</div>;
@@ -152,9 +152,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(TeamSplitsList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(TeamSplitsList);

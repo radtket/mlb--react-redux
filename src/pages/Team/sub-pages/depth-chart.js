@@ -42,11 +42,7 @@ const PageTeamDepth = ({
       <div className="row">
         <div className="col-sm-12">
           <h1>PageTeamDepth</h1>
-          <DepthChart
-            positions={positions}
-            TeamAbrv={teamAbrv}
-            teamRoster={teamRoster}
-          />
+          <DepthChart {...{ positions, teamRoster, teamAbrv }} />
         </div>
       </div>
     </div>
@@ -89,9 +85,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(withRouter(PageTeamDepth));
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(withRouter(PageTeamDepth));

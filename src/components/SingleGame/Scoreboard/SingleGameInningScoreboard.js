@@ -34,21 +34,21 @@ const SingleGameInningScoreboard = ({
         </thead>
         <tbody>
           <BuildTeamLineScore
-            Team={AwayTeam}
-            TeamRuns={AwayTeamRuns}
-            TeamHits={AwayTeamHits}
-            TeamErrors={AwayTeamErrors}
             Innings={Innings}
             InningsInRegulation={InningsInRegulation}
+            Team={AwayTeam}
+            TeamErrors={AwayTeamErrors}
+            TeamHits={AwayTeamHits}
+            TeamRuns={AwayTeamRuns}
           />
           <BuildTeamLineScore
-            isHome
-            Team={HomeTeam}
-            TeamRuns={HomeTeamRuns}
-            TeamHits={HomeTeamHits}
-            TeamErrors={HomeTeamErrors}
             Innings={Innings}
             InningsInRegulation={InningsInRegulation}
+            isHome
+            Team={HomeTeam}
+            TeamErrors={HomeTeamErrors}
+            TeamHits={HomeTeamHits}
+            TeamRuns={HomeTeamRuns}
           />
         </tbody>
       </table>

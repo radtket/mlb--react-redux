@@ -25,6 +25,7 @@
     "comma-dangle": 0,
     "react/jsx-filename-extension": 0,
     "react/jsx-sort-props": 1,
+    "react/prop-types": [2, { "ignore": ["match"] }],
     "react/prefer-stateless-function": 0,
     "react/jsx-props-no-spreading": 0,
     "no-unused-expressions": [

@@ -5,53 +5,44 @@ import { bindActionCreators } from "redux";
 import { fetchStandings } from "../modules/actions";
 import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
-import { sortTeamsByDivion } from "../utils/helpers";
+import { sortTeamsByDivion, isArrayEmpty } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import PageTitle from "../components/PageTitle";
 
 const StandingsList = ({ standings, standingsError, standingsLoading }) => {
-  const createStandingsComponent = standingsArg => {
-    return sortTeamsByDivion(standingsArg).reduce(
-      (standingsComponent, divisionComponent) => {
-        const [divisionName, divisionTeamsComponents] = divisionComponent;
-        standingsComponent.push(
-          <StandingsDivision
-            key={divisionName}
-            className="table"
-            division={divisionName}
-            divisionTeams={divisionTeamsComponents.map(team => {
-              const { Key, League, Division } = team;
-              return (
-                <StandingsSingleTeam
-                  key={Key}
-                  division={`${League} ${Division}`}
-                  team={team}
-                />
-              );
-            })}
-          />
-        );
-        return standingsComponent;
-      },
-      []
-    );
-  };
-
   if (standingsError) {
     return <div>Error! {standingsError.message}</div>;
   }
 
-  if (standingsLoading || standings.length <= 0) {
+  if (standingsLoading) {
     return <LoadingSpinner />;
   }
 
+  if (isArrayEmpty(standings)) {
+    return <h1>No Standing</h1>;
+  }
+
   return (
-    <>
-      <div className="container">
-        <PageTitle title="Standings" />
-        {standings && createStandingsComponent(standings)}
-      </div>
-    </>
+    <div className="container">
+      <PageTitle title="Standings" />
+      {standings &&
+        sortTeamsByDivion(standings).reduce(
+          (standingsComponent, [divisionName, divisionTeamsComponents]) => {
+            standingsComponent.push(
+              <StandingsDivision
+                key={divisionName}
+                className="table"
+                division={divisionName}
+                divisionTeams={divisionTeamsComponents.map(team => {
+                  return <StandingsSingleTeam key={team.Key} {...team} />;
+                })}
+              />
+            );
+            return standingsComponent;
+          },
+          []
+        )}
+    </div>
   );
 };
 
@@ -79,9 +70,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(StandingsList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(StandingsList);

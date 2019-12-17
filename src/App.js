@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 // Pages
 import {
   Counters,
-  GamesOnDayList,
+  GamesOnDay,
   Home,
   LeagueLeadersTeams,
   NewsAllTeamsList,
@@ -77,7 +77,7 @@ const App = ({
         <Route component={ProductList} exact path="/product" />
         <Route component={RedditAsyncApp} exact path="/reddit" />
         <Route component={SchedulesList} exact path="/schedule" />
-        <Route component={GamesOnDayList} exact path="/scores" />
+        <Route component={GamesOnDay} exact path="/scores" />
         <Route component={TeamSplitsList} exact path="/splits" />
         <Route component={StandingsList} exact path="/standings" />
         <Route component={LeagueLeadersTeams} exact path="/stats" />

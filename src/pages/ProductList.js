@@ -24,7 +24,7 @@ const ProductList = ({
 
   return (
     <ul>
-      {products && products.map(item => <li key={item.Key}>{item.Name}</li>)}
+      {products && products.map(({ Key, Name }) => <li key={Key}>{Name}</li>)}
     </ul>
   );
 };
@@ -54,9 +54,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(ProductList);

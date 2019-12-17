@@ -130,14 +130,14 @@ const PageTeamSplits = ({
     <div className="container">
       {hitting && (
         <Card
-          title="Hitting Splits"
           body={<TeamBattingSplits dataList={organizeSplits(hitting)} />}
+          title="Hitting Splits"
         />
       )}
       {pitching && (
         <Card
-          title="Pitching Splits"
           body={<TeamPitchingSplits dataList={organizeSplits(pitching)} />}
+          title="Pitching Splits"
         />
       )}
     </div>
@@ -170,9 +170,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(PageTeamSplits);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(PageTeamSplits);

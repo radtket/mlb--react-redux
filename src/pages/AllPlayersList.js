@@ -14,6 +14,7 @@ const AllPlayerList = ({
   useEffect(() => {
     getAllPlayers();
   }, []);
+
   if (allPlayersFail) {
     return <div>Error! {allPlayersFail.message}</div>;
   }
@@ -55,9 +56,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(AllPlayerList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(AllPlayerList);

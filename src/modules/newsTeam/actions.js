@@ -20,9 +20,7 @@ export const fetchNewsTeamsFailure = newsTeamsFail => ({
 
 function getNewsTeams(teamName) {
   return fetch(
-    `https://newsapi.org/v2/everything?q=mlb+${teamName}&?sources=espn&apiKey=${
-      process.env.REACT_APP_NEWS_API_KEY
-    }`
+    `https://newsapi.org/v2/everything?q=mlb+${teamName}&?sources=espn&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
   )
     .then(handleErrors)
     .then(res => res.json());

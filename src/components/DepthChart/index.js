@@ -2,20 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import DepthChartWrapper from "./DepthChartWrapper";
 
-const DepthChart = ({ TeamAbrv, positions, teamRoster }) => {
+const DepthChart = ({ teamAbrv, positions, teamRoster }) => {
   return (
     <figure
       className="depth-chart"
       style={{
-        backgroundImage: `url('/data/stadiums/${TeamAbrv}.png')`,
+        backgroundImage: `url('/data/stadiums/${teamAbrv}.png')`,
       }}>
-      <DepthChartWrapper positions={positions} teamRoster={teamRoster} />
+      <DepthChartWrapper {...{ positions, teamRoster }} />
     </figure>
   );
 };
 
 DepthChart.propTypes = {
-  TeamAbrv: PropTypes.string.isRequired,
+  teamAbrv: PropTypes.string.isRequired,
   positions: PropTypes.arrayOf(PropTypes.object).isRequired,
   teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

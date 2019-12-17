@@ -23,9 +23,7 @@ export const fetchTicketsFailure = ticketsFail => ({
 
 function getTicketsOnDate(date = "2019-05-14", sport = "mlb") {
   return fetch(
-    `https://api.seatgeek.com/2/events?taxonomies.name=${sport}&datetime_utc.gt=${date}&client_id=${
-      process.env.REACT_APP_SEATGEEK_API_KEY
-    }`
+    `https://api.seatgeek.com/2/events?taxonomies.name=${sport}&datetime_utc.gt=${date}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
     .then(res => res.json());
@@ -46,9 +44,7 @@ export function fetchTicketsOnDate(date) {
 function getTickets(teamName) {
   const teamQuery = slugify(teamName);
   return fetch(
-    `https://api.seatgeek.com/2/events?performers.slug=${teamQuery}&client_id=${
-      process.env.REACT_APP_SEATGEEK_API_KEY
-    }`
+    `https://api.seatgeek.com/2/events?performers.slug=${teamQuery}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
     .then(res => res.json());

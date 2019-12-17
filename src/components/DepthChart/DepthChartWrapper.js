@@ -2,11 +2,6 @@ import React from "react";
 import DepthChartPosition from "./DepthChartPosition";
 
 const DepthChartWrapper = ({ positions, teamRoster }) => {
-  // eslint-disable-next-line react/prop-types
-  const ThePen = ({ children }) => (
-    <div className="depth-chart__bullpen-wrap">{children}</div>
-  );
-
   const findStarterObj = (starterArg, teamRosterArg) => {
     return teamRosterArg.find(
       player => player.SportRadarPlayerID === starterArg.id
@@ -18,47 +13,50 @@ const DepthChartWrapper = ({ positions, teamRoster }) => {
     (allPos, singlePos) => {
       const { name, players } = singlePos;
 
-      if (players && name === "CL") {
-        const [starter] = players;
-        ThePenChildren.push(
-          <DepthChartPosition
-            key={name}
-            starterObj={findStarterObj(starter, teamRoster)}
-            teamRoster={teamRoster}
-            {...singlePos}
-          />
-        );
-      }
+      if (players) {
+        if (name === "CL") {
+          const [starter] = players;
+          ThePenChildren.push(
+            <DepthChartPosition
+              key={name}
+              starterObj={findStarterObj(starter, teamRoster)}
+              {...{ ...singlePos, teamRoster }}
+            />
+          );
+        }
 
-      if (players && name === "BP") {
-        const [starter, secondStarter] = players;
-        ThePenChildren.push(
-          <DepthChartPosition
-            key={name}
-            hasSecondStarter={secondStarter !== undefined}
-            secondStarterObj={findStarterObj(secondStarter, teamRoster)}
-            starterObj={findStarterObj(starter, teamRoster)}
-            teamRoster={teamRoster}
-            {...singlePos}
-          />
-        );
-      }
+        if (name === "BP") {
+          const [starter, secondStarter] = players;
+          ThePenChildren.push(
+            <DepthChartPosition
+              key={name}
+              hasSecondStarter={secondStarter !== undefined}
+              secondStarterObj={findStarterObj(secondStarter, teamRoster)}
+              starterObj={findStarterObj(starter, teamRoster)}
+              {...{ ...singlePos, teamRoster }}
+            />
+          );
+        }
 
-      if (players && name !== "CL" && name !== "BP") {
-        const [starter] = players;
-        allPos.push(
-          <DepthChartPosition
-            key={name}
-            starterObj={findStarterObj(starter, teamRoster)}
-            teamRoster={teamRoster}
-            {...singlePos}
-          />
-        );
+        if (name !== "CL" && name !== "BP") {
+          const [starter] = players;
+          allPos.push(
+            <DepthChartPosition
+              key={name}
+              starterObj={findStarterObj(starter, teamRoster)}
+              {...{ ...singlePos, teamRoster }}
+            />
+          );
+        }
       }
 
       return allPos;
     },
-    [<ThePen key="ThePen">{ThePenChildren}</ThePen>]
+    [
+      <div key="ThePen" className="depth-chart__bullpen-wrap">
+        {ThePenChildren}
+      </div>,
+    ]
   );
 };
 

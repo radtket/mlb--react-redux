@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchNewsAllTeams } from "../modules/actions";
-import NewsArticle from "../components/NewsArticle";
-import { findMLBID } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Marquee from "../components/Marquee";
 import PageTitle from "../components/PageTitle";
+import NewsArticleGrid from "../components/NewsArticleGrid";
 
 const NewsAllTeamsList = ({
   newsAllError,
@@ -39,20 +38,7 @@ const NewsAllTeamsList = ({
           </div>
         </div>
       </div>
-      <div className="container-fluid posts-wrap">
-        {newsAllTeams &&
-          newsAllTeams.map(article => {
-            const { NewsID, MLBAMID, PlayerID } = article;
-            return (
-              <NewsArticle
-                key={NewsID}
-                cardSize="qrt"
-                MLBAMID={MLBAMID || findMLBID(PlayerID)}
-                {...article}
-              />
-            );
-          })}
-      </div>
+      <NewsArticleGrid {...{ newsAllTeams }} />
     </>
   );
 };
@@ -82,9 +68,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(NewsAllTeamsList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(NewsAllTeamsList);

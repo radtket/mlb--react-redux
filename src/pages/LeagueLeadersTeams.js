@@ -18,6 +18,7 @@ const LeagueLeadersTeams = ({
   useEffect(() => {
     getLeagueLeaders();
   }, []);
+
   if (leagueLeadersFail) {
     return <div>Error! {leagueLeadersFail.message}</div>;
   }
@@ -36,9 +37,11 @@ const LeagueLeadersTeams = ({
         </div>
       </div>
 
-      <div className="wisbb--leaders__row">
-        {hitting && <LeagueLeaderTable dataObj={hitting} />}
-      </div>
+      {hitting && (
+        <div className="wisbb--leaders__row">
+          <LeagueLeaderTable dataObj={hitting} />
+        </div>
+      )}
 
       <div className="row">
         <div className="col-sm-12">
@@ -46,9 +49,11 @@ const LeagueLeadersTeams = ({
         </div>
       </div>
 
-      <div className="wisbb--leaders__row">
-        {pitching && <LeagueLeaderTable dataObj={pitching} />}
-      </div>
+      {pitching && (
+        <div className="wisbb--leaders__row">
+          <LeagueLeaderTable dataObj={pitching} />
+        </div>
+      )}
     </div>
   );
 };
@@ -78,9 +83,6 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  { pure: false }
-)(LeagueLeadersTeams);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false,
+})(LeagueLeadersTeams);
