@@ -25,7 +25,8 @@ const ErrorMessage = ({ error }) => {
     error.networkError.result.errors.length
   ) {
     return error.networkError.result.errors.map((err, i) => (
-      <ErrorStyles key={i}>
+      // eslint-disable-next-line react/no-array-index-key
+      <ErrorStyles key={`${err.message} ${i}`}>
         <p data-test="graphql-error">
           <strong>Shoot!</strong>
           {err.message.replace("GraphQL error: ", "")}
@@ -48,7 +49,12 @@ ErrorMessage.defaultProps = {
 };
 
 ErrorMessage.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.shape({
+    networkError: PropTypes.shape({
+      result: PropTypes.string,
+    }),
+    message: PropTypes.string,
+  }),
 };
 
 export default ErrorMessage;

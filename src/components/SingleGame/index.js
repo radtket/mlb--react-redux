@@ -166,7 +166,7 @@ const SingleGame = ({
           {GameStatusPregame ? (
             <>
               {StadiumObj && (
-                <LocationAndWeather {...{ StadiumObj, ForecastWindChill }} />
+                <LocationAndWeather {...{ ...StadiumObj, ForecastWindChill }} />
               )}
               {gameTicket && <Tickets {...{ gameTicket }} />}
               <Odds {...{ HomeTeamMoneyLine, HomeTeam, OverUnder }} />

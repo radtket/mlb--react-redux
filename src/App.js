@@ -72,15 +72,15 @@ const App = ({
       <main>
         <Route component={Home} exact path="/" />
         <Route component={Counters} exact path="/counter" />
+        <Route component={GamesOnDay} exact path="/scores" />
+        <Route component={LeagueLeadersTeams} exact path="/stats" />
         <Route component={NewsAllTeamsList} exact path="/news" />
         <Route component={PlayerList} exact path="/player/:playerArg" />
         <Route component={ProductList} exact path="/product" />
         <Route component={RedditAsyncApp} exact path="/reddit" />
         <Route component={SchedulesList} exact path="/schedule" />
-        <Route component={GamesOnDay} exact path="/scores" />
-        <Route component={TeamSplitsList} exact path="/splits" />
         <Route component={StandingsList} exact path="/standings" />
-        <Route component={LeagueLeadersTeams} exact path="/stats" />
+        <Route component={TeamSplitsList} exact path="/splits" />
         <Route
           path="/teams/:teamAbrv"
           render={props => <Team {...props} {...{ teams, schedules }} />}

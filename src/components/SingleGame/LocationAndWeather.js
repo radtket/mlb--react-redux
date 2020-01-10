@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const LocationAndWeather = ({ StadiumObj, ForecastWindChill }) => {
+const LocationAndWeather = ({ Name, City, State, ForecastWindChill }) => {
   return (
     <div className="scoreboard-detail__location scoreboard-detail__location-and-weather">
       <ul>
         <li>
-          <strong>{StadiumObj.Name}</strong>
+          <strong>{Name}</strong>
         </li>
-        <li>{`${StadiumObj.City}, ${StadiumObj.State}`}</li>
+        <li>{`${City}, ${State}`}</li>
       </ul>
 
       <div className="weather">
@@ -24,6 +25,13 @@ const LocationAndWeather = ({ StadiumObj, ForecastWindChill }) => {
       </div>
     </div>
   );
+};
+
+LocationAndWeather.propTypes = {
+  Name: PropTypes.string.isRequired,
+  City: PropTypes.string.isRequired,
+  State: PropTypes.string.isRequired,
+  ForecastWindChill: PropTypes.string.isRequired,
 };
 
 export default LocationAndWeather;

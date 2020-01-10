@@ -1,12 +1,13 @@
+/* eslint-disable camelcase */
 import React from "react";
 import { PropTypes } from "prop-types";
 import { Table } from "rsuite";
 import { espnLogo } from "../../utils/helpers";
 
 const ImageCell = ({ rowData, dataKey, ...props }) => {
-  const { league_level: leagueLevel, team } = rowData;
+  const { league_level, team } = rowData;
 
-  if (leagueLevel === "MAJ") {
+  if (league_level === "MAJ") {
     return (
       <Table.Cell
         {...props}
@@ -39,7 +40,7 @@ const ImageCell = ({ rowData, dataKey, ...props }) => {
 ImageCell.propTypes = {
   dataKey: PropTypes.string.isRequired,
   rowData: PropTypes.shape({
-    leagueLevel: PropTypes.string,
+    league_level: PropTypes.string,
     team: PropTypes.string,
   }),
 };

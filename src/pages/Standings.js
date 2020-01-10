@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { fetchStandings } from "../modules/actions";
 import StandingsSingleTeam from "../components/Standings/SingleTeamComponent";
 import StandingsDivision from "../components/Standings/DivisionComponent";
-import { sortTeamsByDivion, isArrayEmpty } from "../utils/helpers";
+import { sortTeamsByDivion } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import PageTitle from "../components/PageTitle";
 
@@ -23,12 +23,12 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
       <PageTitle title="Standings" />
       {standings &&
         sortTeamsByDivion(standings).reduce(
-          (standingsComponent, [divisionName, divisionTeamsComponents]) => {
+          (standingsComponent, [division, divisionTeamsComponents]) => {
             standingsComponent.push(
               <StandingsDivision
-                key={divisionName}
+                key={division}
                 className="table"
-                division={divisionName}
+                division={division}
                 divisionTeams={divisionTeamsComponents.map(team => {
                   return <StandingsSingleTeam key={team.Key} {...team} />;
                 })}
