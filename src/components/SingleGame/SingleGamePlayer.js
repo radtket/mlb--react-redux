@@ -52,7 +52,8 @@ const SingleGamePlayer = ({
                 style={{
                   display: "table-cell",
                   verticalAlign: "middle",
-                }}>
+                }}
+              >
                 {stats}
               </p>
             )}

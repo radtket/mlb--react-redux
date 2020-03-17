@@ -33,7 +33,8 @@ const SingleGameTeam = ({
             <li className="team__record">
               ({Wins}-{Losses}
               <span
-                className={`team team__record--${isHome ? "home" : "away"}`}>
+                className={`team team__record--${isHome ? "home" : "away"}`}
+              >
                 ,
                 {isHome
                   ? `${HomeWins}-${HomeLosses} Home`

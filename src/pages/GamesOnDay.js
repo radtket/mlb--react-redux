@@ -48,6 +48,7 @@ const GamesOnDay = ({
     getAllPlayers();
     getStadiums();
     getTicketsOnDate(format(dateOfGame, "YYYY-MM-DD"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (stadiumsFail) {
@@ -93,7 +94,8 @@ const GamesOnDay = ({
               getGamesOnDay(newDay);
               getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
             }}
-            type="button">
+            type="button"
+          >
             Previous
           </button>
           <button
@@ -103,7 +105,8 @@ const GamesOnDay = ({
               getGamesOnDay(newDay);
               getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
             }}
-            type="button">
+            type="button"
+          >
             Next
           </button>
         </nav>

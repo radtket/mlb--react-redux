@@ -7,7 +7,8 @@ const StandingsDivision = ({ division, divisionTeams }) => (
     className="table table--standings"
     style={{
       margin: "24px auto",
-    }}>
+    }}
+  >
     <StandingsTableHead {...{ division }} />
     <tbody>{divisionTeams}</tbody>
   </table>

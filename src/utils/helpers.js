@@ -3,12 +3,12 @@ import { differenceInYears, format } from "date-fns";
 import tinycolor from "tinycolor2";
 import MLBAMIDs from "./MLBAMIDs";
 
-export function handleErrors(response) {
+export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);
   }
   return response;
-}
+};
 
 export const isObjectEmpty = myObject => {
   return !Object.keys(myObject).length;
@@ -21,10 +21,10 @@ export const isArrayEmpty = arrayArg => {
   return true;
 };
 
-export function espnLogo(teamAbrv, size = 24, sport = "mlb") {
+export const espnLogo = (teamAbrv, size = 24, sport = "mlb") => {
   const teamName = teamAbrv === "CWS" ? "CHW" : teamAbrv;
   return `http://a.espncdn.com/combiner/i?img=/i/teamlogos/${sport}/500/scoreboard/${teamName.toLowerCase()}.png&h=${size}&w=${size}`;
-}
+};
 
 export const UsaTodayHeadshotNoBackgroundImage = (urlArg, imgSize) => {
   const parts = urlArg.split("?imageID=");

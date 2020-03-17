@@ -25,6 +25,7 @@ const GameSlider = ({ schedules }) => {
   const [activeTab, setActiveTab] = useState(TodaysDate);
   const [startAndEndDay, setStartAndEndDay] = useState({});
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     console.log("ran useEffect");
     isObjectEmpty(startAndEndDay) &&
@@ -87,7 +88,8 @@ const GameSlider = ({ schedules }) => {
           afterChange: current => setActiveDisplayDate(current),
           nextArrow: <SlickNextArrow />,
           prevArrow: <SlickPrevArrow />,
-        }}>
+        }}
+      >
         {GamesNav()}
       </Slider>
       {GamesBody(activeGames, activeTab)}

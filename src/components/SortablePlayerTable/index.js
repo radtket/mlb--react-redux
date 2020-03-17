@@ -49,7 +49,8 @@ const SortablePlayerTable = ({ players }) => {
             setIsScrolling(false);
           }, 300);
         }
-      }}>
+      }}
+    >
       <table className="table table--roster">
         <Sort {...{ players, direction, sortRosterStateBy }} />
         <Roster players={playersState} />

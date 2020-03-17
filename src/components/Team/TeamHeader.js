@@ -98,7 +98,8 @@ const TeamHeader = ({
                 <a
                   href={`https://twitter.com/${Twitter}`}
                   rel="noopener noreferrer"
-                  target="_blank">
+                  target="_blank"
+                >
                   <IconTwitter />
                 </a>
               </li>
@@ -106,7 +107,8 @@ const TeamHeader = ({
                 <a
                   href={`https://www.instagram.com/${Instagram}`}
                   rel="noopener noreferrer"
-                  target="_blank">
+                  target="_blank"
+                >
                   <IconInstagram />
                 </a>
               </li>

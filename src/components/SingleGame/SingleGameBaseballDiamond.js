@@ -11,7 +11,8 @@ const SingleGameBaseballDiamond = ({
       <ul
         className={`bases status base-${RunnerOnFirst ? 1 : 0}-${
           RunnerOnSecond ? 1 : 0
-        }-${RunnerOnThird ? 1 : 0}`}>
+        }-${RunnerOnThird ? 1 : 0}`}
+      >
         <li className="base base__second" />
         <li className="base base__third" />
         <li className="base base__first" />

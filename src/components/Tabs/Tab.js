@@ -9,7 +9,8 @@ const Tab = ({ activeTab, label, itemWidth, onClick }) => {
         onClick(label);
       }}
       style={{ width: `${itemWidth || "auto"}` }}
-      type="button">
+      type="button"
+    >
       {label}
     </button>
   );

@@ -12,7 +12,8 @@ const CalendarDaysOfWeek = ({ currentMonth }) => {
     days.push(
       <div
         key={i}
-        className="calendar__col aligner__center--horitzontal text-center">
+        className="calendar__col aligner__center--horitzontal text-center"
+      >
         {format(addDays(startDate, i), dateFormat)}
       </div>
     );

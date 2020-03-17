@@ -121,14 +121,16 @@ const SingleGame = ({
       ${GameStatusFinal ? "is-final" : ""}
       ${HomeTeamWin && GameStatusFinal ? "home-winner" : ""}
       ${!HomeTeamWin && GameStatusFinal ? "away-winner" : ""}
-      `}>
+      `}
+    >
       <section className="scoreboard">
         <table
           className={`table table--scoreboard
           ${GameStatusInProgress ? "in-progress" : ""}
           ${GameStatusPregame ? "pregame" : ""}
           ${GameStatusFinal ? "is-final" : ""}
-          `}>
+          `}
+        >
           <SingleGameHead
             Channel={Channel}
             DateTime={DateTime}
@@ -199,7 +201,8 @@ const SingleGame = ({
                 <button
                   className="scoreboard__tray--button"
                   onClick={toggleScoreboardTrey}
-                  type="button">
+                  type="button"
+                >
                   {ScoreboardTreyVisible === "hide"
                     ? "Show Box Score"
                     : "Hide  Box Score"}
@@ -291,7 +294,8 @@ const SingleGame = ({
       </section>
 
       <section
-        className={`scoreboard__tray scoreboard__tray--${ScoreboardTreyVisible}`}>
+        className={`scoreboard__tray scoreboard__tray--${ScoreboardTreyVisible}`}
+      >
         <SingleGameInningScoreboard
           AwayTeam={AwayTeam}
           AwayTeamErrors={AwayTeamErrors}

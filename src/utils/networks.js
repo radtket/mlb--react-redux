@@ -151,7 +151,8 @@ export const networkDecoder = networkArg => {
         <svg
           id="Layer_1"
           viewBox="0 0 1153 452.47"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M798.3 342.08c-15.28 11.07-30.44 21-45.85 30.58-36 22.42-74 40.87-114.22 54.4-28 9.42-56.57 16.91-86.49 15.41-17-.85-33.88-3.58-48.18-14.08-19.25-14.13-24.78-34.18-23.85-56.82.82-20 7.46-38.45 15.38-56.48 16.51-37.59 40.48-70.36 67.34-101C619.87 148.59 687 95 763.24 52.82c40-22.14 81.85-40.13 127-49.4C901 1.19 911.92-.8 923.17.32c-9 2.58-18.18 4.81-27.08 7.79-44.47 14.9-85.63 36.51-124.86 62a720.37 720.37 0 0 0-114.85 92c-24.68 24.43-47.36 50.63-66.61 79.58-15.63 23.49-29.23 48.07-36.25 75.74-3.43 13.55-5 27.42-2 41.08 4.07 18.46 15.51 31.3 33.31 38.2 19.42 7.53 39.53 7.29 59.62 4.49 43.6-6.09 83.64-22.61 122.26-43 8.83-4.66 17.47-9.66 26.24-14.43 1.36-.71 2.53-2.14 5.35-1.69z"
             fill="#fe8132"
@@ -168,7 +169,8 @@ export const networkDecoder = networkArg => {
         <svg
           id="svg2"
           viewBox="0 0 311.38 321.14"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g id="layer1">
             <path
               d="M311.38 166.37L153.92 321.14 0 166.37V0h311.38v166.37"
@@ -329,7 +331,8 @@ export const networkDecoder = networkArg => {
         <svg
           id="svg6056"
           viewBox="0 0 473.29 76.59"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g id="layer1">
             <g id="g156">
               <path
@@ -433,7 +436,8 @@ export const networkDecoder = networkArg => {
               gradientTransform="matrix(18.48 0 -.01 -18.81 -35178.63 12148.05)"
               gradientUnits="userSpaceOnUse"
               id="a"
-              r="38.38">
+              r="38.38"
+            >
               <stop offset="0" stopColor="#373838" />
               <stop offset="1" />
             </radialGradient>
@@ -443,7 +447,8 @@ export const networkDecoder = networkArg => {
               gradientTransform="matrix(.72 5.19 5.42 -.75 -7392.4 -9593.22)"
               gradientUnits="userSpaceOnUse"
               id="b"
-              r="112.88">
+              r="112.88"
+            >
               <stop offset="0" />
               <stop offset="1" stopColor="#3e3e3e" />
             </radialGradient>

@@ -40,7 +40,8 @@ const NewsArticle = ({
 }) => {
   return (
     <article
-      className={`news-card ${cardSize ? `news-card--${cardSize}` : ""}`}>
+      className={`news-card ${cardSize ? `news-card--${cardSize}` : ""}`}
+    >
       <a href={Url} rel="noopener noreferrer" target="_blank">
         <figure
           className="news-card__image"
@@ -59,7 +60,8 @@ const NewsArticle = ({
             (MLBAMID && {
               backgroundImage: `url('https://securea.mlb.com/images/players/action_shots/${MLBAMID}.jpg')`,
             })
-          }>
+          }
+        >
           <figcaption className="news-card__label">{Categories}</figcaption>
         </figure>
       </a>
@@ -71,7 +73,8 @@ const NewsArticle = ({
             backgroundImage: `url("${
               Team ? espnLogo(Team, 50) : "/images/mlb-logo.png"
             }")`,
-          }}>
+          }}
+        >
           <span className="sr-only">{`${Team || "MLB"} Logo`}</span>
         </a>
         <time
@@ -79,7 +82,8 @@ const NewsArticle = ({
           dateTime={
             format(new Date(Updated), "YYYY-MM-DD HH:mm") ||
             format(new Date(DatePublished), "YYYY-MM-DD HH:mm")
-          }>
+          }
+        >
           {TimeAgo || format(new Date(DatePublished), "MMMM Do, YYYY")}
         </time>
         <h1 className="news-card__headline">{Title}</h1>

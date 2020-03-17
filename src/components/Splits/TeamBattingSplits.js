@@ -59,7 +59,8 @@ const TeamBattingSplits = ({ dataList }) => {
       isTree
       onSortColumn={handleSortColumn}
       rowClassName="capitalize-first-cell"
-      rowKey="id">
+      rowKey="id"
+    >
       <Column align="left" fixed sortable width={200}>
         <HeaderCell>name</HeaderCell>
         <Cell dataKey="name" />

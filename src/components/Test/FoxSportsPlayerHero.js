@@ -38,7 +38,8 @@ const FoxSports = ({
     <FoxSportsBio
       className="bio"
       TeamColorPrimary={TeamColorPrimary}
-      TeamColorSecondary={TeamColorSecondary}>
+      TeamColorSecondary={TeamColorSecondary}
+    >
       <div className="bio__branding">
         <div className="bio__branding--team-branding">
           <div className="bio__branding--team">

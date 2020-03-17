@@ -20,9 +20,8 @@ const PlayerHeroCardWrap = styled.div`
   }
 
     &::before {
-      background: url('https://securea.mlb.com/images/players/action_shots/${({
-        MLBAMID,
-      }) => `${MLBAMID}`}.jpg');
+    background: ${({ MLBAMID }) =>
+      `url('https://securea.mlb.com/images/players/action_shots/${`${MLBAMID}`}.jpg')`};
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
@@ -91,7 +90,8 @@ const PlayerHeroCard = ({
       PrimaryColor={PrimaryColor}
       SecondaryColor={SecondaryColor}
       TeamLogo={espnLogo(Team, 200)}
-      UsaTodayHeadshotNoBackgroundUrl={UsaTodayHeadshotNoBackgroundUrl}>
+      UsaTodayHeadshotNoBackgroundUrl={UsaTodayHeadshotNoBackgroundUrl}
+    >
       <div className="container">
         <figure className="cover">
           <img

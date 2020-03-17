@@ -55,7 +55,8 @@ const SplitLogo = (teams, datetime_local) => {
           ColorSecondary,
           WikipediaWordMarkUrl,
           WikipediaLogoUrl,
-        }}>
+        }}
+      >
         <figure />
       </TeamLogoWrap>
     );
@@ -75,7 +76,8 @@ const TicketedEventHeader = ({ performers, datetime_local, url }) => {
       className="event-ticket-header"
       href={url}
       rel="noopener noreferrer"
-      target="_blank">
+      target="_blank"
+    >
       {SplitLogo(performers, datetime_local)}
     </TicketedEventHeaderWrap>
   );

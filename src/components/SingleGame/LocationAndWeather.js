@@ -15,7 +15,8 @@ const LocationAndWeather = ({ Name, City, State, ForecastWindChill }) => {
         <a
           href="http://www.accuweather.com/"
           rel="noopener noreferrer"
-          target="_blank">
+          target="_blank"
+        >
           <div className="accuweather" />
         </a>
         <div className="accu-weather-icons sm icon-2" />

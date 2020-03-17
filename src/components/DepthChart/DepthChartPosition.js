@@ -14,7 +14,8 @@ const DepthChartPosition = ({
 }) => {
   return (
     <article
-      className={`depth-chart__position depth-chart__position--${name.toLowerCase()}`}>
+      className={`depth-chart__position depth-chart__position--${name.toLowerCase()}`}
+    >
       <div>
         <DepthChartPlayerImage {...starterObj} />
         {hasSecondStarter && (

@@ -17,7 +17,8 @@ const CalendarSingleDate = ({
         !isSameMonth(day, monthStart) ? "cell-disabled" : ""
       } ${isSameDay(day, selectedDate) ? "cell-selected" : ""}`}
       onClick={() => onDateClick(parse(day))}
-      type="button">
+      type="button"
+    >
       {gameOnDate && <CalendarSingleDateGame {...gameOnDate} />}
       <span className="calendar__cell--number">{formattedDate}</span>
       <span className="calendar__cell--bg">{formattedDate}</span>

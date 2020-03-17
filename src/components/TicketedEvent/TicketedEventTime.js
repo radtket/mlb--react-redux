@@ -7,7 +7,8 @@ const TicketedEventTime = ({ DateOfEvent }) => {
   return (
     <time
       className="event-ticket__date"
-      dateTime={format(DateOfEvent, "YYYY-MM-DD HH:mm")}>
+      dateTime={format(DateOfEvent, "YYYY-MM-DD HH:mm")}
+    >
       <span className="event-ticket__date--month">
         <span className="event-ticket__date--month-name">
           {format(DateOfEvent, "MMM")}

@@ -12,7 +12,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             Pitcher
           </a>
         </li>
@@ -20,7 +21,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             catcher
           </a>
         </li>
@@ -28,7 +30,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             1b
           </a>
         </li>
@@ -36,7 +39,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             2b
           </a>
         </li>
@@ -44,7 +48,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             ss
           </a>
         </li>
@@ -52,7 +57,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             3b
           </a>
         </li>
@@ -60,7 +66,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             lf
           </a>
         </li>
@@ -68,7 +75,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             cf
           </a>
         </li>
@@ -76,7 +84,8 @@ const Field = () => {
           <a
             aria-label="Alec Thomas"
             data-player-link="684836"
-            href="https://www.mlb.com/player/684836">
+            href="https://www.mlb.com/player/684836"
+          >
             rf
           </a>
         </li>

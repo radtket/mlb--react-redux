@@ -93,10 +93,12 @@ const LeagueLeaderTable = ({ dataObj }) => {
           className="wisbb--leaders"
           leaderLogo={espnLogo(abbr, 100)}
           PrimaryColor={`${PrimaryColor}`}
-          SecondaryColor={`${SecondaryColor}`}>
+          SecondaryColor={`${SecondaryColor}`}
+        >
           <Link
             className="wisbb--leaders__team-logo--wrap"
-            to={`teams/${abbr}`}>
+            to={`teams/${abbr}`}
+          >
             <figure className="wisbb--leaders__team-logo" />
           </Link>
           <div className="wisbb--leaders__list">
@@ -122,7 +124,8 @@ const LeagueLeaderTable = ({ dataObj }) => {
                         i > 9 && toggle
                           ? { display: "none" }
                           : { display: "table-row" }
-                      }>
+                      }
+                    >
                       <td>
                         <span className="wisbb--leaders__rank">{rank}</span>
                       </td>
@@ -144,7 +147,8 @@ const LeagueLeaderTable = ({ dataObj }) => {
                 <button
                   className="button"
                   onClick={() => setToggle(!toggle)}
-                  type="button">
+                  type="button"
+                >
                   View {toggle ? "More" : "Less"}
                 </button>
               )}

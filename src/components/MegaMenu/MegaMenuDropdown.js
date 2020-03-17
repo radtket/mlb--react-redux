@@ -56,7 +56,8 @@ export const MegaMenuDropdown = ({ teams }) => {
       <button
         className="dropdown__button"
         onClick={() => dispatch("toggle")}
-        type="button">
+        type="button"
+      >
         Teams
         <IconCaret />
       </button>

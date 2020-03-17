@@ -7,7 +7,8 @@ const GameSliderButton = ({ activeTab, label, setActiveTab }) => {
     <button
       className={`tabs-item ${activeTab === label ? "is-selected" : ""}`}
       onClick={() => setActiveTab(label)}
-      type="button">
+      type="button"
+    >
       <h3>{format(label, "MMM")}</h3>
       <h1>{format(label, "D")}</h1>
     </button>
