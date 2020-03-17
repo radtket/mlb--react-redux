@@ -1,20 +1,18 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const ProductList = ({
-  productsFail,
-  productsLoading,
-  products,
-  fetchProducts: getProducts,
-}) => {
+const ProductList = () => {
+  const dispatch = useDispatch();
+
+  const { productsFail, productsLoading, productsData } = useSelector(
+    state => state.products
+  );
+
   useEffect(() => {
-    getProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   if (productsFail) {
     return <div>Error! {productsFail.message}</div>;
@@ -26,36 +24,11 @@ const ProductList = ({
 
   return (
     <ul>
-      {products && products.map(({ Key, Name }) => <li key={Key}>{Name}</li>)}
+      {productsData.map(({ Key, Name }) => (
+        <li key={Key}>{Name}</li>
+      ))}
     </ul>
   );
 };
 
-ProductList.propTypes = {
-  productsFail: PropTypes.bool,
-  productsLoading: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchProducts: PropTypes.func.isRequired,
-};
-
-ProductList.defaultProps = {
-  productsFail: null,
-};
-
-const mapStateToProps = ({ products }) => ({
-  products: products.productsData,
-  productsLoading: products.productsLoading,
-  productsFail: products.productsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchProducts,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(ProductList);
+export default ProductList;

@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 
 // Pages
 import {
-  Counters,
+  // Counters,
   GamesOnDay,
   Home,
   LeagueLeadersTeams,
@@ -27,28 +25,34 @@ import { fetchTeams, fetchSchedules, fetchStandings } from "./modules/actions";
 import Navbar from "./components/Navbar";
 import ErrorMessage from "./components/ErrorMessage";
 
-const App = ({
-  fetchSchedules: getSchedules,
-  fetchStandings: getStandings,
-  fetchTeams: getTeams,
-  schedules,
-  schedulesError,
-  schedulesLoading,
-  standingsError,
-  standingsLoading,
-  teams,
-  teamsFail,
-  teamsLoading,
-}) => {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const {
+    schedules,
+    schedulesError,
+    schedulesLoading,
+    standingsError,
+    standingsLoading,
+    teams,
+    teamsFail,
+    teamsLoading,
+  } = useSelector(state => {
+    return {
+      ...state.teams,
+      ...state.schedules,
+      ...state.standings,
+    };
+  });
+
   useEffect(() => {
     const componentDidMount = () => {
-      getTeams();
-      getSchedules(2019);
-      getStandings();
+      dispatch(fetchTeams());
+      dispatch(fetchSchedules(2019));
+      dispatch(fetchStandings());
     };
     componentDidMount();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   if (teamsFail) {
     return <ErrorMessage error={teamsFail} />;
@@ -71,7 +75,7 @@ const App = ({
       <Navbar {...{ teams }} />
       <main>
         <Route component={Home} exact path="/" />
-        <Route component={Counters} exact path="/counter" />
+        {/* <Route component={Counters} exact path="/counter" /> */}
         <Route component={GamesOnDay} exact path="/scores" />
         <Route component={LeagueLeadersTeams} exact path="/stats" />
         <Route component={NewsAllTeamsList} exact path="/news" />
@@ -90,45 +94,4 @@ const App = ({
   );
 };
 
-App.propTypes = {
-  fetchSchedules: PropTypes.func.isRequired,
-  fetchStandings: PropTypes.func.isRequired,
-  fetchTeams: PropTypes.func.isRequired,
-  schedules: PropTypes.arrayOf(PropTypes.object).isRequired,
-  schedulesError: PropTypes.bool,
-  schedulesLoading: PropTypes.bool.isRequired,
-  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-  standingsError: PropTypes.bool,
-  standingsLoading: PropTypes.bool.isRequired,
-  teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  teamsFail: PropTypes.bool,
-  teamsLoading: PropTypes.bool.isRequired,
-};
-
-App.defaultProps = {
-  teamsFail: null,
-  schedulesError: null,
-  standingsError: null,
-};
-
-const mapStateToProps = ({ teams, schedules, standings }) => {
-  return {
-    ...teams,
-    ...schedules,
-    ...standings,
-  };
-};
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchTeams,
-      fetchSchedules,
-      fetchStandings,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(App);
+export default App;

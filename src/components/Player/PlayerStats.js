@@ -11,7 +11,7 @@ const PlayerStats = ({ RotoWirePlayerID, PositionCategory }) => {
   const dispatch = useDispatch();
 
   const { playerStatsData, playerStatsLoading, playerStatsError } = useSelector(
-    state => state.allPlayers
+    state => state.playerStats
   );
 
   useEffect(() => {

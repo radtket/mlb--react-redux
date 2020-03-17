@@ -1,28 +1,26 @@
 /* eslint-disable camelcase */
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchTeamSplits } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { monthList } from "../utils/helpers";
 
 import { TeamBattingSplits, TeamPitchingSplits } from "../components/Splits";
 
-const TeamSplitsList = ({
-  teamSplitsFail,
-  teamSplitsLoading,
-  teamSplits,
-  fetchTeamSplits: getTeamSplits,
-  TeamArg,
-}) => {
-  useEffect(() => {
-    getTeamSplits(TeamArg);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const TeamSplitsList = ({ TeamArg }) => {
+  const dispatch = useDispatch();
 
-  if (teamSplitsFail) {
-    return <div>Error! {teamSplitsFail.message}</div>;
+  const { teamSplitsData, teamSplitsLoading, teamSplitsError } = useSelector(
+    state => state.teamSplits
+  );
+
+  useEffect(() => {
+    dispatch(fetchTeamSplits(TeamArg));
+  }, [TeamArg, dispatch]);
+
+  if (teamSplitsError) {
+    return <div>Error! {teamSplitsError.message}</div>;
   }
 
   if (teamSplitsLoading) {
@@ -169,7 +167,7 @@ const TeamSplitsList = ({
     }, []);
   };
 
-  const { hitting, pitching } = teamSplits;
+  const { hitting, pitching } = teamSplitsData;
 
   return (
     <div className="container">
@@ -180,32 +178,11 @@ const TeamSplitsList = ({
 };
 
 TeamSplitsList.propTypes = {
-  teamSplitsFail: PropTypes.bool,
-  teamSplitsLoading: PropTypes.bool.isRequired,
-  teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
-  fetchTeamSplits: PropTypes.func.isRequired,
   TeamArg: PropTypes.string,
 };
 
 TeamSplitsList.defaultProps = {
-  teamSplitsFail: null,
   TeamArg: "MIL",
 };
 
-const mapStateToProps = ({ teamSplits }) => ({
-  teamSplits: teamSplits.teamSplitsData,
-  teamSplitsLoading: teamSplits.teamSplitsLoading,
-  teamSplitsFail: teamSplits.teamSplitsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchTeamSplits,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(TeamSplitsList);
+export default TeamSplitsList;

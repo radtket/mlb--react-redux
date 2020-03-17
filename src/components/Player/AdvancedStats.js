@@ -1,25 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Table } from "rsuite";
 import PropTypes from "prop-types";
 import ImageCell from "./ImageCell";
 
 const { Column, HeaderCell, Cell } = Table;
 
-const AdvancedStats = ({ isPitcher, data: PropsData }) => {
-  const mounted = useRef();
-  const [data, setData] = useState(PropsData);
+const AdvancedStats = ({ isPitcher, data }) => {
   const [loading, setloading] = useState(false);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortType, setSortType] = useState("asc");
-
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
-      // do componentDidUpate logic
-      setData(PropsData);
-    }
-  });
 
   const handleSortColumn = (sortColumnArg, sortTypeArg) => {
     setloading(true);
@@ -64,7 +53,8 @@ const AdvancedStats = ({ isPitcher, data: PropsData }) => {
       loading={loading}
       onSortColumn={handleSortColumn}
       sortColumn={sortColumn}
-      sortType={sortType}>
+      sortType={sortType}
+    >
       <Column align="center" fixed flexGrow={1} sortable>
         <HeaderCell>Season</HeaderCell>
         <Cell dataKey="season" />
