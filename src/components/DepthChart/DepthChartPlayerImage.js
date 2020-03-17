@@ -25,8 +25,7 @@ DepthChartPlayerImage.propTypes = {
   FirstName: PropTypes.string,
   LastName: PropTypes.string,
   PhotoUrl: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
-  style: PropTypes.object,
+  style: PropTypes.shape({}),
 };
 
 DepthChartPlayerImage.defaultProps = {

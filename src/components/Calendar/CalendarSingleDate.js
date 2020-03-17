@@ -29,8 +29,7 @@ const CalendarSingleDate = ({
 CalendarSingleDate.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,
   formattedDate: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  gameOnDate: PropTypes.object,
+  gameOnDate: PropTypes.shape({}),
   monthStart: PropTypes.instanceOf(Date).isRequired,
   onDateClick: PropTypes.func.isRequired,
   selectedDate: PropTypes.instanceOf(Date).isRequired,

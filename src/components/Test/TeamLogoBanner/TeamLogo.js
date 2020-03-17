@@ -8,7 +8,8 @@ const TeamLogo = ({ teamKey }) => {
   return (
     <div
       className="team__banner rendered"
-      style={{ background: `${PrimaryColor}` }}>
+      style={{ background: `${PrimaryColor}` }}
+    >
       <figure className="team__banner__wrapper">
         <img alt={`${Name} ${City} Logo`} src={espnLogo(teamKey, 208)} />
       </figure>

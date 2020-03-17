@@ -1,12 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addDays, subDays, format } from "date-fns";
 import {
   fetchGamesOnDay,
-  fetchStandings,
   fetchAllPlayers,
   fetchStadiums,
   fetchTicketsOnDate,
@@ -20,55 +16,65 @@ import {
 import PageTitle from "../components/PageTitle";
 import GamesOnDayList from "../components/GamesOnDayList";
 
-const GamesOnDay = ({
-  allPlayers,
-  allPlayersFail,
-  allPlayersLoading,
-  fetchAllPlayers: getAllPlayers,
-  fetchGamesOnDay: getGamesOnDay,
-  fetchStadiums: getStadiums,
-  fetchTicketsOnDate: getTicketsOnDate,
-  gamesOnDay,
-  gamesOnDayFail,
-  gamesOnDayLoading,
-  stadiums,
-  stadiumsFail,
-  stadiumsLoading,
-  standings,
-  standingsError,
-  standingsLoading,
-  tickets,
-  ticketsFail,
-  ticketsLoading,
-}) => {
-  const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
+const GamesOnDay = () => {
+  const dispatch = useDispatch();
+
+  const {
+    allPlayersData,
+    allPlayersError,
+    allPlayersLoading,
+    gamesOnDayData,
+    gamesOnDayError,
+    gamesOnDayLoading,
+    stadiumsData,
+    stadiumsError,
+    stadiumsLoading,
+    standings,
+    standingsError,
+    standingsLoading,
+    ticketsData,
+    ticketsError,
+    ticketsLoading,
+  } = useSelector(state => {
+    return {
+      ...state.allPlayers,
+      ...state.gamesOnDay,
+      ...state.standings,
+      ...state.stadiums,
+      ...state.tickets,
+    };
+  });
+  const [dateOfGame, setDateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 
   useEffect(() => {
-    getGamesOnDay(dateOfGame);
-    getAllPlayers();
-    getStadiums();
-    getTicketsOnDate(format(dateOfGame, "YYYY-MM-DD"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const getData = data => {
+      dispatch(fetchGamesOnDay(data));
+      dispatch(fetchAllPlayers());
+      dispatch(fetchStadiums());
+      dispatch(fetchTicketsOnDate(format(data, "YYYY-MM-DD")));
+    };
 
-  if (stadiumsFail) {
-    return <div>Error! {stadiumsFail.message}</div>;
+    getData(dateOfGame);
+  }, [dateOfGame, dispatch]);
+
+  if (stadiumsError) {
+    return <div>Error! {stadiumsError.message}</div>;
   }
 
-  if (gamesOnDayFail) {
-    return <div>Error! {gamesOnDayFail.message}</div>;
+  if (gamesOnDayError) {
+    return <div>Error! {gamesOnDayError.message}</div>;
   }
 
   if (standingsError) {
     return <div>Error! {standingsError.message}</div>;
   }
 
-  if (allPlayersFail) {
-    return <div>Error! {allPlayersFail.message}</div>;
+  if (allPlayersError) {
+    return <div>Error! {allPlayersError.message}</div>;
   }
 
-  if (ticketsFail) {
-    return <div>Error! {ticketsFail.message}</div>;
+  if (ticketsError) {
+    return <div>Error! {ticketsError.message}</div>;
   }
 
   if (
@@ -90,9 +96,9 @@ const GamesOnDay = ({
           <button
             onClick={() => {
               const newDay = subDays(new Date(dateOfGame), 1);
-              setdateOfGame(newDay);
-              getGamesOnDay(newDay);
-              getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
+              setDateOfGame(newDay);
+              dispatch(fetchGamesOnDay(newDay));
+              dispatch(fetchTicketsOnDate(format(newDay, "YYYY-MM-DD")));
             }}
             type="button"
           >
@@ -101,9 +107,9 @@ const GamesOnDay = ({
           <button
             onClick={() => {
               const newDay = addDays(new Date(dateOfGame), 1);
-              setdateOfGame(newDay);
-              getGamesOnDay(newDay);
-              getTicketsOnDate(format(newDay, "YYYY-MM-DD"));
+              setDateOfGame(newDay);
+              dispatch(fetchGamesOnDay(newDay));
+              dispatch(fetchTicketsOnDate(format(newDay, "YYYY-MM-DD")));
             }}
             type="button"
           >
@@ -112,10 +118,10 @@ const GamesOnDay = ({
         </nav>
         <GamesOnDayList
           {...{
-            gamesOnDay,
-            allPlayers,
-            tickets,
-            stadiums,
+            gamesOnDay: gamesOnDayData,
+            allPlayers: allPlayersData,
+            tickets: ticketsData,
+            stadiums: stadiumsData,
             standings,
           }}
         />
@@ -124,72 +130,4 @@ const GamesOnDay = ({
   );
 };
 
-GamesOnDay.propTypes = {
-  allPlayersFail: PropTypes.bool,
-  allPlayersLoading: PropTypes.bool.isRequired,
-  allPlayers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchAllPlayers: PropTypes.func.isRequired,
-  gamesOnDayFail: PropTypes.bool,
-  gamesOnDayLoading: PropTypes.bool.isRequired,
-  gamesOnDay: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchGamesOnDay: PropTypes.func.isRequired,
-  standingsError: PropTypes.bool,
-  standingsLoading: PropTypes.bool.isRequired,
-  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-  stadiumsFail: PropTypes.bool,
-  stadiumsLoading: PropTypes.bool.isRequired,
-  stadiums: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchStadiums: PropTypes.func.isRequired,
-  ticketsFail: PropTypes.bool,
-  ticketsLoading: PropTypes.bool.isRequired,
-  tickets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchTicketsOnDate: PropTypes.func.isRequired,
-};
-
-GamesOnDay.defaultProps = {
-  allPlayersFail: null,
-  gamesOnDayFail: null,
-  standingsError: null,
-  stadiumsFail: null,
-  ticketsFail: null,
-};
-
-const mapStateToProps = ({
-  allPlayers,
-  gamesOnDay,
-  standings,
-  stadiums,
-  tickets,
-}) => ({
-  allPlayers: allPlayers.allPlayersData,
-  allPlayersLoading: allPlayers.allPlayersLoading,
-  allPlayersFail: allPlayers.allPlayersError,
-  gamesOnDay: gamesOnDay.gamesOnDayData,
-  gamesOnDayLoading: gamesOnDay.gamesOnDayLoading,
-  gamesOnDayFail: gamesOnDay.gamesOnDayError,
-  standings: standings.standings,
-  standingsLoading: standings.standingsLoading,
-  standingsError: standings.standingsError,
-  stadiums: stadiums.stadiumsData,
-  stadiumsLoading: stadiums.stadiumsLoading,
-  stadiumsFail: stadiums.stadiumsError,
-  tickets: tickets.ticketsData,
-  ticketsLoading: tickets.ticketsLoading,
-  ticketsFail: tickets.ticketsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchAllPlayers,
-      fetchGamesOnDay,
-      fetchStandings,
-      fetchStadiums,
-      fetchTicketsOnDate,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(GamesOnDay);
+export default GamesOnDay;

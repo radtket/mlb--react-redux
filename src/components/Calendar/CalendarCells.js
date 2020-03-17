@@ -60,8 +60,7 @@ CalendarCells.propTypes = {
   currentMonth: PropTypes.instanceOf(Date).isRequired,
   onDateClick: PropTypes.func.isRequired,
   selectedDate: PropTypes.instanceOf(Date).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  teamGames: PropTypes.object.isRequired,
+  teamGames: PropTypes.shape({}).isRequired,
 };
 
 export default CalendarCells;

@@ -8,7 +8,8 @@ const DepthChart = ({ teamAbrv, positions, teamRoster }) => {
       className="depth-chart"
       style={{
         backgroundImage: `url('/data/stadiums/${teamAbrv}.png')`,
-      }}>
+      }}
+    >
       <DepthChartWrapper {...{ positions, teamRoster }} />
     </figure>
   );

@@ -67,7 +67,8 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
                 className="table table--standings"
                 style={{
                   boxShadow: "none",
-                }}>
+                }}
+              >
                 <thead>
                   <tr>
                     <th>{`${League} ${Division}`}</th>
@@ -87,7 +88,8 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
                 className="table table--standings"
                 style={{
                   boxShadow: "none",
-                }}>
+                }}
+              >
                 <thead>
                   <tr>
                     <th>{getLeagueName(League)}</th>

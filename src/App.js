@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Pages
 import {
-  // Counters,
+  Counters,
   GamesOnDay,
   Home,
   LeagueLeadersTeams,
@@ -75,7 +75,7 @@ const App = () => {
       <Navbar {...{ teams }} />
       <main>
         <Route component={Home} exact path="/" />
-        {/* <Route component={Counters} exact path="/counter" /> */}
+        <Route component={Counters} exact path="/counter" />
         <Route component={GamesOnDay} exact path="/scores" />
         <Route component={LeagueLeadersTeams} exact path="/stats" />
         <Route component={NewsAllTeamsList} exact path="/news" />

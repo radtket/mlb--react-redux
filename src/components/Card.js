@@ -13,8 +13,7 @@ const Card = ({ title, body, ...props }) => {
 Card.propTypes = {
   title: PropTypes.string,
   body: PropTypes.element,
-  // eslint-disable-next-line react/forbid-prop-types
-  style: PropTypes.object,
+  style: PropTypes.shape({}),
 };
 
 Card.defaultProps = {

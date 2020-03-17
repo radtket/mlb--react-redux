@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Actions
 import { fetchNewsTeams, fetchTeamRssNews } from "../../../modules/actions";
@@ -13,38 +12,38 @@ import TeamRssFeed from "../../../components/Team/TeamRssFeed";
 import NewsArticle from "../../../components/NewsArticle";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
-const PageTeamHome = ({
-  // Passed
-  activeTeamObj,
-  recentGames,
-  standings,
+const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
+  const dispatch = useDispatch();
 
-  // Redux
-  fetchNewsTeams: getNewsTeams,
-  fetchTeamRssNews: getTeamRssNews,
-  newsTeams,
-  newsTeamsFail,
-  newsTeamsLoading,
-  teamRssNews,
-  teamRssNewsFail,
-  teamRssNewsLoading,
-}) => {
+  const {
+    newsTeamsData,
+    newsTeamsLoading,
+    newsTeamsError,
+    teamRssNewsData,
+    teamRssNewsLoading,
+    teamRssNewsError,
+  } = useSelector(state => {
+    return {
+      ...state.teamRssNews,
+      ...state.newsTeams,
+    };
+  });
+
   useEffect(() => {
     const getTeamData = ({ Key }) => {
-      getNewsTeams(Key);
-      getTeamRssNews(Key);
+      dispatch(fetchNewsTeams(Key));
+      dispatch(fetchTeamRssNews(Key));
     };
 
     getTeamData(activeTeamObj);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTeamObj]);
+  }, [activeTeamObj, dispatch]);
 
-  if (newsTeamsFail) {
-    return <div>Error! {newsTeamsFail.message}</div>;
+  if (newsTeamsError) {
+    return <div>Error! {newsTeamsError.message}</div>;
   }
 
-  if (teamRssNewsFail) {
-    return <div>Error! {teamRssNewsFail.message}</div>;
+  if (teamRssNewsError) {
+    return <div>Error! {teamRssNewsError.message}</div>;
   }
 
   if (newsTeamsLoading || teamRssNewsLoading) {
@@ -55,8 +54,8 @@ const PageTeamHome = ({
     <div className="container">
       <div className="row">
         <div className="col-sm-8">
-          {newsTeams.length ? (
-            newsTeams.map(
+          {newsTeamsData.length ? (
+            newsTeamsData.map(
               ({
                 url,
                 title,
@@ -94,7 +93,7 @@ const PageTeamHome = ({
             activeTeam={activeTeamObj.Key}
             recentGames={recentGames}
           />
-          <TeamRssFeed teamRssNews={teamRssNews} />
+          <TeamRssFeed teamRssNews={teamRssNewsData} />
         </div>
       </div>
     </div>
@@ -102,50 +101,15 @@ const PageTeamHome = ({
 };
 
 PageTeamHome.propTypes = {
-  // Passed Down
   activeTeamObj: PropTypes.shape({
     Name: PropTypes.string,
     City: PropTypes.string,
     Key: PropTypes.string,
     PrimaryColor: PropTypes.string,
+    WikipediaWordMarkUrl: PropTypes.string,
   }).isRequired,
   recentGames: PropTypes.arrayOf(PropTypes.object).isRequired,
   standings: PropTypes.arrayOf(PropTypes.object).isRequired,
-
-  // Redux
-  fetchNewsTeams: PropTypes.func.isRequired,
-  fetchTeamRssNews: PropTypes.func.isRequired,
-  newsTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  newsTeamsFail: PropTypes.bool,
-  newsTeamsLoading: PropTypes.bool.isRequired,
-  teamRssNews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  teamRssNewsFail: PropTypes.bool,
-  teamRssNewsLoading: PropTypes.bool.isRequired,
 };
 
-PageTeamHome.defaultProps = {
-  newsTeamsFail: null,
-  teamRssNewsFail: null,
-};
-
-const mapStateToProps = ({ newsTeams, teamRssNews }) => ({
-  newsTeams: newsTeams.newsTeamsData,
-  newsTeamsLoading: newsTeams.newsTeamsLoading,
-  newsTeamsFail: newsTeams.newsTeamsError,
-  teamRssNews: teamRssNews.teamRssNewsData,
-  teamRssNewsLoading: teamRssNews.teamRssNewsLoading,
-  teamRssNewsFail: teamRssNews.teamRssNewsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchNewsTeams,
-      fetchTeamRssNews,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(PageTeamHome);
+export default PageTeamHome;

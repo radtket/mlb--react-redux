@@ -26,8 +26,7 @@ const RedditAsyncApp = ({
     return () => {
       getPostsIfNeeded(selectedSubreddit);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getPostsIfNeeded, selectedSubreddit]);
 
   const handleChange = nextSubreddit => {
     activeSelectSubreddit(nextSubreddit);
@@ -86,8 +85,7 @@ RedditAsyncApp.defaultProps = {
   lastUpdated: null,
 };
 
-function mapStateToProps(state) {
-  const { selectedSubreddit, postsBySubreddit } = state;
+const mapStateToProps = ({ selectedSubreddit, postsBySubreddit }) => {
   const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
     selectedSubreddit
   ] || {
@@ -101,7 +99,7 @@ function mapStateToProps(state) {
     isFetching,
     lastUpdated,
   };
-}
+};
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

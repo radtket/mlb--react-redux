@@ -9,8 +9,8 @@ import "sanitize.css";
 import "./assets/scss/index.scss";
 
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+  <Provider {...{ store }}>
+    <ConnectedRouter {...{ history }}>
       <App />
     </ConnectedRouter>
   </Provider>,

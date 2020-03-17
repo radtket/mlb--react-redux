@@ -10,8 +10,7 @@ const MegaMenuDivision = ({ DivisionName, TeamsInDivision }) => {
       <h6>{DivisionName}</h6>
       <nav>
         {TeamsInDivision.sort(smallestToLargest("City")).map(team => {
-          const { TeamID } = team;
-          return <MegaMenuTeam key={TeamID} {...team} />;
+          return <MegaMenuTeam key={team.TeamID} {...team} />;
         })}
       </nav>
     </div>
