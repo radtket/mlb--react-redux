@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchNewsAllTeams } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -11,7 +10,7 @@ const NewsAllTeamsList = () => {
   const dispatch = useDispatch();
 
   const { newsAllTeamsData, newsAllLoading, newsAllError } = useSelector(
-    state => state.allPlayers
+    state => state.newsAllTeams
   );
 
   useEffect(() => {
@@ -41,17 +40,6 @@ const NewsAllTeamsList = () => {
       <NewsArticleGrid {...{ newsAllTeams: newsAllTeamsData }} />
     </>
   );
-};
-
-NewsAllTeamsList.propTypes = {
-  newsAllError: PropTypes.bool,
-  newsAllLoading: PropTypes.bool.isRequired,
-  newsAllTeams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchNewsAllTeams: PropTypes.func.isRequired,
-};
-
-NewsAllTeamsList.defaultProps = {
-  newsAllError: null,
 };
 
 export default NewsAllTeamsList;

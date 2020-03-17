@@ -125,6 +125,7 @@ TeamStandings.propTypes = {
   activeTeamObj: PropTypes.shape({
     League: PropTypes.string.isRequired,
     Key: PropTypes.string.isRequired,
+    Division: PropTypes.string,
   }).isRequired,
 };
 

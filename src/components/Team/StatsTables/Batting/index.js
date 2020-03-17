@@ -45,7 +45,8 @@ const StatsTableBatting = ({ players }) => {
             setIsScrolling(false);
           }, 300);
         }
-      }}>
+      }}
+    >
       <table className="table table--roster" style={{ marginTop: 24 }}>
         <Sort {...{ players, direction, sortRosterStateBy }} />
         <Roster players={StatePlayers} />

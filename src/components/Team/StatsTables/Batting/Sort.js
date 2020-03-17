@@ -47,22 +47,26 @@ const Sort = ({ sortRosterStateBy, players, direction }) => {
         </th>
         <th
           onClick={() => sortRoster("BattingAverage")}
-          title="Batting Average">
+          title="Batting Average"
+        >
           BA
         </th>
         <th
           onClick={() => sortRoster("OnBasePercentage")}
-          title="On Base Percentage">
+          title="On Base Percentage"
+        >
           OBP
         </th>
         <th
           onClick={() => sortRoster("SluggingPercentage")}
-          title="Slugging Percentage">
+          title="Slugging Percentage"
+        >
           SLG
         </th>
         <th
           onClick={() => sortRoster("OnBasePlusSlugging")}
-          title="On Base Plus Slugging">
+          title="On Base Plus Slugging"
+        >
           OPS
         </th>
       </tr>

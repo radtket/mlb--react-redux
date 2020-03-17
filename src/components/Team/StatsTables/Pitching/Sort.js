@@ -33,7 +33,8 @@ const Sort = ({ sortRosterStateBy, players, direction }) => {
         </th>
         <th
           onClick={() => sortRoster("InningsPitchedFull")}
-          title="Innings pitched">
+          title="Innings pitched"
+        >
           IP
         </th>
         <th onClick={() => sortRoster("PitchingHits")} title="Hits">
@@ -41,7 +42,8 @@ const Sort = ({ sortRosterStateBy, players, direction }) => {
         </th>
         <th
           onClick={() => sortRoster("PitchingEarnedRuns")}
-          title="Earned runs">
+          title="Earned runs"
+        >
           ER
         </th>
         <th onClick={() => sortRoster("PitchingHomeRuns")} title="Home runs">
@@ -55,17 +57,20 @@ const Sort = ({ sortRosterStateBy, players, direction }) => {
         </th>
         <th
           onClick={() => sortRoster("PitchingStrikeoutsPerNineInnings")}
-          title="Strikeouts per 9 innings">
+          title="Strikeouts per 9 innings"
+        >
           K/9
         </th>
         <th
           onClick={() => sortRoster("")}
-          title="Walks + Hits per Inning pitched">
+          title="Walks + Hits per Inning pitched"
+        >
           WHIP
         </th>
         <th
           onClick={() => sortRoster("EarnedRunAverage")}
-          title="Earned run average">
+          title="Earned run average"
+        >
           ERA
         </th>
       </tr>
