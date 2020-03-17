@@ -4,6 +4,7 @@ import { fetchSportsRadarGames } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import GameSlider from "../components/GameDatesSlider/GameSlider";
 import PageTitle from "../components/PageTitle";
+import ErrorMessage from "../components/ErrorMessage";
 
 const SchedulesList = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const SchedulesList = () => {
   }, [dispatch]);
 
   if (sportsRadarGamesError) {
-    return <div>Error! {sportsRadarGamesError.message}</div>;
+    return <ErrorMessage error={sportsRadarGamesError} />;
   }
 
   if (sportsRadarGamesLoading) {

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchStadiums } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { isArrayEmpty } from "../utils/helpers";
+import ErrorMessage from "../components/ErrorMessage";
 
 const StadiumList = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const StadiumList = () => {
   }, [dispatch]);
 
   if (stadiumsError) {
-    return <div>Error! {stadiumsError.message}</div>;
+    return <ErrorMessage error={stadiumsError} />;
   }
 
   if (stadiumsLoading) {

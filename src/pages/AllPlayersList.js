@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllPlayers } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const AllPlayerList = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const AllPlayerList = () => {
   }, [dispatch]);
 
   if (allPlayersError) {
-    return <div>Error! {allPlayersError.message}</div>;
+    return <ErrorMessage error={allPlayersError} />;
   }
 
   if (allPlayersLoading) {

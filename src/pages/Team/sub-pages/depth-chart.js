@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchTeamDepths, fetchTeamRoster } from "../../../modules/actions";
 import DepthChart from "../../../components/DepthChart";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamDepth = () => {
   const { teamAbrv } = useParams();
@@ -29,11 +30,11 @@ const PageTeamDepth = () => {
   }, [dispatch, teamAbrv]);
 
   if (teamDepthsError) {
-    return <div>Error! {teamDepthsError.message}</div>;
+    return <ErrorMessage error={teamDepthsError} />;
   }
 
   if (teamRosterError) {
-    return <div>Error! {teamRosterError.message}</div>;
+    return <ErrorMessage error={teamRosterError} />;
   }
 
   if (teamDepthsLoading || teamRosterLoading || !teamDepthsData.positions) {

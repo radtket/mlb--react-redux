@@ -6,6 +6,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import AdvancedStats from "./AdvancedStats";
 import BasicStats from "./BasicStats";
 import Card from "../Card";
+import ErrorMessage from "../ErrorMessage";
 
 const PlayerStats = ({ RotoWirePlayerID, PositionCategory }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const PlayerStats = ({ RotoWirePlayerID, PositionCategory }) => {
   }, [PositionCategory, RotoWirePlayerID, dispatch]);
 
   if (playerStatsError) {
-    return <div>Error! {playerStatsError.message}</div>;
+    return <ErrorMessage error={playerStatsError} />;
   }
 
   if (playerStatsLoading) {

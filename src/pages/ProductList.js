@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 const ProductList = () => {
   const dispatch = useDispatch();
 
-  const { productsFail, productsLoading, productsData } = useSelector(
+  const { productsError, productsLoading, productsData } = useSelector(
     state => state.products
   );
 
@@ -14,8 +15,8 @@ const ProductList = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (productsFail) {
-    return <div>Error! {productsFail.message}</div>;
+  if (productsError) {
+    return <ErrorMessage error={productsError} />;
   }
 
   if (productsLoading) {

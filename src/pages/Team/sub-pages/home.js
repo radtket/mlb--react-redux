@@ -11,6 +11,7 @@ import TeamStandings from "../../../components/Team/TeamStandings";
 import TeamRssFeed from "../../../components/Team/TeamRssFeed";
 import NewsArticle from "../../../components/NewsArticle";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
   const dispatch = useDispatch();
@@ -39,11 +40,11 @@ const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
   }, [activeTeamObj, dispatch]);
 
   if (newsTeamsError) {
-    return <div>Error! {newsTeamsError.message}</div>;
+    return <ErrorMessage error={newsTeamsError} />;
   }
 
   if (teamRssNewsError) {
-    return <div>Error! {teamRssNewsError.message}</div>;
+    return <ErrorMessage error={teamRssNewsError} />;
   }
 
   if (newsTeamsLoading || teamRssNewsLoading) {

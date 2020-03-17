@@ -18,7 +18,10 @@ const ErrorStyles = styled.div`
 `;
 
 const ErrorMessage = ({ error }) => {
-  if (!error || !error.message) return null;
+  if (!error || !error.message) {
+    return null;
+  }
+
   if (
     error.networkError &&
     error.networkError.result &&
@@ -34,6 +37,7 @@ const ErrorMessage = ({ error }) => {
       </ErrorStyles>
     ));
   }
+
   return (
     <ErrorStyles>
       <p data-test="graphql-error">

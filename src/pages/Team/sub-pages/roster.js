@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
 import { fetchTeamRoster } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamRoster = () => {
   const { teamAbrv } = useParams();
@@ -18,7 +19,7 @@ const PageTeamRoster = () => {
   }, [dispatch, teamAbrv]);
 
   if (teamRosterError) {
-    return <div>Error! {teamRosterError.message}</div>;
+    return <ErrorMessage error={teamRosterError} />;
   }
 
   if (teamRosterLoading) {

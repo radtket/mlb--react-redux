@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchTickets } from "../../../modules/actions";
 import TicketedEvent from "../../../components/TicketedEvent";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamTickets = ({ Name, City }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const PageTeamTickets = ({ Name, City }) => {
   }, [City, Name, dispatch]);
 
   if (ticketsError) {
-    return <div>Error! {ticketsError.message}</div>;
+    return <ErrorMessage error={ticketsError} />;
   }
 
   if (ticketsLoading) {

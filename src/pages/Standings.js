@@ -8,10 +8,11 @@ import StandingsDivision from "../components/Standings/DivisionComponent";
 import { sortTeamsByDivion } from "../utils/helpers";
 import LoadingSpinner from "../components/LoadingSpinner";
 import PageTitle from "../components/PageTitle";
+import ErrorMessage from "../components/ErrorMessage";
 
 const StandingsList = ({ standings, standingsError, standingsLoading }) => {
   if (standingsError) {
-    return <div>Error! {standingsError.message}</div>;
+    return <ErrorMessage error={standingsError} />;
   }
 
   if (standingsLoading) {

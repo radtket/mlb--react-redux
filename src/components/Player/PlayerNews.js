@@ -5,6 +5,7 @@ import { fetchPlayerNews } from "../../modules/actions";
 import NewsArticle from "../NewsArticle";
 import LoadingSpinner from "../LoadingSpinner";
 import { isArrayEmpty } from "../../utils/helpers";
+import ErrorMessage from "../ErrorMessage";
 
 const PlayerNews = ({ MLBAMID, PlayerID }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const PlayerNews = ({ MLBAMID, PlayerID }) => {
   }, [PlayerID, dispatch]);
 
   if (playerNewsError) {
-    return <div>Error! {playerNewsError.message}</div>;
+    return <ErrorMessage error={playerNewsError} />;
   }
 
   if (playerNewsLoading) {

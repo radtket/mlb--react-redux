@@ -5,6 +5,7 @@ import { fetchLeagueLeaders } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import LeagueLeaderTable from "../components/LeagueLeaderTable";
 import PageTitle from "../components/PageTitle";
+import ErrorMessage from "../components/ErrorMessage";
 
 const LeagueLeadersTeams = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const LeagueLeadersTeams = () => {
   }, [dispatch]);
 
   if (leagueLeadersError) {
-    return <div>Error! {leagueLeadersError.message}</div>;
+    return <ErrorMessage error={leagueLeadersError} />;
   }
 
   if (leagueLeadersLoading) {

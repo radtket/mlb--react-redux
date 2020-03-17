@@ -35,7 +35,7 @@ const App = () => {
     standingsError,
     standingsLoading,
     teams,
-    teamsFail,
+    teamsError,
     teamsLoading,
   } = useSelector(state => {
     return {
@@ -54,8 +54,8 @@ const App = () => {
     componentDidMount();
   }, [dispatch]);
 
-  if (teamsFail) {
-    return <ErrorMessage error={teamsFail} />;
+  if (teamsError) {
+    return <ErrorMessage error={teamsError} />;
   }
 
   if (schedulesError) {

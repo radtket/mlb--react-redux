@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import SortablePlayerTable from "../SortablePlayerTable";
 import Card from "../Card";
 import LoadingSpinner from "../LoadingSpinner";
+import ErrorMessage from "../ErrorMessage";
 
 const TeamRoster = ({ teamRosterError, teamRosterLoading, teamRoster }) => {
   if (teamRosterError) {
-    return <div>Error! {teamRosterError.message}</div>;
+    return <ErrorMessage error={teamRosterError} />;
   }
 
   if (teamRosterLoading) {

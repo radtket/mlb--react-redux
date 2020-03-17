@@ -7,6 +7,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { monthList } from "../utils/helpers";
 
 import { TeamBattingSplits, TeamPitchingSplits } from "../components/Splits";
+import ErrorMessage from "../components/ErrorMessage";
 
 const TeamSplitsList = ({ TeamArg }) => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const TeamSplitsList = ({ TeamArg }) => {
   }, [TeamArg, dispatch]);
 
   if (teamSplitsError) {
-    return <div>Error! {teamSplitsError.message}</div>;
+    return <ErrorMessage error={teamSplitsError} />;
   }
 
   if (teamSplitsLoading) {

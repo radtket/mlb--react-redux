@@ -5,6 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import Marquee from "../components/Marquee";
 import PageTitle from "../components/PageTitle";
 import NewsArticleGrid from "../components/NewsArticleGrid";
+import ErrorMessage from "../components/ErrorMessage";
 
 const NewsAllTeamsList = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const NewsAllTeamsList = () => {
   }, [dispatch]);
 
   if (newsAllError) {
-    return <div>Error! {newsAllError.message}</div>;
+    return <ErrorMessage error={newsAllError} />;
   }
 
   if (newsAllLoading) {

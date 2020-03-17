@@ -8,6 +8,7 @@ import PlayerHero from "../components/Player/PlayerHero";
 import PlayerNews from "../components/Player/PlayerNews";
 import PlayerStats from "../components/Player/PlayerStats";
 import { teamFinder } from "../utils/helpers";
+import ErrorMessage from "../components/ErrorMessage";
 
 const PlayerList = () => {
   const { playerArg } = useParams();
@@ -22,7 +23,7 @@ const PlayerList = () => {
   }, [dispatch, playerArg]);
 
   if (playerError) {
-    return <div>Error! {playerError.message}</div>;
+    return <ErrorMessage error={playerError} />;
   }
 
   if (playerLoading) {

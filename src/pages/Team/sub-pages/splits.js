@@ -10,6 +10,7 @@ import {
   TeamPitchingSplits,
 } from "../../../components/Splits";
 import Card from "../../../components/Card";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamSplits = ({ Key }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const PageTeamSplits = ({ Key }) => {
   }, [Key, dispatch]);
 
   if (teamSplitsError) {
-    return <div>Error! {teamSplitsError.message}</div>;
+    return <ErrorMessage error={teamSplitsError} />;
   }
 
   if (teamSplitsLoading) {

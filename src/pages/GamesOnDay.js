@@ -15,6 +15,7 @@ import {
 } from "../utils/helpers";
 import PageTitle from "../components/PageTitle";
 import GamesOnDayList from "../components/GamesOnDayList";
+import ErrorMessage from "../components/ErrorMessage";
 
 const GamesOnDay = () => {
   const dispatch = useDispatch();
@@ -58,23 +59,23 @@ const GamesOnDay = () => {
   }, [dateOfGame, dispatch]);
 
   if (stadiumsError) {
-    return <div>Error! {stadiumsError.message}</div>;
+    return <ErrorMessage error={stadiumsError} />;
   }
 
   if (gamesOnDayError) {
-    return <div>Error! {gamesOnDayError.message}</div>;
+    return <ErrorMessage error={gamesOnDayError} />;
   }
 
   if (standingsError) {
-    return <div>Error! {standingsError.message}</div>;
+    return <ErrorMessage error={standingsError} />;
   }
 
   if (allPlayersError) {
-    return <div>Error! {allPlayersError.message}</div>;
+    return <ErrorMessage error={allPlayersError} />;
   }
 
   if (ticketsError) {
-    return <div>Error! {ticketsError.message}</div>;
+    return <ErrorMessage error={ticketsError} />;
   }
 
   if (

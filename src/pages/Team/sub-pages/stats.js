@@ -7,6 +7,7 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 import Tabs from "../../../components/Tabs/Tabs";
 import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
 import StatsTablePitching from "../../../components/Team/StatsTables/Pitching";
+import ErrorMessage from "../../../components/ErrorMessage";
 
 const PageTeamStats = () => {
   const { teamAbrv } = useParams();
@@ -35,7 +36,7 @@ const PageTeamStats = () => {
   };
 
   if (teamStatsError) {
-    return <div>Error! {teamStatsError.message}</div>;
+    return <ErrorMessage error={teamStatsError} />;
   }
 
   if (teamStatsLoading) {
