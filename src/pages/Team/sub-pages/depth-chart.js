@@ -26,6 +26,7 @@ const PageTeamDepth = ({
       getTeamRoster(teamKey);
     };
     mount(teamAbrv);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamAbrv]);
 
   if (teamDepthsFail) {

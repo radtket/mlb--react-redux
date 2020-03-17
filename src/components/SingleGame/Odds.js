@@ -11,6 +11,10 @@ const Odds = ({ HomeTeamMoneyLine, HomeTeam, OverUnder }) => {
   );
 };
 
-Odds.propTypes = {};
+Odds.propTypes = {
+  HomeTeamMoneyLine: PropTypes.number.isRequired,
+  HomeTeam: PropTypes.string.isRequired,
+  OverUnder: PropTypes.number.isRequired,
+};
 
 export default Odds;

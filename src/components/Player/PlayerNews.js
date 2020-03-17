@@ -1,73 +1,47 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchPlayerNews } from "../../modules/actions";
 import NewsArticle from "../NewsArticle";
 import LoadingSpinner from "../LoadingSpinner";
+import { isArrayEmpty } from "../../utils/helpers";
 
-const PlayerNews = ({
-  playerNewsFail,
-  playerNewsLoading,
-  playerNews,
-  MLBAMID,
-  PlayerID,
-  fetchPlayerNews: getPlayerNews,
-}) => {
+const PlayerNews = ({ MLBAMID, PlayerID }) => {
+  const dispatch = useDispatch();
+
+  const { playerNewsData, playerNewsLoading, playerNewsError } = useSelector(
+    state => state.playerNews
+  );
+
   useEffect(() => {
-    getPlayerNews(PlayerID);
-  }, []);
+    dispatch(fetchPlayerNews(PlayerID));
+  }, [PlayerID, dispatch]);
 
-  if (playerNewsFail) {
-    return <div>Error! {playerNewsFail.message}</div>;
+  if (playerNewsError) {
+    return <div>Error! {playerNewsError.message}</div>;
   }
 
   if (playerNewsLoading) {
     return <LoadingSpinner />;
   }
-  return (
-    <>
-      {playerNews.length ? (
-        playerNews.map(article => {
-          const { NewsID } = article;
-          return <NewsArticle key={NewsID} MLBAMID={MLBAMID} {...article} />;
-        })
-      ) : (
-        <h1>No News</h1>
-      )}
-    </>
-  );
+
+  if (isArrayEmpty(playerNewsData)) {
+    return <h1>No News</h1>;
+  }
+
+  return playerNewsData.map(article => {
+    return <NewsArticle key={article.NewsID} {...{ ...article, MLBAMID }} />;
+  });
 };
 
 PlayerNews.propTypes = {
   PlayerID: PropTypes.string,
   MLBAMID: PropTypes.number,
-  playerNewsFail: PropTypes.bool,
-  playerNewsLoading: PropTypes.bool.isRequired,
-  playerNews: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchPlayerNews: PropTypes.func.isRequired,
 };
 
 PlayerNews.defaultProps = {
-  playerNewsFail: null,
   PlayerID: null,
   MLBAMID: null,
 };
 
-const mapStateToProps = ({ playerNews }) => ({
-  playerNews: playerNews.playerNewsData,
-  playerNewsLoading: playerNews.playerNewsLoading,
-  playerNewsFail: playerNews.playerNewsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchPlayerNews,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(PlayerNews);
+export default PlayerNews;

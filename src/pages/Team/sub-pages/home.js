@@ -36,6 +36,7 @@ const PageTeamHome = ({
     };
 
     getTeamData(activeTeamObj);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTeamObj]);
 
   if (newsTeamsFail) {

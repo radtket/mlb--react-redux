@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
 import { fetchTeamRoster } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const PageTeamRoster = ({
-  fetchTeamRoster: getTeamRoster,
-  teamRoster,
-  teamRosterError,
-  teamRosterLoading,
   match: {
     params: { teamAbrv },
   },
 }) => {
+  const dispatch = useDispatch();
+
+  const { teamRoster, teamRosterLoading, teamRosterError } = useSelector(
+    state => state.teamRoster
+  );
+
   useEffect(() => {
-    getTeamRoster(teamAbrv);
-  }, []);
+    dispatch(fetchTeamRoster(teamAbrv));
+  }, [dispatch, teamAbrv]);
 
   if (teamRosterError) {
     return <div>Error! {teamRosterError.message}</div>;
@@ -40,28 +40,11 @@ const PageTeamRoster = ({
 };
 
 PageTeamRoster.propTypes = {
-  teamRosterError: PropTypes.bool,
-  teamRosterLoading: PropTypes.bool.isRequired,
-  teamRoster: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchTeamRoster: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      teamAbrv: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
-PageTeamRoster.defaultProps = {
-  teamRosterError: null,
-};
-
-const mapStateToProps = ({ teamRoster }) => ({
-  ...teamRoster,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchTeamRoster,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(withRouter(PageTeamRoster));
+export default PageTeamRoster;

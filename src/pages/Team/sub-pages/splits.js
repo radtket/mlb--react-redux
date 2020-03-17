@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchTeamSplits } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { monthList, capitalizeFirstLetter } from "../../../utils/helpers";
@@ -12,19 +11,19 @@ import {
 } from "../../../components/Splits";
 import Card from "../../../components/Card";
 
-const PageTeamSplits = ({
-  teamSplitsFail,
-  teamSplitsLoading,
-  teamSplits,
-  fetchTeamSplits: getTeamSplits,
-  Key,
-}) => {
-  useEffect(() => {
-    getTeamSplits(Key);
-  }, []);
+const PageTeamSplits = ({ Key }) => {
+  const dispatch = useDispatch();
 
-  if (teamSplitsFail) {
-    return <div>Error! {teamSplitsFail.message}</div>;
+  const { teamSplitsData, teamSplitsLoading, teamSplitsError } = useSelector(
+    state => state.teamSplitsData
+  );
+
+  useEffect(() => {
+    dispatch(fetchTeamSplits(Key));
+  }, [Key, dispatch]);
+
+  if (teamSplitsError) {
+    return <div>Error! {teamSplitsError.message}</div>;
   }
 
   if (teamSplitsLoading) {
@@ -124,7 +123,7 @@ const PageTeamSplits = ({
     }, []);
   };
 
-  const { hitting, pitching } = teamSplits;
+  const { hitting, pitching } = teamSplitsData;
 
   return (
     <div className="container">
@@ -145,31 +144,7 @@ const PageTeamSplits = ({
 };
 
 PageTeamSplits.propTypes = {
-  teamSplitsFail: PropTypes.bool,
-  teamSplitsLoading: PropTypes.bool.isRequired,
-  teamSplits: PropTypes.objectOf(PropTypes.object).isRequired,
-  fetchTeamSplits: PropTypes.func.isRequired,
   Key: PropTypes.string.isRequired,
 };
 
-PageTeamSplits.defaultProps = {
-  teamSplitsFail: null,
-};
-
-const mapStateToProps = ({ teamSplits }) => ({
-  teamSplits: teamSplits.teamSplitsData,
-  teamSplitsLoading: teamSplits.teamSplitsLoading,
-  teamSplitsFail: teamSplits.teamSplitsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchTeamSplits,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(PageTeamSplits);
+export default PageTeamSplits;

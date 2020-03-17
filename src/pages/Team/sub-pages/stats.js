@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchTeamStats } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
@@ -11,17 +9,19 @@ import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
 import StatsTablePitching from "../../../components/Team/StatsTables/Pitching";
 
 const PageTeamStats = ({
-  fetchTeamStats: getTeamStats,
-  teamStats,
-  teamStatsFail,
-  teamStatsLoading,
   match: {
     params: { teamAbrv },
   },
 }) => {
+  const dispatch = useDispatch();
+
+  const { teamStatsData, teamStatsLoading, teamStatsError } = useSelector(
+    state => state.teamStats
+  );
+
   useEffect(() => {
-    getTeamStats(teamAbrv);
-  }, []);
+    dispatch(fetchTeamStats(teamAbrv));
+  }, [dispatch, teamAbrv]);
 
   const splitStatsByPosition = stats => {
     return stats.reduce(
@@ -37,15 +37,15 @@ const PageTeamStats = ({
     );
   };
 
-  if (teamStatsFail) {
-    return <div>Error! {teamStatsFail.message}</div>;
+  if (teamStatsError) {
+    return <div>Error! {teamStatsError.message}</div>;
   }
 
   if (teamStatsLoading) {
     return <LoadingSpinner />;
   }
 
-  const { pitcher, batter } = splitStatsByPosition(teamStats);
+  const { pitcher, batter } = splitStatsByPosition(teamStatsData);
 
   return (
     <div className="container">
@@ -66,31 +66,11 @@ const PageTeamStats = ({
 };
 
 PageTeamStats.propTypes = {
-  teamStatsFail: PropTypes.bool,
-  teamStatsLoading: PropTypes.bool.isRequired,
-  teamStats: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchTeamStats: PropTypes.func.isRequired,
-  currentTeamAbrv: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      teamAbrv: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
 
-PageTeamStats.defaultProps = {
-  teamStatsFail: null,
-};
-
-const mapStateToProps = ({ teamStats }) => ({
-  teamStats: teamStats.teamStatsData,
-  teamStatsLoading: teamStats.teamStatsLoading,
-  teamStatsFail: teamStats.teamStatsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchTeamStats,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(withRouter(PageTeamStats));
+export default PageTeamStats;
