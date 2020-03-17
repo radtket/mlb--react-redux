@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import TeamRoster from "../../../components/Team/TeamRoster";
 import { fetchTeamRoster } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
-const PageTeamRoster = ({
-  match: {
-    params: { teamAbrv },
-  },
-}) => {
+const PageTeamRoster = () => {
+  const { teamAbrv } = useParams();
   const dispatch = useDispatch();
 
   const { teamRoster, teamRosterLoading, teamRosterError } = useSelector(
@@ -37,14 +34,6 @@ const PageTeamRoster = ({
       </div>
     </div>
   );
-};
-
-PageTeamRoster.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
 };
 
 export default PageTeamRoster;

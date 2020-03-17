@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTeamStats } from "../../../modules/actions";
 import LoadingSpinner from "../../../components/LoadingSpinner";
@@ -8,11 +8,8 @@ import Tabs from "../../../components/Tabs/Tabs";
 import StatsTableBatting from "../../../components/Team/StatsTables/Batting";
 import StatsTablePitching from "../../../components/Team/StatsTables/Pitching";
 
-const PageTeamStats = ({
-  match: {
-    params: { teamAbrv },
-  },
-}) => {
+const PageTeamStats = () => {
+  const { teamAbrv } = useParams();
   const dispatch = useDispatch();
 
   const { teamStatsData, teamStatsLoading, teamStatsError } = useSelector(
@@ -63,14 +60,6 @@ const PageTeamStats = ({
       </div>
     </div>
   );
-};
-
-PageTeamStats.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
 };
 
 export default PageTeamStats;

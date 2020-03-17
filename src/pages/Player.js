@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchPlayer } from "../modules/actions";
 import PlayerHeroCard from "../components/PlayerHeroCard";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -10,11 +9,8 @@ import PlayerNews from "../components/Player/PlayerNews";
 import PlayerStats from "../components/Player/PlayerStats";
 import { teamFinder } from "../utils/helpers";
 
-const PlayerList = ({
-  match: {
-    params: { playerArg },
-  },
-}) => {
+const PlayerList = () => {
+  const { playerArg } = useParams();
   const dispatch = useDispatch();
 
   const { playerData, playerLoading, playerError } = useSelector(
@@ -54,14 +50,6 @@ const PlayerList = ({
       </div>
     </div>
   );
-};
-
-PlayerList.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      playerArg: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
 };
 
 export default PlayerList;

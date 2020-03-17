@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Route } from "react-router-dom";
+import { Route, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchStandings } from "../../modules/actions";
@@ -19,7 +19,6 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorMessage from "../../components/ErrorMessage";
 
 const Team = ({
-  match,
   standings,
   standingsError,
   standingsLoading,
@@ -27,8 +26,8 @@ const Team = ({
   history,
   schedules,
 }) => {
+  const { teamAbrv } = useParams();
   const [recentGames, setRecentGames] = useState([]);
-  const { teamAbrv } = match.params;
   useEffect(() => {
     const findTeamSchedule = () => {
       return schedules
@@ -91,11 +90,6 @@ const Team = ({
 
 Team.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      teamAbrv: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
   schedules: PropTypes.arrayOf(
     PropTypes.shape({
       Status: PropTypes.string,

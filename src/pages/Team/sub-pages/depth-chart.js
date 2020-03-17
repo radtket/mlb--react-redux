@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchTeamDepths, fetchTeamRoster } from "../../../modules/actions";
@@ -16,10 +16,8 @@ const PageTeamDepth = ({
   teamRoster,
   teamRosterError,
   teamRosterLoading,
-  match: {
-    params: { teamAbrv },
-  },
 }) => {
+  const { teamAbrv } = useParams();
   useEffect(() => {
     const mount = teamKey => {
       getTeamDepths(teamKey);
@@ -91,4 +89,4 @@ const mapDispatchToProps = dispatch =>
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   pure: false,
-})(withRouter(PageTeamDepth));
+})(PageTeamDepth);
