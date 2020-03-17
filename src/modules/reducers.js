@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 import counter from "./counter/reducers";
 import gamesOnDay from "./games-on-day/reducers";
 import newsAllTeams from "./newsAllTeams/reducers";
@@ -22,28 +23,32 @@ import teamSplits from "./teamSplits/reducers";
 import teamStats from "./teamStats/reducers";
 import tickets from "./ticket/reducers";
 
-export default combineReducers({
-  counter,
-  gamesOnDay,
-  newsAllTeams,
-  newsTeams,
-  player,
-  playerNews,
-  playerStats,
-  postsBySubreddit,
-  products,
-  stadiums,
-  allPlayers,
-  sportsRadarGames,
-  teamSplits,
-  leagueLeaders,
-  schedules,
-  selectedSubreddit,
-  standings,
-  teamDepths,
-  teamRoster,
-  teamRssNews,
-  teams,
-  teamStats,
-  tickets,
-});
+const createRootReducer = hist =>
+  combineReducers({
+    router: connectRouter(hist),
+    counter,
+    gamesOnDay,
+    newsAllTeams,
+    newsTeams,
+    player,
+    playerNews,
+    playerStats,
+    postsBySubreddit,
+    products,
+    stadiums,
+    allPlayers,
+    sportsRadarGames,
+    teamSplits,
+    leagueLeaders,
+    schedules,
+    selectedSubreddit,
+    standings,
+    teamDepths,
+    teamRoster,
+    teamRssNews,
+    teams,
+    teamStats,
+    tickets,
+  });
+
+export default createRootReducer;

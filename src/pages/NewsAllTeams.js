@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchNewsAllTeams } from "../modules/actions";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Marquee from "../components/Marquee";
 import PageTitle from "../components/PageTitle";
 import NewsArticleGrid from "../components/NewsArticleGrid";
 
-const NewsAllTeamsList = ({
-  newsAllError,
-  newsAllLoading,
-  newsAllTeams,
-  fetchNewsAllTeams: getNewsAllTeams,
-}) => {
+const NewsAllTeamsList = () => {
+  const dispatch = useDispatch();
+
+  const { newsAllTeamsData, newsAllLoading, newsAllError } = useSelector(
+    state => state.allPlayers
+  );
+
   useEffect(() => {
     // TODO: Add When API is Live
-    // getNewsAllTeams(new Date());
-    getNewsAllTeams(new Date("2018-05-04T00:00:00"));
-  }, []);
+    // dispatch(fetchNewsAllTeams(new Date()));
+    dispatch(fetchNewsAllTeams(new Date("2018-05-04T00:00:00")));
+  }, [dispatch]);
 
   if (newsAllError) {
     return <div>Error! {newsAllError.message}</div>;
@@ -30,7 +30,7 @@ const NewsAllTeamsList = ({
 
   return (
     <>
-      <Marquee MarqueeData={newsAllTeams} MarqueeItems="2" />
+      <Marquee MarqueeData={newsAllTeamsData} MarqueeItems="2" />
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
@@ -38,7 +38,7 @@ const NewsAllTeamsList = ({
           </div>
         </div>
       </div>
-      <NewsArticleGrid {...{ newsAllTeams }} />
+      <NewsArticleGrid {...{ newsAllTeams: newsAllTeamsData }} />
     </>
   );
 };
@@ -54,20 +54,4 @@ NewsAllTeamsList.defaultProps = {
   newsAllError: null,
 };
 
-const mapStateToProps = ({ newsAllTeams }) => ({
-  newsAllTeams: newsAllTeams.newsAllTeamsData,
-  newsAllLoading: newsAllTeams.newsAllLoading,
-  newsAllError: newsAllTeams.newsAllError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchNewsAllTeams,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(NewsAllTeamsList);
+export default NewsAllTeamsList;

@@ -26,6 +26,7 @@ const RedditAsyncApp = ({
     return () => {
       getPostsIfNeeded(selectedSubreddit);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = nextSubreddit => {

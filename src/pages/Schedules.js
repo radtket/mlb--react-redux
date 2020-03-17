@@ -15,6 +15,7 @@ const SchedulesList = ({
 }) => {
   useEffect(() => {
     getSportsRadarGames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (sportsRadarGamesFail) {

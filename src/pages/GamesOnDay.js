@@ -21,25 +21,25 @@ import PageTitle from "../components/PageTitle";
 import GamesOnDayList from "../components/GamesOnDayList";
 
 const GamesOnDay = ({
-  gamesOnDayFail,
-  gamesOnDayLoading,
-  standingsError,
-  gamesOnDay,
-  standings,
-  standingsLoading,
-  fetchGamesOnDay: getGamesOnDay,
+  allPlayers,
   allPlayersFail,
   allPlayersLoading,
-  allPlayers,
   fetchAllPlayers: getAllPlayers,
+  fetchGamesOnDay: getGamesOnDay,
+  fetchStadiums: getStadiums,
+  fetchTicketsOnDate: getTicketsOnDate,
+  gamesOnDay,
+  gamesOnDayFail,
+  gamesOnDayLoading,
+  stadiums,
   stadiumsFail,
   stadiumsLoading,
-  stadiums,
-  fetchStadiums: getStadiums,
+  standings,
+  standingsError,
+  standingsLoading,
+  tickets,
   ticketsFail,
   ticketsLoading,
-  tickets,
-  fetchTicketsOnDate: getTicketsOnDate,
 }) => {
   const [dateOfGame, setdateOfGame] = useState(DEV_PLACEHOLDER_DATE);
 

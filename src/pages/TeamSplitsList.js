@@ -18,6 +18,7 @@ const TeamSplitsList = ({
 }) => {
   useEffect(() => {
     getTeamSplits(TeamArg);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (teamSplitsFail) {

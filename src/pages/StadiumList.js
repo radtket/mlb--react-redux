@@ -14,6 +14,7 @@ const StadiumList = ({
 }) => {
   useEffect(() => {
     getStadiums();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (stadiumsFail) {
