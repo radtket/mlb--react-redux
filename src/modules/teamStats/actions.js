@@ -8,17 +8,17 @@ export const fetchTeamStatsBegin = () => ({
   type: FETCH_TEAM_STATS_BEGIN,
 });
 
-export const fetchTeamStatsSuccess = teamStats => ({
+export const fetchTeamStatsSuccess = teamStatsData => ({
   type: FETCH_TEAM_STATS_SUCCESS,
-  payload: { teamStats },
+  teamStatsData,
 });
 
-export const fetchTeamStatsFailure = teamStatsFail => ({
+export const fetchTeamStatsFailure = teamStatsError => ({
   type: FETCH_TEAM_STATS_FAILURE,
-  payload: { teamStatsFail },
+  teamStatsError,
 });
 
-function getTeamStats(teamArg) {
+const getTeamStats = teamArg => {
   // TODO: Add When API is Live
   // function getTeamRoster(teamArg) {
   // return fetch(
@@ -28,9 +28,9 @@ function getTeamStats(teamArg) {
   return fetch(`/data/teams/${teamArg}/playerstats.${teamArg}.json`)
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchTeamStats(teamArg) {
+export const fetchTeamStats = teamArg => {
   return dispatch => {
     dispatch(fetchTeamStatsBegin());
     return getTeamStats(teamArg)
@@ -40,4 +40,4 @@ export function fetchTeamStats(teamArg) {
       })
       .catch(error => dispatch(fetchTeamStatsFailure(error)));
   };
-}
+};

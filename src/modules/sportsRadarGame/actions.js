@@ -10,26 +10,26 @@ export const fetchSportsRadarGamesBegin = () => ({
   type: FETCH_SPORTS_RADAR_GAMES_BEGIN,
 });
 
-export const fetchSportsRadarGamesSuccess = sportsRadarGames => ({
+export const fetchSportsRadarGamesSuccess = sportsRadarGamesData => ({
   type: FETCH_SPORTS_RADAR_GAMES_SUCCESS,
-  payload: { sportsRadarGames },
+  sportsRadarGamesData,
 });
 
-export const fetchSportsRadarGamesFailure = sportsRadarGamesFail => ({
+export const fetchSportsRadarGamesFailure = sportsRadarGamesError => ({
   type: FETCH_SPORTS_RADAR_GAMES_FAILURE,
-  payload: { sportsRadarGamesFail },
+  sportsRadarGamesError,
 });
 
-function getSportsRadarGames() {
+const getSportsRadarGames = () => {
   return fetch("/data/games-sports-radar.json")
     .then(handleErrors)
     .then(res => res.json())
     .then(data => {
       return data.games.sort(smallestToLargest("scheduled"));
     });
-}
+};
 
-export function fetchSportsRadarGames() {
+export const fetchSportsRadarGames = () => {
   return dispatch => {
     dispatch(fetchSportsRadarGamesBegin());
     return getSportsRadarGames()
@@ -39,4 +39,4 @@ export function fetchSportsRadarGames() {
       })
       .catch(error => dispatch(fetchSportsRadarGamesFailure(error)));
   };
-}
+};

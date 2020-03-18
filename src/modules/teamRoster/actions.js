@@ -12,17 +12,16 @@ export const fetchTeamRosterBegin = () => ({
 
 export const fetchTeamRosterSuccess = teamRoster => ({
   type: FETCH_TEAM_ROSTER_SUCCESS,
-  payload: { teamRoster },
+  teamRoster,
 });
 
-export const fetchTeamRosterFailure = error => ({
+export const fetchTeamRosterFailure = teamRosterError => ({
   type: FETCH_TEAM_ROSTER_FAILURE,
-  payload: { error },
+  teamRosterError,
 });
 
-function getTeamRoster(teamArg) {
+const getTeamRoster = teamArg => {
   // TODO: Add When API is Live
-  // function getTeamRoster(teamArg) {
   // return fetch(
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${teamArg}`,
   //   ApiHeadersMLB
@@ -30,9 +29,9 @@ function getTeamRoster(teamArg) {
   return fetch(`/data/teams/${teamArg}/roster.${teamArg}.json`)
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchTeamRoster(teamArg) {
+export const fetchTeamRoster = teamArg => {
   return dispatch => {
     dispatch(fetchTeamRosterBegin());
     return getTeamRoster(teamArg)
@@ -42,4 +41,4 @@ export function fetchTeamRoster(teamArg) {
       })
       .catch(error => dispatch(fetchTeamRosterFailure(error)));
   };
-}
+};

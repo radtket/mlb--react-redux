@@ -20,7 +20,7 @@ export const fetchPlayerNewsFailure = playerNewsFail => ({
   payload: { playerNewsFail },
 });
 
-function getPlayerNews(playerId) {
+const getPlayerNews = playerId => {
   return (
     // TODO: Add When API is Live
     // fetch(
@@ -31,9 +31,9 @@ function getPlayerNews(playerId) {
       .then(handleErrors)
       .then(res => res.json())
   );
-}
+};
 
-export function fetchPlayerNews(playerId) {
+export const fetchPlayerNews = playerId => {
   return dispatch => {
     dispatch(fetchPlayerNewsBegin());
     return getPlayerNews(playerId)
@@ -43,4 +43,4 @@ export function fetchPlayerNews(playerId) {
       })
       .catch(error => dispatch(fetchPlayerNewsFailure(error)));
   };
-}
+};

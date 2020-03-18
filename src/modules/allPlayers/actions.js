@@ -8,30 +8,26 @@ export const fetchAllPlayersBegin = () => ({
   type: FETCH_ALL_PLAYERS_BEGIN,
 });
 
-export const fetchAllPlayersSuccess = allPlayers => ({
+export const fetchAllPlayersSuccess = allPlayersData => ({
   type: FETCH_ALL_PLAYERS_SUCCESS,
-  payload: { allPlayers },
+  allPlayersData,
 });
 
-export const fetchAllPlayersFailure = allPlayersFail => ({
+export const fetchAllPlayersFailure = allPlayersError => ({
   type: FETCH_ALL_PLAYERS_FAILURE,
-  payload: { allPlayersFail },
+  allPlayersError,
 });
 
-function getAllPlayers() {
-  return fetch("/data/all-players.json")
-    .then(handleErrors)
-    .then(res => res.json());
-}
-
-export function fetchAllPlayers() {
+export const fetchAllPlayers = () => {
   return dispatch => {
     dispatch(fetchAllPlayersBegin());
-    return getAllPlayers()
+    return fetch("/data/all-players.json")
+      .then(handleErrors)
+      .then(res => res.json())
       .then(data => {
         dispatch(fetchAllPlayersSuccess(data));
         return data;
       })
       .catch(error => dispatch(fetchAllPlayersFailure(error)));
   };
-}
+};

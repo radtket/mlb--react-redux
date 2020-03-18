@@ -8,23 +8,23 @@ export const fetchStadiumsBegin = () => ({
   type: FETCH_STADIUMS_BEGIN,
 });
 
-export const fetchStadiumsSuccess = stadiums => ({
+export const fetchStadiumsSuccess = stadiumsData => ({
   type: FETCH_STADIUMS_SUCCESS,
-  payload: { stadiums },
+  stadiumsData,
 });
 
-export const fetchStadiumsFailure = stadiumsFail => ({
+export const fetchStadiumsFailure = stadiumsError => ({
   type: FETCH_STADIUMS_FAILURE,
-  payload: { stadiumsFail },
+  stadiumsError,
 });
 
-function getStadiums() {
+const getStadiums = () => {
   return fetch("/data/stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchStadiums() {
+export const fetchStadiums = () => {
   return dispatch => {
     dispatch(fetchStadiumsBegin());
     return getStadiums()
@@ -34,4 +34,4 @@ export function fetchStadiums() {
       })
       .catch(error => dispatch(fetchStadiumsFailure(error)));
   };
-}
+};

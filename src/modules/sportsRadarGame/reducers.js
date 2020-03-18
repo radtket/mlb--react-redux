@@ -10,11 +10,12 @@ const initialState = {
   sportsRadarGamesError: null,
 };
 
-const sportsRadarGamesReducer = (state = initialState, { type, payload }) => {
+export default (
+  state = initialState,
+  { type, sportsRadarGamesData, sportsRadarGamesError }
+) => {
   switch (type) {
     case FETCH_SPORTS_RADAR_GAMES_BEGIN:
-      // Mark the state as "loading" so we can show a spinner or something
-      // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         sportsRadarGamesLoading: true,
@@ -22,31 +23,21 @@ const sportsRadarGamesReducer = (state = initialState, { type, payload }) => {
       };
 
     case FETCH_SPORTS_RADAR_GAMES_SUCCESS:
-      // All done: set loading "false".
-      // Also, replace the sportsRadarGamesData with the ones from the server
       return {
         ...state,
         sportsRadarGamesLoading: false,
-        sportsRadarGamesData: payload.sportsRadarGames,
+        sportsRadarGamesData,
       };
 
     case FETCH_SPORTS_RADAR_GAMES_FAILURE:
-      // The request failed, but it did stop, so set loading to "false".
-      // Save the error, and we can display it somewhere
-      // Since it failed, we don't have sportsRadarGamesData to display anymore, so set it empty.
-      // This is up to you and your app though: maybe you want to keep the sportsRadarGamesData
-      // around! Do whatever seems right.
       return {
         ...state,
         sportsRadarGamesLoading: false,
-        sportsRadarGamesError: payload.error,
+        sportsRadarGamesError,
         sportsRadarGamesData: [],
       };
 
     default:
-      // ALWAYS have a default case in a reducer
       return state;
   }
 };
-
-export default sportsRadarGamesReducer;

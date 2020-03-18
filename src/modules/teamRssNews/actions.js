@@ -10,17 +10,17 @@ export const fetchTeamRssNewsBegin = () => ({
   type: FETCH_TEAM_RSS_NEWS_BEGIN,
 });
 
-export const fetchTeamRssNewsSuccess = teamRssNews => ({
+export const fetchTeamRssNewsSuccess = teamRssNewsData => ({
   type: FETCH_TEAM_RSS_NEWS_SUCCESS,
-  payload: { teamRssNews },
+  teamRssNewsData,
 });
 
-export const fetchTeamRssNewsFailure = teamRssNewsFail => ({
+export const fetchTeamRssNewsFailure = teamRssNewsError => ({
   type: FETCH_TEAM_RSS_NEWS_FAILURE,
-  payload: { teamRssNewsFail },
+  teamRssNewsError,
 });
 
-function getTeamRssNews(teamAbrv) {
+const getTeamRssNews = teamAbrv => {
   const { Name } = teamFinder[teamAbrv];
   const TeamName = Name.toLocaleLowerCase();
 
@@ -34,9 +34,9 @@ function getTeamRssNews(teamAbrv) {
     .then(response => {
       return response.text();
     });
-}
+};
 
-export function fetchTeamRssNews(teamAbrv) {
+export const fetchTeamRssNews = teamAbrv => {
   return dispatch => {
     dispatch(fetchTeamRssNewsBegin());
     return getTeamRssNews(teamAbrv)
@@ -49,4 +49,4 @@ export function fetchTeamRssNews(teamAbrv) {
       })
       .catch(error => dispatch(fetchTeamRssNewsFailure(error)));
   };
-}
+};

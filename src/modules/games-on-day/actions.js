@@ -8,17 +8,17 @@ export const fetchGamesOnDayBegin = () => ({
   type: FETCH_GAMES_ON_DAY_BEGIN,
 });
 
-export const fetchGamesOnDaySuccess = gamesOnDay => ({
+export const fetchGamesOnDaySuccess = gamesOnDayData => ({
   type: FETCH_GAMES_ON_DAY_SUCCESS,
-  payload: { gamesOnDay },
+  gamesOnDayData,
 });
 
-export const fetchGamesOnDayFailure = gamesOnDayFail => ({
+export const fetchGamesOnDayFailure = gamesOnDayError => ({
   type: FETCH_GAMES_ON_DAY_FAILURE,
-  payload: { gamesOnDayFail },
+  gamesOnDayError,
 });
 
-function getGamesOnDay(dateArg) {
+const getGamesOnDay = dateArg => {
   const date = formatApiArgDatedate(dateArg);
   return (
     // TODO: Add When API is Live
@@ -30,9 +30,9 @@ function getGamesOnDay(dateArg) {
       .then(handleErrors)
       .then(res => res.json())
   );
-}
+};
 
-export function fetchGamesOnDay(dateArg) {
+export const fetchGamesOnDay = dateArg => {
   return dispatch => {
     dispatch(fetchGamesOnDayBegin());
     return getGamesOnDay(dateArg)
@@ -42,4 +42,4 @@ export function fetchGamesOnDay(dateArg) {
       })
       .catch(error => dispatch(fetchGamesOnDayFailure(error)));
   };
-}
+};

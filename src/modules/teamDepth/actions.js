@@ -8,17 +8,17 @@ export const fetchTeamDepthsBegin = () => ({
   type: FETCH_TEAM_DEPTHS_BEGIN,
 });
 
-export const fetchTeamDepthsSuccess = teamDepths => ({
+export const fetchTeamDepthsSuccess = teamDepthsData => ({
   type: FETCH_TEAM_DEPTHS_SUCCESS,
-  payload: { teamDepths },
+  teamDepthsData,
 });
 
-export const fetchTeamDepthsFailure = teamDepthsFail => ({
+export const fetchTeamDepthsFailure = teamDepthsError => ({
   type: FETCH_TEAM_DEPTHS_FAILURE,
-  payload: { teamDepthsFail },
+  teamDepthsError,
 });
 
-function getTeamDepths(teamAbrv) {
+const getTeamDepths = teamAbrv => {
   const currentTeamAbrv = teamAbrv === "CHW" ? "CWS" : teamAbrv;
   return (
     // TODO: Add When API is Live
@@ -32,17 +32,15 @@ function getTeamDepths(teamAbrv) {
     fetch("/data/all-teams-depth.json")
       .then(handleErrors)
       .then(res => res.json())
-      .then(allTeams =>
-        // eslint-disable-next-line eqeqeq
-        allTeams.teams.find(team => {
-          console.log({ currentTeamAbrv }, team.abbr);
+      .then(({ teams }) =>
+        teams.find(team => {
           return team.abbr === currentTeamAbrv;
         })
       )
   );
-}
+};
 
-export function fetchTeamDepths(teamAbrv) {
+export const fetchTeamDepths = teamAbrv => {
   return dispatch => {
     dispatch(fetchTeamDepthsBegin());
     return getTeamDepths(teamAbrv)
@@ -52,4 +50,4 @@ export function fetchTeamDepths(teamAbrv) {
       })
       .catch(error => dispatch(fetchTeamDepthsFailure(error)));
   };
-}
+};

@@ -12,15 +12,15 @@ export const fetchStandingsBegin = () => ({
 
 export const fetchStandingsSuccess = standings => ({
   type: FETCH_STANDINGS_SUCCESS,
-  payload: { standings },
+  standings,
 });
 
-export const fetchStandingsFailure = standingsFail => ({
+export const fetchStandingsFailure = standingsError => ({
   type: FETCH_STANDINGS_FAILURE,
-  payload: { standingsFail },
+  standingsError,
 });
 
-function getStandings(season = 2019) {
+const getStandings = (season = 2019) => {
   // TODO: Add When API is Live
   // return (
   //   fetch(
@@ -30,9 +30,9 @@ function getStandings(season = 2019) {
   return fetch(`/data/standings-${season}.json`)
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchStandings() {
+export const fetchStandings = () => {
   return dispatch => {
     dispatch(fetchStandingsBegin());
     return getStandings()
@@ -42,4 +42,4 @@ export function fetchStandings() {
       })
       .catch(error => dispatch(fetchStandingsFailure(error)));
   };
-}
+};

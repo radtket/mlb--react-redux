@@ -12,15 +12,15 @@ export const fetchSchedulesBegin = () => ({
 
 export const fetchSchedulesSuccess = schedules => ({
   type: FETCH_SCHEDULES_SUCCESS,
-  payload: { schedules },
+  schedules,
 });
 
-export const fetchSchedulesFailure = schedulesFail => ({
+export const fetchSchedulesFailure = schedulesError => ({
   type: FETCH_SCHEDULES_FAILURE,
-  payload: { schedulesFail },
+  schedulesError,
 });
 
-function getSchedules(year = 2019) {
+const getSchedules = (year = 2019) => {
   // TODO: Add When API is Live
   // return (
   //   fetch(
@@ -30,9 +30,9 @@ function getSchedules(year = 2019) {
   return fetch(`/data/schedules-${year}.json`)
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchSchedules(year) {
+export const fetchSchedules = year => {
   return dispatch => {
     dispatch(fetchSchedulesBegin());
     return getSchedules(year)
@@ -42,4 +42,4 @@ export function fetchSchedules(year) {
       })
       .catch(error => dispatch(fetchSchedulesFailure(error)));
   };
-}
+};

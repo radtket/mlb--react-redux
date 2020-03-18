@@ -8,17 +8,17 @@ export const fetchLeagueLeadersBegin = () => ({
   type: FETCH_LEAGUE_LEADERS_BEGIN,
 });
 
-export const fetchLeagueLeadersSuccess = leagueLeaders => ({
+export const fetchLeagueLeadersSuccess = leagueLeadersData => ({
   type: FETCH_LEAGUE_LEADERS_SUCCESS,
-  payload: { leagueLeaders },
+  leagueLeadersData,
 });
 
-export const fetchLeagueLeadersFailure = leagueLeadersFail => ({
+export const fetchLeagueLeadersFailure = leagueLeadersError => ({
   type: FETCH_LEAGUE_LEADERS_FAILURE,
-  payload: { leagueLeadersFail },
+  leagueLeadersError,
 });
 
-function getLeagueLeaders(seasonYear = 2019, mlbSeason = "REG") {
+const getLeagueLeaders = (seasonYear = 2019, mlbSeason = "REG") => {
   return (
     // TODO: Add When API is Live
     // fetch(
@@ -32,12 +32,10 @@ function getLeagueLeaders(seasonYear = 2019, mlbSeason = "REG") {
       .then(handleErrors)
       .then(res => res.json())
   );
-}
+};
 
 const buildCatObject = (all, one, name, cat) => {
-  return Object.entries(one).forEach(item => {
-    const [statKey, statValues] = item;
-    const { players, teams } = statValues;
+  return Object.entries(one).forEach(([statKey, { players, teams }]) => {
     const allStats = all;
     allStats[name].teams[`${cat}`][statKey] =
       allStats[name].teams[`${cat}`][statKey] || {};
@@ -49,40 +47,40 @@ const buildCatObject = (all, one, name, cat) => {
   });
 };
 
-export function fetchLeagueLeaders() {
+export const fetchLeagueLeaders = () => {
   return dispatch => {
     dispatch(fetchLeagueLeadersBegin());
     return getLeagueLeaders()
       .then(data => {
-        return data.leagues.reduce((all, one) => {
-          const {
-            pitching: pitchingData,
-            hitting: hittingData,
-            alias: key,
-          } = one;
+        return data.leagues.reduce(
+          (
+            all,
+            { pitching: pitchingData, hitting: hittingData, alias: key }
+          ) => {
+            const allStats = all;
+            allStats[key] = allStats[key] || {};
+            allStats[key].teams = allStats[key].teams || {};
+            allStats[key].players = allStats[key].players || {};
 
-          const allStats = all;
-          allStats[key] = allStats[key] || {};
-          allStats[key].teams = allStats[key].teams || {};
-          allStats[key].players = allStats[key].players || {};
+            allStats[key].teams.pitching = allStats[key].teams.pitching || {};
+            allStats[key].players.pitching =
+              allStats[key].players.pitching || {};
 
-          allStats[key].teams.pitching = allStats[key].teams.pitching || {};
-          allStats[key].players.pitching = allStats[key].players.pitching || {};
+            allStats[key].teams.hitting = allStats[key].teams.hitting || {};
+            allStats[key].players.hitting = allStats[key].players.hitting || {};
 
-          allStats[key].teams.hitting = allStats[key].teams.hitting || {};
-          allStats[key].players.hitting = allStats[key].players.hitting || {};
+            buildCatObject(allStats, pitchingData, key, "pitching");
+            buildCatObject(allStats, hittingData, key, "hitting");
 
-          buildCatObject(allStats, pitchingData, key, "pitching");
-          buildCatObject(allStats, hittingData, key, "hitting");
-
-          return all;
-        }, {});
+            return all;
+          },
+          {}
+        );
       })
-      .then(allData => {
-        const { MLB } = allData;
+      .then(({ MLB }) => {
         dispatch(fetchLeagueLeadersSuccess(MLB.teams));
         return MLB.teams;
       })
       .catch(error => dispatch(fetchLeagueLeadersFailure(error)));
   };
-}
+};

@@ -10,17 +10,17 @@ export const fetchNewsAllTeamsBegin = () => ({
   type: FETCH_NEWS_ALL_TEAMS_BEGIN,
 });
 
-export const fetchNewsAllTeamsSuccess = newsAllTeams => ({
+export const fetchNewsAllTeamsSuccess = newsAllTeamsData => ({
   type: FETCH_NEWS_ALL_TEAMS_SUCCESS,
-  payload: { newsAllTeams },
+  newsAllTeamsData,
 });
 
-export const fetchNewsAllTeamsFailure = error => ({
+export const fetchNewsAllTeamsFailure = newsAllError => ({
   type: FETCH_NEWS_ALL_TEAMS_FAILURE,
-  payload: { error },
+  newsAllError,
 });
 
-function getNewsAllTeams(dateArg) {
+const getNewsAllTeams = dateArg => {
   const date = formatApiArgDatedate(dateArg);
   return (
     // TODO: Add When API is Live
@@ -32,9 +32,9 @@ function getNewsAllTeams(dateArg) {
       .then(handleErrors)
       .then(res => res.json())
   );
-}
+};
 
-export function fetchNewsAllTeams(dateArg) {
+export const fetchNewsAllTeams = dateArg => {
   return dispatch => {
     dispatch(fetchNewsAllTeamsBegin());
     return getNewsAllTeams(dateArg)
@@ -44,4 +44,4 @@ export function fetchNewsAllTeams(dateArg) {
       })
       .catch(error => dispatch(fetchNewsAllTeamsFailure(error)));
   };
-}
+};

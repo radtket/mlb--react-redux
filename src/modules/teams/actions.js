@@ -13,13 +13,13 @@ export const fetchTeamsBegin = () => ({
 export const fetchTeamsSuccess = teams => {
   return {
     type: FETCH_TEAMS_SUCCESS,
-    payload: { teams },
+    teams,
   };
 };
 
-export const fetchTeamsFailure = teamsFail => ({
+export const fetchTeamsFailure = teamsError => ({
   type: FETCH_TEAMS_FAILURE,
-  payload: { teamsFail },
+  teamsError,
 });
 
 const getTeams = () => {

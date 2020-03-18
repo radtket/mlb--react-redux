@@ -11,17 +11,17 @@ export const fetchTeamSplitsBegin = () => ({
   type: FETCH_TEAM_SPLITS_BEGIN,
 });
 
-export const fetchTeamSplitsSuccess = teamSplits => ({
+export const fetchTeamSplitsSuccess = teamSplitsData => ({
   type: FETCH_TEAM_SPLITS_SUCCESS,
-  payload: { teamSplits },
+  teamSplitsData,
 });
 
-export const fetchTeamSplitsFailure = teamSplitsFail => ({
+export const fetchTeamSplitsFailure = teamSplitsError => ({
   type: FETCH_TEAM_SPLITS_FAILURE,
-  payload: { teamSplitsFail },
+  teamSplitsError,
 });
 
-function getTeamSplits(teamArg) {
+const getTeamSplits = teamArg => {
   // const teamId = SportsRadarID[teamArg];
   return (
     // TODO: Add When API is Live
@@ -45,9 +45,9 @@ function getTeamSplits(teamArg) {
         };
       })
   );
-}
+};
 
-export function fetchTeamSplits(teamArg) {
+export const fetchTeamSplits = teamArg => {
   return dispatch => {
     dispatch(fetchTeamSplitsBegin());
     return getTeamSplits(teamArg)
@@ -57,4 +57,4 @@ export function fetchTeamSplits(teamArg) {
       })
       .catch(error => dispatch(fetchTeamSplitsFailure(error)));
   };
-}
+};

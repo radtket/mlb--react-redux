@@ -8,28 +8,28 @@ export const fetchTicketsBegin = () => ({
   type: FETCH_TICKETS_BEGIN,
 });
 
-export const fetchTicketsSuccess = tickets => ({
+export const fetchTicketsSuccess = ticketsData => ({
   type: FETCH_TICKETS_SUCCESS,
-  payload: { tickets },
+  ticketsData,
 });
 
-export const fetchTicketsFailure = ticketsFail => ({
+export const fetchTicketsFailure = ticketsError => ({
   type: FETCH_TICKETS_FAILURE,
-  payload: { ticketsFail },
+  ticketsError,
 });
 
 // `https://api.seatgeek.com/2/events?datetime_utc.gt=2019-05-14&performers.slug=washington-nationals&performers.slug=new-york-mets&client_id=
 // `;
 
-function getTicketsOnDate(date = "2019-05-14", sport = "mlb") {
+const getTicketsOnDate = (date = "2019-05-14", sport = "mlb") => {
   return fetch(
     `https://api.seatgeek.com/2/events?taxonomies.name=${sport}&datetime_utc.gt=${date}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchTicketsOnDate(date) {
+export const fetchTicketsOnDate = date => {
   return dispatch => {
     dispatch(fetchTicketsBegin());
     return getTicketsOnDate(date)
@@ -39,18 +39,18 @@ export function fetchTicketsOnDate(date) {
       })
       .catch(error => dispatch(fetchTicketsFailure(error)));
   };
-}
+};
 
-function getTickets(teamName) {
+const getTickets = teamName => {
   const teamQuery = slugify(teamName);
   return fetch(
     `https://api.seatgeek.com/2/events?performers.slug=${teamQuery}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchTickets(teamName) {
+export const fetchTickets = teamName => {
   return dispatch => {
     dispatch(fetchTicketsBegin());
     return getTickets(teamName)
@@ -60,4 +60,4 @@ export function fetchTickets(teamName) {
       })
       .catch(error => dispatch(fetchTicketsFailure(error)));
   };
-}
+};

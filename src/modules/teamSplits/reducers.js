@@ -10,11 +10,12 @@ const initialState = {
   teamSplitsError: null,
 };
 
-const teamSplitsReducer = (state = initialState, { type, payload }) => {
+export default (
+  state = initialState,
+  { type, teamSplitsData, teamSplitsError }
+) => {
   switch (type) {
     case FETCH_TEAM_SPLITS_BEGIN:
-      // Mark the state as "loading" so we can show a spinner or something
-      // Also, reset any errors. We're starting fresh.
       return {
         ...state,
         teamSplitsLoading: true,
@@ -22,31 +23,21 @@ const teamSplitsReducer = (state = initialState, { type, payload }) => {
       };
 
     case FETCH_TEAM_SPLITS_SUCCESS:
-      // All done: set loading "false".
-      // Also, replace the teamSplitsData with the ones from the server
       return {
         ...state,
         teamSplitsLoading: false,
-        teamSplitsData: payload.teamSplits,
+        teamSplitsData,
       };
 
     case FETCH_TEAM_SPLITS_FAILURE:
-      // The request failed, but it did stop, so set loading to "false".
-      // Save the error, and we can display it somewhere
-      // Since it failed, we don't have teamSplitsData to display anymore, so set it empty.
-      // This is up to you and your app though: maybe you want to keep the teamSplitsData
-      // around! Do whatever seems right.
       return {
         ...state,
         teamSplitsLoading: false,
-        teamSplitsError: payload.error,
+        teamSplitsError,
         teamSplitsData: {},
       };
 
     default:
-      // ALWAYS have a default case in a reducer
       return state;
   }
 };
-
-export default teamSplitsReducer;

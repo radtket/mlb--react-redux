@@ -19,7 +19,7 @@ export const fetchPlayerFailure = playerFail => ({
   payload: { playerFail },
 });
 
-function getPlayer(playerArg, season = 2018) {
+const getPlayer = (playerArg, season = 2018) => {
   // TODO: Add When API is Live
   // return Promise.all([
   //   fetch(
@@ -44,9 +44,9 @@ function getPlayer(playerArg, season = 2018) {
       .then(handleErrors)
       .then(value => value.json()),
   ]);
-}
+};
 
-export function fetchPlayer(playerArg) {
+export const fetchPlayer = playerArg => {
   return dispatch => {
     dispatch(fetchPlayerBegin());
     return getPlayer(playerArg)
@@ -57,4 +57,4 @@ export function fetchPlayer(playerArg) {
       })
       .catch(error => dispatch(fetchPlayerFailure(error)));
   };
-}
+};

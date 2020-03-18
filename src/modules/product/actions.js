@@ -18,13 +18,13 @@ export const fetchProductsFailure = productsFail => ({
   payload: { productsFail },
 });
 
-function getProducts() {
+const getProducts = () => {
   return fetch("/data/teams-with-stadiums.json")
     .then(handleErrors)
     .then(res => res.json());
-}
+};
 
-export function fetchProducts() {
+export const fetchProducts = () => {
   return dispatch => {
     dispatch(fetchProductsBegin());
     return getProducts()
@@ -34,4 +34,4 @@ export function fetchProducts() {
       })
       .catch(error => dispatch(fetchProductsFailure(error)));
   };
-}
+};

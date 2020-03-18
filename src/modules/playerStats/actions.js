@@ -8,17 +8,17 @@ export const fetchPlayerStatsBegin = () => ({
   type: FETCH_PLAYER_STATS_BEGIN,
 });
 
-export const fetchPlayerStatsSuccess = playerStats => ({
+export const fetchPlayerStatsSuccess = playerStatsData => ({
   type: FETCH_PLAYER_STATS_SUCCESS,
-  payload: { playerStats },
+  playerStatsData,
 });
 
-export const fetchPlayerStatsFailure = playerStatsFail => ({
+export const fetchPlayerStatsFailure = playerStatsError => ({
   type: FETCH_PLAYER_STATS_FAILURE,
-  payload: { playerStatsFail },
+  playerStatsError,
 });
 
-function getPlayerStats(playerId, PositionCategory) {
+const getPlayerStats = (playerId, PositionCategory) => {
   const isPitcher = PositionCategory === "P";
   const PosCat = isPitcher ? "pitching" : "batting";
   return fetch(
@@ -58,9 +58,9 @@ function getPlayerStats(playerId, PositionCategory) {
         { isPitcher, playerId }
       )
     );
-}
+};
 
-export function fetchPlayerStats(playerId, PositionCategory) {
+export const fetchPlayerStats = (playerId, PositionCategory) => {
   return dispatch => {
     dispatch(fetchPlayerStatsBegin());
     return getPlayerStats(playerId, PositionCategory)
@@ -73,4 +73,4 @@ export function fetchPlayerStats(playerId, PositionCategory) {
       })
       .catch(error => dispatch(fetchPlayerStatsFailure(error)));
   };
-}
+};
