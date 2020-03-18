@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-shadow */
 import React from "react";
 import { push } from "connected-react-router";
 import { bindActionCreators } from "redux";

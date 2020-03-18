@@ -37,9 +37,8 @@ const TeamLogoWrap = styled.div`
   }
 `;
 
-const SplitLogo = (teams, datetime_local) => {
-  return teams.map(team => {
-    const { colors, short_name } = team;
+const SplitLogo = ({ teams, datetime_local }) => {
+  return teams.map(({ colors, short_name, home_team, away_team }) => {
     const { WikipediaWordMarkUrl, WikipediaLogoUrl, Key } = stubHubTeamHelper[
       short_name
     ];
@@ -49,7 +48,7 @@ const SplitLogo = (teams, datetime_local) => {
     return (
       <TeamLogoWrap
         key={`${Key} ${datetime_local}`}
-        isHomeTeam={team.home_team || !team.away_team}
+        isHomeTeam={home_team || !away_team}
         {...{
           ColorPrimary,
           ColorSecondary,
@@ -78,7 +77,7 @@ const TicketedEventHeader = ({ performers, datetime_local, url }) => {
       rel="noopener noreferrer"
       target="_blank"
     >
-      {SplitLogo(performers, datetime_local)}
+      <SplitLogo {...{ teams: performers, datetime_local }} />
     </TicketedEventHeaderWrap>
   );
 };

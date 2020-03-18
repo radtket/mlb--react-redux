@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import { handleErrors } from "../../utils/helpers";
 
 export const FETCH_TEAM_DEPTHS_BEGIN = "FETCH_TEAM_DEPTHS_BEGIN";
@@ -34,7 +33,11 @@ function getTeamDepths(teamAbrv) {
       .then(handleErrors)
       .then(res => res.json())
       .then(allTeams =>
-        allTeams.teams.find(team => team.abbr == currentTeamAbrv)
+        // eslint-disable-next-line eqeqeq
+        allTeams.teams.find(team => {
+          console.log({ currentTeamAbrv }, team.abbr);
+          return team.abbr === currentTeamAbrv;
+        })
       )
   );
 }

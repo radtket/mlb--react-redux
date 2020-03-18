@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const GamesBody = (activeGames, activeTab) => {
   console.log("GamesBody");
   return activeGames.map(child => {

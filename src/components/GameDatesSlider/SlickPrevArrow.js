@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import { ChevronLeft } from "../Icons";
@@ -14,7 +13,7 @@ const SlickPrevArrow = ({ className, style, onClick }) => {
 SlickPrevArrow.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  style: PropTypes.object,
+  style: PropTypes.shape,
 };
 
 SlickPrevArrow.defaultProps = {
