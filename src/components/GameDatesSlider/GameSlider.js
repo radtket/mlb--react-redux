@@ -55,12 +55,7 @@ const GameSlider = ({ schedules }) => {
     return activeGames.map(child => {
       const { label } = child.props;
       return (
-        <GameSliderButton
-          key={label}
-          activeTab={activeTab}
-          label={label}
-          setActiveTab={setActiveTab}
-        />
+        <GameSliderButton key={label} {...{ activeTab, label, setActiveTab }} />
       );
     });
   };
@@ -90,7 +85,7 @@ const GameSlider = ({ schedules }) => {
           prevArrow: <SlickPrevArrow />,
         }}
       >
-        {GamesNav()}
+        <GamesNav />
       </Slider>
       {GamesBody(activeGames, activeTab)}
     </>

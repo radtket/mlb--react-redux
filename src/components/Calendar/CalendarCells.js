@@ -35,12 +35,14 @@ const CalendarCells = ({
       days.push(
         <CalendarSingleDate
           key={day}
-          day={day}
-          formattedDate={formattedDate}
-          gameOnDate={teamGames[formatedDay]}
-          monthStart={monthStart}
-          onDateClick={onDateClick}
-          selectedDate={selectedDate}
+          {...{
+            day,
+            formattedDate,
+            gameOnDate: teamGames[formatedDay],
+            monthStart,
+            onDateClick,
+            selectedDate,
+          }}
         />
       );
       day = addDays(day, 1);

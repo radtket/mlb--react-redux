@@ -29,10 +29,12 @@ const StandingsList = ({ standings, standingsError, standingsLoading }) => {
               <StandingsDivision
                 key={division}
                 className="table"
-                division={division}
-                divisionTeams={divisionTeamsComponents.map(team => {
-                  return <StandingsSingleTeam key={team.Key} {...team} />;
-                })}
+                {...{
+                  division,
+                  divisionTeams: divisionTeamsComponents.map(team => {
+                    return <StandingsSingleTeam key={team.Key} {...team} />;
+                  }),
+                }}
               />
             );
             return standingsComponent;

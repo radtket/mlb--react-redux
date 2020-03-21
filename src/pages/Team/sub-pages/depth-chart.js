@@ -46,9 +46,7 @@ const PageTeamDepth = () => {
       <div className="row">
         <div className="col-sm-12">
           <h1>PageTeamDepth</h1>
-          <DepthChart
-            {...{ positions: teamDepthsData.positions, teamRoster, teamAbrv }}
-          />
+          <DepthChart {...{ ...teamDepthsData, teamRoster, teamAbrv }} />
         </div>
       </div>
     </div>
