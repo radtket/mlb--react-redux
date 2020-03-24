@@ -144,9 +144,7 @@ const TeamSplitsList = ({ TeamArg }) => {
   };
 
   const organizeSplits = data => {
-    return Object.entries(data).reduce((all, one) => {
-      const [ParentKey, ParentData] = one;
-
+    return Object.entries(data).reduce((all, [ParentKey, ParentData]) => {
       if (ParentKey !== "month" && ParentKey !== "total") {
         all.push(...ParentData.reduce(tableReduce, []));
       }

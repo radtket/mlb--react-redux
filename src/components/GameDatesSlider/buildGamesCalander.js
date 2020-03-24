@@ -27,10 +27,7 @@ const buildGamesCalander = (schedules, emptyCalender) => {
       allGames[Day].push(game);
       return allGames;
     }, emptyCalender)
-  ).map(day => {
-    const [GameDate, Games] = day;
-    console.log(day);
-
+  ).map(([GameDate, Games]) => {
     if (isArrayEmpty(Games)) {
       return (
         <div key={GameDate} label={GameDate}>

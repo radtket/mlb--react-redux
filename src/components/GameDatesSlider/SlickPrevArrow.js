@@ -1,25 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { ChevronLeft } from "../Icons";
 
-const SlickPrevArrow = ({ className, style, onClick }) => {
+const SlickPrevArrow = props => {
   return (
-    <button {...{ className, onClick }} style={{ ...style }} type="button">
+    <button {...props} type="button">
       <ChevronLeft />
     </button>
   );
-};
-
-SlickPrevArrow.propTypes = {
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  style: PropTypes.shape,
-};
-
-SlickPrevArrow.defaultProps = {
-  onClick: null,
-  className: null,
-  style: null,
 };
 
 export default SlickPrevArrow;
