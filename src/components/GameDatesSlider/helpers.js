@@ -1,14 +1,11 @@
 /* eslint-disable no-console */
 import { format, startOfWeek, addDays, endOfWeek } from "date-fns";
+import { isArrayEmpty } from "../../utils/helpers";
 
-export const getInitalActiveIndex = (activeGames, activeTab) => {
-  console.log("getInitalActiveIndex");
-  return activeGames.findIndex(({ props }) => {
-    const { label } = props;
-    const activeDayStartOfWeek = format(startOfWeek(activeTab), "YYYY-MM-DD");
-    return activeDayStartOfWeek === label;
-  });
-};
+export const getInitalActiveIndex = (activeGames, activeTab) =>
+  Object.keys(activeGames).findIndex(
+    key => key === format(startOfWeek(activeTab), "YYYY-MM-DD")
+  );
 
 export const buildEmptyCalender = ({ firstDay, lastDay }) => {
   console.log("buildEmptyCalender");
@@ -22,23 +19,35 @@ export const buildEmptyCalender = ({ firstDay, lastDay }) => {
       day = addDays(day, 1);
     }
   }
+
   return allDays;
 };
 
 export const getStartAndEndDays = schedules => {
   console.log("ran getStartAndEndDays");
-  const firstDay = schedules[0] && schedules[0].Day;
-  const lastDay =
-    schedules[schedules.length - 1] && schedules[schedules.length - 1].Day;
+  if (isArrayEmpty(schedules)) {
+    return {
+      firstDay: "",
+      lastDay: "",
+    };
+  }
+  const [first, ...rest] = schedules;
+  const { length, [length - 1]: last } = rest;
+
   return {
-    firstDay: startOfWeek(firstDay),
-    lastDay: endOfWeek(lastDay),
+    firstDay: startOfWeek(first.Day),
+    lastDay: endOfWeek(last.Day),
   };
 };
 
-export const renderVisibleStartAndStopDays = (activeGames, dayIndex) => {
-  const day = activeGames[dayIndex] && activeGames[dayIndex].key;
-  const weekStart = format(startOfWeek(day), "MMMM Do, YYYY");
-  const weekEnd = format(endOfWeek(day), "MMMM Do, YYYY");
-  return `${weekStart} - ${weekEnd}`;
-};
+export const combineGamesCalander = (schedules, emptyCalender) =>
+  schedules.reduce((all, one) => {
+    const allGames = all;
+    // ! FantanySportsAPI = one.Day
+    // ! SportsRadar = one.scheduled
+    // const Day = format(new Date(one.Day), "YYYY-MM-DD");
+    const Day = format(new Date(one.scheduled), "YYYY-MM-DD");
+    allGames[Day] = allGames[Day] || [];
+    allGames[Day].push(one);
+    return allGames;
+  }, emptyCalender);
