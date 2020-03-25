@@ -4,8 +4,7 @@ import Slider from "react-slick";
 import PropTypes from "prop-types";
 import { TodaysDate, isArrayEmpty, isObjectEmpty } from "../../utils/helpers";
 import LoadingSpinner from "../LoadingSpinner";
-import SlickPrevArrow from "./SlickPrevArrow";
-import SlickNextArrow from "./SlickNextArrow";
+import SlickArrow from "./SlickArrow";
 import GamesBody from "./GamesBody";
 import buildGamesCalander from "./buildGamesCalander";
 import GameSliderButton from "./GameSliderButton";
@@ -15,6 +14,7 @@ import {
   getStartAndEndDays,
   renderVisibleStartAndStopDays,
 } from "./helpers";
+import { ChevronRight, ChevronLeft } from "../Icons";
 
 const GameSlider = ({ schedules }) => {
   const slider = useRef();
@@ -22,7 +22,7 @@ const GameSlider = ({ schedules }) => {
   const [activeDisplayDate, setActiveDisplayDate] = useState(null);
   const [activeGames, setActiveGames] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [activeTab, setActiveTab] = useState(TodaysDate);
+  const [activeTab, setActiveTab] = useState("2019-04-25" || TodaysDate);
   const [startAndEndDay, setStartAndEndDay] = useState({});
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +55,12 @@ const GameSlider = ({ schedules }) => {
     return activeGames.map(child => {
       const { label } = child.props;
       return (
-        <GameSliderButton key={label} {...{ activeTab, label, setActiveTab }} />
+        <GameSliderButton
+          key={label}
+          activeTab={activeTab}
+          label={label}
+          setActiveTab={setActiveTab}
+        />
       );
     });
   };
@@ -81,11 +86,19 @@ const GameSlider = ({ schedules }) => {
           slidesToScroll: 7,
           initialSlide: activeIndex,
           afterChange: current => setActiveDisplayDate(current),
-          nextArrow: <SlickNextArrow />,
-          prevArrow: <SlickPrevArrow />,
+          nextArrow: (
+            <SlickArrow>
+              <ChevronRight />
+            </SlickArrow>
+          ),
+          prevArrow: (
+            <SlickArrow>
+              <ChevronLeft />
+            </SlickArrow>
+          ),
         }}
       >
-        <GamesNav />
+        {GamesNav()}
       </Slider>
       {GamesBody(activeGames, activeTab)}
     </>
