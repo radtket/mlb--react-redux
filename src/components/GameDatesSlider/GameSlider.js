@@ -2,17 +2,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import { TodaysDate, isObjectEmpty } from "../../utils/helpers";
-import LoadingSpinner from "../LoadingSpinner";
+import { TodaysDate } from "../../utils/helpers";
 import SlickArrow from "./SlickArrow";
 import GamesBody from "./GamesBody";
 import GameSliderButton from "./GameSliderButton";
-import {
-  buildEmptyCalender,
-  getInitalActiveIndex,
-  getStartAndEndDays,
-  combineGamesCalander,
-} from "./helpers";
+import { buildEmptyCalender, getInitalActiveIndex } from "./helpers";
 import { ChevronRight, ChevronLeft } from "../Icons";
 import VisibleStartAndStopDays from "./VisibleStartAndStopDays";
 
@@ -21,26 +15,13 @@ const GameSlider = ({ schedules }) => {
   const [activeDisplayDate, setActiveDisplayDate] = useState(null);
   const [activeTab, setActiveTab] = useState("2019-04-25" || TodaysDate);
 
-  const startAndEndDay = getStartAndEndDays(schedules);
-  const activeGames = combineGamesCalander(
-    schedules,
-    buildEmptyCalender(startAndEndDay)
-  );
-
+  const activeGames = buildEmptyCalender(schedules);
   const activeIndex = getInitalActiveIndex(activeGames, activeTab);
 
   useEffect(() => {
     console.log("ran useEffect");
     setActiveDisplayDate(activeIndex);
   }, [activeIndex]);
-
-  if (
-    isObjectEmpty(startAndEndDay) ||
-    isObjectEmpty(activeGames) ||
-    activeIndex === null
-  ) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <>
@@ -80,7 +61,7 @@ const GameSlider = ({ schedules }) => {
         })}
       </Slider>
       <GamesBody
-        {...{ dispayedGames: activeGames && activeGames[activeTab] }}
+        {...{ dispayedGames: (activeGames && activeGames[activeTab]) || [] }}
       />
     </>
   );
