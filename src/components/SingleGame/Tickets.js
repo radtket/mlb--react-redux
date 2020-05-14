@@ -2,6 +2,7 @@ import React from "react";
 import { TicketStubs } from "../Icons";
 
 const Tickets = ({ gameTicket }) => {
+  console.log({ gameTicket });
   return (
     <div className="scoreboard-detail__tickets">
       <TicketStubs />

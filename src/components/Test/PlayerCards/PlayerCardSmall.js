@@ -5,7 +5,7 @@ const PlayerCardSmall = () => {
     <div className="col-sm-8 test-component">
       <div className="team-roster__holder">
         <figure className="team-roster__img">
-          <a href="#" tabIndex="0">
+          <a href="/" tabIndex="0">
             <img
               alt=""
               src="https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/mlb/low-res/10000414.png"

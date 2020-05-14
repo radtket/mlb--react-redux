@@ -21,7 +21,15 @@ const SingleGameInningScoreboard = ({
       <table>
         <thead>
           <tr>
-            <th />
+            <th>
+              <span
+                style={{
+                  display: "none",
+                }}
+              >
+                Hidden
+              </span>
+            </th>
             <NumberOfInnings
               GameID={GameID}
               Innings={Innings}

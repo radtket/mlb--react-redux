@@ -14,7 +14,7 @@ const PageTeamTickets = ({ Name, City }) => {
   );
 
   useEffect(() => {
-    dispatch(fetchTickets(`${City} ${Name}`)());
+    dispatch(fetchTickets(`${City} ${Name}`));
   }, [City, Name, dispatch]);
 
   if (ticketsError) {

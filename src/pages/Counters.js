@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { push } from "connected-react-router";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -57,6 +58,17 @@ const Counters = ({
       </p>
     </div>
   );
+};
+
+Counters.propTypes = {
+  changePage: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+  decrement: PropTypes.func.isRequired,
+  decrementAsync: PropTypes.func.isRequired,
+  increment: PropTypes.func.isRequired,
+  incrementAsync: PropTypes.func.isRequired,
+  isDecrementing: PropTypes.bool.isRequired,
+  isIncrementing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({ counter }) => ({
