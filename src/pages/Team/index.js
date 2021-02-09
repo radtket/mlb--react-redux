@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Route, useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { fetchStandings } from "../../modules/actions";
+import { useSelector } from "react-redux";
+
 import TeamHeader from "../../components/Team/TeamHeader";
 import {
   PageTeamDepth,
@@ -18,15 +17,11 @@ import TeamTheme from "./TeamTheme";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorMessage from "../../components/ErrorMessage";
 
-const Team = ({
-  standings,
-  standingsError,
-  standingsLoading,
-  teams,
-  history,
-  schedules,
-}) => {
+const Team = ({ teams, history, schedules }) => {
   const { teamAbrv } = useParams();
+  const { standings, standingsError, standingsLoading } = useSelector(
+    state => state.standings
+  );
   const [recentGames, setRecentGames] = useState([]);
   useEffect(() => {
     const findTeamSchedule = () => {
@@ -97,32 +92,9 @@ Team.propTypes = {
       HomeTeam: PropTypes.string,
     })
   ).isRequired,
-  standingsError: PropTypes.bool,
-  standingsLoading: PropTypes.bool.isRequired,
-  standings: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
 
-Team.defaultProps = {
-  standingsError: null,
-};
-
-const mapStateToProps = ({ standings }) => ({
-  standings: standings.standings,
-  standingsLoading: standings.standingsLoading,
-  standingsError: standings.standingsError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchStandings,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(Team);
+export default Team;

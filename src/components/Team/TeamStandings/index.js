@@ -61,7 +61,56 @@ const TeamStandings = ({ standings, activeTeamObj }) => {
     <Card
       body={
         <>
-          <Tabs itemWidth="50%">
+          <Tabs
+            data={{
+              Division: (
+                <table
+                  className="table table--standings"
+                  style={{
+                    boxShadow: "none",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th>{`${League} ${Division}`}</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>GB</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {standings &&
+                      createStandingsTable(standings, activeTeamObj, true)}
+                  </tbody>
+                </table>
+              ),
+              League: (
+                <table
+                  className="table table--standings"
+                  style={{
+                    boxShadow: "none",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th>{getLeagueName(League)}</th>
+                      <th>W</th>
+                      <th>L</th>
+                      <th>PCT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {standings &&
+                      createStandingsTable(
+                        standings.sort(largestToSmallest("Percentage")),
+                        activeTeamObj
+                      )}
+                  </tbody>
+                </table>
+              ),
+            }}
+            itemWidth="50%"
+          >
             <div label="Division">
               <table
                 className="table table--standings"

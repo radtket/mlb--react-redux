@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
 // Actions
-import { fetchNewsTeams, fetchTeamRssNews } from "../../../modules/actions";
+import { fetchNewsTeams } from "../../../modules/actions";
 
 // Components
 import TeamRecentGames from "../../../components/Team/TeamRecentGames";
@@ -16,24 +16,17 @@ import ErrorMessage from "../../../components/ErrorMessage";
 const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
   const dispatch = useDispatch();
 
-  const {
-    newsTeamsData,
-    newsTeamsLoading,
-    newsTeamsError,
-    teamRssNewsData,
-    teamRssNewsLoading,
-    teamRssNewsError,
-  } = useSelector(state => {
-    return {
-      ...state.teamRssNews,
-      ...state.newsTeams,
-    };
-  });
+  const { newsTeamsData, newsTeamsLoading, newsTeamsError } = useSelector(
+    state => {
+      return {
+        ...state.newsTeams,
+      };
+    }
+  );
 
   useEffect(() => {
     const getTeamData = ({ Key }) => {
       dispatch(fetchNewsTeams(Key));
-      dispatch(fetchTeamRssNews(Key));
     };
 
     getTeamData(activeTeamObj);
@@ -43,11 +36,7 @@ const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
     return <ErrorMessage error={newsTeamsError} />;
   }
 
-  if (teamRssNewsError) {
-    return <ErrorMessage error={teamRssNewsError} />;
-  }
-
-  if (newsTeamsLoading || teamRssNewsLoading) {
+  if (newsTeamsLoading) {
     return <LoadingSpinner />;
   }
 
@@ -94,7 +83,7 @@ const PageTeamHome = ({ activeTeamObj, recentGames, standings }) => {
             activeTeam={activeTeamObj.Key}
             recentGames={recentGames}
           />
-          <TeamRssFeed teamRssNews={teamRssNewsData} />
+          <TeamRssFeed activeTeam={activeTeamObj.Key} />
         </div>
       </div>
     </div>

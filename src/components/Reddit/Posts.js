@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 const Posts = ({ posts }) => {
   return (
     <ul>
-      {posts.map(post => {
-        const { name, title, url } = post;
+      {posts.map(({ name, title, url }) => {
         return (
           <li key={name}>
             <a href={url} rel="noopener noreferrer" target="_blank">

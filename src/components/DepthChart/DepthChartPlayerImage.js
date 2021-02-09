@@ -5,10 +5,10 @@ import { DefualtAvatar } from "../../utils/helpers";
 
 const DepthChartPlayerImage = ({ FirstName, LastName, PhotoUrl, style }) => {
   const DepthChartImage = styled.article`
-    background-image: url("${() => `${PhotoUrl || DefualtAvatar}`}");
+    background-image: url(${PhotoUrl || DefualtAvatar});
     background-size: 85%;
     background-position: 1px center;
-`;
+  `;
 
   return (
     <DepthChartImage

@@ -1,8 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { push } from "connected-react-router";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   increment,
   incrementAsync,
@@ -10,28 +8,24 @@ import {
   decrementAsync,
 } from "../modules/counter/actions";
 
-const Counters = ({
-  count,
-  increment,
-  incrementAsync,
-  isIncrementing,
-  decrement,
-  decrementAsync,
-  isDecrementing,
-  changePage,
-}) => {
+const Counters = () => {
+  const dispatch = useDispatch();
+  const { count, isIncrementing, isDecrementing } = useSelector(state => ({
+    ...state.counter,
+  }));
+
   return (
     <div>
       <h1>Counters</h1>
       <p>Count: {count}</p>
 
       <p>
-        <button onClick={increment} type="button">
+        <button onClick={() => dispatch(increment())} type="button">
           Increment
         </button>
         <button
           disabled={isIncrementing}
-          onClick={incrementAsync}
+          onClick={() => dispatch(incrementAsync())}
           type="button"
         >
           Increment Async
@@ -39,12 +33,12 @@ const Counters = ({
       </p>
 
       <p>
-        <button onClick={decrement} type="button">
+        <button onClick={() => dispatch(decrement())} type="button">
           Decrement
         </button>
         <button
           disabled={isDecrementing}
-          onClick={decrementAsync}
+          onClick={() => dispatch(decrementAsync())}
           type="button"
         >
           Decrement Async
@@ -52,7 +46,7 @@ const Counters = ({
       </p>
 
       <p>
-        <button onClick={() => changePage()} type="button">
+        <button onClick={() => dispatch(push("/teams"))} type="button">
           Go to teams page via redux
         </button>
       </p>
@@ -60,33 +54,4 @@ const Counters = ({
   );
 };
 
-Counters.propTypes = {
-  changePage: PropTypes.func.isRequired,
-  count: PropTypes.number.isRequired,
-  decrement: PropTypes.func.isRequired,
-  decrementAsync: PropTypes.func.isRequired,
-  increment: PropTypes.func.isRequired,
-  incrementAsync: PropTypes.func.isRequired,
-  isDecrementing: PropTypes.bool.isRequired,
-  isIncrementing: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = ({ counter }) => ({
-  count: counter.count,
-  isIncrementing: counter.isIncrementing,
-  isDecrementing: counter.isDecrementing,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      increment,
-      incrementAsync,
-      decrement,
-      decrementAsync,
-      changePage: () => push("/teams/:teamAbrv"),
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counters);
+export default Counters;

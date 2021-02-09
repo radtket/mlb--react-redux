@@ -49,7 +49,13 @@ const PageTeamStats = () => {
     <div className="container">
       <div className="row">
         <div className="col-sm-12">
-          <Tabs itemWidth="25%">
+          <Tabs
+            data={{
+              Batting: <StatsTableBatting players={batter} />,
+              Pitching: <StatsTablePitching players={pitcher} />,
+            }}
+            itemWidth="25%"
+          >
             <div label="Batting">
               <StatsTableBatting players={batter} />
             </div>

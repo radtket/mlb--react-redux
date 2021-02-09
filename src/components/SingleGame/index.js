@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import SingleGameTeam from "./SingleGameTeam";
 import SingleGamePlayer from "./SingleGamePlayer";
 import SingleGameBaseballDiamond from "./SingleGameBaseballDiamond";
@@ -115,21 +116,21 @@ const SingleGame = ({
 
   return (
     <div
-      className={`scoreboard-wrapper
-      ${GameStatusInProgress ? "in-progress" : ""}
-      ${GameStatusPregame ? "pregame" : ""}
-      ${GameStatusFinal ? "is-final" : ""}
-      ${HomeTeamWin && GameStatusFinal ? "home-winner" : ""}
-      ${!HomeTeamWin && GameStatusFinal ? "away-winner" : ""}
-      `}
+      className={classnames("scoreboard-wrapper", {
+        "in-progress": GameStatusInProgress,
+        pregame: GameStatusPregame,
+        "is-final": GameStatusFinal,
+        "home-winner": HomeTeamWin && GameStatusFinal,
+        "away-winner": !HomeTeamWin && GameStatusFinal,
+      })}
     >
       <section className="scoreboard">
         <table
-          className={`table table--scoreboard
-          ${GameStatusInProgress ? "in-progress" : ""}
-          ${GameStatusPregame ? "pregame" : ""}
-          ${GameStatusFinal ? "is-final" : ""}
-          `}
+          className={classnames("table table--scoreboard", {
+            "in-progress": GameStatusInProgress,
+            pregame: GameStatusPregame,
+            "is-final": GameStatusFinal,
+          })}
         >
           <SingleGameHead
             Channel={Channel}

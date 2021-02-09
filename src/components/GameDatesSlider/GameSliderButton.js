@@ -1,11 +1,14 @@
 import React from "react";
 import { format } from "date-fns";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 const GameSliderButton = ({ activeTab, label, setActiveTab }) => {
   return (
     <button
-      className={`tabs-item ${activeTab === label ? "is-selected" : ""}`}
+      className={classnames("tabs-item", {
+        "is-selected": activeTab === label,
+      })}
       onClick={() => setActiveTab(label)}
       type="button"
     >

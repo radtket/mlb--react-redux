@@ -6,7 +6,7 @@ import { smallestToLargest } from "../../utils/helpers";
 
 const MegaMenuDivision = ({ DivisionName, TeamsInDivision }) => {
   return (
-    <div key={DivisionName} className="col-sm-4">
+    <div className="col-sm-4">
       <h6>{DivisionName}</h6>
       <nav>
         {TeamsInDivision.sort(smallestToLargest("City")).map(team => {

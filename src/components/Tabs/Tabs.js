@@ -3,32 +3,26 @@ import PropTypes from "prop-types";
 
 import Tab from "./Tab";
 
-const Tabs = ({ children, itemWidth }) => {
-  const [FirstTab] = children;
-  const [activeTab, setActiveTab] = useState(FirstTab.props.label);
+const Tabs = ({ itemWidth, data }) => {
+  const [defaultActive] = Object.keys(data);
+  const [activeIndex, setActiveIndex] = useState(defaultActive);
+
   return (
     <div className="tabs">
       <nav>
-        {children.map(({ props: { label } }) => {
+        {Object.keys(data).map(label => {
           return (
             <Tab
               key={label}
-              activeTab={activeTab}
+              isActive={activeIndex === label}
               itemWidth={itemWidth}
               label={label}
-              onClick={e => setActiveTab(e)}
+              onClick={() => setActiveIndex(label)}
             />
           );
         })}
       </nav>
-      <div className="tab-content">
-        {children.map(({ props: { children: kids, label } }) => {
-          if (label !== activeTab) {
-            return undefined;
-          }
-          return kids;
-        })}
-      </div>
+      <div className="tab-content">{data[activeIndex]}</div>
     </div>
   );
 };
