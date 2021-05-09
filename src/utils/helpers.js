@@ -820,3 +820,43 @@ export const roundHalf = num => {
 export const capitalizeFirstLetter = string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const tableSort = (a, b, sortType, sortColumn) => {
+  const x = a[sortColumn];
+  const y = b[sortColumn];
+  if (x === null) {
+    return 1;
+  }
+  if (y === null) {
+    return -1;
+  }
+  if (x === y) {
+    return 0;
+  }
+  if (sortType === "asc") {
+    return x - y;
+  }
+  if (sortType !== "asc") {
+    return y - x;
+  }
+  return 0;
+};
+
+export const secondarySort = (a, b, field, sortDirection) => {
+  if (a[field] === null) {
+    return 1;
+  }
+  if (b[field] === null) {
+    return -1;
+  }
+  if (a[field] === b[field]) {
+    return 0;
+  }
+  if (a[field] > b[field]) {
+    return -sortDirection;
+  }
+  if (a[field] < b[field]) {
+    return sortDirection;
+  }
+  return 0;
+};

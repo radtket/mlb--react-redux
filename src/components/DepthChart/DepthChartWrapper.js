@@ -9,42 +9,43 @@ const DepthChartWrapper = ({ positions, teamRoster }) => {
   };
 
   const ThePenChildren = [];
+
   return positions.reduce(
     (allPos, singlePos) => {
       const { name, players } = singlePos;
 
       if (players) {
+        const [starter, secondStarter] = players;
+        const starterObj = findStarterObj(starter, teamRoster);
         if (name === "CL") {
-          const [starter] = players;
           ThePenChildren.push(
             <DepthChartPosition
               key={name}
-              starterObj={findStarterObj(starter, teamRoster)}
-              {...{ ...singlePos, teamRoster }}
+              {...{ ...singlePos, teamRoster, starterObj }}
             />
           );
         }
 
         if (name === "BP") {
-          const [starter, secondStarter] = players;
           ThePenChildren.push(
             <DepthChartPosition
               key={name}
-              hasSecondStarter={secondStarter !== undefined}
-              secondStarterObj={findStarterObj(secondStarter, teamRoster)}
-              starterObj={findStarterObj(starter, teamRoster)}
-              {...{ ...singlePos, teamRoster }}
+              {...{
+                ...singlePos,
+                teamRoster,
+                starterObj,
+                hasSecondStarter: secondStarter !== undefined,
+                secondStarterObj: findStarterObj(secondStarter, teamRoster),
+              }}
             />
           );
         }
 
         if (name !== "CL" && name !== "BP") {
-          const [starter] = players;
           allPos.push(
             <DepthChartPosition
               key={name}
-              starterObj={findStarterObj(starter, teamRoster)}
-              {...{ ...singlePos, teamRoster }}
+              {...{ ...singlePos, teamRoster, starterObj }}
             />
           );
         }

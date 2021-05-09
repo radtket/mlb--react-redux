@@ -13,27 +13,26 @@ const PageTeamStats = () => {
   const { teamAbrv } = useParams();
   const dispatch = useDispatch();
 
-  const { teamStatsData, teamStatsLoading, teamStatsError } = useSelector(
-    state => state.teamStats
+  const { pitcher, batter, teamStatsLoading, teamStatsError } = useSelector(
+    ({ teamStats }) => ({
+      ...teamStats,
+      ...teamStats.teamStatsData.reduce(
+        (team, player) => {
+          const { PositionCategory } = player;
+          PositionCategory === "P"
+            ? team.pitcher.push(player)
+            : team.batter.push(player);
+
+          return team;
+        },
+        { pitcher: [], batter: [] }
+      ),
+    })
   );
 
   useEffect(() => {
     dispatch(fetchTeamStats(teamAbrv));
   }, [dispatch, teamAbrv]);
-
-  const splitStatsByPosition = stats => {
-    return stats.reduce(
-      (team, player) => {
-        const { PositionCategory } = player;
-        PositionCategory === "P"
-          ? team.pitcher.push(player)
-          : team.batter.push(player);
-
-        return team;
-      },
-      { pitcher: [], batter: [] }
-    );
-  };
 
   if (teamStatsError) {
     return <ErrorMessage error={teamStatsError} />;
@@ -42,8 +41,6 @@ const PageTeamStats = () => {
   if (teamStatsLoading) {
     return <LoadingSpinner />;
   }
-
-  const { pitcher, batter } = splitStatsByPosition(teamStatsData);
 
   return (
     <div className="container">

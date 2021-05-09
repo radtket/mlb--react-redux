@@ -11,29 +11,23 @@ export const DepthPlayerLink = styled(Link)`
   }
 `;
 
-const DepthChartPlayerListItem = ({ playerObj, FormatedName, hasPlayerId }) => {
-  if (!hasPlayerId) {
+const DepthChartPlayerListItem = ({ PlayerID, FormatedName }) => {
+  if (!PlayerID) {
     return FormatedName;
   }
 
   return (
-    <DepthPlayerLink to={`/player/${playerObj.PlayerID}`}>
-      {FormatedName}
-    </DepthPlayerLink>
+    <DepthPlayerLink to={`/player/${PlayerID}`}>{FormatedName}</DepthPlayerLink>
   );
 };
 
 DepthChartPlayerListItem.propTypes = {
-  hasPlayerId: PropTypes.bool,
   FormatedName: PropTypes.string.isRequired,
-  playerObj: PropTypes.shape({
-    PlayerID: PropTypes.number,
-  }),
+  PlayerID: PropTypes.number,
 };
 
 DepthChartPlayerListItem.defaultProps = {
-  playerObj: PropTypes.null,
-  hasPlayerId: false,
+  PlayerID: null,
 };
 
 export default DepthChartPlayerListItem;

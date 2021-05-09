@@ -87,7 +87,7 @@ const App = () => {
         <Route component={TeamSplitsList} exact path="/splits" />
         <Route
           path="/teams/:teamAbrv"
-          render={props => <Team {...props} {...{ teams, schedules }} />}
+          render={props => <Team {...{ ...props, teams, schedules }} />}
         />
       </main>
     </div>

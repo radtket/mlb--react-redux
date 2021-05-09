@@ -1,49 +1,23 @@
 import React from "react";
 import { format } from "date-fns";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { networkDecoder } from "../../utils/networks";
-import { TableTeamCell } from "../TableParts";
-
-const NetworkCell = styled.td`
-  text-align: center;
-
-  img,
-  svg {
-    display: block;
-    height: 24px;
-    margin: auto;
-    max-width: 72px;
-  }
-`;
+import { TableNetworkCell, TableTeamCell, TableVenueCell } from "../TableParts";
 
 const SingleTableRowGame = ({ home, away, broadcast, scheduled, venue }) => {
-  const { market: AwayTeamCity, name: AwayTeamName, abbr: AwayTeamKey } = away;
+  const getProps = ({ market, name, abbr }) => ({
+    Key: abbr,
+    City: market,
+    Name: name,
+  });
 
-  const { market: HomeTeamCity, name: HomeTeamName, abbr: HomeTeamKey } = home;
-
-  const { name: VenueName, city, state } = venue;
   return (
     <tr>
-      <TableTeamCell
-        Key={AwayTeamKey}
-        City={AwayTeamCity}
-        Name={AwayTeamName}
-      />
+      <TableTeamCell {...getProps(away)} />
       <td>@</td>
-      <TableTeamCell
-        Key={HomeTeamKey}
-        City={HomeTeamCity}
-        Name={HomeTeamName}
-      />
+      <TableTeamCell {...getProps(home)} />
       <td>{format(scheduled, "h:mm A")}</td>
-      <NetworkCell className="text-center">
-        {networkDecoder(broadcast.network)}
-      </NetworkCell>
-      <td>
-        <strong>{VenueName}</strong>
-        {` ${city}, ${state}`}
-      </td>
+      <TableNetworkCell {...broadcast} />
+      <TableVenueCell {...venue} />
       <td>Tickets</td>
     </tr>
   );

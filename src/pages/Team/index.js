@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Route, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -19,22 +19,22 @@ import ErrorMessage from "../../components/ErrorMessage";
 
 const Team = ({ teams, history, schedules }) => {
   const { teamAbrv } = useParams();
-  const { standings, standingsError, standingsLoading } = useSelector(
-    state => state.standings
-  );
-  const [recentGames, setRecentGames] = useState([]);
-  useEffect(() => {
-    const findTeamSchedule = () => {
-      return schedules
-        .filter(({ HomeTeam, AwayTeam }) => {
-          return HomeTeam === teamAbrv || AwayTeam === teamAbrv;
-        })
-        .reverse();
-    };
-    setRecentGames(findTeamSchedule());
-  }, [schedules, teamAbrv]);
-
-  const activeTeamObj = teams.find(team => team.Key === teamAbrv);
+  const {
+    activeTeamObj,
+    recentGames,
+    standings,
+    standingsError,
+    standingsLoading,
+  } = useSelector(state => ({
+    ...state.standings,
+    activeTeamObj: teams.find(team => team.Key === teamAbrv),
+    recentGames: schedules
+      .filter(
+        ({ HomeTeam, AwayTeam }) =>
+          HomeTeam === teamAbrv || AwayTeam === teamAbrv
+      )
+      .reverse(),
+  }));
 
   if (standingsError) {
     return <ErrorMessage error={standingsError} />;

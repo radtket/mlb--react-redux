@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchPostsIfNeeded,
   invalidateSubreddit,
@@ -13,36 +11,40 @@ import Posts from "../components/Reddit/Posts";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { isArrayEmpty } from "../utils/helpers";
 
-const RedditAsyncApp = ({
-  selectedSubreddit,
-  posts,
-  isFetching,
-  lastUpdated,
-  fetchPostsIfNeeded: getPostsIfNeeded,
-  selectSubreddit: activeSelectSubreddit,
-  invalidateSubreddit: invalidSubreddit,
-}) => {
+const getit = ({ postsBySubreddit, selectedSubreddit }) => {
+  const { items, ...rest } = postsBySubreddit[selectedSubreddit] || {
+    isFetching: true,
+    items: [],
+  };
+
+  return {
+    selectedSubreddit,
+    posts: items,
+    ...rest,
+  };
+};
+
+const RedditAsyncApp = () => {
+  const dispatch = useDispatch();
+  const {
+    selectedSubreddit,
+    isFetching,
+    lastUpdated,
+    posts,
+    didInvalidate,
+  } = useSelector(getit);
+
   useEffect(() => {
-    return () => {
-      getPostsIfNeeded(selectedSubreddit);
-    };
-  }, [getPostsIfNeeded, selectedSubreddit]);
-
-  const handleChange = nextSubreddit => {
-    activeSelectSubreddit(nextSubreddit);
-    getPostsIfNeeded(nextSubreddit);
-  };
-
-  const handleRefreshClick = e => {
-    e.preventDefault();
-    invalidSubreddit(selectedSubreddit);
-    getPostsIfNeeded(selectedSubreddit);
-  };
+    dispatch(fetchPostsIfNeeded(selectedSubreddit));
+  }, [dispatch, selectedSubreddit]);
 
   return (
     <div>
       <Picker
-        onChange={handleChange}
+        onChange={nextSubreddit => {
+          dispatch(selectSubreddit(nextSubreddit));
+          dispatch(fetchPostsIfNeeded(nextSubreddit));
+        }}
         options={["reactjs", "frontend"]}
         value={selectedSubreddit}
       />
@@ -53,7 +55,14 @@ const RedditAsyncApp = ({
           </span>
         )}
         {!isFetching && (
-          <button onClick={handleRefreshClick} type="button">
+          <button
+            onClick={e => {
+              e.preventDefault();
+              dispatch(invalidateSubreddit(selectedSubreddit));
+              dispatch(fetchPostsIfNeeded(selectedSubreddit));
+            }}
+            type="button"
+          >
             Refresh
           </button>
         )}
@@ -70,47 +79,4 @@ const RedditAsyncApp = ({
   );
 };
 
-RedditAsyncApp.propTypes = {
-  selectedSubreddit: PropTypes.string.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object),
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
-  fetchPostsIfNeeded: PropTypes.func.isRequired,
-  selectSubreddit: PropTypes.func.isRequired,
-  invalidateSubreddit: PropTypes.func.isRequired,
-};
-
-RedditAsyncApp.defaultProps = {
-  posts: [],
-  lastUpdated: null,
-};
-
-const mapStateToProps = ({ selectedSubreddit, postsBySubreddit }) => {
-  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
-    selectedSubreddit
-  ] || {
-    isFetching: true,
-    items: [],
-  };
-
-  return {
-    selectedSubreddit,
-    posts,
-    isFetching,
-    lastUpdated,
-  };
-};
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      fetchPostsIfNeeded,
-      invalidateSubreddit,
-      selectSubreddit,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false,
-})(RedditAsyncApp);
+export default RedditAsyncApp;

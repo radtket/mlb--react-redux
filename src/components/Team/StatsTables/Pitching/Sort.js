@@ -1,74 +1,76 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Sort = ({ sortRosterStateBy, players, direction }) => {
-  const sortRoster = field => {
-    return sortRosterStateBy(field, players, direction);
-  };
-
+const Sort = ({ sortRosterStateBy }) => {
   return (
     <thead>
       <tr>
-        <th onClick={() => sortRoster("Name")}>Name</th>
-        <th onClick={() => sortRoster("Games")} title="Games played">
+        <th onClick={() => sortRosterStateBy("Name")}>Name</th>
+        <th onClick={() => sortRosterStateBy("Games")} title="Games played">
           GP
         </th>
-        <th onClick={() => sortRoster("Started")} title="Games started">
+        <th onClick={() => sortRosterStateBy("Started")} title="Games started">
           GS
         </th>
-        <th onClick={() => sortRoster("")} title="Quality Starts">
+        <th onClick={() => sortRosterStateBy("")} title="Quality Starts">
           QS
         </th>
-        <th onClick={() => sortRoster("Wins")} title="Wins">
+        <th onClick={() => sortRosterStateBy("Wins")} title="Wins">
           W
         </th>
-        <th onClick={() => sortRoster("Losses")} title="Losses">
+        <th onClick={() => sortRosterStateBy("Losses")} title="Losses">
           L
         </th>
-        <th onClick={() => sortRoster("Saves")} title="Saves">
+        <th onClick={() => sortRosterStateBy("Saves")} title="Saves">
           SV
         </th>
-        <th onClick={() => sortRoster("PitchingHolds")} title="Holds">
+        <th onClick={() => sortRosterStateBy("PitchingHolds")} title="Holds">
           HLD
         </th>
         <th
-          onClick={() => sortRoster("InningsPitchedFull")}
+          onClick={() => sortRosterStateBy("InningsPitchedFull")}
           title="Innings pitched"
         >
           IP
         </th>
-        <th onClick={() => sortRoster("PitchingHits")} title="Hits">
+        <th onClick={() => sortRosterStateBy("PitchingHits")} title="Hits">
           H
         </th>
         <th
-          onClick={() => sortRoster("PitchingEarnedRuns")}
+          onClick={() => sortRosterStateBy("PitchingEarnedRuns")}
           title="Earned runs"
         >
           ER
         </th>
-        <th onClick={() => sortRoster("PitchingHomeRuns")} title="Home runs">
+        <th
+          onClick={() => sortRosterStateBy("PitchingHomeRuns")}
+          title="Home runs"
+        >
           HR
         </th>
-        <th onClick={() => sortRoster("PitchingWalks")} title="Walks">
+        <th onClick={() => sortRosterStateBy("PitchingWalks")} title="Walks">
           BB
         </th>
-        <th onClick={() => sortRoster("PitchingStrikeouts")} title="Strikeouts">
+        <th
+          onClick={() => sortRosterStateBy("PitchingStrikeouts")}
+          title="Strikeouts"
+        >
           SO
         </th>
         <th
-          onClick={() => sortRoster("PitchingStrikeoutsPerNineInnings")}
+          onClick={() => sortRosterStateBy("PitchingStrikeoutsPerNineInnings")}
           title="Strikeouts per 9 innings"
         >
           K/9
         </th>
         <th
-          onClick={() => sortRoster("")}
+          onClick={() => sortRosterStateBy("")}
           title="Walks + Hits per Inning pitched"
         >
           WHIP
         </th>
         <th
-          onClick={() => sortRoster("EarnedRunAverage")}
+          onClick={() => sortRosterStateBy("EarnedRunAverage")}
           title="Earned run average"
         >
           ERA

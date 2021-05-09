@@ -8,37 +8,20 @@ import CalendarHeader from "./CalendarHeader";
 import { isObjectEmpty } from "../../utils/helpers";
 import LoadingSpinner from "../LoadingSpinner";
 
-const getTeamGames = (scheduleArg, teamAbrvArg) => {
-  return scheduleArg.reduce((games, game) => {
-    const { Day, AwayTeam, HomeTeam } = game;
-    const formatedDay = format(new Date(Day), "YYYY-MM-DD");
-
-    const teamGamesObj = games;
-    teamGamesObj[formatedDay] = {
-      ...game,
-      opponent: AwayTeam === teamAbrvArg ? HomeTeam : AwayTeam,
-    };
-
-    return games;
-  }, {});
-};
-
 const Calendar = ({ currentTeamAbrv, schedule }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const teamGames = getTeamGames(schedule, currentTeamAbrv);
+  const teamGames = schedule.reduce((games, game) => {
+    const { Day, AwayTeam, HomeTeam } = game;
 
-  const onDateClick = day => {
-    setSelectedDate(day);
-  };
-
-  const nextMonth = () => {
-    setCurrentMonth(addMonths(currentMonth, 1));
-  };
-
-  const prevMonth = () => {
-    setCurrentMonth(subMonths(currentMonth, 1));
-  };
+    return {
+      ...games,
+      [format(new Date(Day), "YYYY-MM-DD")]: {
+        ...game,
+        opponent: AwayTeam === currentTeamAbrv ? HomeTeam : AwayTeam,
+      },
+    };
+  }, {});
 
   if (isObjectEmpty(teamGames)) {
     return <LoadingSpinner />;
@@ -48,11 +31,25 @@ const Calendar = ({ currentTeamAbrv, schedule }) => {
     <div className="calendar">
       <CalendarHeader
         currentMonthHeadline={format(currentMonth, "MMMM YYYY")}
-        {...{ prevMonth, nextMonth }}
+        {...{
+          prevMonth: () => {
+            setCurrentMonth(subMonths(currentMonth, 1));
+          },
+          nextMonth: () => {
+            setCurrentMonth(addMonths(currentMonth, 1));
+          },
+        }}
       />
       <CalendarDaysOfWeek {...{ currentMonth }} />
       <CalendarCells
-        {...{ teamGames, selectedDate, onDateClick, currentMonth }}
+        {...{
+          teamGames,
+          selectedDate,
+          onDateClick: day => {
+            setSelectedDate(day);
+          },
+          currentMonth,
+        }}
       />
     </div>
   );

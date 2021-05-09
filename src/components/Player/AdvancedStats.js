@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table } from "rsuite";
 import PropTypes from "prop-types";
 import ImageCell from "./ImageCell";
+import { tableSort } from "../../utils/helpers";
 
 const { Column, HeaderCell, Cell } = Table;
 
@@ -22,26 +23,7 @@ const AdvancedStats = ({ isPitcher, data }) => {
 
   const getData = dataArg => {
     if (sortColumn && sortType) {
-      return dataArg.sort((a, b) => {
-        const x = a[sortColumn];
-        const y = b[sortColumn];
-        if (x === null) {
-          return 1;
-        }
-        if (y === null) {
-          return -1;
-        }
-        if (x === y) {
-          return 0;
-        }
-        if (sortType === "asc") {
-          return x - y;
-        }
-        if (sortType !== "asc") {
-          return y - x;
-        }
-        return 0;
-      });
+      return dataArg.sort((a, b) => tableSort(a, b, sortType, sortColumn));
     }
     return dataArg;
   };
