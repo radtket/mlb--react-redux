@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import Sort from "./Sort";
 import Roster from "./Roster";
 import { secondarySort } from "../../../../utils/helpers";
@@ -19,7 +20,7 @@ const StatsTableBatting = ({ players }) => {
 
   return (
     <div
-      className={`table--wrap  ${isScrolling && "isScrolling"}`}
+      className={classNames(`table--wrap`, { isScrolling })}
       onScroll={() => {
         if (!isScrolling) {
           setIsScrolling(true);

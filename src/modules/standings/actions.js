@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 // TODO: Add When API is Live
 // import ApiHeadersMLB from "../../utils/api";
 
@@ -29,7 +29,7 @@ const getStandings = (season = 2019) => {
   //   )
   return fetch(`/data/standings-${season}.json`)
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchStandings = () => {

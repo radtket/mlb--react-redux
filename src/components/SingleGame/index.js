@@ -108,12 +108,6 @@ const SingleGame = ({
 
   const [ScoreboardTreyVisible, setScoreboardTreyVisible] = useState("hide");
 
-  function toggleScoreboardTrey() {
-    setScoreboardTreyVisible(
-      ScoreboardTreyVisible === "hide" ? "show" : "hide"
-    );
-  }
-
   return (
     <div
       className={classnames("scoreboard-wrapper", {
@@ -133,16 +127,17 @@ const SingleGame = ({
           })}
         >
           <SingleGameHead
-            Channel={Channel}
-            DateTime={DateTime}
-            GameStatusFinal={GameStatusFinal}
-            GameStatusInProgress={GameStatusInProgress}
-            GameStatusPregame={GameStatusPregame}
-            GameStatusScheduled={GameStatusScheduled}
-            Inning={Inning}
-            InningHalf={InningHalf}
-            IsClosed={IsClosed}
-            Status={Status}
+            {...{
+              Channel,
+              DateTime,
+              GameStatusFinal,
+              GameStatusInProgress,
+              GameStatusPregame,
+              GameStatusScheduled,
+              Inning,
+              InningHalf,
+              Status,
+            }}
           />
           <tbody>
             <SingleGameTeam
@@ -201,7 +196,11 @@ const SingleGame = ({
               {!GameStatusPostponed && (
                 <button
                   className="scoreboard__tray--button"
-                  onClick={toggleScoreboardTrey}
+                  onClick={() => {
+                    setScoreboardTreyVisible(prev =>
+                      prev === "hide" ? "show" : "hide"
+                    );
+                  }}
                   type="button"
                 >
                   {ScoreboardTreyVisible === "hide"

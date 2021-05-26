@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_TEAM_STATS_BEGIN = "FETCH_TEAM_STATS_BEGIN";
 export const FETCH_TEAM_STATS_SUCCESS = "FETCH_TEAM_STATS_SUCCESS";
@@ -27,7 +27,7 @@ const getTeamStats = teamArg => {
   // )
   return fetch(`/data/teams/${teamArg}/playerstats.${teamArg}.json`)
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchTeamStats = teamArg => {

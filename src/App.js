@@ -16,6 +16,7 @@ import {
   StandingsList,
   Team,
   TeamSplitsList,
+  AllPlayerList,
 } from "./pages";
 
 // Actions
@@ -79,6 +80,7 @@ const App = () => {
         <Route component={GamesOnDay} exact path="/scores" />
         <Route component={LeagueLeadersTeams} exact path="/stats" />
         <Route component={NewsAllTeamsList} exact path="/news" />
+        <Route component={AllPlayerList} exact path="/players" />
         <Route component={PlayerList} exact path="/player/:playerArg" />
         <Route component={ProductList} exact path="/product" />
         <Route component={RedditAsyncApp} exact path="/reddit" />

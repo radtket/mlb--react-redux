@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_TEAM_DEPTHS_BEGIN = "FETCH_TEAM_DEPTHS_BEGIN";
 export const FETCH_TEAM_DEPTHS_SUCCESS = "FETCH_TEAM_DEPTHS_SUCCESS";
@@ -31,7 +31,7 @@ const getTeamDepths = teamAbrv => {
     // )
     fetch("/data/all-teams-depth.json")
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
       .then(({ teams }) =>
         teams.find(team => {
           return team.abbr === currentTeamAbrv;

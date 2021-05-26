@@ -1,4 +1,4 @@
-import { handleErrors, teamFinder } from "../../utils/helpers";
+import { handleErrors, handleSuccess, teamFinder } from "../../utils/helpers";
 
 export const FETCH_NEWS_TEAMS_BEGIN = "FETCH_NEWS_TEAMS_BEGIN";
 export const FETCH_NEWS_TEAMS_SUCCESS = "FETCH_NEWS_TEAMS_SUCCESS";
@@ -23,7 +23,7 @@ const getNewsTeams = teamName => {
     `https://newsapi.org/v2/everything?q=mlb+${teamName}&?sources=espn&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
   )
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchNewsTeams = teamName => {

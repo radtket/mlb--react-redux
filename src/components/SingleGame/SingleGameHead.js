@@ -19,9 +19,9 @@ const SingleGameHead = ({
       <tr>
         <th className="date-time">
           {!GameStatusScheduled && !GameStatusInProgress && Status}
-          {!GameStatusPregame && GameStatusInProgress
-            ? `${inningHalfDecoder(InningHalf)} ${getNumberWithOrdinal(Inning)}`
-            : ""}
+          {!GameStatusPregame &&
+            GameStatusInProgress &&
+            `${inningHalfDecoder(InningHalf)} ${getNumberWithOrdinal(Inning)}`}
           {GameStatusPregame &&
             DateTime &&
             format(new Date(DateTime), "h:mm A")}

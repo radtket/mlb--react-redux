@@ -1,5 +1,6 @@
 import {
   handleErrors,
+  handleSuccess,
   // SportsRadarID
 } from "../../utils/helpers";
 
@@ -34,7 +35,7 @@ const getTeamSplits = teamArg => {
     // )
     fetch(`/data/teams/${teamArg}/splits.json`)
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
       .then(data => {
         const { hitting: hittingWrap, pitching: pitchingWrap } = data.splits;
         const [pitching] = pitchingWrap.overall;

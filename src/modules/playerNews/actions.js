@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 // TODO: Add When API is Live
 // import ApiHeadersMLB from "../../utils/api";
 
@@ -10,10 +10,13 @@ export const fetchPlayerNewsBegin = () => ({
   type: FETCH_PLAYER_NEWS_BEGIN,
 });
 
-export const fetchPlayerNewsSuccess = playerNews => ({
-  type: FETCH_PLAYER_NEWS_SUCCESS,
-  payload: { playerNews },
-});
+export const fetchPlayerNewsSuccess = playerNews => {
+  console.log({ playerNews });
+  return {
+    type: FETCH_PLAYER_NEWS_SUCCESS,
+    payload: { playerNews },
+  };
+};
 
 export const fetchPlayerNewsFailure = playerNewsFail => ({
   type: FETCH_PLAYER_NEWS_FAILURE,
@@ -29,7 +32,7 @@ const getPlayerNews = playerId => {
     // )
     fetch(`/data/PlayerNewsByID-${playerId}.json`)
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
   );
 };
 

@@ -82,8 +82,6 @@ const Sort = ({ sortRosterStateBy }) => {
 
 Sort.propTypes = {
   sortRosterStateBy: PropTypes.func.isRequired,
-  players: PropTypes.arrayOf(PropTypes.object).isRequired,
-  direction: PropTypes.number.isRequired,
 };
 
 export default Sort;

@@ -1,4 +1,8 @@
-import { handleErrors, smallestToLargest } from "../../utils/helpers";
+import {
+  handleErrors,
+  handleSuccess,
+  smallestToLargest,
+} from "../../utils/helpers";
 
 export const FETCH_SPORTS_RADAR_GAMES_BEGIN = "FETCH_SPORTS_RADAR_GAMES_BEGIN";
 export const FETCH_SPORTS_RADAR_GAMES_SUCCESS =
@@ -23,7 +27,7 @@ export const fetchSportsRadarGamesFailure = sportsRadarGamesError => ({
 const getSportsRadarGames = () => {
   return fetch("/data/games-sports-radar.json")
     .then(handleErrors)
-    .then(res => res.json())
+    .then(handleSuccess)
     .then(data => {
       return data.games.sort(smallestToLargest("scheduled"));
     });

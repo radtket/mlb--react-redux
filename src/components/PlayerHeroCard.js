@@ -86,11 +86,13 @@ const PlayerHeroCard = ({
   return (
     <PlayerHeroCardWrap
       className="player-hero-card"
-      MLBAMID={MLBAMID}
-      PrimaryColor={PrimaryColor}
-      SecondaryColor={SecondaryColor}
-      TeamLogo={espnLogo(Team, 200)}
-      UsaTodayHeadshotNoBackgroundUrl={UsaTodayHeadshotNoBackgroundUrl}
+      {...{
+        MLBAMID,
+        PrimaryColor,
+        SecondaryColor,
+        TeamLogo: espnLogo(Team, 200),
+        UsaTodayHeadshotNoBackgroundUrl,
+      }}
     >
       <div className="container">
         <figure className="cover">

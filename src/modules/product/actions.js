@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_PRODUCTS_BEGIN = "FETCH_PRODUCTS_BEGIN";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
@@ -21,7 +21,7 @@ export const fetchProductsFailure = productsFail => ({
 const getProducts = () => {
   return fetch("/data/teams-with-stadiums.json")
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchProducts = () => {

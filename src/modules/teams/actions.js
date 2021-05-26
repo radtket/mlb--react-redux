@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 // TODO: Add When API is Live
 // import ApiHeadersMLB from "../../utils/api";
 
@@ -31,7 +31,7 @@ const getTeams = () => {
   //   )
   return fetch("/data/teams-with-stadiums.json")
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchTeams = () => dispatch => {

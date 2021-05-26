@@ -1,4 +1,8 @@
-import { handleErrors, formatApiArgDatedate } from "../../utils/helpers";
+import {
+  handleErrors,
+  handleSuccess,
+  formatApiArgDatedate,
+} from "../../utils/helpers";
 // TODO: Add When API is Live
 // import ApiHeadersMLB from "../../utils/api";
 
@@ -30,7 +34,7 @@ const getNewsAllTeams = dateArg => {
     // )
     fetch(`/data/news-${date}.json`)
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
   );
 };
 

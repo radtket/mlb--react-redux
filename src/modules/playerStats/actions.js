@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_PLAYER_STATS_BEGIN = "FETCH_PLAYER_STATS_BEGIN";
 export const FETCH_PLAYER_STATS_SUCCESS = "FETCH_PLAYER_STATS_SUCCESS";
@@ -38,7 +38,7 @@ const getPlayerStats = (playerId, PositionCategory) => {
     }
   )
     .then(handleErrors)
-    .then(res => res.json())
+    .then(handleSuccess)
     .then(statType =>
       Object.entries(statType).reduce(
         (all, single) => {

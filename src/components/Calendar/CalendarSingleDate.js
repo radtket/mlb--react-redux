@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { isSameDay, isSameMonth, parse } from "date-fns";
+import classNames from "classnames";
 import CalendarSingleDateGame from "./CalendarSingleDateGame";
 
 const CalendarSingleDate = ({
@@ -13,9 +14,10 @@ const CalendarSingleDate = ({
 }) => {
   return (
     <button
-      className={`calendar__col calendar__cell ${
-        !isSameMonth(day, monthStart) ? "cell-disabled" : ""
-      } ${isSameDay(day, selectedDate) ? "cell-selected" : ""}`}
+      className={classNames("calendar__col calendar__cell", {
+        "cell-disabled": !isSameMonth(day, monthStart),
+        "cell-selected": isSameDay(day, selectedDate),
+      })}
       onClick={() => onDateClick(parse(day))}
       type="button"
     >

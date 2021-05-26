@@ -11,6 +11,7 @@ import RedditAsyncApp from "./Reddit";
 import SchedulesList from "./Schedules";
 import StandingsList from "./Standings";
 import Team from "./Team";
+import AllPlayerList from "./AllPlayersList";
 
 export {
   Counters,
@@ -26,4 +27,5 @@ export {
   SchedulesList,
   StandingsList,
   Team,
+  AllPlayerList,
 };

@@ -3,6 +3,8 @@ import { differenceInYears, format } from "date-fns";
 import tinycolor from "tinycolor2";
 import MLBAMIDs from "./MLBAMIDs";
 
+export const handleSuccess = res => res.json();
+
 export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);

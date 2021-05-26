@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_ALL_PLAYERS_BEGIN = "FETCH_ALL_PLAYERS_BEGIN";
 export const FETCH_ALL_PLAYERS_SUCCESS = "FETCH_ALL_PLAYERS_SUCCESS";
@@ -23,7 +23,7 @@ export const fetchAllPlayers = () => {
     dispatch(fetchAllPlayersBegin());
     return fetch("/data/all-players.json")
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
       .then(data => {
         dispatch(fetchAllPlayersSuccess(data));
         return data;

@@ -28,7 +28,7 @@ const DepthChartPosition = ({
           <li className="depth-chart__position--header">
             {desc === "Starting Pitcher" ? "ROTATION" : desc.toUpperCase()}
           </li>
-          <DepthChartPlayerList players={players} teamRoster={teamRoster} />
+          <DepthChartPlayerList {...{ players, teamRoster }} />
         </ul>
       </div>
     </article>

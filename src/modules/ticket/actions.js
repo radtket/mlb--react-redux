@@ -1,4 +1,4 @@
-import { handleErrors, slugify } from "../../utils/helpers";
+import { handleErrors, handleSuccess, slugify } from "../../utils/helpers";
 
 export const FETCH_TICKETS_BEGIN = "FETCH_TICKETS_BEGIN";
 export const FETCH_TICKETS_SUCCESS = "FETCH_TICKETS_SUCCESS";
@@ -26,7 +26,7 @@ const getTicketsOnDate = (date = "2019-05-14", sport = "mlb") => {
     `https://api.seatgeek.com/2/events?taxonomies.name=${sport}&datetime_utc.gt=${date}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchTicketsOnDate = date => {
@@ -47,7 +47,7 @@ const getTickets = teamName => {
     `https://api.seatgeek.com/2/events?performers.slug=${teamQuery}&client_id=${process.env.REACT_APP_SEATGEEK_API_KEY}`
   )
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchTickets = teamName => {

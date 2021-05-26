@@ -6,11 +6,11 @@ import { espnLogo, teamFinder } from "../utils/helpers";
 
 const StatTable = styled.div`
   &::before {
-    background-color: ${props => `${props.PrimaryColor}`};
+    background-color: ${({ PrimaryColor }) => `${PrimaryColor}`};
   }
 
   .wisbb--leaders__team-logo {
-    background: #f2f2f2 url("${props => `${props.leaderLogo}`}");
+    background: #f2f2f2 url("${({ leaderLogo }) => `${leaderLogo}`}");
     background-size: 85%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ const StatTable = styled.div`
     &--wrap {
       &:hover {
         .wisbb--leaders__team-logo {
-          background-color: ${props => `${props.SecondaryColor}`};
+          background-color: ${({ SecondaryColor }) => `${SecondaryColor}`};
         }
       }
     }
@@ -28,10 +28,10 @@ const StatTable = styled.div`
   table {
     tr {
       &:first-of-type {
-        background-color: ${props => `${props.PrimaryColor}`};
-        color: ${props =>
+        background-color: ${({ PrimaryColor }) => `${PrimaryColor}`};
+        color: ${({ PrimaryColor }) =>
           `${tinycolor
-            .mostReadable(`#${props.PrimaryColor}`, [`#fff`, `#000`])
+            .mostReadable(`#${PrimaryColor}`, [`#fff`, `#000`])
             .toHexString()}`};
       }
     }

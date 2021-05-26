@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 // TODO: Add When API is Live
 // import ApiHeadersMLB from "../../utils/api";
 
@@ -28,7 +28,7 @@ const getTeamRoster = teamArg => {
   // )
   return fetch(`/data/teams/${teamArg}/roster.${teamArg}.json`)
     .then(handleErrors)
-    .then(res => res.json());
+    .then(handleSuccess);
 };
 
 export const fetchTeamRoster = teamArg => {

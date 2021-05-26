@@ -1,4 +1,8 @@
-import { handleErrors, formatApiArgDatedate } from "../../utils/helpers";
+import {
+  handleErrors,
+  handleSuccess,
+  formatApiArgDatedate,
+} from "../../utils/helpers";
 
 export const FETCH_GAMES_ON_DAY_BEGIN = "FETCH_GAMES_ON_DAY_BEGIN";
 export const FETCH_GAMES_ON_DAY_SUCCESS = "FETCH_GAMES_ON_DAY_SUCCESS";
@@ -28,7 +32,7 @@ const getGamesOnDay = dateArg => {
     // )
     fetch(`/data/GamesByDate/${date}.json`)
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
   );
 };
 

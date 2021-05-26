@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 // import ApiHeadersMLB from "../../utils/api";
 
 export const FETCH_PLAYER_BEGIN = "FETCH_PLAYER_BEGIN";
@@ -27,22 +27,24 @@ const getPlayer = (playerArg, season = 2018) => {
   //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
-  //     .then(value => value.json()),
+  //     .then(handleSuccess),
   //   fetch(
   //     `https://api.fantasydata.net/v3/mlb/stats/JSON/Player/${playerArg}`,
   //     ApiHeadersMLB
   //   )
   //     .then(handleErrors)
-  //     .then(value => value.json()),
+  //     .then(handleSuccess),
   // ]);
+
+  console.log({ season });
 
   return Promise.all([
     fetch(`/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
       .then(handleErrors)
-      .then(value => value.json()),
+      .then(handleSuccess),
     fetch(`/data/players/PlayerDetailsByPlayer.${playerArg}.json`)
       .then(handleErrors)
-      .then(value => value.json()),
+      .then(handleSuccess),
   ]);
 };
 

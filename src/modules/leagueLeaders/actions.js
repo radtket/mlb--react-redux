@@ -1,4 +1,4 @@
-import { handleErrors } from "../../utils/helpers";
+import { handleErrors, handleSuccess } from "../../utils/helpers";
 
 export const FETCH_LEAGUE_LEADERS_BEGIN = "FETCH_LEAGUE_LEADERS_BEGIN";
 export const FETCH_LEAGUE_LEADERS_SUCCESS = "FETCH_LEAGUE_LEADERS_SUCCESS";
@@ -30,7 +30,7 @@ const getLeagueLeaders = (seasonYear = 2019, mlbSeason = "REG") => {
     // )
     fetch(`/data/stats-league-leaders-${seasonYear}-${mlbSeason}.json`)
       .then(handleErrors)
-      .then(res => res.json())
+      .then(handleSuccess)
   );
 };
 

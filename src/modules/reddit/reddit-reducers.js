@@ -5,24 +5,14 @@ import {
   RECEIVE_POSTS,
 } from "./reddit-actions";
 
-export function selectedSubreddit(state = "reactjs", action) {
-  switch (action.type) {
-    case SELECT_SUBREDDIT:
-      return action.subreddit;
-    default:
-      return state;
-  }
-}
+const initalState = {
+  isFetching: false,
+  didInvalidate: false,
+  items: [],
+};
 
-export function posts(
-  state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: [],
-  },
-  action
-) {
-  switch (action.type) {
+const postsDude = (state = initalState, { type, posts, receivedAt }) => {
+  switch (type) {
     case INVALIDATE_SUBREDDIT:
       return { ...state, didInvalidate: true };
     case REQUEST_POSTS:
@@ -32,24 +22,36 @@ export function posts(
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.posts,
-        lastUpdated: action.receivedAt,
+        items: posts,
+        lastUpdated: receivedAt,
       };
     default:
       return state;
   }
-}
+};
 
-export function postsBySubreddit(state = {}, action) {
-  switch (action.type) {
+export const selectedSubreddit = (state = "reactjs", { type, subreddit }) => {
+  switch (type) {
+    case SELECT_SUBREDDIT:
+      return subreddit;
+    default:
+      return state;
+  }
+};
+
+export const postsBySubreddit = (
+  state = {},
+  { type, subreddit, posts, receivedAt }
+) => {
+  switch (type) {
     case INVALIDATE_SUBREDDIT:
     case RECEIVE_POSTS:
     case REQUEST_POSTS:
       return {
         ...state,
-        [action.subreddit]: posts(state[action.subreddit], action),
+        [subreddit]: postsDude(state[subreddit], { type, posts, receivedAt }),
       };
     default:
       return state;
   }
-}
+};
