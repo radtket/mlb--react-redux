@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const NumberOfInnings = ({ GameID, Innings, InningsInRegulation }) => {
-  const defaultInnings = [];
   if (Innings.length >= InningsInRegulation) {
     return Innings.map(inning => (
       <th key={`${GameID} Inning ${inning.InningNumber}`}>
@@ -11,11 +10,10 @@ const NumberOfInnings = ({ GameID, Innings, InningsInRegulation }) => {
     ));
   }
 
-  for (let i = 1; i <= InningsInRegulation; i += 1) {
-    defaultInnings.push(<th key={`${GameID} Inning ${i}`}>{i}</th>);
-  }
-
-  return defaultInnings;
+  return Array.from({ length: InningsInRegulation }, (_, idx) => {
+    const i = idx + 1;
+    return <th key={`${GameID} Inning ${i}`}>{i}</th>;
+  });
 };
 
 NumberOfInnings.propTypes = {

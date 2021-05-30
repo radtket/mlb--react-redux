@@ -166,7 +166,7 @@ const SingleGame = ({
               {StadiumObj && (
                 <LocationAndWeather {...{ ...StadiumObj, ForecastWindChill }} />
               )}
-              {gameTicket && <Tickets {...{ gameTicket }} />}
+              {gameTicket && <Tickets {...{ ...gameTicket }} />}
               <Odds {...{ HomeTeamMoneyLine, HomeTeam, OverUnder }} />
             </>
           ) : (
@@ -351,7 +351,7 @@ SingleGame.propTypes = {
   SavingPitcherID: PropTypes.number,
   LosingPitcherID: PropTypes.number,
 
-  ForecastWindChill: PropTypes.number,
+  ForecastWindChill: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   StadiumID: PropTypes.number,
 
   HomeTeamMoneyLine: PropTypes.number,

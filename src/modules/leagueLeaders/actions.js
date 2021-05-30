@@ -31,55 +31,55 @@ const getLeagueLeaders = (seasonYear = 2019, mlbSeason = "REG") => {
     fetch(`/data/stats-league-leaders-${seasonYear}-${mlbSeason}.json`)
       .then(handleErrors)
       .then(handleSuccess)
+      .then(({ leagues }) => {
+        return leagues.reduce(
+          (all, { pitching, hitting, alias }) => {
+            return {
+              ...all,
+              [alias]: Object.entries({ pitching, hitting }).reduce(
+                (teamsAndPlayers, [pitchorhitKey, pitchorhitData]) =>
+                  Object.entries(pitchorhitData).reduce(
+                    (obj, [statKey, statData]) => {
+                      return Object.entries(statData).reduce(
+                        (zzz, [teamsorplayersKey, teamsorplayersData]) => {
+                          zzz[teamsorplayersKey][pitchorhitKey][
+                            statKey
+                          ] = teamsorplayersData;
+
+                          return zzz;
+                        },
+                        obj
+                      );
+                    },
+                    teamsAndPlayers
+                  ),
+                {
+                  teams: {
+                    pitching: {},
+                    hitting: {},
+                  },
+                  players: {
+                    pitching: {},
+                    hitting: {},
+                  },
+                }
+              ),
+            };
+          },
+          { AL: {}, NL: {}, MLB: {} }
+        );
+      })
   );
-};
-
-const buildCatObject = (all, one, name, cat) => {
-  return Object.entries(one).forEach(([statKey, { players, teams }]) => {
-    const allStats = all;
-    allStats[name].teams[`${cat}`][statKey] =
-      allStats[name].teams[`${cat}`][statKey] || {};
-    allStats[name].teams[`${cat}`][statKey] = teams;
-
-    allStats[name].players[`${cat}`][statKey] =
-      allStats[name].players[`${cat}`][statKey] || {};
-    allStats[name].players[`${cat}`][statKey] = players;
-  });
 };
 
 export const fetchLeagueLeaders = () => {
   return dispatch => {
     dispatch(fetchLeagueLeadersBegin());
     return getLeagueLeaders()
-      .then(data => {
-        return data.leagues.reduce(
-          (
-            all,
-            { pitching: pitchingData, hitting: hittingData, alias: key }
-          ) => {
-            const allStats = all;
-            allStats[key] = allStats[key] || {};
-            allStats[key].teams = allStats[key].teams || {};
-            allStats[key].players = allStats[key].players || {};
-
-            allStats[key].teams.pitching = allStats[key].teams.pitching || {};
-            allStats[key].players.pitching =
-              allStats[key].players.pitching || {};
-
-            allStats[key].teams.hitting = allStats[key].teams.hitting || {};
-            allStats[key].players.hitting = allStats[key].players.hitting || {};
-
-            buildCatObject(allStats, pitchingData, key, "pitching");
-            buildCatObject(allStats, hittingData, key, "hitting");
-
-            return all;
-          },
-          {}
-        );
-      })
       .then(({ MLB }) => {
-        dispatch(fetchLeagueLeadersSuccess(MLB.teams));
-        return MLB.teams;
+        const { teams } = MLB;
+        dispatch(fetchLeagueLeadersSuccess(teams));
+        return teams;
       })
       .catch(error => dispatch(fetchLeagueLeadersFailure(error)));
   };

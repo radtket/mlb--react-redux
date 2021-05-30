@@ -32,7 +32,8 @@ LocationAndWeather.propTypes = {
   Name: PropTypes.string.isRequired,
   City: PropTypes.string.isRequired,
   State: PropTypes.string.isRequired,
-  ForecastWindChill: PropTypes.string.isRequired,
+  ForecastWindChill: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
 };
 
 export default LocationAndWeather;

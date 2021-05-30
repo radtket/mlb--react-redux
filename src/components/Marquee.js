@@ -17,8 +17,7 @@ const Marquee = ({ MarqueeData, MarqueeItems = 5 }) => {
         <h4>BREAKING NEWS</h4>
       </div>
       <div className="marquee">
-        {MarqueeData.slice(0, `${MarqueeItems}`).map(key => {
-          const { NewsID, Title } = key;
+        {MarqueeData.slice(0, `${MarqueeItems}`).map(({ NewsID, Title }) => {
           return (
             <Link key={NewsID} className="marquee__item" to={`/news/${NewsID}`}>
               {Title}
