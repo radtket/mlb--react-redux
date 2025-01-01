@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mlb--react-redux/static/css/main.906ec369.chunk.css",
-    "main.js": "/mlb--react-redux/static/js/main.dd35701b.chunk.js",
-    "main.js.map": "/mlb--react-redux/static/js/main.dd35701b.chunk.js.map",
+    "main.js": "/mlb--react-redux/static/js/main.f8bf740f.chunk.js",
+    "main.js.map": "/mlb--react-redux/static/js/main.f8bf740f.chunk.js.map",
     "runtime-main.js": "/mlb--react-redux/static/js/runtime-main.4db997ae.js",
     "runtime-main.js.map": "/mlb--react-redux/static/js/runtime-main.4db997ae.js.map",
     "static/css/2.0717822a.chunk.css": "/mlb--react-redux/static/css/2.0717822a.chunk.css",
     "static/js/2.8239084a.chunk.js": "/mlb--react-redux/static/js/2.8239084a.chunk.js",
     "static/js/2.8239084a.chunk.js.map": "/mlb--react-redux/static/js/2.8239084a.chunk.js.map",
     "index.html": "/mlb--react-redux/index.html",
-    "precache-manifest.60c82571a8fd71ce56b08b12fb4be995.js": "/mlb--react-redux/precache-manifest.60c82571a8fd71ce56b08b12fb4be995.js",
+    "precache-manifest.8603418110c6cb834723df3b19bb1c76.js": "/mlb--react-redux/precache-manifest.8603418110c6cb834723df3b19bb1c76.js",
     "service-worker.js": "/mlb--react-redux/service-worker.js",
     "static/css/2.0717822a.chunk.css.map": "/mlb--react-redux/static/css/2.0717822a.chunk.css.map",
     "static/css/main.906ec369.chunk.css.map": "/mlb--react-redux/static/css/main.906ec369.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.0717822a.chunk.css",
     "static/js/2.8239084a.chunk.js",
     "static/css/main.906ec369.chunk.css",
-    "static/js/main.dd35701b.chunk.js"
+    "static/js/main.f8bf740f.chunk.js"
   ]
 }
