@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1349a2f0f2526d396290469624b5818a",
+    "revision": "0ed41207fa4cbb56433df5c6f1257b81",
     "url": "/mlb--react-redux/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mlb--react-redux/static/css/2.0717822a.chunk.css"
   },
   {
-    "revision": "06fabc50fda217573414",
+    "revision": "051c585b847acbbf3c2c",
     "url": "/mlb--react-redux/static/css/main.906ec369.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mlb--react-redux/static/js/2.8239084a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "06fabc50fda217573414",
-    "url": "/mlb--react-redux/static/js/main.cd12d016.chunk.js"
+    "revision": "051c585b847acbbf3c2c",
+    "url": "/mlb--react-redux/static/js/main.dd35701b.chunk.js"
   },
   {
     "revision": "dbc864abedf48f43fc62",
