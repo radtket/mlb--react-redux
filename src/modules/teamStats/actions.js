@@ -25,7 +25,7 @@ const getTeamStats = teamArg => {
   //   `https://api.fantasydata.net/v3/mlb/stats/JSON/PlayerSeasonStatsByTeam/{season}/${teamArg}`,
   //   ApiHeadersMLB
   // )
-  return fetch(`/data/teams/${teamArg}/playerstats.${teamArg}.json`)
+  return fetch(`${process.env.PUBLIC_URL}/data/teams/${teamArg}/playerstats.${teamArg}.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };

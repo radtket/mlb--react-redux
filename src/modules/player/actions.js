@@ -39,10 +39,10 @@ const getPlayer = (playerArg, season = 2018) => {
   console.log({ season });
 
   return Promise.all([
-    fetch(`/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/players/PlayerSeasonStatsByPlayer.${playerArg}.json`)
       .then(handleErrors)
       .then(handleSuccess),
-    fetch(`/data/players/PlayerDetailsByPlayer.${playerArg}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/players/PlayerDetailsByPlayer.${playerArg}.json`)
       .then(handleErrors)
       .then(handleSuccess),
   ]);

@@ -29,7 +29,7 @@ const getTeamDepths = teamAbrv => {
     //     process.env.REACT_APP_SPORTSRADAR_MLB_API_KEY
     //   }`
     // )
-    fetch("/data/all-teams-depth.json")
+    fetch(`${process.env.PUBLIC_URL}/data/all-teams-depth.json`)
       .then(handleErrors)
       .then(handleSuccess)
       .then(({ teams }) =>

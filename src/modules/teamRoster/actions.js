@@ -26,7 +26,7 @@ const getTeamRoster = teamArg => {
   //   `https://api.fantasydata.net/v3/mlb/scores/JSON/Players/${teamArg}`,
   //   ApiHeadersMLB
   // )
-  return fetch(`/data/teams/${teamArg}/roster.${teamArg}.json`)
+  return fetch(`${process.env.PUBLIC_URL}/data/teams/${teamArg}/roster.${teamArg}.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };

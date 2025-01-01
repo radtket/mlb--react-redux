@@ -28,7 +28,7 @@ const getLeagueLeaders = (seasonYear = 2019, mlbSeason = "REG") => {
     //     process.env.REACT_APP_SPORTSRADAR_MLB_API_KEY
     //   }`
     // )
-    fetch(`/data/stats-league-leaders-${seasonYear}-${mlbSeason}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/stats-league-leaders-${seasonYear}-${mlbSeason}.json`)
       .then(handleErrors)
       .then(handleSuccess)
       .then(({ leagues }) => {

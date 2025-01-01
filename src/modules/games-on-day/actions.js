@@ -30,7 +30,7 @@ const getGamesOnDay = dateArg => {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/GamesByDate/{date}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/GamesByDate/${date}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/GamesByDate/${date}.json`)
       .then(handleErrors)
       .then(handleSuccess)
   );

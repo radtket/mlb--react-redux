@@ -7,7 +7,7 @@ const DepthChart = ({ teamAbrv, positions, teamRoster }) => {
     <figure
       className="depth-chart"
       style={{
-        backgroundImage: `url('/data/stadiums/${teamAbrv}.png')`,
+        backgroundImage: `url('${process.env.PUBLIC_URL}/data/stadiums/${teamAbrv}.png')`,
       }}
     >
       <DepthChartWrapper {...{ positions, teamRoster }} />

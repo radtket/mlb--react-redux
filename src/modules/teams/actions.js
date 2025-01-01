@@ -29,7 +29,7 @@ const getTeams = () => {
   //     `https://api.fantasydata.net/v3/mlb/stats/JSON/teams`,
   //     ApiHeadersMLB
   //   )
-  return fetch("/data/teams-with-stadiums.json")
+  return fetch(`${process.env.PUBLIC_URL}/data/teams-with-stadiums.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };

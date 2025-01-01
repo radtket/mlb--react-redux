@@ -33,7 +33,7 @@ const getTeamSplits = teamArg => {
     //     process.env.REACT_APP_SPORTSRADAR_MLB_API_KEY
     //   }`
     // )
-    fetch(`/data/teams/${teamArg}/splits.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/teams/${teamArg}/splits.json`)
       .then(handleErrors)
       .then(handleSuccess)
       .then(data => {

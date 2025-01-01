@@ -32,7 +32,7 @@ const getNewsAllTeams = dateArg => {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/NewsByDate/${date}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/news-${date}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/news-${date}.json`)
       .then(handleErrors)
       .then(handleSuccess)
   );

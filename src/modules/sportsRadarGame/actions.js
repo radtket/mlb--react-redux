@@ -25,7 +25,7 @@ export const fetchSportsRadarGamesFailure = sportsRadarGamesError => ({
 });
 
 const getSportsRadarGames = () => {
-  return fetch("/data/games-sports-radar.json")
+  return fetch(`${process.env.PUBLIC_URL}/data/games-sports-radar.json`)
     .then(handleErrors)
     .then(handleSuccess)
     .then(data => {

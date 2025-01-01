@@ -19,7 +19,7 @@ export const fetchStadiumsFailure = stadiumsError => ({
 });
 
 const getStadiums = () => {
-  return fetch("/data/stadiums.json")
+  return fetch(`${process.env.PUBLIC_URL}/data/stadiums.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };

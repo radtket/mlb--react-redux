@@ -19,7 +19,7 @@ export const fetchProductsFailure = productsFail => ({
 });
 
 const getProducts = () => {
-  return fetch("/data/teams-with-stadiums.json")
+  return fetch(`${process.env.PUBLIC_URL}/data/teams-with-stadiums.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };

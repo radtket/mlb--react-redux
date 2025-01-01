@@ -21,7 +21,7 @@ export const fetchAllPlayersFailure = allPlayersError => ({
 export const fetchAllPlayers = () => {
   return dispatch => {
     dispatch(fetchAllPlayersBegin());
-    return fetch("/data/all-players.json")
+    return fetch(`${process.env.PUBLIC_URL}/data/all-players.json`)
       .then(handleErrors)
       .then(handleSuccess)
       .then(data => {

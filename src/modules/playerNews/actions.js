@@ -30,7 +30,7 @@ const getPlayerNews = playerId => {
     //   `https://api.fantasydata.net/v3/mlb/stats/JSON/NewsByPlayerID/${playerId}`,
     //   ApiHeadersMLB
     // )
-    fetch(`/data/PlayerNewsByID-${playerId}.json`)
+    fetch(`${process.env.PUBLIC_URL}/data/PlayerNewsByID-${playerId}.json`)
       .then(handleErrors)
       .then(handleSuccess)
   );

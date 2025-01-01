@@ -27,7 +27,7 @@ const getStandings = (season = 2019) => {
   //     `https://api.fantasydata.net/v3/mlb/scores/JSON/Standings/${season}`,
   //     ApiHeadersMLB
   //   )
-  return fetch(`/data/standings-${season}.json`)
+  return fetch(`${process.env.PUBLIC_URL}/data/standings-${season}.json`)
     .then(handleErrors)
     .then(handleSuccess);
 };
