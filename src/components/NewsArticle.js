@@ -14,7 +14,12 @@ export const SplitLogo = (team1, team2) => {
     <figure className="split-logo">
       {team1 && <img alt={`${team1} Logo`} src={espnLogo(team1, 50)} />}
       {team2 && <img alt={`${team2} Logo`} src={espnLogo(team2, 50)} />}
-      {!team1 && !team2 && <img alt="MLB Logo" src="/images/mlb-logo.png" />}
+      {!team1 && !team2 && (
+        <img
+          alt="MLB Logo"
+          src={`${process.env.PUBLIC_URL}/images/mlb-logo.png`}
+        />
+      )}
     </figure>
   );
 };
@@ -74,7 +79,9 @@ const NewsArticle = ({
           href={Url}
           style={{
             backgroundImage: `url("${
-              Team ? espnLogo(Team, 50) : "/images/mlb-logo.png"
+              Team
+                ? espnLogo(Team, 50)
+                : `${process.env.PUBLIC_URL}/images/mlb-logo.png`
             }")`,
           }}
         >

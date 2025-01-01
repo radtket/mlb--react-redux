@@ -5,10 +5,13 @@ const PlayerCardLarge = () => {
     <div className="test-component">
       <div className="widget__content card__content">
         <div className="widget-player__team-logo">
-          <img alt="" src="/images/logo.png" />
+          <img alt="" src={`${process.env.PUBLIC_URL}/images/logo.png`} />
         </div>
         <figure className="widget-player__photo">
-          <img alt="" src="/images/samples/widget-featured-player.png" />
+          <img
+            alt=""
+            src={`${process.env.PUBLIC_URL}//samples/widget-featured-player.png`}
+          />
         </figure>
         <header className="widget-player__header clearfix">
           <div className="widget-player__number">38</div>
